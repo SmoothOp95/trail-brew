@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 // ╔══════════════════════════════════════════════════════════╗
 // ║  REPLACE the remaining values from Firebase Console     ║
@@ -30,5 +30,6 @@ enableIndexedDbPersistence(db).catch((err) => {
 
 // Auth
 export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
 
 export default app;
