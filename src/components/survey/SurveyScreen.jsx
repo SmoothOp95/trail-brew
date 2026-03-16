@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { questions } from '../../data/questions';
 import OptionButton from './OptionButton';
 
-export default function SurveyScreen({ onComplete }) {
+export default function SurveyScreen({ onComplete, onBack }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [selected, setSelected] = useState(null);
@@ -32,6 +32,16 @@ export default function SurveyScreen({ onComplete }) {
     <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10 relative">
       {/* Glow */}
       <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(184,230,72,0.15),transparent_70%)] pointer-events-none opacity-50" />
+
+      {/* Back link */}
+      {onBack && (
+        <button
+          onClick={onBack}
+          className="absolute top-6 left-5 font-mono text-[11px] text-brew-text-dim hover:text-brew-accent transition-colors tracking-widest uppercase flex items-center gap-1.5"
+        >
+          ← Home
+        </button>
+      )}
 
       {/* Brand */}
       <div className="text-center mb-12 relative">
