@@ -1,0 +1,25 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Trail data — anyone can read, only admins can write
+    match /trails/{trailId} {
+      allow read: if true;
+      allow write: if request.auth != null
+                   && request.auth.token.admin == true;
+    }
+
+    // User profiles — users can only read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+    }
+
+    // User ride logs — private to each user
+    match /users/{userId}/rides/{rideId} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+    }
+  }
+}
