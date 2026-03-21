@@ -1,7 +1,9 @@
 import { getTypeColor, getMatchClass } from '../../data/trailTypes';
+import { useTrailWeather } from '../../hooks/useTrailWeather';
 
 export default function TrailCard({ trail }) {
   const matchClass = getMatchClass(trail.score);
+  const { weather, condition, loading: weatherLoading } = useTrailWeather(trail.coordinates);
 
   return (
     <div className="bg-brew-card border border-brew-border rounded-xl p-6 transition-all duration-300 relative overflow-hidden hover:border-brew-accent/20 hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)] group">
@@ -53,8 +55,35 @@ export default function TrailCard({ trail }) {
         )}
       </div>
 
+      {/* Trail condition */}
+      <div className="mt-3.5 mb-1">
+        {weatherLoading ? (
+          <div className="h-7 w-36 rounded-md bg-brew-border/40 animate-pulse" />
+        ) : condition ? (
+          <div className="flex items-center gap-3 flex-wrap">
+            <span
+              className={`inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-md border uppercase tracking-wide ${condition.colorClass}`}
+            >
+              <span className={`w-2 h-2 rounded-full ${condition.dotClass}`} />
+              {condition.shortLabel}
+            </span>
+            <span className="text-[11px] text-brew-text-dim">{condition.label}</span>
+            {weather && (
+              <span className="ml-auto text-[11px] text-brew-text-dim font-mono">
+                {weather.temp}°C · {weather.wind} km/h
+              </span>
+            )}
+          </div>
+        ) : null}
+        {weather && weather.rain24h > 0 && (
+          <p className="text-[10px] text-brew-text-dim mt-1.5">
+            {weather.rain24h}mm in last 24h · {weather.rain48h}mm in last 48h
+          </p>
+        )}
+      </div>
+
       {/* Footer */}
-      <div className="mt-4 pt-3.5 border-t border-brew-border flex items-center justify-between">
+      <div className="mt-4 pt-3.5 border-t border-brew-border">
         <a
           href={trail.mapUrl}
           target="_blank"
@@ -63,27 +92,7 @@ export default function TrailCard({ trail }) {
         >
           📍 View on Maps →
         </a>
-        <DifficultyPips difficulty={trail.difficulty} />
       </div>
-    </div>
-  );
-}
-
-function DifficultyPips({ difficulty }) {
-  const colors = ['bg-green-500', 'bg-blue-500', 'bg-red-500', 'bg-neutral-800 border border-neutral-500'];
-
-  return (
-    <div className="flex gap-[3px]">
-      {difficulty.map((filled, i) => {
-        if (filled > 0) {
-          return Array.from({ length: filled }, (_, j) => (
-            <div key={`${i}-${j}`} className={`w-3.5 h-3.5 rounded-sm ${colors[i]}`} />
-          ));
-        }
-        return (
-          <div key={i} className={`w-3.5 h-3.5 rounded-sm ${colors[i]} opacity-25`} />
-        );
-      })}
     </div>
   );
 }
