@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+import SignInButton from '../auth/SignInButton';
 
 const pillars = [
   {
@@ -78,6 +80,8 @@ const tools = [
 ];
 
 export default function HomePage() {
+  const { user, signOut } = useAuth();
+
   return (
     <div className="min-h-screen flex flex-col relative">
       {/* Global glow */}
@@ -94,12 +98,31 @@ export default function HomePage() {
         <span className="font-mono text-[11px] text-brew-text-muted tracking-[0.2em] uppercase hidden sm:block">
           Gauteng MTB
         </span>
-        <Link
-          to="/trail-finder"
-          className="font-mono text-[11px] text-brew-accent border border-brew-accent/30 px-3.5 py-1.5 rounded-md hover:bg-brew-accent/10 transition-colors tracking-wide"
-        >
-          Find a trail
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/trail-finder"
+            className="font-mono text-[11px] text-brew-accent border border-brew-accent/30 px-3.5 py-1.5 rounded-md hover:bg-brew-accent/10 transition-colors tracking-wide"
+          >
+            Find a trail
+          </Link>
+          {user ? (
+            <div className="flex items-center gap-2">
+              <img
+                src={user.photoURL}
+                alt={user.displayName}
+                className="w-7 h-7 rounded-full border border-brew-border"
+              />
+              <button
+                onClick={signOut}
+                className="font-mono text-[11px] text-brew-text-dim border border-brew-border px-3 py-1.5 rounded-md hover:border-brew-accent hover:text-brew-accent transition-colors tracking-wide"
+              >
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <SignInButton className="text-[11px] px-3.5 py-1.5 rounded-md" />
+          )}
+        </div>
       </nav>
 
       {/* Hero */}
