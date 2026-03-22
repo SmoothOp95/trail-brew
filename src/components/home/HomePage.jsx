@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import SignInButton from '../auth/SignInButton';
 
 const pillars = [
   {
@@ -80,15 +78,13 @@ const tools = [
 ];
 
 export default function HomePage() {
-  const { user, signOut } = useAuth();
-
   return (
     <div className="min-h-screen flex flex-col relative">
       {/* Global glow */}
       <div className="fixed top-[-300px] left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(184,230,72,0.07),transparent_65%)] pointer-events-none" />
 
       {/* Nav */}
-      <nav className="relative z-10 flex items-center justify-between px-6 sm:px-10 py-5 border-b border-brew-border">
+      <nav className="relative z-10 hidden lg:flex items-center justify-between px-6 sm:px-10 py-5 border-b border-brew-border">
         <div className="flex items-center gap-2.5">
           <span className="text-xl">⛰️</span>
           <span className="font-black text-lg tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
@@ -98,31 +94,6 @@ export default function HomePage() {
         <span className="font-mono text-[11px] text-brew-text-muted tracking-[0.2em] uppercase hidden sm:block">
           Gauteng MTB
         </span>
-        <div className="flex items-center gap-3">
-          <Link
-            to="/trail-finder"
-            className="font-mono text-[11px] text-brew-accent border border-brew-accent/30 px-3.5 py-1.5 rounded-md hover:bg-brew-accent/10 transition-colors tracking-wide"
-          >
-            Find a trail
-          </Link>
-          {user ? (
-            <div className="flex items-center gap-2">
-              <img
-                src={user.photoURL}
-                alt={user.displayName}
-                className="w-7 h-7 rounded-full border border-brew-border"
-              />
-              <button
-                onClick={signOut}
-                className="font-mono text-[11px] text-brew-text-dim border border-brew-border px-3 py-1.5 rounded-md hover:border-brew-accent hover:text-brew-accent transition-colors tracking-wide"
-              >
-                Sign out
-              </button>
-            </div>
-          ) : (
-            <SignInButton className="text-[11px] px-3.5 py-1.5 rounded-md" />
-          )}
-        </div>
       </nav>
 
       {/* Hero */}

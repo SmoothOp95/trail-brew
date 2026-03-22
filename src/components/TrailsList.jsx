@@ -47,19 +47,11 @@ export default function TrailsList() {
     <div className="min-h-screen bg-brew-bg text-brew-text">
       {/* ── PAGE HEADER ── */}
       <div className="border-b border-brew-border bg-brew-card/60 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-[1100px] mx-auto px-5 py-4 flex items-center justify-between gap-4">
-          <div>
-            <h1 className="text-xl font-bold leading-tight">Gauteng MTB Trails</h1>
-            <p className="text-xs text-brew-text-dim mt-0.5">
-              Explore {trails.length} trails across Gauteng with live weather
-            </p>
-          </div>
-          <a
-            href="/"
-            className="font-mono text-[11px] text-brew-text-dim hover:text-brew-accent transition-colors tracking-wide uppercase shrink-0"
-          >
-            ← Back
-          </a>
+        <div className="max-w-[1100px] mx-auto px-5 py-4">
+          <h1 className="text-xl font-bold leading-tight">Gauteng MTB Trails</h1>
+          <p className="text-xs text-brew-text-dim mt-0.5">
+            Explore {trails.length} trails across Gauteng with live weather
+          </p>
         </div>
       </div>
 
