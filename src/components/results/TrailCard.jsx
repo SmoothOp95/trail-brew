@@ -41,20 +41,6 @@ export default function TrailCard({ trail }) {
         )}
       </div>
 
-      {/* Meta */}
-      <div className="flex items-center gap-4 flex-wrap text-xs text-brew-text-dim">
-        <span className="flex items-center gap-1.5">
-          <span className="text-sm">{trail.ridden ? '✅' : '⬜'}</span>
-          {trail.ridden ? 'Ridden' : 'Not yet ridden'}
-        </span>
-        {trail.ridingMonth && (
-          <span className="flex items-center gap-1.5">
-            <span className="text-sm">📅</span>
-            {trail.ridingMonth}
-          </span>
-        )}
-      </div>
-
       {/* Trail condition */}
       <div className="mt-3.5 mb-1">
         {weatherLoading ? (
