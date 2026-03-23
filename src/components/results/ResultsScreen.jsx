@@ -1,13 +1,10 @@
 import { useState, useMemo } from 'react';
 import TrailCard from './TrailCard';
 import FilterChips from './FilterChips';
-import SignInButton from '../auth/SignInButton';
-import { useAuth } from '../../hooks/useAuth';
 
 export default function ResultsScreen({ scored, matched, answers, threshold, onRetake }) {
   const [typeFilter, setTypeFilter] = useState('all');
   const [showAll, setShowAll] = useState(false);
-  const { user, signOut } = useAuth();
 
   // Preference tags for summary
   const prefLabels = useMemo(() => {
@@ -49,32 +46,12 @@ export default function ResultsScreen({ scored, matched, answers, threshold, onR
             Trail Brew
           </span>
         </button>
-        <div className="flex items-center gap-3">
-          {user ? (
-            <>
-              <img
-                src={user.photoURL}
-                alt={user.displayName}
-                className="w-8 h-8 rounded-full border border-brew-border"
-              />
-              <span className="text-sm text-brew-text-dim hidden sm:block">{user.displayName}</span>
-              <button
-                onClick={signOut}
-                className="font-mono text-xs text-brew-text-dim border border-brew-border px-3 py-2 rounded-lg hover:border-brew-accent hover:text-brew-accent transition-all uppercase tracking-wider"
-              >
-                Sign out
-              </button>
-            </>
-          ) : (
-            <SignInButton />
-          )}
-          <button
-            onClick={onRetake}
-            className="font-mono text-xs text-brew-text-dim border border-brew-border px-4 py-2 rounded-lg hover:border-brew-accent hover:text-brew-accent transition-all uppercase tracking-wider"
-          >
-            ↺ Retake Quiz
-          </button>
-        </div>
+        <button
+          onClick={onRetake}
+          className="font-mono text-xs text-brew-text-dim border border-brew-border px-4 py-2 rounded-lg hover:border-brew-accent hover:text-brew-accent transition-all uppercase tracking-wider"
+        >
+          ↺ Retake Quiz
+        </button>
       </div>
 
       {/* Summary */}

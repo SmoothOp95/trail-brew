@@ -1,12 +1,10 @@
 import { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import SurveyScreen from '../survey/SurveyScreen';
 import ResultsScreen from '../results/ResultsScreen';
 import { trails } from '../../data/trails';
 import { useTrailScoring } from '../../hooks/useTrailScoring';
 
 export default function TrailFinder() {
-  const navigate = useNavigate();
   const [view, setView] = useState('survey'); // 'survey' | 'results'
   const [answers, setAnswers] = useState({});
 
@@ -23,7 +21,7 @@ export default function TrailFinder() {
   }, []);
 
   if (view === 'survey') {
-    return <SurveyScreen onComplete={handleSurveyComplete} onBack={() => navigate('/')} />;
+    return <SurveyScreen onComplete={handleSurveyComplete} />;
   }
 
   return (
