@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Compass, Map, CheckSquare, X } from 'lucide-react';
+import { Home, Compass, Map, CheckSquare, LayoutDashboard, X } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import SignInButton from '../auth/SignInButton';
 
@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { to: '/trail-finder', icon: Compass, label: 'Find Trail' },
   { to: '/trails', icon: Map, label: 'Trails' },
   { to: '/my-trails', icon: CheckSquare, label: 'My Trails' },
+  { to: '/my-bike', icon: LayoutDashboard, label: 'Service Dashboard' },
 ];
 
 export default function Sidebar({ isOpen, onClose }) {
