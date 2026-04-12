@@ -24,15 +24,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy Firestore Security Rules
-        run: |
-          echo "$SA_KEY" > /tmp/gsa.json
-          npx firebase-tools deploy --only firestore:rules --project "$PROJECT_ID"
-        env:
-          SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gsa.json
-          PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
