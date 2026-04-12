@@ -3,23 +3,69 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Trail data — anyone can read, only admins can write
+    // ── Global deny-all fallback ──────────────────────────────────────
+    // Any path not explicitly matched below is denied. Firestore already
+    // denies by default, but being explicit prevents accidental exposure
+    // if new collections are added before rules are written for them.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // ── Trails (public catalogue) ─────────────────────────────────────
+    // Anyone can browse trails; only callers with the `admin` custom claim
+    // (set server-side via Firebase Admin SDK) can create, update, or delete.
     match /trails/{trailId} {
-      allow read: if true;
-      allow write: if request.auth != null
-                   && request.auth.token.admin == true;
+      allow read:  if true;
+      allow write: if isAdmin();
     }
 
-    // User profiles — users can only read/write their own data
+    // ── User profiles ─────────────────────────────────────────────────
+    // A user may only read or write their own document. Writes are
+    // validated to prevent storing arbitrary or privileged fields.
     match /users/{userId} {
-      allow read, write: if request.auth != null
-                         && request.auth.uid == userId;
+      allow read:   if isOwner(userId);
+      allow create: if isOwner(userId) && validUserProfile();
+      allow update: if isOwner(userId) && validUserProfile();
+      allow delete: if isOwner(userId);
     }
 
-    // User ride logs — private to each user
+    // ── User ride logs ────────────────────────────────────────────────
+    // Ride logs are private to the owning user. Both required and optional
+    // fields are validated on write.
     match /users/{userId}/rides/{rideId} {
-      allow read, write: if request.auth != null
-                         && request.auth.uid == userId;
+      allow read:   if isOwner(userId);
+      allow create: if isOwner(userId) && validRideLog();
+      allow update: if isOwner(userId) && validRideLog();
+      allow delete: if isOwner(userId);
+    }
+
+    // ── Helper functions ──────────────────────────────────────────────
+
+    // True when the caller holds an `admin` custom claim set via Admin SDK.
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    // True when the caller is authenticated and owns the document path.
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // Validates user-profile writes — only known fields are permitted so
+    // arbitrary data cannot be stored in user documents.
+    function validUserProfile() {
+      let allowed = ['displayName', 'email', 'photoURL', 'lastSeen',
+                     'riddenTrails', 'notes', 'preferences', 'createdAt'];
+      return request.resource.data.keys().hasOnly(allowed);
+    }
+
+    // Validates ride-log writes — trailId and date are required;
+    // no fields outside the allowed set are accepted.
+    function validRideLog() {
+      let required = ['trailId', 'date'];
+      let allowed  = ['trailId', 'date', 'notes', 'rating', 'createdAt'];
+      return request.resource.data.keys().hasAll(required)
+          && request.resource.data.keys().hasOnly(allowed);
     }
   }
 }
