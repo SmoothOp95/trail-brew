@@ -1,14 +1,28 @@
-import { MapPin, CheckSquare, Square } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, CheckSquare, Square, Plus } from 'lucide-react';
 import { trails } from '../data/trails';
 import { useRiddenTrails } from '../hooks/useRiddenTrails';
 import { getTypeColor } from '../data/trailTypes';
+import LogRideModal from '../components/trails/LogRideModal';
 
 export default function MyTrailsPage() {
   const { toggleRidden, isRidden, loading, riddenTrails } = useRiddenTrails();
+  const [activeModal, setActiveModal] = useState(null); // { trail, mode: 'log'|'history' }
 
   const riddenCount = riddenTrails.size;
   const totalCount = trails.length;
   const progressPct = totalCount > 0 ? (riddenCount / totalCount) * 100 : 0;
+
+  const openLog = (trail) => setActiveModal({ trail, mode: 'log' });
+  const openHistory = (trail) => setActiveModal({ trail, mode: 'history' });
+  const closeModal = () => setActiveModal(null);
+
+  const handleRideLogged = (trail) => {
+    // Ensure the trail is marked as ridden in the list after logging
+    if (!isRidden(trail.id)) {
+      toggleRidden(trail.id);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-brew-bg text-brew-text">
@@ -37,15 +51,27 @@ export default function MyTrailsPage() {
             trail={trail}
             ridden={isRidden(trail.id)}
             onToggle={() => toggleRidden(trail.id)}
+            onLogRide={() => openLog(trail)}
+            onViewHistory={() => openHistory(trail)}
             disabled={loading}
           />
         ))}
       </div>
+
+      {/* Log ride modal */}
+      {activeModal && (
+        <LogRideModal
+          trail={activeModal.trail}
+          initialMode={activeModal.mode}
+          onClose={closeModal}
+          onRideLogged={() => handleRideLogged(activeModal.trail)}
+        />
+      )}
     </div>
   );
 }
 
-function TrailRow({ trail, ridden, onToggle, disabled }) {
+function TrailRow({ trail, ridden, onToggle, onLogRide, onViewHistory, disabled }) {
   return (
     <div
       className={`
@@ -85,23 +111,52 @@ function TrailRow({ trail, ridden, onToggle, disabled }) {
         </div>
       </div>
 
-      {/* Toggle button */}
-      <button
-        onClick={onToggle}
-        disabled={disabled}
-        className={`
-          shrink-0 flex items-center gap-1.5 font-mono text-[11px] px-3.5 py-2 rounded-lg border
-          transition-all duration-200 uppercase tracking-wide font-bold
-          disabled:opacity-40 disabled:cursor-not-allowed
-          ${ridden
-            ? 'bg-brew-accent/15 text-brew-accent border-brew-accent/30 hover:bg-brew-accent/25'
-            : 'bg-white/[0.04] text-brew-text-dim border-brew-border hover:border-brew-accent/30 hover:text-brew-text'
-          }
-        `}
-      >
-        {ridden ? <CheckSquare size={13} /> : <Square size={13} />}
-        {ridden ? 'Ridden' : 'Not Ridden'}
-      </button>
+      {/* Action buttons */}
+      <div className="flex items-center gap-2 shrink-0">
+        {/* Ridden toggle */}
+        <button
+          onClick={onToggle}
+          disabled={disabled}
+          className={`
+            flex items-center gap-1.5 font-mono text-[11px] px-3 py-2 rounded-lg border
+            transition-all duration-200 uppercase tracking-wide font-bold
+            disabled:opacity-40 disabled:cursor-not-allowed
+            ${ridden
+              ? 'bg-brew-accent/15 text-brew-accent border-brew-accent/30 hover:bg-brew-accent/25'
+              : 'bg-white/[0.04] text-brew-text-dim border-brew-border hover:border-brew-accent/30 hover:text-brew-text'
+            }
+          `}
+          style={{ minHeight: '44px' }}
+        >
+          {ridden ? <CheckSquare size={13} /> : <Square size={13} />}
+          {ridden ? 'Ridden' : 'Not Ridden'}
+        </button>
+
+        {/* Log ride / history button */}
+        {ridden ? (
+          <button
+            onClick={onViewHistory}
+            disabled={disabled}
+            className="flex items-center gap-1.5 font-mono text-[11px] px-3 py-2 rounded-lg border border-brew-border text-brew-text-dim hover:border-brew-accent/30 hover:text-brew-text transition-all duration-200 uppercase tracking-wide font-bold disabled:opacity-40 disabled:cursor-not-allowed"
+            style={{ minHeight: '44px' }}
+            title="View / log ride"
+          >
+            <Plus size={13} />
+            Ride
+          </button>
+        ) : (
+          <button
+            onClick={onLogRide}
+            disabled={disabled}
+            className="flex items-center gap-1.5 font-mono text-[11px] px-3 py-2 rounded-lg border border-brew-border text-brew-text-dim hover:border-brew-accent/30 hover:text-brew-text transition-all duration-200 uppercase tracking-wide font-bold disabled:opacity-40 disabled:cursor-not-allowed"
+            style={{ minHeight: '44px' }}
+            title="Log a ride"
+          >
+            <Plus size={13} />
+            Ride
+          </button>
+        )}
+      </div>
     </div>
   );
 }

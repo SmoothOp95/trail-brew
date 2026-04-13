@@ -27,16 +27,32 @@ service cloud.firestore {
       allow create: if isOwner(userId) && validUserProfile();
       allow update: if isOwner(userId) && validUserProfile();
       allow delete: if isOwner(userId);
-    }
 
-    // ── User ride logs ────────────────────────────────────────────────
-    // Ride logs are private to the owning user. Both required and optional
-    // fields are validated on write.
-    match /users/{userId}/rides/{rideId} {
-      allow read:   if isOwner(userId);
-      allow create: if isOwner(userId) && validRideLog();
-      allow update: if isOwner(userId) && validRideLog();
-      allow delete: if isOwner(userId);
+      // ── Service history subcollection ─────────────────────────────
+      match /serviceHistory/{recordId} {
+        allow read:   if isOwner(userId);
+        allow create: if isOwner(userId);
+        allow update: if isOwner(userId);
+        allow delete: if isOwner(userId);
+      }
+
+      // ── Repair history subcollection ──────────────────────────────
+      match /repairHistory/{recordId} {
+        allow read:   if isOwner(userId);
+        allow create: if isOwner(userId);
+        allow update: if isOwner(userId);
+        allow delete: if isOwner(userId);
+      }
+
+      // ── Ride logs subcollection ───────────────────────────────────
+      // Ride logs are private to the owning user. Both required and optional
+      // fields are validated on write.
+      match /rides/{rideId} {
+        allow read:   if isOwner(userId);
+        allow create: if isOwner(userId) && validRideLog();
+        allow update: if isOwner(userId) && validRideLog();
+        allow delete: if isOwner(userId);
+      }
     }
 
     // ── Helper functions ──────────────────────────────────────────────
@@ -55,15 +71,18 @@ service cloud.firestore {
     // arbitrary data cannot be stored in user documents.
     function validUserProfile() {
       let allowed = ['displayName', 'email', 'photoURL', 'lastSeen',
-                     'riddenTrails', 'notes', 'preferences', 'createdAt'];
+                     'riddenTrails', 'notes', 'preferences', 'createdAt',
+                     'bikeData', 'stravaConnection'];
       return request.resource.data.keys().hasOnly(allowed);
     }
 
-    // Validates ride-log writes — trailId and date are required;
-    // no fields outside the allowed set are accepted.
+    // Validates ride-log writes — trailId, trailName, date, verificationMethod,
+    // and loggedAt are required; no fields outside the allowed set are accepted.
     function validRideLog() {
-      let required = ['trailId', 'date'];
-      let allowed  = ['trailId', 'date', 'notes', 'rating', 'createdAt'];
+      let required = ['trailId', 'trailName', 'date', 'verificationMethod', 'loggedAt'];
+      let allowed  = ['trailId', 'trailName', 'date', 'distanceKm', 'durationMinutes',
+                      'elevationM', 'note', 'verificationMethod', 'screenshotStoragePath',
+                      'aiRawExtraction', 'aiConfidence', 'loggedAt'];
       return request.resource.data.keys().hasAll(required)
           && request.resource.data.keys().hasOnly(allowed);
     }
