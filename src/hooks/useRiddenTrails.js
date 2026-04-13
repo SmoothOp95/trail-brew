@@ -45,7 +45,7 @@ export function useRiddenTrails() {
         setRiddenTrails(readLocalStorage());
       })
       .finally(() => setLoading(false));
-  }, [user?.uid]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [user === undefined ? 'loading' : user?.uid ?? 'guest']); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleRidden = (trailId) => {
     const newSet = new Set(riddenTrails);

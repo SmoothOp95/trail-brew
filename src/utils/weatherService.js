@@ -1,17 +1,40 @@
 /**
  * Weather service for Trail Brew — fetches live weather data for trail locations.
- *
- * Uses OpenWeather API (api.openweathermap.org) if VITE_OPENWEATHER_API_KEY is set.
- * Get a free key (1 000 calls/day) at https://openweathermap.org/api
- *
- * Add to your .env:
- *   VITE_OPENWEATHER_API_KEY=your_key_here
+ * Uses Open-Meteo (open-meteo.com) — free, no API key required.
  */
 
-const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+const BASE_URL = 'https://api.open-meteo.com/v1/forecast';
 
-function apiKey() {
-  return import.meta.env.VITE_OPENWEATHER_API_KEY;
+// WMO Weather Interpretation Codes → { condition, description, emoji }
+const WMO = {
+  0:  { condition: 'Clear',        description: 'Clear sky',                emoji: '☀️' },
+  1:  { condition: 'Clear',        description: 'Mainly clear',             emoji: '🌤️' },
+  2:  { condition: 'Clouds',       description: 'Partly cloudy',            emoji: '⛅' },
+  3:  { condition: 'Clouds',       description: 'Overcast',                 emoji: '☁️' },
+  45: { condition: 'Fog',          description: 'Fog',                      emoji: '🌫️' },
+  48: { condition: 'Fog',          description: 'Rime fog',                 emoji: '🌫️' },
+  51: { condition: 'Drizzle',      description: 'Light drizzle',            emoji: '🌦️' },
+  53: { condition: 'Drizzle',      description: 'Moderate drizzle',         emoji: '🌦️' },
+  55: { condition: 'Drizzle',      description: 'Dense drizzle',            emoji: '🌦️' },
+  61: { condition: 'Rain',         description: 'Slight rain',              emoji: '🌧️' },
+  63: { condition: 'Rain',         description: 'Moderate rain',            emoji: '🌧️' },
+  65: { condition: 'Rain',         description: 'Heavy rain',               emoji: '🌧️' },
+  71: { condition: 'Snow',         description: 'Slight snow',              emoji: '❄️' },
+  73: { condition: 'Snow',         description: 'Moderate snow',            emoji: '❄️' },
+  75: { condition: 'Snow',         description: 'Heavy snow',               emoji: '❄️' },
+  77: { condition: 'Snow',         description: 'Snow grains',              emoji: '🌨️' },
+  80: { condition: 'Rain',         description: 'Slight showers',           emoji: '🌦️' },
+  81: { condition: 'Rain',         description: 'Moderate showers',         emoji: '🌦️' },
+  82: { condition: 'Rain',         description: 'Violent showers',          emoji: '⛈️' },
+  85: { condition: 'Snow',         description: 'Slight snow showers',      emoji: '🌨️' },
+  86: { condition: 'Snow',         description: 'Heavy snow showers',       emoji: '🌨️' },
+  95: { condition: 'Thunderstorm', description: 'Thunderstorm',             emoji: '⛈️' },
+  96: { condition: 'Thunderstorm', description: 'Thunderstorm with hail',   emoji: '⛈️' },
+  99: { condition: 'Thunderstorm', description: 'Thunderstorm with hail',   emoji: '⛈️' },
+};
+
+function decodeWMO(code) {
+  return WMO[code] ?? { condition: 'Clear', description: 'Unknown', emoji: '🌡️' };
 }
 
 /**
@@ -22,79 +45,58 @@ function apiKey() {
  * @returns {Promise<object>} weather object
  */
 export async function getCurrentWeather(lat, lon) {
-  const key = apiKey();
-  if (!key) throw new Error('OpenWeather API key not configured. Add VITE_OPENWEATHER_API_KEY to your .env file.');
+  const params = new URLSearchParams({
+    latitude: lat,
+    longitude: lon,
+    current: [
+      'temperature_2m',
+      'apparent_temperature',
+      'relative_humidity_2m',
+      'wind_speed_10m',
+      'wind_direction_10m',
+      'weather_code',
+      'surface_pressure',
+    ].join(','),
+    hourly: 'visibility',
+    daily: 'sunrise,sunset',
+    forecast_days: 1,
+    timezone: 'Africa/Johannesburg',
+  });
 
-  const res = await fetch(
-    `${BASE_URL}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${key}`
-  );
-  if (!res.ok) throw new Error(`Weather request failed (${res.status}). Check your API key.`);
+  const res = await fetch(`${BASE_URL}?${params}`);
+  if (!res.ok) throw new Error(`Weather request failed (${res.status}).`);
   const d = await res.json();
+
+  const cur = d.current;
+  const wmo = decodeWMO(cur.weather_code);
+
+  // Match current time to closest hourly visibility entry
+  const currentTimeStr = cur.time; // e.g. "2026-04-13T14:00"
+  const hourIndex = d.hourly.time.findIndex((t) => t >= currentTimeStr);
+  const visibilityM = d.hourly.visibility[hourIndex >= 0 ? hourIndex : 0] ?? null;
+
+  // daily sunrise/sunset are ISO strings like "2026-04-13T06:15" — convert to Unix seconds
+  const sunrise = d.daily.sunrise[0]
+    ? Math.floor(new Date(d.daily.sunrise[0]).getTime() / 1000)
+    : null;
+  const sunset = d.daily.sunset[0]
+    ? Math.floor(new Date(d.daily.sunset[0]).getTime() / 1000)
+    : null;
 
   return {
-    temperature: Math.round(d.main.temp),
-    feelsLike: Math.round(d.main.feels_like),
-    condition: d.weather[0].main,
-    description: d.weather[0].description,
-    icon: d.weather[0].icon,
-    humidity: d.main.humidity,
-    // OpenWeather returns m/s — convert to km/h
-    windSpeed: Math.round(d.wind.speed * 3.6),
-    windDirection: getWindDirection(d.wind.deg),
-    // Convert metres to kilometres
-    visibility: Math.round((d.visibility / 1000) * 10) / 10,
-    pressure: d.main.pressure,
-    // Unix timestamps (seconds)
-    sunrise: d.sys.sunrise,
-    sunset: d.sys.sunset,
+    temperature: Math.round(cur.temperature_2m),
+    feelsLike: Math.round(cur.apparent_temperature),
+    condition: wmo.condition,
+    description: wmo.description,
+    icon: wmo.emoji,
+    humidity: cur.relative_humidity_2m,
+    windSpeed: Math.round(cur.wind_speed_10m),
+    windDirection: getWindDirection(cur.wind_direction_10m),
+    visibility: visibilityM != null ? Math.round((visibilityM / 1000) * 10) / 10 : null,
+    pressure: Math.round(cur.surface_pressure),
+    sunrise,
+    sunset,
   };
-}
-
-/**
- * Fetch 5-day / 3-hour forecast and group results by calendar day.
- *
- * @param {number} lat
- * @param {number} lon
- * @returns {Promise<Array>} array of daily forecast objects
- */
-export async function getWeatherForecast(lat, lon) {
-  const key = apiKey();
-  if (!key) throw new Error('OpenWeather API key not configured. Add VITE_OPENWEATHER_API_KEY to your .env file.');
-
-  const res = await fetch(
-    `${BASE_URL}/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${key}`
-  );
-  if (!res.ok) throw new Error(`Forecast request failed (${res.status}).`);
-  const d = await res.json();
-
-  // Group the 3-hour slots by local date string
-  const days = {};
-  for (const item of d.list) {
-    const date = new Date(item.dt * 1000).toLocaleDateString('en-ZA');
-    if (!days[date]) {
-      days[date] = { temps: [], conditions: [], precipitation: 0, humidity: [], windSpeed: [] };
-    }
-    days[date].temps.push(item.main.temp);
-    days[date].conditions.push(item.weather[0].main);
-    // 3-hour rain accumulation (may be absent when dry)
-    days[date].precipitation += item.rain?.['3h'] || 0;
-    days[date].humidity.push(item.main.humidity);
-    days[date].windSpeed.push(item.wind.speed * 3.6);
-  }
-
-  return Object.entries(days).map(([date, data]) => {
-    const mid = data.conditions[Math.floor(data.conditions.length / 2)];
-    return {
-      date,
-      minTemp: Math.round(Math.min(...data.temps)),
-      maxTemp: Math.round(Math.max(...data.temps)),
-      avgTemp: Math.round(data.temps.reduce((a, b) => a + b, 0) / data.temps.length),
-      condition: mid,
-      precipitation: Math.round(data.precipitation * 10) / 10,
-      humidity: Math.round(data.humidity.reduce((a, b) => a + b, 0) / data.humidity.length),
-      windSpeed: Math.round(Math.max(...data.windSpeed)),
-    };
-  });
 }
 
 /**
@@ -107,7 +109,6 @@ export function getRidingConditions(weather) {
   const factors = [];
   let status = 'good';
 
-  // Temperature extremes
   if (weather.temperature > 35) {
     factors.push(`Very hot — ${weather.temperature}°C. Carry extra water.`);
     if (status === 'good') status = 'caution';
@@ -117,21 +118,18 @@ export function getRidingConditions(weather) {
     if (status === 'good') status = 'caution';
   }
 
-  // Active precipitation
   const wetConditions = ['Rain', 'Drizzle', 'Thunderstorm', 'Snow'];
   if (wetConditions.includes(weather.condition)) {
     factors.push(`${weather.condition} — trails will be wet and slippery.`);
     status = 'poor';
   }
 
-  // Wind
   if (weather.windSpeed > 40) {
     factors.push(`Strong winds — ${weather.windSpeed} km/h.`);
     if (status === 'good') status = 'caution';
   }
 
-  // Visibility
-  if (weather.visibility < 5) {
+  if (weather.visibility != null && weather.visibility < 5) {
     factors.push(`Low visibility — ${weather.visibility} km.`);
     if (status === 'good') status = 'caution';
   }
@@ -143,17 +141,6 @@ export function getRidingConditions(weather) {
   };
 
   return { status, message: messages[status], factors };
-}
-
-/**
- * Return the full URL for an OpenWeather icon code.
- * e.g. getWeatherIconUrl('10d') → 'https://openweathermap.org/img/wn/10d@2x.png'
- *
- * @param {string} iconCode
- * @returns {string}
- */
-export function getWeatherIconUrl(iconCode) {
-  return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 }
 
 /**
@@ -175,6 +162,7 @@ export function getWindDirection(degrees) {
  * @returns {string}
  */
 export function formatSunTime(unixSeconds) {
+  if (!unixSeconds) return '—';
   return new Date(unixSeconds * 1000).toLocaleTimeString('en-ZA', {
     hour: '2-digit',
     minute: '2-digit',

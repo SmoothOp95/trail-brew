@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore';
+import { initializeFirestore, persistentLocalCache, getFirestore } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -13,15 +13,15 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-// Firestore with offline persistence
-export const db = getFirestore(app);
-enableIndexedDbPersistence(db).catch((err) => {
-  if (err.code === 'failed-precondition') {
-    console.warn('Firestore persistence failed: multiple tabs open');
-  } else if (err.code === 'unimplemented') {
-    console.warn('Firestore persistence not available in this browser');
-  }
-});
+// Firestore with offline persistence (IndexedDB).
+// Guard against double-init during Vite HMR in development.
+let db;
+try {
+  db = initializeFirestore(app, { localCache: persistentLocalCache() });
+} catch {
+  db = getFirestore(app);
+}
+export { db };
 
 // Auth
 export const auth = getAuth(app);

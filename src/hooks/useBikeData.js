@@ -124,7 +124,7 @@ export function useBikeData() {
       unsubRefs.current.forEach((unsub) => unsub());
       unsubRefs.current = [];
     };
-  }, [user?.uid]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [user === undefined ? 'loading' : user?.uid ?? 'guest']); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
    * Merge partial updates into the bikeData field on the user document.

@@ -16,7 +16,6 @@ import {
 import {
   getCurrentWeather,
   getRidingConditions,
-  getWeatherIconUrl,
   formatSunTime,
 } from '../utils/weatherService';
 
@@ -198,11 +197,7 @@ export default function TrailCard({ trail, onSelect, isSelected }) {
                 <div className="space-y-3">
                   {/* Temp + icon */}
                   <div className="flex items-center gap-3">
-                    <img
-                      src={getWeatherIconUrl(weather.icon)}
-                      alt={weather.description}
-                      className="w-10 h-10 -ml-1"
-                    />
+                    <span className="text-4xl leading-none select-none">{weather.icon}</span>
                     <div>
                       <p className="text-xl font-bold leading-none">{weather.temperature}°C</p>
                       <p className="text-xs text-brew-text-dim capitalize mt-0.5">{weather.description}</p>
@@ -249,10 +244,12 @@ export default function TrailCard({ trail, onSelect, isSelected }) {
                       <Wind size={11} className="text-brew-accent shrink-0" />
                       <span>Wind <strong className="text-brew-text">{weather.windSpeed} km/h {weather.windDirection}</strong></span>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <Eye size={11} className="text-brew-accent shrink-0" />
-                      <span>Visibility <strong className="text-brew-text">{weather.visibility} km</strong></span>
-                    </div>
+                    {weather.visibility != null && (
+                      <div className="flex items-center gap-1.5">
+                        <Eye size={11} className="text-brew-accent shrink-0" />
+                        <span>Visibility <strong className="text-brew-text">{weather.visibility} km</strong></span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Sun times */}
