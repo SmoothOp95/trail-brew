@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback } from 'react';
 import { MapPin, Navigation, BookOpen, X, Search, SlidersHorizontal } from 'lucide-react';
 import { trails } from '../data/trails';
 import TrailCard from './TrailCard';
+import LogRideModal from './trails/LogRideModal';
 
 const TIERS = ['all', 'fitness', 'warrior', 'gold'];
 const DIFFICULTIES = ['all', 'beginner', 'intermediate', 'advanced'];
@@ -11,6 +12,7 @@ const DIFFICULTY_LABELS = { all: 'All Difficulties', beginner: 'Beginner', inter
 
 export default function TrailsList() {
   const [selectedTrail, setSelectedTrail] = useState(null);
+  const [logModalTrail, setLogModalTrail] = useState(null);
   const [filterTier, setFilterTier] = useState('all');
   const [filterDifficulty, setFilterDifficulty] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -144,6 +146,14 @@ export default function TrailsList() {
       </div>
 
       {/* ── SELECTED TRAIL PANEL ── */}
+      {logModalTrail && (
+        <LogRideModal
+          trail={logModalTrail}
+          onClose={() => setLogModalTrail(null)}
+          onRideLogged={() => setLogModalTrail(null)}
+        />
+      )}
+
       {selectedTrail && (
         <div className="fixed bottom-4 right-4 z-20 w-72 bg-brew-card border border-brew-accent/30 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] p-4 animate-fade-slide">
           {/* Close */}
@@ -184,7 +194,7 @@ export default function TrailsList() {
               Get Directions
             </a>
             <button
-              onClick={() => alert(`Log ride for ${selectedTrail.name} — coming soon!`)}
+              onClick={() => setLogModalTrail(selectedTrail)}
               className="flex items-center justify-center gap-2 bg-white/[0.06] border border-brew-border text-brew-text-dim text-xs rounded-lg py-2 hover:bg-white/10 transition-colors"
             >
               <BookOpen size={12} />
