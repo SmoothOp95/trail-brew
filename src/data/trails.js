@@ -309,25 +309,6 @@ export const trails = [
       'Flowing singletrack with sculpted jump sections, natural rock drops, river crossings, and challenging uphill pitches. Surface ranges from compacted clay to natural rock faces. Well-maintained trail with good drainage.',
   },
   {
-    id: 'grootfontein',
-    name: 'Grootfontein Bike Park',
-    location: 'Pretoria North',
-    mapUrl: 'https://maps.app.goo.gl/hzUNuMqQkGEVin4M9',
-    types: ['Enduro', 'Flow'],
-    difficulty: [0, 1, 2, 0],
-    difficultyLevels: ['intermediate', 'advanced'],
-    distance: 'Various loops',
-    features: ['enduro', 'flow', 'technical', 'climbs', 'descents'],
-    tier: 'warrior',
-    ridingMonth: 'June 2025',
-    ridden: false,
-    coordinates: { lat: -25.74, lng: 27.87 },
-    description:
-      'Grootfontein Bike Park in Pretoria North offers a solid enduro and flow riding experience for intermediate and advanced riders. The trail design blends sculpted flow sections with natural terrain features, rewarding riders who can carry momentum through the transitions between the two. Climbs give you access to descents worth every pedal stroke, and the flow lines are built to be ridden fast and confidently. The park provides a great testing ground for enduro skills without requiring a four-hour drive to the mountains. If you are looking to build your descending confidence and add some enduro flavour to your regular riding diet, Grootfontein delivers on a solid North Pretoria alternative.',
-    surface:
-      'Mix of sculpted flow singletrack and natural enduro terrain. Technical rock sections on climbs and descents, with smooth berm sections on lower slopes. Good trail maintenance.',
-  },
-  {
     id: 'thaba-trails',
     name: 'Thaba Trails Bike Park',
     location: 'Mulbarton, Johannesburg South',
