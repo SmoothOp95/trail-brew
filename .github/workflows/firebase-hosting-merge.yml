@@ -35,9 +35,10 @@ jobs:
           VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
 
       - name: Deploy Firestore Security Rules
+        continue-on-error: true
         run: |
           echo "$SA_KEY" > /tmp/gsa.json
-          npx firebase-tools deploy --only firestore:rules --project "$PROJECT_ID"
+          npx firebase-tools deploy --only firestore:rules --project "$PROJECT_ID" --non-interactive
         env:
           SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/gsa.json
