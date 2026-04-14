@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app';
 import { initializeFirestore, persistentLocalCache, getFirestore } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
-import { getFunctions } from 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -44,8 +43,5 @@ export const googleProvider = new GoogleAuthProvider();
 
 // Storage (ride screenshots)
 export const storage = getStorage(app);
-
-// Cloud Functions (europe-west1 to match Firestore region)
-export const functions = getFunctions(app, 'europe-west1');
 
 export default app;
