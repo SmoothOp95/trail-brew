@@ -82,7 +82,12 @@ export function useBikeData() {
         setBikeData(data.bikeData ?? { ...DEFAULT_BIKE_DATA });
         setLoading(false);
       },
-      () => {
+      (err) => {
+        // Unsubscribe immediately on error — Firebase retries failed snapshots
+        // internally which can produce thousands of identical errors in a loop
+        // when the path is invalid (e.g. empty projectId in config).
+        console.error('[useBikeData] User snapshot error:', err);
+        unsubUser();
         setBikeData({ ...DEFAULT_BIKE_DATA });
         setLoading(false);
       }
@@ -100,7 +105,11 @@ export function useBikeData() {
           snap.docs.map((d) => ({ id: d.id, ...d.data() }))
         );
       },
-      () => setServiceHistory([])
+      (err) => {
+        console.error('[useBikeData] serviceHistory snapshot error:', err);
+        unsubService();
+        setServiceHistory([]);
+      }
     );
 
     // 3. Live listener on repairHistory subcollection
@@ -115,7 +124,11 @@ export function useBikeData() {
           snap.docs.map((d) => ({ id: d.id, ...d.data() }))
         );
       },
-      () => setRepairHistory([])
+      (err) => {
+        console.error('[useBikeData] repairHistory snapshot error:', err);
+        unsubRepair();
+        setRepairHistory([]);
+      }
     );
 
     unsubRefs.current = [unsubUser, unsubService, unsubRepair];
