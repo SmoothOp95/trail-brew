@@ -147,26 +147,25 @@ export function useRideLog() {
       // Commit ride doc + user doc update atomically
       await batch.commit();
 
-      // --- Upload screenshot after confirmation ---
-      // We upload after the Firestore commit so abandoned flows never store files.
+      // --- Upload screenshot (best-effort, non-blocking) ---
+      // Runs after the Firestore commit so a Storage failure never rolls back
+      // the ride. If Storage isn't enabled on the project this fails silently.
       if (screenshotFile) {
-        const timestamp = Date.now();
-        const ext = screenshotFile.type === 'image/png' ? 'png'
-          : screenshotFile.type === 'image/webp' ? 'webp'
-          : 'jpg';
-        const storagePath = `ride-screenshots/${user.uid}/${timestamp}_${trailId}.${ext}`;
-        const storageRef = ref(storage, storagePath);
-
-        await uploadBytes(storageRef, screenshotFile, {
-          contentType: screenshotFile.type,
-        });
-
-        // Patch the ride doc with the Storage path (non-critical — best effort)
         try {
+          const timestamp = Date.now();
+          const ext = screenshotFile.type === 'image/png' ? 'png'
+            : screenshotFile.type === 'image/webp' ? 'webp'
+            : 'jpg';
+          const storagePath = `ride-screenshots/${user.uid}/${timestamp}_${trailId}.${ext}`;
+          const storageRef = ref(storage, storagePath);
+
+          await uploadBytes(storageRef, screenshotFile, { contentType: screenshotFile.type });
+
+          // Patch the ride doc with the Storage path
           const { updateDoc } = await import('firebase/firestore');
           await updateDoc(rideRef, { screenshotStoragePath: storagePath });
         } catch {
-          // Non-fatal — the ride is already saved; path is just for audit/display
+          // Non-fatal — ride is already saved. Storage may not be enabled yet.
         }
       }
 
