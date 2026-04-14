@@ -12,17 +12,24 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        // Create or update the /users/{uid} document on every sign-in
-        await setDoc(
-          doc(db, 'users', firebaseUser.uid),
-          {
-            displayName: firebaseUser.displayName,
-            email: firebaseUser.email,
-            photoURL: firebaseUser.photoURL,
-            lastSeen: serverTimestamp(),
-          },
-          { merge: true } // merge so existing fields (ridden trails, notes) are never overwritten
-        );
+        // Create or update the /users/{uid} document on every sign-in.
+        // Wrapped in try/catch so a Firestore failure never blocks auth state
+        // from resolving — without this, a bad config leaves the app stuck in
+        // the loading state forever.
+        try {
+          await setDoc(
+            doc(db, 'users', firebaseUser.uid),
+            {
+              displayName: firebaseUser.displayName,
+              email: firebaseUser.email,
+              photoURL: firebaseUser.photoURL,
+              lastSeen: serverTimestamp(),
+            },
+            { merge: true } // merge so existing fields (ridden trails, notes) are never overwritten
+          );
+        } catch (err) {
+          console.error('[useAuth] Failed to write user profile to Firestore:', err);
+        }
       }
       setUser(firebaseUser ?? null);
     });

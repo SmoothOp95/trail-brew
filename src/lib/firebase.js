@@ -13,6 +13,19 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
+// Fail fast if any required config value is missing. An empty projectId silently
+// produces double-slash Firestore paths (projects//databases/...) which cause a
+// cascade of ~1000 errors. Better to surface this immediately at startup.
+const missingKeys = Object.entries(firebaseConfig)
+  .filter(([, v]) => !v)
+  .map(([k]) => k);
+if (missingKeys.length > 0) {
+  throw new Error(
+    `Firebase config incomplete — missing: ${missingKeys.join(', ')}. ` +
+    'Ensure all VITE_FIREBASE_* environment variables are set before building.'
+  );
+}
+
 const app = initializeApp(firebaseConfig);
 
 // Firestore with offline persistence (IndexedDB).
