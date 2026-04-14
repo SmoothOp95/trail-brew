@@ -1,5 +1,12 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import {
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  updateProfile,
+} from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../lib/firebase';
 
@@ -29,8 +36,38 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
+  const signUpWithEmail = async (email, password, displayName) => {
+    const credential = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(credential.user, { displayName });
+    // Trigger a manual Firestore write since onAuthStateChanged may fire before displayName is set
+    await setDoc(
+      doc(db, 'users', credential.user.uid),
+      {
+        displayName,
+        email: credential.user.email,
+        photoURL: null,
+        lastSeen: serverTimestamp(),
+      },
+      { merge: true }
+    );
+    return credential.user;
+  };
+
+  const signInWithEmail = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password);
+
+  const resetPassword = (email) => sendPasswordResetEmail(auth, email);
+
   return (
-    <AuthContext.Provider value={{ user, signOut: () => signOut(auth) }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        signOut: () => signOut(auth),
+        signUpWithEmail,
+        signInWithEmail,
+        resetPassword,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
