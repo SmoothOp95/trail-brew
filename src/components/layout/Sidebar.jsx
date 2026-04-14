@@ -89,13 +89,23 @@ export default function Sidebar({ isOpen, onClose }) {
         <div className="px-4 py-4 border-t border-brew-border">
           {user ? (
             <div className="flex items-center gap-3">
-              <img
-                src={user.photoURL}
-                alt={user.displayName}
-                className="w-8 h-8 rounded-full border border-brew-border shrink-0"
-              />
+              {user.photoURL ? (
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName}
+                  className="w-8 h-8 rounded-full border border-brew-border shrink-0"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full border border-brew-border shrink-0 bg-brew-accent/20 flex items-center justify-center">
+                  <span className="text-xs font-bold text-brew-accent uppercase">
+                    {(user.displayName || user.email || '?')[0]}
+                  </span>
+                </div>
+              )}
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-brew-text truncate">{user.displayName}</p>
+                <p className="text-xs font-semibold text-brew-text truncate">
+                  {user.displayName || user.email}
+                </p>
                 <button
                   onClick={signOut}
                   className="font-mono text-[10px] text-brew-text-dim hover:text-brew-accent transition-colors tracking-wide uppercase"
