@@ -9,6 +9,9 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read      # checkout
+      deployments: write  # post deployment status via GITHUB_TOKEN
     steps:
       - uses: actions/checkout@v4
 

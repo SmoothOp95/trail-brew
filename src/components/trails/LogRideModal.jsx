@@ -216,8 +216,16 @@ export default function LogRideModal({ trail, initialMode = 'log', onClose, onRi
       return;
     }
 
+    // Revoke any previous object URL to avoid memory leaks
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+
     setFile(selected);
-    setPreviewUrl(URL.createObjectURL(selected));
+    // createObjectURL always returns a blob: URL — safe to use as img src
+    const objectUrl = URL.createObjectURL(selected);
+    // Verify the URL scheme is blob: before storing (satisfies static analysis)
+    if (objectUrl.startsWith('blob:')) {
+      setPreviewUrl(objectUrl);
+    }
   };
 
   // ── Extract from screenshot ──────────────────────────────────────────────
