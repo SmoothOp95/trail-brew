@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { initializeFirestore, persistentLocalCache, getFirestore } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getStorage } from 'firebase/storage';
+// import { getStorage } from 'firebase/storage'; // Storage disabled — bucket not provisioned
+import { getFunctions } from 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -41,7 +42,9 @@ export { db };
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
-// Storage (ride screenshots)
-export const storage = getStorage(app);
+// Storage disabled — bucket not provisioned. Re-enable by uncommenting these
+// two lines and the getStorage import above once a bucket is created in
+// Firebase Console → Storage → Get started.
+// export const storage = getStorage(app);
 
 export default app;

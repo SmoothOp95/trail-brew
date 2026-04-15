@@ -20,12 +20,15 @@ service cloud.firestore {
     }
 
     // ── User profiles ─────────────────────────────────────────────────
-    // A user may only read or write their own document. Writes are
-    // validated to prevent storing arbitrary or privileged fields.
+    // A user may only read or write their own document. Create writes are
+    // validated to prevent storing arbitrary fields. Updates only validate
+    // the keys actually being changed (affectedKeys) so that existing
+    // documents with legacy fields (e.g. uid from old auth code) never
+    // cause a permanent 403 that locks the user out of the app.
     match /users/{userId} {
       allow read:   if isOwner(userId);
       allow create: if isOwner(userId) && validUserProfile();
-      allow update: if isOwner(userId) && validUserProfile();
+      allow update: if isOwner(userId) && validUserProfileUpdate();
       allow delete: if isOwner(userId);
 
       // ── Service history subcollection ─────────────────────────────
@@ -67,13 +70,23 @@ service cloud.firestore {
       return request.auth != null && request.auth.uid == uid;
     }
 
-    // Validates user-profile writes — only known fields are permitted so
-    // arbitrary data cannot be stored in user documents.
+    // Validates user-profile creates — only known fields are permitted so
+    // arbitrary data cannot be stored in brand-new user documents.
     function validUserProfile() {
       let allowed = ['displayName', 'email', 'photoURL', 'lastSeen',
                      'riddenTrails', 'notes', 'preferences', 'createdAt',
                      'bikeData', 'stravaConnection'];
       return request.resource.data.keys().hasOnly(allowed);
+    }
+
+    // Validates user-profile updates — checks only the keys being changed,
+    // not the full document. This prevents legacy fields (e.g. uid written
+    // by old auth code) from causing permanent 403 errors on existing accounts.
+    function validUserProfileUpdate() {
+      let allowed = ['displayName', 'email', 'photoURL', 'lastSeen',
+                     'riddenTrails', 'notes', 'preferences', 'createdAt',
+                     'bikeData', 'stravaConnection'];
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(allowed);
     }
 
     // Validates ride-log writes — trailId, trailName, date, verificationMethod,
