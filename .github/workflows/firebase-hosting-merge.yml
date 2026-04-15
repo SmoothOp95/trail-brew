@@ -10,8 +10,9 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: read      # checkout
-      deployments: write  # post deployment status via GITHUB_TOKEN
+      contents: read
+      checks: write
+      deployments: write
     steps:
       - uses: actions/checkout@v4
 
@@ -34,23 +35,21 @@ jobs:
           VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
           VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
 
-      - name: Deploy Firestore Security Rules
-        # continue-on-error prevents a rules-deploy failure (e.g. SA missing
-        # the Firebase Rules Admin role) from blocking the hosting deploy.
-        # Fix the SA permissions in GCP IAM to remove this workaround.
-        continue-on-error: true
-        run: |
-          echo "$SA_KEY" > /tmp/gsa.json
-          npx firebase-tools deploy --only firestore:rules --project "$PROJECT_ID"
-        env:
-          SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gsa.json
-          PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
-
-      - name: Deploy to Firebase Hosting
+      - name: Deploy to Firebase Hosting (live)
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: trail-brew-33084
           channelId: live
-          projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'
+
+      - name: Write Firebase service account
+        run: echo "$FIREBASE_SA" > /tmp/gsa.json
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+
+      - name: Deploy Firestore Security Rules
+        continue-on-error: true
+        run: npx firebase-tools deploy --only firestore:rules --non-interactive
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gsa.json

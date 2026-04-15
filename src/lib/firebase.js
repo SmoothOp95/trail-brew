@@ -47,7 +47,4 @@ export const googleProvider = new GoogleAuthProvider();
 // Firebase Console → Storage → Get started.
 // export const storage = getStorage(app);
 
-// Cloud Functions (europe-west1 to match Firestore region)
-export const functions = getFunctions(app, 'europe-west1');
-
 export default app;
