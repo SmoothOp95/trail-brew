@@ -6,8 +6,8 @@
  *   - Write a ride document to users/{uid}/rides/{rideId} via a batched Firestore write
  *   - Atomically update the user document (riddenTrails array + bikeData totals) in
  *     the same batch so ride doc and counters are always consistent
- *   - Upload the confirmed screenshot to Firebase Storage after the user confirms
  *   - Fetch past rides for a given trail (lazy — called when the history view opens)
+ *   NOTE: Screenshot upload to Firebase Storage is disabled (bucket not provisioned).
  */
 
 import { useState } from 'react';
@@ -23,8 +23,8 @@ import {
   where,
   orderBy,
 } from 'firebase/firestore';
-import { ref, uploadBytes } from 'firebase/storage';
-import { db, storage } from '../lib/firebase';
+// import { ref, uploadBytes } from 'firebase/storage'; // Storage disabled
+import { db } from '../lib/firebase';
 import { useAuth } from './useAuth';
 import { extractRideFromImage } from '../lib/ocrExtract';
 
@@ -117,8 +117,7 @@ export function useRideLog() {
         elevationM: elevationM ?? null,
         note: note ?? '',
         verificationMethod,
-        // screenshotStoragePath will be patched after upload (separate update)
-        screenshotStoragePath: null,
+        // screenshotStoragePath: null, // Storage disabled — omitted until bucket is provisioned
         aiRawExtraction: aiRawExtraction ?? null,
         aiConfidence: aiConfidence ?? null,
         loggedAt: serverTimestamp(),
@@ -147,27 +146,26 @@ export function useRideLog() {
       // Commit ride doc + user doc update atomically
       await batch.commit();
 
-      // --- Upload screenshot (best-effort, non-blocking) ---
-      // Runs after the Firestore commit so a Storage failure never rolls back
-      // the ride. If Storage isn't enabled on the project this fails silently.
-      if (screenshotFile) {
-        try {
-          const timestamp = Date.now();
-          const ext = screenshotFile.type === 'image/png' ? 'png'
-            : screenshotFile.type === 'image/webp' ? 'webp'
-            : 'jpg';
-          const storagePath = `ride-screenshots/${user.uid}/${timestamp}_${trailId}.${ext}`;
-          const storageRef = ref(storage, storagePath);
-
-          await uploadBytes(storageRef, screenshotFile, { contentType: screenshotFile.type });
-
-          // Patch the ride doc with the Storage path
-          const { updateDoc } = await import('firebase/firestore');
-          await updateDoc(rideRef, { screenshotStoragePath: storagePath });
-        } catch {
-          // Non-fatal — ride is already saved. Storage may not be enabled yet.
-        }
-      }
+      // --- Screenshot upload disabled (Storage bucket not provisioned) ---
+      // Re-enable this block once Firebase Storage is set up:
+      //
+      // if (screenshotFile) {
+      //   try {
+      //     const { ref, uploadBytes } = await import('firebase/storage');
+      //     const { storage } = await import('../lib/firebase');
+      //     const timestamp = Date.now();
+      //     const ext = screenshotFile.type === 'image/png' ? 'png'
+      //       : screenshotFile.type === 'image/webp' ? 'webp'
+      //       : 'jpg';
+      //     const storagePath = `ride-screenshots/${user.uid}/${timestamp}_${trailId}.${ext}`;
+      //     const storageRef = ref(storage, storagePath);
+      //     await uploadBytes(storageRef, screenshotFile, { contentType: screenshotFile.type });
+      //     const { updateDoc } = await import('firebase/firestore');
+      //     await updateDoc(rideRef, { screenshotStoragePath: storagePath });
+      //   } catch {
+      //     // Non-fatal — ride is already saved.
+      //   }
+      // }
 
       return rideRef.id;
     } catch (err) {
