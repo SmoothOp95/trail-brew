@@ -48,7 +48,7 @@ const SCHEDULE = [
   },
   {
     trailId: 'thaba-trails',
-    date: '2026-12-26', // 4th Saturday
+    date: '2026-12-12', // 2nd Saturday — earlier to dodge the festive-season exodus
     startTime: '06:30',
     tagline: 'Year-end epic — take on the Blue loop if you dare.',
   },
