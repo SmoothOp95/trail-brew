@@ -126,7 +126,7 @@ trail-brew/
 - [ ] User profiles — save ridden trails, notes
 - [ ] Admin panel — add/edit trails without code
 - [ ] Map view with trail locations
-- [ ] Calendar view — monthly riding schedule
+- [x] Calendar view — monthly riding schedule
 - [ ] Push notifications for new trails & events
 - [ ] Connect to Notion API for trail data sync
 

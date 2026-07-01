@@ -4,6 +4,7 @@ import AppLayout from './components/layout/AppLayout';
 import HomePage from './components/home/HomePage';
 import TrailFinder from './components/trailfinder/TrailFinder';
 import TrailsList from './components/TrailsList';
+import RideCalendarPage from './components/calendar/RideCalendarPage';
 import MyTrailsPage from './pages/MyTrailsPage';
 import MyBikePage from './pages/MyBikePage';
 import ServiceHistoryPage from './pages/ServiceHistoryPage';
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/trail-finder" element={<TrailFinder />} />
         <Route path="/trails" element={<TrailsList />} />
+        <Route path="/calendar" element={<RideCalendarPage />} />
         <Route path="/my-trails" element={<MyTrailsPage />} />
         <Route path="/my-bike" element={<MyBikePage />} />
         <Route path="/service-history" element={<ServiceHistoryPage />} />

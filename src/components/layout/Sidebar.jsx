@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Compass, Map, CheckSquare, LayoutDashboard, X } from 'lucide-react';
+import { Home, Compass, Map, CalendarDays, CheckSquare, LayoutDashboard, X } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import SignInButton from '../auth/SignInButton';
 
@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { to: '/', icon: Home, label: 'Home', exact: true },
   { to: '/trail-finder', icon: Compass, label: 'Find Trail' },
   { to: '/trails', icon: Map, label: 'Trails' },
+  { to: '/calendar', icon: CalendarDays, label: 'Ride Calendar' },
   { to: '/my-trails', icon: CheckSquare, label: 'My Trails' },
   { to: '/my-bike', icon: LayoutDashboard, label: 'Service Dashboard' },
 ];
