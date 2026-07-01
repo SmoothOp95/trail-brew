@@ -41,7 +41,7 @@ export default function RideCalendarPage() {
     try {
       if (navigator.share) {
         await navigator.share({
-          title: 'Trailblu 2026 Ride Series',
+          title: 'Trail Brew 2026 Ride Series',
           text: 'Our monthly ride calendar for the rest of 2026 🚵',
           url,
         });
@@ -58,12 +58,12 @@ export default function RideCalendarPage() {
   return (
     <div className="min-h-screen bg-brew-bg text-brew-text">
       {/* Page header */}
-      <div className="border-b border-brew-border bg-brew-card/60 backdrop-blur-sm sticky top-[49px] lg:top-0 z-10">
+      <div className="border-b border-brew-border bg-brew-card/95 backdrop-blur-sm sticky top-[49px] lg:top-0 z-30">
         <div className="max-w-[760px] mx-auto px-5 py-5 flex items-start justify-between gap-4">
           <div>
             <h1 className="text-xl font-bold leading-tight">Ride Calendar</h1>
             <p className="text-xs text-brew-text-dim mt-0.5">
-              One big Trailblu ride a month · progressively spicier through 2026
+              One big Trail Brew ride a month · progressively spicier through 2026
             </p>
           </div>
           <button

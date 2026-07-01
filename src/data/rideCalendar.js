@@ -1,4 +1,4 @@
-// Trailblu 2026 Monthly Ride Series
+// Trail Brew 2026 Monthly Ride Series
 // ---------------------------------
 // One flagship community ride per month for the rest of the year.
 //
@@ -17,10 +17,10 @@ import { getTrailById } from './trails';
 // Ordered list — index 0 is the gentlest ride, the last is the toughest.
 const SCHEDULE = [
   {
-    trailId: 'taroko',
+    trailId: 'prime-view',
     date: '2026-07-26', // 4th Sunday
     startTime: '08:00',
-    tagline: 'Series kick-off — flow, forest shade & cold ones at the finish.',
+    tagline: 'Series kick-off — flat, fast, open XC to shake out the winter legs.',
   },
   {
     trailId: 'big-red-barn',
