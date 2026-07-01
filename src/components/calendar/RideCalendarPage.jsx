@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
-import { MapPin, Clock, Calendar, Share2, Check, TrendingUp } from 'lucide-react';
+import { MapPin, Clock, Calendar, CalendarPlus, Share2, Check, TrendingUp } from 'lucide-react';
 import { getRideSchedule, getRideStatus } from '../../data/rideCalendar';
 import { getTypeColor } from '../../data/trailTypes';
+import { downloadRideICS } from '../../utils/calendarEvent';
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 const WEEKDAYS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
@@ -231,26 +232,38 @@ function RideTimelineItem({ ride, status, isNext }) {
             </div>
           </div>
 
-          {/* Footer: date/time + map link */}
-          <div className="mt-5 pt-4 border-t border-brew-border flex items-center justify-between gap-3 flex-wrap">
-            <div className="flex items-center gap-4 text-brew-text-dim">
-              <span className="flex items-center gap-1.5 text-xs">
-                <Calendar size={12} className="text-brew-accent" />
-                {formatFullDate(ride.date)}
-              </span>
-              <span className="flex items-center gap-1.5 text-xs">
-                <Clock size={12} className="text-brew-accent" />
-                {formatTime(ride.startTime)}
-              </span>
-            </div>
+          {/* Footer: date/time */}
+          <div className="mt-5 pt-4 border-t border-brew-border flex items-center gap-4 text-brew-text-dim flex-wrap">
+            <span className="flex items-center gap-1.5 text-xs">
+              <Calendar size={12} className="text-brew-accent" />
+              {formatFullDate(ride.date)}
+            </span>
+            <span className="flex items-center gap-1.5 text-xs">
+              <Clock size={12} className="text-brew-accent" />
+              {formatTime(ride.startTime)}
+            </span>
+          </div>
+
+          {/* Actions: save the date + directions */}
+          <div className="mt-3 flex items-center gap-2.5 flex-wrap">
+            <button
+              onClick={() => downloadRideICS(ride)}
+              className="flex items-center gap-1.5 font-mono text-[11px] font-bold px-3 py-2 rounded-lg border border-brew-accent/30 bg-brew-accent/[0.06] text-brew-accent hover:bg-brew-accent/15 transition-all duration-200 uppercase tracking-wide"
+              style={{ minHeight: '40px' }}
+              title="Save this ride to your calendar"
+            >
+              <CalendarPlus size={13} />
+              Add to Calendar
+            </button>
             <a
               href={trail.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[11px] text-brew-accent flex items-center gap-1.5 hover:opacity-70 transition-opacity tracking-wide"
+              className="flex items-center gap-1.5 font-mono text-[11px] font-bold px-3 py-2 rounded-lg border border-brew-border text-brew-text-dim hover:border-brew-accent/30 hover:text-brew-text transition-all duration-200 uppercase tracking-wide"
+              style={{ minHeight: '40px' }}
             >
-              <MapPin size={12} />
-              Directions →
+              <MapPin size={13} />
+              Directions
             </a>
           </div>
         </div>

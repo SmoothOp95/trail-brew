@@ -8,7 +8,8 @@
 // terrain — finishing on a proper year-end epic. We also alternate between the
 // Joburg and Pretoria sides of Gauteng so nobody has the long drive every time.
 //
-// Dates land on the 4th weekend of each month, alternating Saturday / Sunday.
+// Dates land on the 4th weekend of each month, alternating Sunday / Saturday —
+// we kick off on a Sunday in July, then Saturdays from August onward.
 // Start times creep earlier through the hot Highveld summer to beat the heat.
 
 import { getTrailById } from './trails';
@@ -17,37 +18,37 @@ import { getTrailById } from './trails';
 const SCHEDULE = [
   {
     trailId: 'taroko',
-    date: '2026-07-25', // 4th Saturday
+    date: '2026-07-26', // 4th Sunday
     startTime: '08:00',
     tagline: 'Series kick-off — flow, forest shade & cold ones at the finish.',
   },
   {
     trailId: 'big-red-barn',
-    date: '2026-08-23', // 4th Sunday
+    date: '2026-08-22', // 4th Saturday
     startTime: '08:00',
     tagline: 'Gum-forest flow with your first taste of black-diamond lines.',
   },
   {
     trailId: 'cradle-moon',
-    date: '2026-09-26', // 4th Saturday
+    date: '2026-09-27', // 4th Sunday
     startTime: '07:30',
     tagline: 'Game-viewing singletrack through the Cradle of Humankind.',
   },
   {
     trailId: 'rosemary-hill',
-    date: '2026-10-25', // 4th Sunday
+    date: '2026-10-24', // 4th Saturday
     startTime: '07:00',
     tagline: 'The koppie awaits — flowy XCO loops then technical descents.',
   },
   {
     trailId: 'hennops',
-    date: '2026-11-28', // 4th Saturday
+    date: '2026-11-22', // 4th Sunday
     startTime: '07:00',
     tagline: 'Earn your views — big climbs rewarded with bigger descents.',
   },
   {
     trailId: 'thaba-trails',
-    date: '2026-12-27', // 4th Sunday
+    date: '2026-12-26', // 4th Saturday
     startTime: '06:30',
     tagline: 'Year-end epic — take on the Blue loop if you dare.',
   },
