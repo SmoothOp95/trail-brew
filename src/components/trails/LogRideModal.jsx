@@ -84,7 +84,7 @@ function ConfidenceBadge({ level }) {
 
 // ── Stat row (review step) ─────────────────────────────────────────────────
 
-function StatRow({ icon: Icon, label, value, confidence, children }) {
+function StatRow({ icon: Icon, label, confidence, children }) {
   const isLow = confidence === 'low';
   const isMedium = confidence === 'medium';
   const highlight = isLow || isMedium;
@@ -408,7 +408,7 @@ export default function LogRideModal({ trail, initialMode = 'log', onClose, onRi
                 <div className="space-y-4">
                   <p className="text-xs text-brew-text-muted leading-relaxed">
                     Upload a screenshot from Strava, Garmin, Wahoo, or any GPS app.
-                    We'll read the activity details for you.
+                    We&apos;ll read the activity details for you.
                   </p>
 
                   {/* File drop zone */}

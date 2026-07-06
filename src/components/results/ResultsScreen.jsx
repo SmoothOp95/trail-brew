@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import TrailCard from './TrailCard';
 import FilterChips from './FilterChips';
 
-export default function ResultsScreen({ scored, matched, answers, threshold, onRetake }) {
+export default function ResultsScreen({ scored, matched, answers, onRetake }) {
   const [typeFilter, setTypeFilter] = useState('all');
   const [showAll, setShowAll] = useState(false);
 

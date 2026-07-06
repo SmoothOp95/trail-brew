@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app';
 import { initializeFirestore, persistentLocalCache, getFirestore } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 // import { getStorage } from 'firebase/storage'; // Storage disabled — bucket not provisioned
-import { getFunctions } from 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
