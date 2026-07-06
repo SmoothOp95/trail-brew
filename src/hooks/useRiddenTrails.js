@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { doc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { doc, onSnapshot, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { useAuth } from './useAuth';
 
@@ -32,42 +32,51 @@ export function useRiddenTrails() {
       return;
     }
 
-    // Signed in — load from Firestore
+    // Signed in — live subscription so rides logged elsewhere (useRideLog,
+    // another device) appear without a reload.
     setLoading(true);
-    getDoc(doc(db, 'users', user.uid))
-      .then((snap) => {
-        const data = snap.data();
-        const ids = data?.riddenTrails ?? [];
+    const unsubscribe = onSnapshot(
+      doc(db, 'users', user.uid),
+      (snap) => {
+        const ids = snap.data()?.riddenTrails ?? [];
         setRiddenTrails(new Set(ids));
-      })
-      .catch(() => {
+        setLoading(false);
+      },
+      (err) => {
+        console.error('[useRiddenTrails] snapshot error:', err);
         // Fallback to localStorage on error
         setRiddenTrails(readLocalStorage());
-      })
-      .finally(() => setLoading(false));
+        setLoading(false);
+      }
+    );
+    return unsubscribe;
   }, [user === undefined ? 'loading' : user?.uid ?? 'guest']); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleRidden = (trailId) => {
-    const newSet = new Set(riddenTrails);
-    const adding = !newSet.has(trailId);
-    if (adding) {
-      newSet.add(trailId);
-    } else {
-      newSet.delete(trailId);
-    }
+    const adding = !riddenTrails.has(trailId);
 
     // Optimistic update
-    setRiddenTrails(newSet);
+    setRiddenTrails((prev) => {
+      const next = new Set(prev);
+      if (adding) next.add(trailId);
+      else next.delete(trailId);
+      if (!user) writeLocalStorage(next);
+      return next;
+    });
 
-    if (!user) {
-      writeLocalStorage(newSet);
-    } else {
-      const ref = doc(db, 'users', user.uid);
-      updateDoc(ref, {
+    if (user) {
+      updateDoc(doc(db, 'users', user.uid), {
         riddenTrails: adding ? arrayUnion(trailId) : arrayRemove(trailId),
-      }).catch(() => {
-        // Revert on failure
-        setRiddenTrails(riddenTrails);
+      }).catch((err) => {
+        console.error('[useRiddenTrails] Failed to toggle trail, reverting:', err);
+        // Revert only this toggle — other trails toggled while the request
+        // was in flight keep their optimistic state.
+        setRiddenTrails((prev) => {
+          const reverted = new Set(prev);
+          if (adding) reverted.delete(trailId);
+          else reverted.add(trailId);
+          return reverted;
+        });
       });
     }
   };
