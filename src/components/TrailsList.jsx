@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import { MapPin, Navigation, BookOpen, X, Search, SlidersHorizontal } from 'lucide-react';
-import { trails } from '../data/trails';
+import { useTrails } from '../hooks/useTrails';
 import TrailCard from './TrailCard';
 import LogRideModal from './trails/LogRideModal';
 
@@ -11,6 +11,7 @@ const TIER_LABELS = { all: 'All Tiers', fitness: 'Fitness', warrior: 'Warrior', 
 const DIFFICULTY_LABELS = { all: 'All Difficulties', beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
 
 export default function TrailsList() {
+  const { trails } = useTrails();
   const [selectedTrail, setSelectedTrail] = useState(null);
   const [logModalTrail, setLogModalTrail] = useState(null);
   const [filterTier, setFilterTier] = useState('all');
@@ -41,7 +42,7 @@ export default function TrailsList() {
       }
       return true;
     });
-  }, [filterTier, filterDifficulty, searchQuery]);
+  }, [trails, filterTier, filterDifficulty, searchQuery]);
 
   const hasActiveFilters = filterTier !== 'all' || filterDifficulty !== 'all' || searchQuery.trim() !== '';
 

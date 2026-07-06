@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { MapPin, CheckSquare, Square, Plus } from 'lucide-react';
-import { trails } from '../data/trails';
+import { useTrails } from '../hooks/useTrails';
 import { useRiddenTrails } from '../hooks/useRiddenTrails';
 import { getTypeColor } from '../data/trailTypes';
 import LogRideModal from '../components/trails/LogRideModal';
 
 export default function MyTrailsPage() {
+  const { trails } = useTrails();
   const { toggleRidden, isRidden, loading, riddenTrails } = useRiddenTrails();
   const [activeModal, setActiveModal] = useState(null); // { trail, mode: 'log'|'history' }
 
