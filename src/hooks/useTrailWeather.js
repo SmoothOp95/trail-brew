@@ -23,10 +23,16 @@ async function fetchWeatherForCoords(lat, lng) {
   }
 
   const promise = (async () => {
-    const data = await fetchTrailWeather(lat, lng);
-    cache.set(key, { data, fetchedAt: Date.now() });
-    inFlight.delete(key);
-    return data;
+    try {
+      const data = await fetchTrailWeather(lat, lng);
+      cache.set(key, { data, fetchedAt: Date.now() });
+      return data;
+    } finally {
+      // Always clear the in-flight slot — leaving a rejected promise here
+      // would serve the same failure to every future request for these
+      // coordinates until a full page reload.
+      inFlight.delete(key);
+    }
   })();
 
   inFlight.set(key, promise);

@@ -104,4 +104,25 @@ describe('useTrailWeather', () => {
     expect(result.current.error).toMatch(/500/);
     expect(result.current.weather).toBeNull();
   });
+
+  it('a failed fetch is not cached — the next mount retries and can succeed', async () => {
+    // First request fails
+    globalThis.fetch = vi.fn(async () => ({ ok: false, status: 500 }));
+    const first = renderHook(() => useTrailWeather(coords));
+    await waitFor(() => expect(first.result.current.error).toMatch(/500/));
+    first.unmount();
+
+    // Network recovers — a new card for the same coordinates must refetch
+    // rather than being served the stale rejection
+    globalThis.fetch = vi.fn(async () => ({
+      ok: true,
+      json: async () => makeApiResponse(),
+    }));
+    const second = renderHook(() => useTrailWeather(coords));
+
+    await waitFor(() => expect(second.result.current.loading).toBe(false));
+    expect(globalThis.fetch).toHaveBeenCalledTimes(1);
+    expect(second.result.current.error).toBeNull();
+    expect(second.result.current.weather.temp).toBe(22);
+  });
 });
