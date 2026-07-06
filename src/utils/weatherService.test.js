@@ -2,9 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { getRidingConditions, getWindDirection, formatSunTime } from './weatherService';
 
 const baseWeather = {
-  temperature: 22,
+  temp: 22,
   condition: 'Clear',
-  windSpeed: 10,
+  wind: 10,
   visibility: 10,
 };
 
@@ -16,13 +16,13 @@ describe('getRidingConditions', () => {
   });
 
   it('flags caution when very hot', () => {
-    const result = getRidingConditions({ ...baseWeather, temperature: 38 });
+    const result = getRidingConditions({ ...baseWeather, temp: 38 });
     expect(result.status).toBe('caution');
     expect(result.factors[0]).toMatch(/hot/i);
   });
 
   it('flags caution when very cold', () => {
-    const result = getRidingConditions({ ...baseWeather, temperature: 2 });
+    const result = getRidingConditions({ ...baseWeather, temp: 2 });
     expect(result.status).toBe('caution');
   });
 
@@ -36,13 +36,13 @@ describe('getRidingConditions', () => {
     const result = getRidingConditions({
       ...baseWeather,
       condition: 'Rain',
-      temperature: 38,
+      temp: 38,
     });
     expect(result.status).toBe('poor');
   });
 
   it('flags caution for strong wind and low visibility', () => {
-    expect(getRidingConditions({ ...baseWeather, windSpeed: 45 }).status).toBe('caution');
+    expect(getRidingConditions({ ...baseWeather, wind: 45 }).status).toBe('caution');
     expect(getRidingConditions({ ...baseWeather, visibility: 2 }).status).toBe('caution');
   });
 

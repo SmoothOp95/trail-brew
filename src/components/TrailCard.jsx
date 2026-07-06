@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   MapPin,
   Cloud,
@@ -13,11 +13,8 @@ import {
   CheckCircle,
   Circle,
 } from 'lucide-react';
-import {
-  getCurrentWeather,
-  getRidingConditions,
-  formatSunTime,
-} from '../utils/weatherService';
+import { formatSunTime } from '../utils/weatherService';
+import { useTrailWeather } from '../hooks/useTrailWeather';
 
 const TIER_STYLES = {
   fitness: { label: 'Fitness', bg: 'bg-green-500/15', text: 'text-green-400', border: 'border-green-500/30' },
@@ -40,12 +37,16 @@ const CONDITION_COLORS = {
 const DESCRIPTION_TRUNCATE = 120;
 
 export default function TrailCard({ trail, onSelect, isSelected }) {
-  const [weather, setWeather] = useState(null);
-  const [ridingConditions, setRidingConditions] = useState(null);
-  const [weatherLoading, setWeatherLoading] = useState(false);
-  const [weatherError, setWeatherError] = useState(null);
   const [showWeather, setShowWeather] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
+
+  // Shared cached weather — fetch is deferred until the toggle is opened
+  const {
+    weather,
+    ridingConditions,
+    loading: weatherLoading,
+    error: weatherError,
+  } = useTrailWeather(trail.coordinates, { enabled: showWeather });
 
   const tier = TIER_STYLES[trail.tier] || TIER_STYLES.fitness;
   const descriptionLong = trail.description && trail.description.length > DESCRIPTION_TRUNCATE;
@@ -53,30 +54,6 @@ export default function TrailCard({ trail, onSelect, isSelected }) {
     trail.description && !showFullDescription && descriptionLong
       ? trail.description.slice(0, DESCRIPTION_TRUNCATE).trimEnd() + '…'
       : trail.description;
-
-  // Fetch weather only when the toggle is turned on for the first time
-  useEffect(() => {
-    if (!showWeather || weather || !trail.coordinates) return;
-
-    let cancelled = false;
-    setWeatherLoading(true);
-    setWeatherError(null);
-
-    getCurrentWeather(trail.coordinates.lat, trail.coordinates.lng)
-      .then((data) => {
-        if (cancelled) return;
-        setWeather(data);
-        setRidingConditions(getRidingConditions(data));
-        setWeatherLoading(false);
-      })
-      .catch((err) => {
-        if (cancelled) return;
-        setWeatherError(err.message);
-        setWeatherLoading(false);
-      });
-
-    return () => { cancelled = true; };
-  }, [showWeather, trail.coordinates, weather]);
 
   return (
     <div
@@ -199,7 +176,7 @@ export default function TrailCard({ trail, onSelect, isSelected }) {
                   <div className="flex items-center gap-3">
                     <span className="text-4xl leading-none select-none">{weather.icon}</span>
                     <div>
-                      <p className="text-xl font-bold leading-none">{weather.temperature}°C</p>
+                      <p className="text-xl font-bold leading-none">{weather.temp}°C</p>
                       <p className="text-xs text-brew-text-dim capitalize mt-0.5">{weather.description}</p>
                     </div>
                   </div>
@@ -242,7 +219,7 @@ export default function TrailCard({ trail, onSelect, isSelected }) {
                     </div>
                     <div className="flex items-center gap-1.5">
                       <Wind size={11} className="text-brew-accent shrink-0" />
-                      <span>Wind <strong className="text-brew-text">{weather.windSpeed} km/h {weather.windDirection}</strong></span>
+                      <span>Wind <strong className="text-brew-text">{weather.wind} km/h {weather.windDirection}</strong></span>
                     </div>
                     {weather.visibility != null && (
                       <div className="flex items-center gap-1.5">
