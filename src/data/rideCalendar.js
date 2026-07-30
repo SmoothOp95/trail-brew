@@ -5,11 +5,12 @@
 // The running order is deliberately built as a difficulty ramp: every venue
 // on the list has an easy loop so first-timers are always welcome, but a rider
 // who commits to the whole series gets pushed onto progressively more technical
-// terrain — finishing on a proper year-end epic. We also alternate between the
-// Joburg and Pretoria sides of Gauteng so nobody has the long drive every time.
+// terrain — finishing on a proper year-end epic. We also spread the venues
+// across the Joburg and Pretoria sides of Gauteng so nobody has the long drive
+// every time.
 //
-// Dates land on the 4th weekend of each month, alternating Sunday / Saturday —
-// we kick off on a Sunday in July, then Saturdays from August onward.
+// Dates land on the 4th weekend of each month, mixing Saturdays and Sundays —
+// the exception is August, which runs on the 30th, the month's final Sunday.
 // Start times creep earlier through the hot Highveld summer to beat the heat.
 
 import { getTrailById } from './trails';
@@ -23,10 +24,10 @@ const SCHEDULE = [
     tagline: 'Series kick-off — flat, fast, open XC to shake out the winter legs.',
   },
   {
-    trailId: 'big-red-barn',
-    date: '2026-08-22', // 4th Saturday
+    trailId: 'braamfontein-spruit',
+    date: '2026-08-30', // 5th Sunday
     startTime: '08:00',
-    tagline: 'Gum-forest flow with your first taste of black-diamond lines.',
+    tagline: 'City singletrack along the spruit — flowy kays and the Delta Park jump line.',
   },
   {
     trailId: 'cradle-moon',
