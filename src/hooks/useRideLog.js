@@ -92,7 +92,7 @@ export function useRideLog() {
     elevationM,
     note,
     verificationMethod,
-    screenshotFile,
+    screenshotFile: _screenshotFile, // unused until Storage bucket is provisioned
     aiRawExtraction,
     aiConfidence,
   }) => {

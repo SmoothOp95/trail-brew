@@ -1,7 +1,11 @@
 // Gauteng MTB Trail Data
 // Source: Trail Brew Ride Calendar (Notion) — Tumi & Tawanda
-// This is the local fallback. Once Firestore is connected,
-// trails will sync from the cloud and cache locally.
+//
+// Bundled fallback catalogue. The app reads trails through the useTrails
+// hook (src/hooks/useTrails.js), which serves the /trails Firestore
+// collection when populated and falls back to this file when the collection
+// is empty or unreachable. Do not put per-user state (e.g. ridden flags)
+// in here — that lives on the user document.
 
 export const trails = [
   {
@@ -16,7 +20,6 @@ export const trails = [
     features: ['flow', 'enduro', 'technical', 'family', 'gradient'],
     tier: 'fitness',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.03, lng: 28.07 },
     description:
       'Asidlale Adventure Park is a hidden gem sitting on surprisingly significant terrain for a Joburg trail — rare gradient makes the climbs and descents feel genuinely rewarding. Choose from a gentle family flowline all the way up to a full-blown enduro line that will test your descending skills. The park caters to all levels, with green-rated trails easing first-timers in and blue-rated singletrack challenging riders looking to push further. At 5 km on the short end and up to 45 km if you link every trail, you can tailor the day to your legs. Sessions on the enduro line are a great way to build technical confidence in a park setting, while the flowline is pure fun for any fitness level.',
@@ -35,7 +38,6 @@ export const trails = [
     features: ['technical', 'xco', 'family', 'wildlife', 'rock gardens'],
     tier: 'fitness',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.19, lng: 28.32 },
     description:
       'Tucked within the grounds of Benoni Country Club, this bike park punches well above its weight for a suburban trail network. Manicured singletrack winds through indigenous bush with enough wildlife sightings — from mongooses to hornbills — to make every ride feel like a mini safari. The trail features well-built rock gardens, wooden drop-offs, and bridges that give riders exposure to proper technical features without committing to a full-day epic. Distances range from a quick 6 km warm-up to a respectable 20 km outing linking all the available loops. It is a perfect spot to develop technical skills in a safe, maintained environment while enjoying the Highveld bushveld up close.',
@@ -54,7 +56,6 @@ export const trails = [
     features: ['flow', 'urban', 'xco', 'jump line', 'spruit', 'city views'],
     tier: 'fitness',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.17, lng: 28.01 },
     description:
       'One of Joburg\'s great urban riding secrets, this 37 km+ network is maintained by the Jozi Trails non-profit and threads through Delta Park, Emmerentia Dam, and along the Braamfontein Spruit all the way up to Northcliff. It is a proper ride through the city — you will flow through parks, cross streams, and climb the Northcliff ridge for sweeping views of the skyline. The dedicated jump line near Delta Park is a crowd favourite for sessioning skills. A great trail to share with visitors who think Joburg is just highways and office parks. Linking the full route plus Northcliff hill makes for an impressive day out without ever leaving the city.',
@@ -73,7 +74,6 @@ export const trails = [
     features: ['pump track', 'flow', 'family', 'bmx', 'kids track', 'progressive'],
     tier: 'fitness',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.01, lng: 28.03 },
     description:
       'Cycle Lab Bike Park in Bryanston is the best-equipped family and beginner destination on the Gauteng north. The park hosts a tarred kids track for the smallest riders, a proper junior MTB singletrack loop, a well-shaped pump track for skill building, and a BMX dirt section for those learning to launch. The standout highlight is the Berm Baby Berm trail — a flowing rollercoaster of berms and sweeping corners that makes even seasoned riders grin. The park is perfect for progression: a beginner can start on the pump track, graduate to the junior trail, then tackle Berm Baby Berm all in one afternoon. Great facilities including the Cycle Lab store and coffee make it a full day out.',
@@ -92,7 +92,6 @@ export const trails = [
     features: ['xco', 'multi-use', 'dogs', 'hiking', 'family', 'natural'],
     tier: 'fitness',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -25.85, lng: 28.38 },
     description:
       'Also known as the Cowhouse Trails, Hazeldean Valley is a multi-use trail network in the rolling hills of Donkerhoek east of Pretoria. Shared with trail runners, hikers, and dog walkers, the trails feel organic and natural — carved by riders who love the area rather than engineered for spectacle. The varied terrain keeps rides interesting with open grassland sections, shaded kloofs, and rocky ridgelines. Because trails are naturally formed, you develop genuine bike handling rather than just following sculpted features. It is a great option for Pretoria East riders wanting to escape the city without driving far, and the multi-use nature means you will meet a welcoming community of outdoor enthusiasts on every ride.',
@@ -111,7 +110,6 @@ export const trails = [
     features: ['flow', 'technical', 'urban', 'progressive', 'dedicated lines'],
     tier: 'fitness',
     ridingMonth: 'June 2025',
-    ridden: false,
     coordinates: { lat: -26.16, lng: 28.09 },
     description:
       'Huddle Park sits right in the urban east of Johannesburg and delivers a surprisingly satisfying riding experience for a city-based trail. The park features dedicated green and blue lines that are perfect for building progression: a beginner can learn to ride in flow on the easy loops while intermediates tackle the more technical blue sections. It is the kind of trail you can session repeatedly to nail a corner, dial in your line through a technical feature, or simply get a quality ride in midweek without driving far. The tight, twisty singletrack demands good body position and sharp reactions, making it a great training ground. A local favourite for after-work rides when you need your fix but time is short.',
@@ -130,7 +128,6 @@ export const trails = [
     features: ['xco', 'flow', 'community', 'conservation', 'nature reserve', 'groups'],
     tier: 'fitness',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -25.99, lng: 28.10 },
     description:
       'Formerly part of Diepsloot Nature Reserve, Northern Farm Bike Park is one of the most community-minded trail spaces in Gauteng. Run by volunteers with a strong ethos of conservation and community upliftment, riding here feels like contributing to something bigger than your Strava segment. The trails are flowing XC singletrack that takes you through open bushveld — the kind of ride that gets you into a proper flow state. Easy enough for groups of mixed ability but engaging enough that no one gets bored, it is a trail every Joburg rider should do at least once. The peaceful nature reserve setting makes it feel like you are hours from the city even though you are not.',
@@ -149,7 +146,6 @@ export const trails = [
     features: ['xco', 'flat', 'fast', 'beginner friendly', 'open terrain'],
     tier: 'fitness',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.30, lng: 27.83 },
     description:
       'Prime View Adventure and Leisure in Olifantsfontein is the go-to destination for XC-focused riders who want a flat, fast ride without the technical overhead of more challenging trails. The open terrain means big sky Highveld views and straightforward riding that lets you concentrate on fitness and speed rather than picking lines through technical features. It is ideal for beginners building confidence, for fitness riders adding volume kilometres, or for groups of mixed ability who want everyone to finish smiling. The flat, fast nature of the trails also makes it a solid choice for practicing race pacing and sustaining a high heart rate over distance. Simple, fun, and honest riding.',
@@ -168,7 +164,6 @@ export const trails = [
     features: ['flow', 'xco', 'forest', 'after-ride beer', 'bike shop'],
     tier: 'fitness',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.08, lng: 28.20 },
     description:
       'Taroko Trail Park in Modderfontein combines great flow and XCO-style riding with one of the best post-ride setups in Gauteng. The trails thread through a beautiful forested section that provides welcome shade on hot Highveld days, with the trail design emphasising flow and momentum — you can carry speed into sweeping berms and pump through rollers without fighting the terrain. The XCO-style loops are well-marked and well-maintained, making it easy to string together a satisfying route. But perhaps the best feature is the TrailWolf bike shop on-site and cold beers waiting at the end — the full Trail Brew experience. A genuinely solid trail park that delivers on all fronts.',
@@ -187,7 +182,6 @@ export const trails = [
     features: ['flow', 'enduro', 'xco', 'technical', 'gum forest', 'family', 'kiddies trail'],
     tier: 'warrior',
     ridingMonth: 'June 2025',
-    ridden: true,
     coordinates: { lat: -25.87, lng: 28.22 },
     description:
       'Big Red Barn on Sunlawns Estate near Irene offers 36 km of riding that takes you through gum forest, open grasslands, and farm fields — a diverse landscape that keeps the ride interesting throughout. The Kaalspruit river crossing adds a proper adventure element, and the big berm flow lines will have you whooping on the way down. Black diamond sections ensure that advanced riders are properly challenged, while a dedicated 2 km kiddies trail means the whole family can come along. The shaded forest riding is a treat on hot Highveld days, and the farm atmosphere gives Big Red Barn a relaxed, welcoming character that makes it easy to spend the whole day riding and restarting loops.',
@@ -206,7 +200,6 @@ export const trails = [
     features: ['game viewing', 'xco', 'trail', 'technical', 'world heritage', 'rhino', 'hippo'],
     tier: 'warrior',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.01, lng: 27.73 },
     description:
       'Riding at Cradle Moon means pedalling through a UNESCO World Heritage Site in the Cradle of Humankind — the fossilised origins of our species literally beneath your wheels. Four marked routes from the Pink (5.6 km beginner loop) to the Red (23.6 km advanced route) give every level a worthy challenge. The conservancy setting means real game encounters: rhino, hippo, zebra, and giraffe are regularly spotted on rides. The mountain terrain shifts from forested kloofs to open ridgelines with lake views, keeping the scenery constantly changing. Cradle Moon is the kind of trail that justifies the drive from anywhere in Gauteng — a genuine bucket-list riding destination that combines adventure, wildlife, and world-class trails in one spectacular package.',
@@ -225,7 +218,6 @@ export const trails = [
     features: ['xco', 'technical', 'climbs', 'views', 'descents', 'challenging'],
     tier: 'warrior',
     ridingMonth: 'May 2025',
-    ridden: true,
     coordinates: { lat: -25.89, lng: 28.08 },
     description:
       'Hennops MTB shines brightest for intermediate and advanced riders who are ready to work for their views. The beginner loop gives newer riders a taste of the terrain, but the real Hennops experience is in the challenging climbs and the rewarding descents that follow — you genuinely earn the downhills here. The open ridgeline sections deliver sweeping views over the Centurion landscape, and the XCO-style route design keeps the pace honest throughout. Technical singletrack demands concentration and solid bike handling, particularly on the winding descents where loose rock can catch you off guard. A trail that will humble you on a bad day and make you feel like a legend on a good one. Quite a challenge — and that is the point.',
@@ -244,7 +236,6 @@ export const trails = [
     features: ['enduro', 'technical', 'rocky', 'zoo farm', 'good vibes'],
     tier: 'warrior',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.28, lng: 28.10 },
     description:
       'Situated on the Rietvlei Zoo Farm within the Rietvlei Lifestyle Centre, this bike park delivers an almost-full enduro experience within easy reach of Johannesburg south. The rocky, technical terrain will test your technical riding skills immediately — this is not a place to coast through corners or carry lazy speed into features. The good vibes on-site match the adventurous nature of the trails, and with the Lifestyle Centre nearby you have no shortage of post-ride recovery options. Intermediate riders will find their technical limits quickly here, while advanced riders will appreciate the commitment required to ride the park at pace. A trail that rewards practice and punishes complacency.',
@@ -263,7 +254,6 @@ export const trails = [
     features: ['xco', 'flow', 'enduro', 'technical', 'koppie', 'descents'],
     tier: 'warrior',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -25.78, lng: 28.42 },
     description:
       'Rosemary Hill is a tale of two trails in one bike park. The main XCO-style network is flowing and fun — well-designed loops that reward momentum and encourage you to carry speed through the berms. But the koppie is where Rosemary Hill shows its other side: enduro-style descents that are properly technical and will demand your full attention. Riding the koppie lines is the highlight of any visit, with steep chutes, tight switchbacks, and exposure that makes your heart rate jump even at low speed. Together, the flowy XCO terrain and the technical koppie descents make Rosemary Hill a versatile day out that can swing between casual spinning and full commitment, depending on what your legs — and your nerve — feel like on the day.',
@@ -282,7 +272,6 @@ export const trails = [
     features: ['flow', 'jump line', 'technical', 'singletrack', 'rider-built', 'west rand'],
     tier: 'warrior',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.09, lng: 27.75 },
     description:
       'The Hobby Park is a West Rand gem that rewards riders who know where to look. The network is singletrack through varied terrain, but the dedicated flow and jump line is the crown jewel — built with love by riders (some of them Trail Brew guys) who knew exactly what made a line satisfying to ride repeatedly. The jump line has proper rhythm sections and sends that encourage commitment and build your air game. If you do not know the park well, find someone local who does: the best lines are not always the most obvious ones, and a guided first lap will unlock sections that would otherwise go unridden. A solid West Rand option that punches above its weight.',
@@ -301,7 +290,6 @@ export const trails = [
     features: ['flow', 'enduro', 'jumps', 'night riding', 'river crossings', 'fully fenced', 'bike shop'],
     tier: 'warrior',
     ridingMonth: 'May 2025',
-    ridden: true,
     coordinates: { lat: -25.72, lng: 28.12 },
     description:
       'Wolwespruit hosts what many consider the best jump line in Joburg — a flowing sequence of doubles and step-downs that rewards commitment with the most satisfying air time in the city. Beyond the jump line, the park delivers a light enduro experience with 15 km of MTB trail featuring drops, technical rock sections, and proper river crossings that add real adventure to a Pretoria East ride. The fully fenced park means a safe, controlled environment, and The Bike Store on-site handles any mechanical dramas. Night riding on Tuesdays makes Wolwespruit unique — there is something special about riding a well-lit trail in the dark, with the park coming alive in a completely different way after sunset. Around 300 m of climbing in 15 km keeps the legs working.',
@@ -320,7 +308,6 @@ export const trails = [
     features: ['enduro', 'technical', 'climbs', 'advanced', 'colour-coded routes', 'coffee', 'cycle hub'],
     tier: 'gold',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -26.32, lng: 28.01 },
     description:
       'Thaba Trails is the go-to enduro destination in Gauteng and it does not pull punches: super technical terrain, big climbs, and descents that demand your absolute best. The colour-coded loop system lets you choose your adventure — from the Yellow 5 km beginner loop that eases you in, through intermediate routes, all the way to the Blue loop (25 km) that is rated very technical and will test even experienced enduro riders. Obstacles, rock faces, and sustained climbs are par for the course at Thaba. The Cycle Hub on-site handles bikes and the bacon-and-egg rolls with Illy coffee make the post-ride ritual as important as the ride itself. If you are not ready, Thaba will let you know immediately — and that is exactly why serious riders keep coming back.',
@@ -339,7 +326,6 @@ export const trails = [
     features: ['world class', 'xco', 'trail', 'technical', 'cheese farm', 'restaurant', 'neighbouring farms'],
     tier: 'gold',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -25.56, lng: 27.78 },
     description:
       'Van Gaalen Cheese Farm near Hartebeespoort offers a trail network that operates at genuine World Cup XCO level across a mind-bending 80 km+ of riding that spreads across the working cheese farm and its neighbouring properties. The diversity of terrain is remarkable: the farm trails blend flowing singletrack with technical climbing, while the external trails on neighbouring farms push into genuinely challenging mountain territory that demands advanced fitness and bike handling. The restaurant and artisan cheese stops make this a proper destination day or weekend. A Vergenoeg membership grants access here too. For riders wanting to know if they are ready for international-level trails, Van Gaalen is the honest answer. One of the finest trail destinations in South Africa.',
@@ -358,7 +344,6 @@ export const trails = [
     features: ['enduro', 'technical', 'descents', 'drops', 'star wars themed', 'Hartbeespoort views', 'membership'],
     tier: 'gold',
     ridingMonth: null,
-    ridden: false,
     coordinates: { lat: -25.75, lng: 27.84 },
     description:
       'Vergenoeg sits high in the Magaliesberg overlooking Hartbeespoort Dam and delivers some of the most technical, exhilarating enduro descents in Gauteng. The Star Wars themed trail names alone tell you what to expect: Han Solo and Darth Maul are advanced descents of genuine consequence, demanding precision through drops, tight corners, switchbacks, and rock-studded terrain. Skywalker serves the intermediate rider who wants a taste of the action, while Return of the Jedi offers a novice-friendly introduction to the mountain. The mountain terrain means sustained altitude change and proper Magaliesberg scenery throughout. A Vergenoeg membership also unlocks access to Van Gaalen Cheese Farm, making it excellent value for any serious Gauteng rider.',

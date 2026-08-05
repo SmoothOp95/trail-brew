@@ -15,8 +15,10 @@ service cloud.firestore {
     // Anyone can browse trails; only callers with the `admin` custom claim
     // (set server-side via Firebase Admin SDK) can create, update, or delete.
     match /trails/{trailId} {
-      allow read:  if true;
-      allow write: if isAdmin();
+      allow read:   if true;
+      allow create: if isAdmin() && validTrail();
+      allow update: if isAdmin() && validTrail();
+      allow delete: if isAdmin();
     }
 
     // ── User profiles ─────────────────────────────────────────────────
@@ -34,16 +36,16 @@ service cloud.firestore {
       // ── Service history subcollection ─────────────────────────────
       match /serviceHistory/{recordId} {
         allow read:   if isOwner(userId);
-        allow create: if isOwner(userId);
-        allow update: if isOwner(userId);
+        allow create: if isOwner(userId) && validServiceRecord();
+        allow update: if isOwner(userId) && validServiceRecord();
         allow delete: if isOwner(userId);
       }
 
       // ── Repair history subcollection ──────────────────────────────
       match /repairHistory/{recordId} {
         allow read:   if isOwner(userId);
-        allow create: if isOwner(userId);
-        allow update: if isOwner(userId);
+        allow create: if isOwner(userId) && validRepairRecord();
+        allow update: if isOwner(userId) && validRepairRecord();
         allow delete: if isOwner(userId);
       }
 
@@ -87,6 +89,40 @@ service cloud.firestore {
                      'riddenTrails', 'notes', 'preferences', 'createdAt',
                      'bikeData', 'stravaConnection'];
       return request.resource.data.diff(resource.data).affectedKeys().hasOnly(allowed);
+    }
+
+    // Validates trail catalogue writes — name is required and only known
+    // catalogue fields are accepted. Per-user state (ridden flags, notes)
+    // must never be stored on trail documents.
+    function validTrail() {
+      let allowed = ['name', 'location', 'mapUrl', 'types', 'difficulty',
+                     'difficultyLevels', 'distance', 'features', 'tier',
+                     'ridingMonth', 'coordinates', 'description', 'surface',
+                     'archived', 'createdAt', 'updatedAt'];
+      return request.resource.data.keys().hasAll(['name'])
+          && request.resource.data.keys().hasOnly(allowed)
+          && request.resource.data.name is string;
+    }
+
+    // Validates service-history writes — same shape ServiceDetailsDialog and
+    // the localStorage migration produce.
+    function validServiceRecord() {
+      let allowed = ['date', 'shopName', 'cost', 'distanceAtService',
+                     'hoursAtService', 'serviceType', 'type', 'createdAt',
+                     'migratedAt'];
+      return request.resource.data.keys().hasAll(['date', 'type'])
+          && request.resource.data.keys().hasOnly(allowed)
+          && request.resource.data.type == 'service';
+    }
+
+    // Validates repair-history writes.
+    function validRepairRecord() {
+      let allowed = ['date', 'shopName', 'cost', 'distanceAtService',
+                     'hoursAtService', 'description', 'type', 'createdAt',
+                     'migratedAt'];
+      return request.resource.data.keys().hasAll(['date', 'type'])
+          && request.resource.data.keys().hasOnly(allowed)
+          && request.resource.data.type == 'repair';
     }
 
     // Validates ride-log writes — trailId, trailName, date, verificationMethod,

@@ -1,6 +1,11 @@
 /**
  * Weather service for Trail Brew — fetches live weather data for trail locations.
  * Uses Open-Meteo (open-meteo.com) — free, no API key required.
+ *
+ * This module is the single request/format path for trail weather. One call to
+ * fetchTrailWeather() returns everything both card variants need: current
+ * conditions, comfort details (feels-like, humidity, visibility, sun times),
+ * and the rolling rainfall totals that drive trail-condition grading.
  */
 
 const BASE_URL = 'https://api.open-meteo.com/v1/forecast';
@@ -38,13 +43,14 @@ function decodeWMO(code) {
 }
 
 /**
- * Fetch current weather conditions at given GPS coordinates.
+ * Fetch full weather data for a trail's GPS coordinates in a single request:
+ * current conditions + comfort details + 48h rainfall history.
  *
  * @param {number} lat
  * @param {number} lon
- * @returns {Promise<object>} weather object
+ * @returns {Promise<object>} unified weather object
  */
-export async function getCurrentWeather(lat, lon) {
+export async function fetchTrailWeather(lat, lon) {
   const params = new URLSearchParams({
     latitude: lat,
     longitude: lon,
@@ -57,8 +63,9 @@ export async function getCurrentWeather(lat, lon) {
       'weather_code',
       'surface_pressure',
     ].join(','),
-    hourly: 'visibility',
+    hourly: 'visibility,precipitation',
     daily: 'sunrise,sunset',
+    past_days: 3,
     forecast_days: 1,
     timezone: 'Africa/Johannesburg',
   });
@@ -69,52 +76,68 @@ export async function getCurrentWeather(lat, lon) {
 
   const cur = d.current;
   const wmo = decodeWMO(cur.weather_code);
+  const now = new Date();
+
+  // Sum precipitation over rolling windows from hourly history
+  const times = d.hourly.time;
+  const precips = d.hourly.precipitation;
+  let rain1h = 0;
+  let rain24h = 0;
+  let rain48h = 0;
+  for (let i = 0; i < times.length; i++) {
+    const t = new Date(times[i]);
+    if (t > now) continue; // skip future hours
+    const age = now - t;
+    if (age <= 1 * 3600 * 1000) rain1h += precips[i];
+    if (age <= 24 * 3600 * 1000) rain24h += precips[i];
+    if (age <= 48 * 3600 * 1000) rain48h += precips[i];
+  }
 
   // Match current time to closest hourly visibility entry
-  const currentTimeStr = cur.time; // e.g. "2026-04-13T14:00"
-  const hourIndex = d.hourly.time.findIndex((t) => t >= currentTimeStr);
-  const visibilityM = d.hourly.visibility[hourIndex >= 0 ? hourIndex : 0] ?? null;
+  const hourIndex = times.findIndex((t) => t >= cur.time);
+  const visibilityM = d.hourly.visibility?.[hourIndex >= 0 ? hourIndex : 0] ?? null;
 
-  // daily sunrise/sunset are ISO strings like "2026-04-13T06:15" — convert to Unix seconds
-  const sunrise = d.daily.sunrise[0]
-    ? Math.floor(new Date(d.daily.sunrise[0]).getTime() / 1000)
-    : null;
-  const sunset = d.daily.sunset[0]
-    ? Math.floor(new Date(d.daily.sunset[0]).getTime() / 1000)
-    : null;
+  // Sunrise/sunset for "today" — with past_days=3 the daily arrays start 3 days
+  // back, so today's entry is the last one.
+  const lastDay = d.daily.sunrise.length - 1;
+  const toUnix = (iso) => (iso ? Math.floor(new Date(iso).getTime() / 1000) : null);
 
   return {
-    temperature: Math.round(cur.temperature_2m),
+    temp: Math.round(cur.temperature_2m),
     feelsLike: Math.round(cur.apparent_temperature),
     condition: wmo.condition,
     description: wmo.description,
     icon: wmo.emoji,
     humidity: cur.relative_humidity_2m,
-    windSpeed: Math.round(cur.wind_speed_10m),
+    wind: Math.round(cur.wind_speed_10m),
     windDirection: getWindDirection(cur.wind_direction_10m),
     visibility: visibilityM != null ? Math.round((visibilityM / 1000) * 10) / 10 : null,
     pressure: Math.round(cur.surface_pressure),
-    sunrise,
-    sunset,
+    weatherCode: cur.weather_code,
+    sunrise: toUnix(d.daily.sunrise[lastDay]),
+    sunset: toUnix(d.daily.sunset[lastDay]),
+    rain1h: Math.round(rain1h * 10) / 10,
+    rain24h: Math.round(rain24h * 10) / 10,
+    rain48h: Math.round(rain48h * 10) / 10,
   };
 }
 
 /**
  * Assess whether current weather is suitable for an MTB ride.
  *
- * @param {object} weather - result from getCurrentWeather()
+ * @param {object} weather - result from fetchTrailWeather()
  * @returns {{ status: 'good'|'caution'|'poor', message: string, factors: string[] }}
  */
 export function getRidingConditions(weather) {
   const factors = [];
   let status = 'good';
 
-  if (weather.temperature > 35) {
-    factors.push(`Very hot — ${weather.temperature}°C. Carry extra water.`);
+  if (weather.temp > 35) {
+    factors.push(`Very hot — ${weather.temp}°C. Carry extra water.`);
     if (status === 'good') status = 'caution';
   }
-  if (weather.temperature < 5) {
-    factors.push(`Very cold — ${weather.temperature}°C. Layer up.`);
+  if (weather.temp < 5) {
+    factors.push(`Very cold — ${weather.temp}°C. Layer up.`);
     if (status === 'good') status = 'caution';
   }
 
@@ -124,8 +147,8 @@ export function getRidingConditions(weather) {
     status = 'poor';
   }
 
-  if (weather.windSpeed > 40) {
-    factors.push(`Strong winds — ${weather.windSpeed} km/h.`);
+  if (weather.wind > 40) {
+    factors.push(`Strong winds — ${weather.wind} km/h.`);
     if (status === 'good') status = 'caution';
   }
 

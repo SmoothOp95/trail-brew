@@ -46,10 +46,18 @@ function lsParse(key, fallback) {
 export function useBikeData() {
   const { user } = useAuth();
 
-  const [bikeData, setBikeData] = useState(null);
+  const [bikeData, setBikeDataState] = useState(null);
   const [serviceHistory, setServiceHistory] = useState([]);
   const [repairHistory, setRepairHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Mirror of the latest bikeData so async code (optimistic updates and their
+  // rollbacks) never reads a stale render closure.
+  const bikeDataRef = useRef(null);
+  const setBikeData = (value) => {
+    bikeDataRef.current = typeof value === 'function' ? value(bikeDataRef.current) : value;
+    setBikeDataState(bikeDataRef.current);
+  };
 
   // Hold unsubscribe refs so we can clean up all listeners on user change
   const unsubRefs = useRef([]);
@@ -141,9 +149,15 @@ export function useBikeData() {
 
   /**
    * Merge partial updates into the bikeData field on the user document.
-   * Optimistically updates local state before the Firestore round-trip.
+   * Optimistically updates local state before the Firestore round-trip;
+   * reverts to the pre-update state if the write fails.
+   *
+   * Writes use dot-notation field paths (bikeData.nickname etc.) so only the
+   * touched fields are sent — concurrent updates to other fields (e.g. ride
+   * increments from useRideLog) are never clobbered by a stale full-object merge.
    *
    * @param {Partial<import('../types/index').BikeData>} updates
+   * @returns {Promise<boolean>} true if the write succeeded
    */
   const updateBikeData = async (updates) => {
     if (!user) {
@@ -153,19 +167,34 @@ export function useBikeData() {
         localStorage.setItem(LS_BIKE_DATA, JSON.stringify(next));
         return next;
       });
-      return;
+      return true;
     }
 
-    // Optimistic update
-    setBikeData((prev) => ({ ...prev, ...updates }));
+    // Optimistic update — remember the pre-update values of the touched keys
+    const previous = bikeDataRef.current ?? { ...DEFAULT_BIKE_DATA };
+    setBikeData({ ...previous, ...updates });
+
+    const fieldPaths = {};
+    for (const [key, value] of Object.entries(updates)) {
+      fieldPaths[`bikeData.${key}`] = value;
+    }
 
     try {
-      await updateDoc(doc(db, 'users', user.uid), {
-        bikeData: { ...(bikeData ?? DEFAULT_BIKE_DATA), ...updates },
+      await updateDoc(doc(db, 'users', user.uid), fieldPaths);
+      return true;
+    } catch (err) {
+      console.error('[useBikeData] Failed to update bike data, reverting:', err);
+      // Revert only the keys this call touched — updates to other fields that
+      // landed while the request was in flight keep their state.
+      setBikeData((current) => {
+        const reverted = { ...current };
+        for (const key of Object.keys(updates)) {
+          if (key in previous) reverted[key] = previous[key];
+          else delete reverted[key];
+        }
+        return reverted;
       });
-    } catch {
-      // Revert on failure
-      setBikeData((prev) => prev);
+      return false;
     }
   };
 
