@@ -10,7 +10,8 @@
     "deploy": "firebase deploy --only hosting",
     "test": "vitest run",
     "test:watch": "vitest",
-    "seed:trails": "node scripts/seedTrails.mjs"
+    "seed:trails": "node scripts/seedTrails.mjs",
+    "set:community-config": "node scripts/setCommunityConfig.mjs"
   },
   "dependencies": {
     "firebase": "^11.0.0",

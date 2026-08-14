@@ -71,13 +71,16 @@ npm run seed:trails
 Safe to re-run after editing `src/data/trails.js` — it upserts by trail `id`.
 
 The success screen also needs a WhatsApp invite link, stored as config (not
-code) so it can be rotated without a redeploy. Create this document by hand
-in the Firebase Console → Firestore:
+code) so it can be rotated without a redeploy. Either create the document by
+hand in the Firebase Console → Firestore (`config/community` →
+`{ whatsappGeneralInviteUrl: "https://chat.whatsapp.com/..." }`), or use the
+same service account key:
 
+```bash
+npm run set:community-config -- --whatsapp-url="https://chat.whatsapp.com/..."
 ```
-config/community
-{ whatsappGeneralInviteUrl: "https://chat.whatsapp.com/..." }
-```
+
+Re-run either whenever the invite link changes — no redeploy needed.
 
 ### 7. Deploy
 
