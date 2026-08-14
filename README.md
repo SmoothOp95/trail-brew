@@ -72,15 +72,41 @@ npm run seed:trails
 
 Safe to re-run after editing `src/data/trails.js` — it upserts by trail `id`.
 
-The success screen also needs a WhatsApp invite link, stored as config (not
-code) so it can be rotated without a redeploy. Either create the document by
-hand in the Firebase Console → Firestore (`config/community` →
-`{ whatsappGeneralInviteUrl: "https://chat.whatsapp.com/..." }`), or use the
-same service account key:
+The success screen also needs a WhatsApp invite link, and the app-preview
+pages (see below) need an iOS TestFlight link — both stored as config (not
+code) so they can be rotated without a redeploy. Either create/edit the
+document by hand in the Firebase Console → Firestore (`config/community` →
+`{ whatsappGeneralInviteUrl: "https://chat.whatsapp.com/...", iosTestflightUrl: "https://testflight.apple.com/join/..." }`),
+or use the same service account key:
 
 ```bash
 npm run set:community-config -- --whatsapp-url="https://chat.whatsapp.com/..."
+npm run set:community-config -- --ios-testflight-url="https://testflight.apple.com/join/..."
+# or both in one call — see scripts/setCommunityConfig.mjs
 ```
+
+`config/community` is publicly readable (like the trails catalogue) since
+none of it is sensitive and the app-preview pages need it for signed-out
+visitors too.
+
+### App-preview screenshots
+
+Every tool except Trail Finder (and Trails) is an "app-only" preview page on
+web — see `src/components/appPreview/AppOnlyFeature.jsx` and
+`src/data/appPreviews.js`. Real screenshots from the iOS TestFlight build go
+at:
+
+```
+src/assets/app-previews/{feature-slug}/{n}.png
+```
+
+e.g. `src/assets/app-previews/service-dashboard/1.png`,
+`.../service-dashboard/2.png`. Numeric filenames control display order.
+Feature slugs: `ride-calendar`, `my-trails`, `service-dashboard`,
+`find-my-bike`. Files are picked up automatically (no code changes) via
+`src/utils/appPreviewAssets.js` — until they exist, each preview page shows
+a same-size placeholder frame instead, so dropping real screenshots in later
+is a pure asset drop, zero layout work.
 
 Re-run either whenever the invite link changes — no redeploy needed.
 

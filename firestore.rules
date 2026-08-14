@@ -19,12 +19,13 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // ── App config (e.g. community WhatsApp invite link) ───────────────
-    // Any signed-in user may read config docs (the onboarding success screen
-    // needs the WhatsApp link right after sign-in); only admins can rotate
-    // values, so the link can change without a redeploy.
+    // ── App config (WhatsApp invite link, iOS TestFlight link, etc.) ────
+    // Public read, same as the trails catalogue — signed-out visitors need
+    // config/community.iosTestflightUrl on the public app-preview pages,
+    // and none of this data is sensitive. Only admins can rotate values,
+    // so links can change without a redeploy.
     match /config/{docId} {
-      allow read:  if request.auth != null;
+      allow read:  if true;
       allow write: if isAdmin();
     }
 
