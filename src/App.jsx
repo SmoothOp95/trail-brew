@@ -11,6 +11,9 @@ import ServiceHistoryPage from './pages/ServiceHistoryPage';
 import JoinLandingPage from './pages/JoinLandingPage';
 import JoinSurveyPage from './pages/JoinSurveyPage';
 import CommunityGuidelinesPage from './pages/CommunityGuidelinesPage';
+import AppOnlyFeature from './components/appPreview/AppOnlyFeature';
+import { appPreviews } from './data/appPreviews';
+import { WEB_LIVE_FEATURES } from './config/featureFlags';
 import { useAuth } from './hooks/useAuth';
 import { migrateLocalStorageToFirestore } from './utils/migrate';
 
@@ -36,10 +39,27 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/trail-finder" element={<TrailFinder />} />
         <Route path="/trails" element={<TrailsList />} />
-        <Route path="/calendar" element={<RideCalendarPage />} />
-        <Route path="/my-trails" element={<MyTrailsPage />} />
-        <Route path="/my-bike" element={<MyBikePage />} />
-        <Route path="/service-history" element={<ServiceHistoryPage />} />
+
+        {/* Web-live switches — flip a flag in src/config/featureFlags.js to
+            restore the live component. Real implementations stay untouched
+            below, just not routed to while their flag is off. */}
+        <Route
+          path="/calendar"
+          element={WEB_LIVE_FEATURES.rideCalendar ? <RideCalendarPage /> : <AppOnlyFeature {...appPreviews.rideCalendar} />}
+        />
+        <Route
+          path="/my-trails"
+          element={WEB_LIVE_FEATURES.myTrails ? <MyTrailsPage /> : <AppOnlyFeature {...appPreviews.myTrails} />}
+        />
+        <Route
+          path="/my-bike"
+          element={WEB_LIVE_FEATURES.serviceDashboard ? <MyBikePage /> : <AppOnlyFeature {...appPreviews.serviceDashboard} />}
+        />
+        <Route
+          path="/service-history"
+          element={WEB_LIVE_FEATURES.serviceDashboard ? <ServiceHistoryPage /> : <AppOnlyFeature {...appPreviews.serviceDashboard} />}
+        />
+        <Route path="/find-my-bike" element={<AppOnlyFeature {...appPreviews.findMyBike} />} />
       </Route>
     </Routes>
   );

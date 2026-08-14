@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useJoinStatus } from '../../hooks/useJoinStatus';
+import { PRIMARY_BTN_CLASS, SECONDARY_BTN_CLASS } from '../../styles/buttonStyles';
 
 const pillars = [
   {
@@ -17,6 +19,9 @@ const pillars = [
     desc: 'Celebrate post-ride with great coffee and community.',
   },
 ];
+
+// "In the app" badge — muted/outline so "Live" keeps its pop for Trail Finder.
+const IN_APP_TAG_STYLE = 'bg-white/[0.04] text-brew-text-dim border border-brew-border';
 
 const tools = [
   {
@@ -39,8 +44,8 @@ const tools = [
     external: false,
     emoji: '🔧',
     label: 'Service Dashboard',
-    tag: 'Live',
-    tagStyle: 'bg-brew-accent/10 text-brew-accent border border-brew-accent/20',
+    tag: 'In the app',
+    tagStyle: IN_APP_TAG_STYLE,
     description: 'Track services, repairs, and expenses across all your bikes. Never miss a service interval again.',
     types: ['Services', 'Repairs', 'History'],
     typeColors: ['text-trail-xc', 'text-trail-enduro', 'text-trail-jump'],
@@ -49,12 +54,12 @@ const tools = [
   },
   {
     id: 'find-my-bike',
-    href: 'https://findmybikesa.vercel.app',
-    external: true,
+    href: '/find-my-bike',
+    external: false,
     emoji: '🚲',
     label: 'Find My Bike',
-    tag: 'Live',
-    tagStyle: 'bg-brew-accent/10 text-brew-accent border border-brew-accent/20',
+    tag: 'In the app',
+    tagStyle: IN_APP_TAG_STYLE,
     description: 'Discover the right bike for your budget and riding style. South Africa\'s MTB buyer guide.',
     types: ['Budget', 'Hardtail', 'Full Sus'],
     typeColors: ['text-trail-flow', 'text-trail-trail', 'text-trail-downhill'],
@@ -111,10 +116,8 @@ export default function HomePage() {
           A community for mountain bikers who love great trails, great company, and great coffee.
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-3">
-          <Link
-            to="/trail-finder"
-            className="bg-brew-accent text-brew-bg font-bold text-sm px-7 py-3 rounded-lg hover:bg-[#D4F27A] transition-colors tracking-wide"
-          >
+          <HeroJoinCTA />
+          <Link to="/trail-finder" className={SECONDARY_BTN_CLASS}>
             Find my trail
           </Link>
           <a
@@ -124,6 +127,9 @@ export default function HomePage() {
             Explore tools ↓
           </a>
         </div>
+        <p className="text-brew-text-dim text-xs mt-5">
+          Riders of every level welcome. Survey takes 2 minutes.
+        </p>
       </section>
 
       {/* Pillars */}
@@ -174,6 +180,31 @@ export default function HomePage() {
         </span>
       </footer>
     </div>
+  );
+}
+
+/**
+ * Primary hero CTA. Defaults to "Join the crew" immediately (the common
+ * case for a first-time visitor) and swaps to "Open WhatsApp group" once
+ * useJoinStatus confirms this rider already completed the survey — avoids
+ * a loading flicker for the majority of visitors, at the cost of a brief
+ * swap for the minority who are already members.
+ */
+function HeroJoinCTA() {
+  const { completed, whatsappUrl } = useJoinStatus();
+
+  if (completed && whatsappUrl) {
+    return (
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={PRIMARY_BTN_CLASS}>
+        Open WhatsApp group
+      </a>
+    );
+  }
+
+  return (
+    <Link to="/join" className={PRIMARY_BTN_CLASS}>
+      Join the crew
+    </Link>
   );
 }
 

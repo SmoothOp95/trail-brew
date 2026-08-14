@@ -1,17 +1,60 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Compass, Map, CalendarDays, CheckSquare, LayoutDashboard, X } from 'lucide-react';
+import { Home, Compass, Map, CalendarDays, CheckSquare, LayoutDashboard, Users, ExternalLink, X } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
+import { useJoinStatus } from '../../hooks/useJoinStatus';
 import SignInButton from '../auth/SignInButton';
 
-const NAV_LINKS = [
-  { to: '/', icon: Home, label: 'Home', exact: true },
+const NAV_LINKS_BEFORE_TOOLS = [{ to: '/', icon: Home, label: 'Home', exact: true }];
+
+const TOOL_LINKS = [
   { to: '/trail-finder', icon: Compass, label: 'Find Trail' },
   { to: '/trails', icon: Map, label: 'Trails' },
   { to: '/calendar', icon: CalendarDays, label: 'Ride Calendar' },
   { to: '/my-trails', icon: CheckSquare, label: 'My Trails' },
   { to: '/my-bike', icon: LayoutDashboard, label: 'Service Dashboard' },
 ];
+
+function NavLink({ link, active }) {
+  const Icon = link.icon;
+  return (
+    <Link
+      to={link.to}
+      className={`
+        flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150
+        ${active
+          ? 'text-brew-accent bg-brew-accent/[0.08] border-l-2 border-brew-accent pl-[10px]'
+          : 'text-brew-text-dim hover:text-brew-text hover:bg-white/[0.04] border-l-2 border-transparent pl-[10px]'
+        }
+      `}
+    >
+      <Icon size={16} className="shrink-0" />
+      {link.label}
+    </Link>
+  );
+}
+
+/** Swaps to an external "WhatsApp Group" link once the rider has already joined. */
+function JoinNavItem({ active }) {
+  const { completed, whatsappUrl } = useJoinStatus();
+
+  if (completed && whatsappUrl) {
+    return (
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 text-brew-text-dim hover:text-brew-text hover:bg-white/[0.04] border-l-2 border-transparent pl-[10px]"
+      >
+        <Users size={16} className="shrink-0" />
+        WhatsApp Group
+        <ExternalLink size={12} className="shrink-0 ml-auto text-brew-text-muted" />
+      </a>
+    );
+  }
+
+  return <NavLink link={{ to: '/join', icon: Users, label: 'Join the Crew' }} active={active} />;
+}
 
 export default function Sidebar({ isOpen, onClose }) {
   const location = useLocation();
@@ -64,26 +107,15 @@ export default function Sidebar({ isOpen, onClose }) {
 
         {/* Nav links */}
         <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
-          {NAV_LINKS.map((link) => {
-            const Icon = link.icon;
-            const active = isActive(link);
-            return (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`
-                  flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150
-                  ${active
-                    ? 'text-brew-accent bg-brew-accent/[0.08] border-l-2 border-brew-accent pl-[10px]'
-                    : 'text-brew-text-dim hover:text-brew-text hover:bg-white/[0.04] border-l-2 border-transparent pl-[10px]'
-                  }
-                `}
-              >
-                <Icon size={16} className="shrink-0" />
-                {link.label}
-              </Link>
-            );
-          })}
+          {NAV_LINKS_BEFORE_TOOLS.map((link) => (
+            <NavLink key={link.to} link={link} active={isActive(link)} />
+          ))}
+
+          <JoinNavItem active={location.pathname.startsWith('/join')} />
+
+          {TOOL_LINKS.map((link) => (
+            <NavLink key={link.to} link={link} active={isActive(link)} />
+          ))}
         </nav>
 
         {/* User section */}

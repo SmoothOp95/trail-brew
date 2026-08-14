@@ -19,13 +19,24 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // ── App config (e.g. community WhatsApp invite link) ───────────────
-    // Any signed-in user may read config docs (the onboarding success screen
-    // needs the WhatsApp link right after sign-in); only admins can rotate
-    // values, so the link can change without a redeploy.
+    // ── App config (WhatsApp invite link, iOS TestFlight link, etc.) ────
+    // Public read, same as the trails catalogue — signed-out visitors need
+    // config/community.iosTestflightUrl on the public app-preview pages,
+    // and none of this data is sensitive. Only admins can rotate values,
+    // so links can change without a redeploy.
     match /config/{docId} {
-      allow read:  if request.auth != null;
+      allow read:  if true;
       allow write: if isAdmin();
+    }
+
+    // ── iOS TestFlight waiting list ─────────────────────────────────────
+    // TestFlight is invite-only for now, so app-preview pages collect an
+    // email instead of a join link. Public create — signed-out visitors
+    // need to join too — but no public read, so the email list can't be
+    // scraped; only admins can read it to send invites.
+    match /testflightWaitlist/{docId} {
+      allow create: if validWaitlistEntry();
+      allow read, update, delete: if isAdmin();
     }
 
     // ── User profiles ─────────────────────────────────────────────────
@@ -106,6 +117,20 @@ service cloud.firestore {
     // by old auth code) from causing permanent 403 errors on existing accounts.
     function validUserProfileUpdate() {
       return request.resource.data.diff(resource.data).affectedKeys().hasOnly(userProfileFields());
+    }
+
+    // Validates TestFlight waitlist signups — email + createdAt required;
+    // uid and feature optional. If a uid is included it must match the
+    // caller's own, so nobody can attribute a signup to someone else's
+    // account.
+    function validWaitlistEntry() {
+      let required = ['email', 'createdAt'];
+      let allowed  = ['email', 'createdAt', 'uid', 'feature'];
+      return request.resource.data.keys().hasAll(required)
+          && request.resource.data.keys().hasOnly(allowed)
+          && request.resource.data.email is string
+          && request.resource.data.email.size() > 0
+          && (!('uid' in request.resource.data) || request.resource.data.uid == request.auth.uid);
     }
 
     // Validates ride-log writes — trailId, trailName, date, verificationMethod,
