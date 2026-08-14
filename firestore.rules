@@ -19,6 +19,15 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // ── App config (e.g. community WhatsApp invite link) ───────────────
+    // Any signed-in user may read config docs (the onboarding success screen
+    // needs the WhatsApp link right after sign-in); only admins can rotate
+    // values, so the link can change without a redeploy.
+    match /config/{docId} {
+      allow read:  if request.auth != null;
+      allow write: if isAdmin();
+    }
+
     // ── User profiles ─────────────────────────────────────────────────
     // A user may only read or write their own document. Create writes are
     // validated to prevent storing arbitrary fields. Updates only validate
@@ -70,23 +79,33 @@ service cloud.firestore {
       return request.auth != null && request.auth.uid == uid;
     }
 
+    // Fields writable on a user's own profile document. Includes the
+    // onboarding-survey fields (Q1-Q14) alongside the pre-existing app
+    // fields; `surveyCompletedAt` is the marker that gates re-entry to
+    // /join (see OnboardingService).
+    function userProfileFields() {
+      return ['displayName', 'email', 'photoURL', 'lastSeen',
+              'riddenTrails', 'notes', 'preferences', 'createdAt',
+              'bikeData', 'stravaConnection',
+              'whatsappNumber', 'referralSource', 'referralMemberName',
+              'referralOther', 'ridingTenure', 'ridingFrequency', 'bike',
+              'trailsRiddenIds', 'scenarioDescent', 'scenarioEndurance',
+              'scenarioAir', 'disciplineLeaning', 'goals',
+              'emergencyContactName', 'emergencyContactNumber',
+              'surveyCompletedAt'];
+    }
+
     // Validates user-profile creates — only known fields are permitted so
     // arbitrary data cannot be stored in brand-new user documents.
     function validUserProfile() {
-      let allowed = ['displayName', 'email', 'photoURL', 'lastSeen',
-                     'riddenTrails', 'notes', 'preferences', 'createdAt',
-                     'bikeData', 'stravaConnection'];
-      return request.resource.data.keys().hasOnly(allowed);
+      return request.resource.data.keys().hasOnly(userProfileFields());
     }
 
     // Validates user-profile updates — checks only the keys being changed,
     // not the full document. This prevents legacy fields (e.g. uid written
     // by old auth code) from causing permanent 403 errors on existing accounts.
     function validUserProfileUpdate() {
-      let allowed = ['displayName', 'email', 'photoURL', 'lastSeen',
-                     'riddenTrails', 'notes', 'preferences', 'createdAt',
-                     'bikeData', 'stravaConnection'];
-      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(allowed);
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(userProfileFields());
     }
 
     // Validates ride-log writes — trailId, trailName, date, verificationMethod,

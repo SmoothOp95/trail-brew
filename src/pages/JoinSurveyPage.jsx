@@ -1,0 +1,46 @@
+import { useState, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import { getUserProfile, hasCompletedSurvey, submitOnboardingSurvey } from '../services/onboardingService';
+import OnboardingSurvey from '../components/onboarding/OnboardingSurvey';
+import CenteredSpinner from '../components/onboarding/CenteredSpinner';
+
+/**
+ * /join/survey — requires a signed-in user with no completed survey yet.
+ * Anyone else gets bounced to /join, which knows how to route them
+ * correctly (sign-in prompt, or the success screen for re-entry).
+ */
+export default function JoinSurveyPage() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [checkingProfile, setCheckingProfile] = useState(true);
+  const [alreadyCompleted, setAlreadyCompleted] = useState(false);
+
+  useEffect(() => {
+    if (!user) {
+      setCheckingProfile(false);
+      return;
+    }
+    let cancelled = false;
+    getUserProfile(user.uid)
+      .then((profile) => {
+        if (!cancelled && hasCompletedSurvey(profile)) setAlreadyCompleted(true);
+      })
+      .finally(() => {
+        if (!cancelled) setCheckingProfile(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
+
+  const handleSubmit = async (answers) => {
+    await submitOnboardingSurvey(user.uid, answers);
+    navigate('/join', { replace: true });
+  };
+
+  if (user === undefined || checkingProfile) return <CenteredSpinner />;
+  if (!user || alreadyCompleted) return <Navigate to="/join" replace />;
+
+  return <OnboardingSurvey initialDisplayName={user.displayName} onSubmit={handleSubmit} />;
+}

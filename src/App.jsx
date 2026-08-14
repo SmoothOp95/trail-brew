@@ -8,6 +8,9 @@ import RideCalendarPage from './components/calendar/RideCalendarPage';
 import MyTrailsPage from './pages/MyTrailsPage';
 import MyBikePage from './pages/MyBikePage';
 import ServiceHistoryPage from './pages/ServiceHistoryPage';
+import JoinLandingPage from './pages/JoinLandingPage';
+import JoinSurveyPage from './pages/JoinSurveyPage';
+import CommunityGuidelinesPage from './pages/CommunityGuidelinesPage';
 import { useAuth } from './hooks/useAuth';
 import { migrateLocalStorageToFirestore } from './utils/migrate';
 
@@ -23,6 +26,12 @@ export default function App() {
 
   return (
     <Routes>
+      {/* Onboarding flow — standalone, no app sidebar/nav to distract a
+          brand-new rider mid-survey. */}
+      <Route path="/join" element={<JoinLandingPage />} />
+      <Route path="/join/survey" element={<JoinSurveyPage />} />
+      <Route path="/community-guidelines" element={<CommunityGuidelinesPage />} />
+
       <Route element={<AppLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/trail-finder" element={<TrailFinder />} />

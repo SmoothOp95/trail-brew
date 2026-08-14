@@ -56,7 +56,33 @@ npm run dev
 
 Opens at `http://localhost:5173`
 
-### 6. Deploy
+### 6. Seed trail data & community config (required for `/join` onboarding survey)
+
+The onboarding survey's trail question reads live from the Firestore `trails`
+collection rather than the local `src/data/trails.js` file. Populate it once:
+
+```bash
+# Firebase Console → Project settings → Service accounts →
+# Generate new private key → save as serviceAccountKey.json in the repo root
+# (gitignored, never commit it)
+npm run seed:trails
+```
+
+Safe to re-run after editing `src/data/trails.js` — it upserts by trail `id`.
+
+The success screen also needs a WhatsApp invite link, stored as config (not
+code) so it can be rotated without a redeploy. Either create the document by
+hand in the Firebase Console → Firestore (`config/community` →
+`{ whatsappGeneralInviteUrl: "https://chat.whatsapp.com/..." }`), or use the
+same service account key:
+
+```bash
+npm run set:community-config -- --whatsapp-url="https://chat.whatsapp.com/..."
+```
+
+Re-run either whenever the invite link changes — no redeploy needed.
+
+### 7. Deploy
 
 #### Option A: Manual deploy
 
