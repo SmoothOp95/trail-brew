@@ -7,41 +7,22 @@
 // firestore.rules entirely (rules restrict client writes to /trails/** to
 // callers with the `admin` custom claim — this script is the admin path).
 //
-// Usage:
-//   1. Firebase Console → Project settings → Service accounts →
-//      "Generate new private key". Save the JSON as
-//      serviceAccountKey.json in the project root (already gitignored).
-//   2. node scripts/seedTrails.mjs
+// Usage (no key file needed — recommended, e.g. in Google Cloud Shell):
+//   gcloud auth application-default login
+//   gcloud config set project trail-brew-33084
+//   node scripts/seedTrails.mjs
+//
+// Or with a downloaded service account key: drop serviceAccountKey.json in
+// the project root and run the same command. See scripts/credentials.mjs.
 //
 // Safe to re-run: each write is `set({ ...trail }, { merge: true })` keyed
 // by the trail's existing `id`, so re-running after editing
 // src/data/trails.js just updates the same docs.
 
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import path from 'node:path';
-import { initializeApp, cert } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
 import { trails } from '../src/data/trails.js';
+import { getDb } from './credentials.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const serviceAccountPath = path.resolve(__dirname, '../serviceAccountKey.json');
-
-let serviceAccount;
-try {
-  serviceAccount = JSON.parse(readFileSync(serviceAccountPath, 'utf8'));
-} catch {
-  console.error(
-    `Could not read ${serviceAccountPath}.\n` +
-    'Download a service account key from Firebase Console → Project settings → ' +
-    'Service accounts → Generate new private key, and save it as serviceAccountKey.json ' +
-    'in the project root before running this script.'
-  );
-  process.exit(1);
-}
-
-initializeApp({ credential: cert(serviceAccount) });
-const db = getFirestore();
+const db = await getDb();
 
 async function seedTrails() {
   const batch = db.batch();

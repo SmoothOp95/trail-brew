@@ -1,22 +1,17 @@
 // Writes/updates the config/community Firestore document — currently just
 // the WhatsApp general invite link. Kept as a script (not a value in the
-// codebase) so admins can rotate the link without a redeploy: generate a
-// service account key once, then re-run this any time the link changes.
+// codebase) so admins can rotate the link without a redeploy — just re-run
+// this any time the link changes.
 //
-// Usage:
-//   1. Firebase Console → Project settings → Service accounts →
-//      "Generate new private key". Save the JSON as
-//      serviceAccountKey.json in the project root (already gitignored).
-//   2. node scripts/setCommunityConfig.mjs --whatsapp-url="https://chat.whatsapp.com/..."
+// Usage (no key file needed — recommended, e.g. in Google Cloud Shell):
+//   gcloud auth application-default login
+//   gcloud config set project trail-brew-33084
+//   node scripts/setCommunityConfig.mjs --whatsapp-url="https://chat.whatsapp.com/..."
+//
+// Or with a downloaded service account key: drop serviceAccountKey.json in
+// the project root and run the same command. See scripts/credentials.mjs.
 
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import path from 'node:path';
-import { initializeApp, cert } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const serviceAccountPath = path.resolve(__dirname, '../serviceAccountKey.json');
+import { getDb } from './credentials.mjs';
 
 const arg = process.argv.find((a) => a.startsWith('--whatsapp-url='));
 const whatsappGeneralInviteUrl = arg?.slice('--whatsapp-url='.length);
@@ -35,21 +30,7 @@ if (!/^https:\/\/chat\.whatsapp\.com\/.+/.test(whatsappGeneralInviteUrl)) {
   process.exit(1);
 }
 
-let serviceAccount;
-try {
-  serviceAccount = JSON.parse(readFileSync(serviceAccountPath, 'utf8'));
-} catch {
-  console.error(
-    `Could not read ${serviceAccountPath}.\n` +
-    'Download a service account key from Firebase Console → Project settings → ' +
-    'Service accounts → Generate new private key, and save it as serviceAccountKey.json ' +
-    'in the project root before running this script.'
-  );
-  process.exit(1);
-}
-
-initializeApp({ credential: cert(serviceAccount) });
-const db = getFirestore();
+const db = await getDb();
 
 db.collection('config').doc('community')
   .set({ whatsappGeneralInviteUrl }, { merge: true })
