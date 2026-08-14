@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Check, Loader2 } from 'lucide-react';
 import { fetchCommunityConfig } from '../../services/onboardingService';
+import { joinTestflightWaitlist } from '../../services/waitlistService';
 import { getPreviewScreenshots } from '../../utils/appPreviewAssets';
+import { validateEmail } from '../../utils/authValidation';
+import { useAuth } from '../../hooks/useAuth';
 import { PRIMARY_BTN_CLASS } from '../../styles/buttonStyles';
 
 /**
@@ -66,19 +69,101 @@ export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug 
               <Loader2 size={18} className="animate-spin text-brew-text-muted" />
             </div>
           ) : iosUrl ? (
-            <a href={iosUrl} target="_blank" rel="noopener noreferrer" className={PRIMARY_BTN_CLASS}>
-              Get the iOS app →
-            </a>
+            <>
+              <a href={iosUrl} target="_blank" rel="noopener noreferrer" className={PRIMARY_BTN_CLASS}>
+                Get the iOS app →
+              </a>
+              <p className="text-xs text-brew-text-muted mt-4 max-w-sm mx-auto leading-relaxed">
+                Currently iOS via TestFlight. Android riders — it's on the roadmap, hang tight.
+              </p>
+            </>
           ) : (
-            <p className="text-xs text-brew-text-muted">App link coming soon — check back shortly.</p>
+            <>
+              <p className="text-sm text-brew-text-dim mb-4 max-w-sm mx-auto leading-relaxed">
+                TestFlight is invite-only right now — pop your email in and we'll send you an
+                invite as spots open up.
+              </p>
+              <WaitlistForm feature={slug} />
+              <p className="text-xs text-brew-text-muted mt-5 max-w-sm mx-auto leading-relaxed">
+                Android riders — it's on the roadmap, hang tight.
+              </p>
+            </>
           )}
-
-          <p className="text-xs text-brew-text-muted mt-4 max-w-sm mx-auto leading-relaxed">
-            Currently iOS via TestFlight. Android riders — it's on the roadmap, hang tight.
-          </p>
         </div>
       </div>
     </div>
+  );
+}
+
+/** Email capture for the invite-only TestFlight waiting list. */
+function WaitlistForm({ feature }) {
+  const { user } = useAuth();
+  const [email, setEmail] = useState('');
+  const [prefilled, setPrefilled] = useState(false);
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  // Prefill from the signed-in user's email once, without fighting further edits.
+  useEffect(() => {
+    if (user?.email && !prefilled) {
+      setEmail(user.email);
+      setPrefilled(true);
+    }
+  }, [user, prefilled]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const emailError = validateEmail(email);
+    if (emailError) {
+      setError(emailError);
+      return;
+    }
+    setError('');
+    setSubmitting(true);
+    try {
+      await joinTestflightWaitlist({ email, uid: user?.uid, feature });
+      setSubmitted(true);
+    } catch {
+      setError('Something went wrong — please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <p className="text-sm text-brew-accent flex items-center justify-center gap-2">
+        <Check size={16} className="shrink-0" />
+        You're on the list — we'll email you an invite as spots open up.
+      </p>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} noValidate className="max-w-[320px] mx-auto">
+      <div className="flex gap-2">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setError('');
+          }}
+          placeholder="you@example.com"
+          autoComplete="email"
+          className="flex-1 min-w-0 bg-brew-card border border-brew-border rounded-lg px-3 py-2.5 text-sm text-brew-text placeholder-brew-text-dim focus:outline-none focus:border-brew-accent transition-colors"
+        />
+        <button
+          type="submit"
+          disabled={submitting}
+          className="shrink-0 bg-brew-accent hover:bg-[#D4F27A] text-brew-bg font-bold text-sm px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[64px]"
+        >
+          {submitting ? <Loader2 size={16} className="animate-spin" /> : 'Join →'}
+        </button>
+      </div>
+      {error && <p className="text-xs text-red-400 mt-2">{error}</p>}
+    </form>
   );
 }
 

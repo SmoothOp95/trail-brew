@@ -72,22 +72,39 @@ npm run seed:trails
 
 Safe to re-run after editing `src/data/trails.js` — it upserts by trail `id`.
 
-The success screen also needs a WhatsApp invite link, and the app-preview
-pages (see below) need an iOS TestFlight link — both stored as config (not
-code) so they can be rotated without a redeploy. Either create/edit the
+The success screen also needs a WhatsApp invite link, stored as config (not
+code) so it can be rotated without a redeploy. Either create/edit the
 document by hand in the Firebase Console → Firestore (`config/community` →
-`{ whatsappGeneralInviteUrl: "https://chat.whatsapp.com/...", iosTestflightUrl: "https://testflight.apple.com/join/..." }`),
-or use the same service account key:
+`{ whatsappGeneralInviteUrl: "https://chat.whatsapp.com/..." }`), or use the
+same service account key:
 
 ```bash
 npm run set:community-config -- --whatsapp-url="https://chat.whatsapp.com/..."
-npm run set:community-config -- --ios-testflight-url="https://testflight.apple.com/join/..."
-# or both in one call — see scripts/setCommunityConfig.mjs
 ```
 
 `config/community` is publicly readable (like the trails catalogue) since
 none of it is sensitive and the app-preview pages need it for signed-out
 visitors too.
+
+#### iOS TestFlight — invite-only, so it's a waiting list for now
+
+TestFlight requires each tester to be individually invited (no public join
+link yet), so the app-preview pages collect an email into the
+`testflightWaitlist` Firestore collection instead of linking straight to
+TestFlight — batch through it in the Firebase Console and invite people via
+App Store Connect. The collection is create-only from the client (no public
+read, so the list can't be scraped); read it as an admin.
+
+If TestFlight later moves to a public link (or this becomes a full release),
+set `config/community.iosTestflightUrl` the same way as the WhatsApp link:
+
+```bash
+npm run set:community-config -- --ios-testflight-url="https://testflight.apple.com/join/..."
+```
+
+Every app-preview page checks this field first and shows a direct
+"Get the iOS app" button instead of the waiting-list form the moment it's
+set — no code change needed to switch over.
 
 ### App-preview screenshots
 
