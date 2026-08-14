@@ -7,6 +7,7 @@ import { useAuth } from '../hooks/useAuth';
 import { getUserProfile, hasCompletedSurvey } from '../services/onboardingService';
 import SuccessScreen from '../components/onboarding/SuccessScreen';
 import CenteredSpinner from '../components/onboarding/CenteredSpinner';
+import InlineEmailAuth from '../components/auth/InlineEmailAuth';
 
 /**
  * Public landing for /join. Signed-out riders sign in with Google; signed-in
@@ -107,6 +108,16 @@ export default function JoinLandingPage() {
         </button>
 
         {signInError && <p className="text-xs text-red-400 mt-3">{signInError}</p>}
+
+        <div className="flex items-center gap-3 my-6">
+          <div className="flex-1 h-px bg-brew-border" />
+          <span className="text-[10px] font-mono text-brew-text-dim uppercase tracking-wider">
+            or
+          </span>
+          <div className="flex-1 h-px bg-brew-border" />
+        </div>
+
+        <InlineEmailAuth />
       </div>
     </div>
   );

@@ -43,7 +43,10 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const signUpWithEmail = async (email, password, displayName) => {
+  // displayName is optional — the /join email signup flow leaves it blank
+  // (Q1 of the survey collects it instead); AuthModal's signup still passes
+  // one directly.
+  const signUpWithEmail = async (email, password, displayName = '') => {
     const credential = await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(credential.user, { displayName });
     // Trigger a manual Firestore write since onAuthStateChanged may fire before displayName is set
@@ -65,6 +68,14 @@ export function AuthProvider({ children }) {
 
   const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
+  // Syncs the Firebase Auth record's displayName from Q1 of the onboarding
+  // survey, so accounts created via email/password (which start nameless)
+  // aren't left without one. No-op if there's no signed-in user.
+  const updateDisplayName = (displayName) => {
+    if (!auth.currentUser) return Promise.resolve();
+    return updateProfile(auth.currentUser, { displayName });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -73,6 +84,7 @@ export function AuthProvider({ children }) {
         signUpWithEmail,
         signInWithEmail,
         resetPassword,
+        updateDisplayName,
       }}
     >
       {children}
