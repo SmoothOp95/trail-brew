@@ -28,8 +28,10 @@ npm install
 2. Create a new project called "trail-brew"
 3. Enable **Firestore Database** (start in test mode)
 4. Enable **Authentication** → Sign-in method → Google
-5. Go to Project Settings → General → Your apps → Add web app
-6. Copy the config values
+5. Enable **Authentication** → Sign-in method → **Email/Password** (required for the `/join` survey's email fallback — Claude Code can't toggle this, it's a console-only step)
+6. While there, check **Authentication → Settings → User account linking** is set to its default ("One account per email address") — this is what makes the "email already linked to Google" error message behave correctly if someone tries both sign-in methods with the same address
+7. Go to Project Settings → General → Your apps → Add web app
+8. Copy the config values
 
 ### 3. Add your Firebase config
 
@@ -105,7 +107,7 @@ npm run deploy
    - `FIREBASE_SERVICE_ACCOUNT` — your service account JSON
    - `FIREBASE_PROJECT_ID` — your project ID
 
-3. Push to `main` → auto-deploys to `trail-brew.web.app`
+3. Push to `main` → auto-deploys to `trail-brew-33084.web.app` (the default Hosting site — matches the project ID since no custom site is configured in `firebase.json`)
 4. Open a PR → gets a preview URL automatically
 
 ## Project Structure
