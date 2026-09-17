@@ -12,6 +12,7 @@ import JoinLandingPage from './pages/JoinLandingPage';
 import JoinSurveyPage from './pages/JoinSurveyPage';
 import CommunityGuidelinesPage from './pages/CommunityGuidelinesPage';
 import AppOnlyFeature from './components/appPreview/AppOnlyFeature';
+import { PrivacyPage, SupportPage } from './pages/PublicInfoPage';
 import { appPreviews } from './data/appPreviews';
 import { WEB_LIVE_FEATURES } from './config/featureFlags';
 import { useAuth } from './hooks/useAuth';
@@ -34,6 +35,8 @@ export default function App() {
       <Route path="/join" element={<JoinLandingPage />} />
       <Route path="/join/survey" element={<JoinSurveyPage />} />
       <Route path="/community-guidelines" element={<CommunityGuidelinesPage />} />
+      <Route path="/support" element={<SupportPage />} />
+      <Route path="/privacy" element={<PrivacyPage />} />
 
       <Route element={<AppLayout />}>
         <Route path="/" element={<HomePage />} />
