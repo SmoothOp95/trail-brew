@@ -26,7 +26,7 @@ function Phone({ screen, className = '', eager = false }) {
 }
 
 function Brand() {
-  return <Link to="/ios" className="m-brand" aria-label="Trail Brew for iPhone home"><Mountain strokeWidth={2.3} /><span>trail brew<span className="m-brand-dot">.</span></span></Link>;
+  return <Link to="/" className="m-brand" aria-label="Trail Brew web app home"><span className="m-brand-mark" aria-hidden="true">⛰️</span><span className="m-brand-name">Trail Brew</span></Link>;
 }
 
 function Waitlist() {
