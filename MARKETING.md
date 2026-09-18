@@ -4,9 +4,8 @@ Built on `codex/tra-67-app-store-pages` (PR #28) in the `SmoothOp95/trail-brew` 
 
 ## Routes
 
-- `/`: the main web app homepage (dashboard).
-- `/ios`: public iPhone marketing page; proposed App Store Marketing URL is `https://trailbrew.co.za/ios` after deployment.
-- `/app`: alias of the web dashboard homepage and the installed PWA launch destination.
+- `/`: public iPhone marketing page; proposed App Store Marketing URL is `https://trailbrew.co.za/` after deployment.
+- `/app`: existing web dashboard and installed PWA launch destination.
 - `/trail-finder`, `/trails` and other tool routes: existing web features.
 - `/support` and `/privacy`: public pages from PR #28.
 

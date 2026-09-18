@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useJoinStatus } from '../../hooks/useJoinStatus';
 import SignInButton from '../auth/SignInButton';
 
-const NAV_LINKS_BEFORE_TOOLS = [{ to: '/', icon: Home, label: 'Home', exact: true }];
+const NAV_LINKS_BEFORE_TOOLS = [{ to: '/app', icon: Home, label: 'Home', exact: true }];
 
 const TOOL_LINKS = [
   { to: '/trail-finder', icon: Compass, label: 'Find Trail' },
