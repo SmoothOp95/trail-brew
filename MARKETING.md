@@ -4,10 +4,10 @@ Built on `codex/tra-67-app-store-pages` (PR #28) in the `SmoothOp95/trail-brew` 
 
 ## Routes
 
-- `/`: public iPhone marketing page; proposed App Store Marketing URL is `https://trailbrew.co.za/` after deployment.
-- `/app`: existing web dashboard and installed PWA launch destination.
+- `/ios`: public iPhone marketing page; proposed App Store Marketing URL is `https://trailbrew.co.za/ios` after deployment.
+- `/`: existing web dashboard and installed PWA launch destination.
 - `/trail-finder`, `/trails` and other tool routes: existing web features.
-- `/support` and `/privacy`: public pages from PR #28.
+- `/ios/support` and `/ios/privacy`: public pages from PR #28.
 
 Public routes do not import Firebase or require authentication. Route selection responds to client-side navigation, including transitions to and from support and privacy pages.
 

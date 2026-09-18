@@ -11,13 +11,13 @@ function PublicShell({ children, title, eyebrow }) {
       />
       <div className="mx-auto max-w-3xl">
         <header className="relative mb-14 flex items-center justify-between gap-4 border-b border-brew-border pb-5">
-          <Link className="flex items-center gap-2 text-xl font-black tracking-tight" to="/">
+          <Link className="flex items-center gap-2 text-xl font-black tracking-tight" to="/ios">
             <span aria-hidden="true">🏔️</span>
             <span className="bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">Trail Brew</span>
           </Link>
           <nav aria-label="Public information" className="flex gap-4 font-mono text-[11px] uppercase tracking-wider text-brew-text-dim">
-            <Link className="transition hover:text-brew-accent" to="/support">Support</Link>
-            <Link className="transition hover:text-brew-accent" to="/privacy">Privacy</Link>
+            <Link className="transition hover:text-brew-accent" to="/ios/support">Support</Link>
+            <Link className="transition hover:text-brew-accent" to="/ios/privacy">Privacy</Link>
           </nav>
         </header>
         <p className="relative mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-brew-accent">{eyebrow}</p>

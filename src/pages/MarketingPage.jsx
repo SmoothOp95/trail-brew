@@ -26,7 +26,7 @@ function Phone({ screen, className = '', eager = false }) {
 }
 
 function Brand() {
-  return <Link to="/" className="m-brand" aria-label="Trail Brew home"><Mountain strokeWidth={2.3} /><span>trail brew<span className="m-brand-dot">.</span></span></Link>;
+  return <Link to="/ios" className="m-brand" aria-label="Trail Brew for iPhone home"><Mountain strokeWidth={2.3} /><span>trail brew<span className="m-brand-dot">.</span></span></Link>;
 }
 
 function Waitlist() {
@@ -52,8 +52,8 @@ function Waitlist() {
   return <form className="m-waitlist" onSubmit={submit} noValidate>
     <label htmlFor="waitlist-email">Your email address</label>
     <div className="m-form-row"><input id="waitlist-email" type="email" name="email" autoComplete="email" placeholder="you@example.com" required value={email} disabled={status === 'sending'} onChange={e => { setEmail(e.target.value); setError(''); }} aria-invalid={!!error} aria-describedby={error ? 'waitlist-error' : 'waitlist-note'} /><button className="m-button" disabled={status === 'sending'}>{status === 'sending' ? 'Joining…' : 'Join the waiting list'}<ArrowUpRight size={18} /></button></div>
-    {error && <p id="waitlist-error" className="m-error" role="alert">{error} <Link to="/support">Contact support</Link></p>}
-    <p id="waitlist-note" className="m-small">We’ll email you about app access. Read our <Link to="/privacy">privacy policy</Link>.</p>
+    {error && <p id="waitlist-error" className="m-error" role="alert">{error} <Link to="/ios/support">Contact support</Link></p>}
+    <p id="waitlist-note" className="m-small">We’ll email you about app access. Read our <Link to="/ios/privacy">privacy policy</Link>.</p>
   </form>;
 }
 
@@ -63,8 +63,8 @@ export default function MarketingPage() {
     <a href="#main" className="m-skip">Skip to content</a>
     <header className="m-header"><div className="m-container m-nav"><Brand />
       <nav className="m-desktop-nav" aria-label="Main navigation"><a href="#features">The app</a><a href="#screenshots">A closer look</a><a href="#faq">FAQs</a></nav>
-      <div className="m-nav-actions"><Link to="/app" className="m-web-link">Explore the web app <ArrowUpRight size={15} /></Link><a href="#get-app" className="m-button m-button-small">Get the app <ArrowUpRight size={16} /></a><button className="m-menu-toggle" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button></div>
-    </div>{menuOpen && <nav id="mobile-menu" className="m-mobile-nav" aria-label="Mobile navigation" onClick={() => setMenuOpen(false)}><a href="#features">The app</a><a href="#screenshots">A closer look</a><a href="#faq">FAQs</a><Link to="/app">Explore the web app ↗</Link></nav>}</header>
+      <div className="m-nav-actions"><Link to="/" className="m-web-link">Explore the web app <ArrowUpRight size={15} /></Link><a href="#get-app" className="m-button m-button-small">Get the app <ArrowUpRight size={16} /></a><button className="m-menu-toggle" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button></div>
+    </div>{menuOpen && <nav id="mobile-menu" className="m-mobile-nav" aria-label="Mobile navigation" onClick={() => setMenuOpen(false)}><a href="#features">The app</a><a href="#screenshots">A closer look</a><a href="#faq">FAQs</a><Link to="/">Explore the web app ↗</Link></nav>}</header>
 
     <main id="main">
       <section className="m-hero m-container">
@@ -96,11 +96,11 @@ export default function MarketingPage() {
 
       <section className="m-details m-container"><div><Heart /><h3>Your rides count.</h3><p>Log a ride by hand or connect Apple Health to import cycling workouts. Put those kilometres to work in your garage.</p></div><div><ShieldCheck /><h3>You choose what’s shared.</h3><p>Personal plans start private. Health access is optional. You decide when to invite others along.</p></div><div><Coffee /><h3>Built around the whole ride.</h3><p>The trail search, the weekend plan, the bike check. More room for the bit you came for — and the coffee after.</p></div></section>
 
-      <section id="faq" className="m-faq m-container m-section"><div><p className="m-eyebrow">BEFORE YOU CLIP IN</p><h2>A few good<br />questions.</h2><p>Something else on your mind?</p><Link to="/support" className="m-text-link">Talk to us <ArrowUpRight size={17} /></Link></div><div className="m-faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></section>
+      <section id="faq" className="m-faq m-container m-section"><div><p className="m-eyebrow">BEFORE YOU CLIP IN</p><h2>A few good<br />questions.</h2><p>Something else on your mind?</p><Link to="/ios/support" className="m-text-link">Talk to us <ArrowUpRight size={17} /></Link></div><div className="m-faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<Plus size={20} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></section>
 
       <section id="get-app" className="m-get-app m-container"><div className="m-cta-art" aria-hidden="true"><Mountain strokeWidth={0.7} /></div><div className="m-cta-copy"><p className="m-eyebrow">THE NEXT GOOD RIDE STARTS HERE</p><h2>Your bike’s calling.<br /><span className="m-lime">Let’s get you out there.</span></h2><p>{appStoreUrl ? 'Take Trail Brew along for the ride.' : 'Join the iPhone TestFlight waiting list. We’ll send you an invite as spots open up.'}</p>{appStoreUrl ? <a className="m-button" href={appStoreUrl}><Smartphone size={20} /> Download on the App Store <ArrowUpRight size={18} /></a> : <Waitlist />}</div></section>
     </main>
 
-    <footer className="m-footer m-container"><div className="m-footer-top"><div><Brand /><p>Good trails. Good people. A well-earned brew.</p></div><nav aria-label="Footer navigation"><Link to="/trail-finder">Trail finder <ArrowUpRight size={14} /></Link><Link to="/support">Support</Link><Link to="/privacy">Privacy</Link></nav></div><div className="m-footer-bottom"><span>© {new Date().getFullYear()} Trail Brew</span><span>MADE FOR THE WAY WE RIDE. <span className="m-lime">↗</span></span><span>Gauteng, South Africa</span></div></footer>
+    <footer className="m-footer m-container"><div className="m-footer-top"><div><Brand /><p>Good trails. Good people. A well-earned brew.</p></div><nav aria-label="Footer navigation"><Link to="/trail-finder">Trail finder <ArrowUpRight size={14} /></Link><Link to="/ios/support">Support</Link><Link to="/ios/privacy">Privacy</Link></nav></div><div className="m-footer-bottom"><span>© {new Date().getFullYear()} Trail Brew</span><span>MADE FOR THE WAY WE RIDE. <span className="m-lime">↗</span></span><span>Gauteng, South Africa</span></div></footer>
   </div>;
 }

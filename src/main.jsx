@@ -13,9 +13,9 @@ function RoutePresentation() {
     if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
     else window.scrollTo(0, 0);
     document.title = ({
-      '/': 'Trail Brew — Less admin. More singletrack.',
-      '/support': 'Support — Trail Brew',
-      '/privacy': 'Privacy policy — Trail Brew',
+      '/ios': 'Trail Brew for iPhone — Less admin. More singletrack.',
+      '/ios/support': 'Support — Trail Brew for iPhone',
+      '/ios/privacy': 'Privacy policy — Trail Brew for iPhone',
     })[pathname] || 'Trail Brew — Gauteng MTB';
   }, [pathname, hash]);
   return null;
@@ -26,9 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <RoutePresentation />
       <Routes>
-        <Route path="/" element={<MarketingPage />} />
-        <Route path="/privacy" element={<PrivacyPage />} />
-        <Route path="/support" element={<SupportPage />} />
+        <Route path="/ios" element={<MarketingPage />} />
+        <Route path="/ios/privacy" element={<PrivacyPage />} />
+        <Route path="/ios/support" element={<SupportPage />} />
         <Route path="*" element={<Suspense fallback={<p role="status" className="p-8">Opening Trail Brew…</p>}><AuthenticatedApp /></Suspense>} />
       </Routes>
     </BrowserRouter>
