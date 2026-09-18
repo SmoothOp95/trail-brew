@@ -34,7 +34,6 @@ export default function App() {
       <Route path="/join" element={<JoinLandingPage />} />
       <Route path="/join/survey" element={<JoinSurveyPage />} />
       <Route path="/community-guidelines" element={<CommunityGuidelinesPage />} />
-
       <Route element={<AppLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/trail-finder" element={<TrailFinder />} />
