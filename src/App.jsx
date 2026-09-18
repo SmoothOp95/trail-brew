@@ -39,6 +39,7 @@ export default function App() {
       <Route path="/privacy" element={<PrivacyPage />} />
 
       <Route element={<AppLayout />}>
+        <Route path="/" element={<HomePage />} />
         <Route path="/app" element={<HomePage />} />
         <Route path="/trail-finder" element={<TrailFinder />} />
         <Route path="/trails" element={<TrailsList />} />

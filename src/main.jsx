@@ -13,7 +13,7 @@ function RoutePresentation() {
     if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
     else window.scrollTo(0, 0);
     document.title = ({
-      '/': 'Trail Brew — Less admin. More singletrack.',
+      '/ios': 'Trail Brew — Less admin. More singletrack.',
       '/support': 'Support — Trail Brew',
       '/privacy': 'Privacy policy — Trail Brew',
     })[pathname] || 'Trail Brew — Gauteng MTB';
@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <RoutePresentation />
       <Routes>
-        <Route path="/" element={<MarketingPage />} />
+        <Route path="/ios" element={<MarketingPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/support" element={<SupportPage />} />
         <Route path="*" element={<Suspense fallback={<p role="status" className="p-8">Opening Trail Brew…</p>}><AuthenticatedApp /></Suspense>} />
