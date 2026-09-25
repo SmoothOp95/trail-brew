@@ -1,0 +1,568 @@
+[
+  {
+    "id": "float_dps_3pos_2023",
+    "brand": "FOX",
+    "name": "FLOAT DPS (3-Position Lever)",
+    "tier": "performance",
+    "type": "shock",
+    "adjusters": {
+      "lsc": {
+        "type": "lever",
+        "count": null,
+        "positions": [
+          "open",
+          "medium",
+          "firm"
+        ],
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": null,
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": null
+    },
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "estimated",
+    "confidence_note": "Lever type/positions and hsc=null confirmed directly from the fetched FOX owner's manual. Rebound click-count table in that manual is an image, not extractable text - needs_physical_count.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2833/shock--2023-float-dps-and-float-x",
+      "document": "SHOCK- 2023 FLOAT DPS and FLOAT X | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "float_x_2023",
+    "brand": "FOX",
+    "name": "FLOAT X",
+    "tier": "performance_elite",
+    "type": "shock",
+    "adjusters": {
+      "lsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": null,
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": null
+    },
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "estimated",
+    "confidence_note": "Manual confirms a dedicated LSC knob separate from the 2-position lever and no HSC dial. Click-count tables are images, not extractable text - needs_physical_count.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2833/shock--2023-float-dps-and-float-x",
+      "document": "SHOCK- 2023 FLOAT DPS and FLOAT X | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_float_x2_factory_2024",
+    "brand": "FOX",
+    "name": "FLOAT X2 (Factory Series)",
+    "tier": "factory",
+    "type": "shock",
+    "adjusters": {
+      "lsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      }
+    },
+    "year_range": [
+      2024,
+      2024
+    ],
+    "confidence": "estimated",
+    "confidence_note": "Manual explicitly states 'HSR and HSC adjustment is only available on Factory Series FLOAT X2 shocks', confirming the full 4-way layout for Factory tier specifically (see fox_float_x2_perf_elite_2024 for the 2-way tier). Recommended-starting-point table (by air pressure, not a stated total) tops out at LSR 16-18, HSR 7-8, LSC 16-18, HSC 7-8 - these are NOT claimed as totals. needs_physical_count on all four.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2926/shock--2024-float-x2",
+      "document": "SHOCK- 2024 FLOAT X2 | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_float_x2_perf_elite_2024",
+    "brand": "FOX",
+    "name": "FLOAT X2 (Performance Elite Series)",
+    "tier": "performance_elite",
+    "type": "shock",
+    "adjusters": {
+      "lsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": null,
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": null
+    },
+    "year_range": [
+      2024,
+      2024
+    ],
+    "confidence": "published",
+    "confidence_note": "hsc/hsr=null directly stated by the manual ('only available on Factory Series'). LSC/LSR counts not stated as totals - needs_physical_count.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2926/shock--2024-float-x2",
+      "document": "SHOCK- 2024 FLOAT X2 | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_dhx2_factory_2024",
+    "brand": "FOX",
+    "name": "DHX2 (Factory Series)",
+    "tier": "factory",
+    "type": "shock",
+    "adjusters": {
+      "lsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      }
+    },
+    "year_range": [
+      2024,
+      2024
+    ],
+    "confidence": "estimated",
+    "confidence_note": "Manual states Factory Series DHX2 'will utilize all recommended damping adjustments (HSC, LSC, HSR, and LSR)'. Its own recommended-settings tables (A/B/C by spring rate) are image-based, not extractable text - needs_physical_count on all four.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2928/shock--2024-all-coil-shocks-(dhx2-and-dhx-models)",
+      "document": "SHOCK- 2024 All Coil Shocks (DHX2 and DHX models) | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_dhx2_performance_elite_2024",
+    "brand": "FOX",
+    "name": "DHX2 (Performance Elite Series)",
+    "tier": "performance_elite",
+    "type": "shock",
+    "adjusters": {
+      "lsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": null,
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": null
+    },
+    "year_range": [
+      2024,
+      2024
+    ],
+    "confidence": "published",
+    "confidence_note": "hsc/hsr=null directly stated ('Performance Elite Series shocks will only utilize the recommended LSC and LSR adjustments'). Counts not stated as totals - needs_physical_count.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2928/shock--2024-all-coil-shocks-(dhx2-and-dhx-models)",
+      "document": "SHOCK- 2024 All Coil Shocks (DHX2 and DHX models) | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_dhx_2024",
+    "brand": "FOX",
+    "name": "DHX (base)",
+    "tier": "base",
+    "type": "shock",
+    "adjusters": {
+      "lsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": null,
+        "direction": "cw_firmer"
+      },
+      "hsc": null,
+      "lsr": null,
+      "hsr": null
+    },
+    "year_range": [
+      2024,
+      2024
+    ],
+    "confidence": "estimated",
+    "confidence_note": "Manual describes only 'Turn the blue LSC adjuster clockwise by hand' - no HSC/HSR/LSR mentioned for base DHX anywhere on this page, and whether the LSC dial is truly detented ('clicks') or a friction adjuster isn't stated ('by hand' phrasing is ambiguous) - detented left null rather than guessed. lsr/hsr set null rather than assumed present, since no rebound adjuster is described for base DHX specifically (the page's general rebound section reads as DHX2-oriented). Flagged for physical inspection.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2928/shock--2024-all-coil-shocks-(dhx2-and-dhx-models)",
+      "document": "SHOCK- 2024 All Coil Shocks (DHX2 and DHX models) | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_fit4_2024",
+    "brand": "FOX",
+    "name": "FIT4",
+    "tier": "factory",
+    "type": "fork",
+    "adjusters": {
+      "lsc": {
+        "type": "lever",
+        "count": null,
+        "positions": [
+          "open",
+          "medium",
+          "firm"
+        ],
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": null,
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": null
+    },
+    "year_range": [
+      2022,
+      2024
+    ],
+    "confidence": "estimated",
+    "confidence_note": "3-position lever confirmed directly from both fetched fork manuals (32/34mm and 36/38mm, 2024). FIT4 also has a secondary 'Open Mode Adjust' fine-tune knob (22 positions, only active while the main lever is in Open) that does not fit cleanly into a single lsc slot - noted as schema friction in 02_REPORT.md rather than modeled here. Rebound click count not stated as a total (only a weight-based recommended-range table, up to 12-15 depending on chassis) - needs_physical_count.",
+    "source": [
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+        "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2931/fork--2024-32mm-or-32mm-tc-or-34mm-or-34mm-awl",
+        "document": "FORK- 2024 32mm/32mm TC/34mm/34mm AWL | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "fox_grip_2024",
+    "brand": "FOX",
+    "name": "GRIP (3-Position Micro Adjust)",
+    "tier": "performance",
+    "type": "fork",
+    "adjusters": {
+      "lsc": {
+        "type": "sweep",
+        "count": null,
+        "positions": [
+          "open",
+          "medium",
+          "firm"
+        ],
+        "detented": false,
+        "direction": "cw_firmer"
+      },
+      "hsc": null,
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": null
+    },
+    "year_range": [
+      2022,
+      2025
+    ],
+    "confidence": "published",
+    "confidence_note": "Manual explicitly states 'the positions between the Open, Medium, and Firm modes can be utilized to fine tune your compression damping' - classified as sweep (continuous with 3 reference labels), not a plain 3-position lever, per that explicit description. Rebound count not stated as a total - needs_physical_count.",
+    "source": [
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+        "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2979/fork--2025-36mm-or-38mm",
+        "document": "FORK- 2025 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2931/fork--2024-32mm-or-32mm-tc-or-34mm-or-34mm-awl",
+        "document": "FORK- 2024 32mm/32mm TC/34mm/34mm AWL | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "fox_rail_2024",
+    "brand": "FOX",
+    "name": "RAIL (2-Position Sweep Adjust, Rhythm tier)",
+    "tier": "base",
+    "type": "fork",
+    "adjusters": {
+      "lsc": {
+        "type": "sweep",
+        "count": null,
+        "positions": [
+          "open",
+          "firm"
+        ],
+        "detented": false,
+        "direction": "cw_firmer"
+      },
+      "hsc": null,
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": null
+    },
+    "year_range": [
+      2024,
+      2024
+    ],
+    "confidence": "published",
+    "confidence_note": "This is the real-world unit 01_SCHEMA.md's worked example 'grip_sweep_adj_2024' (sweep, positions open/firm) refers to - FOX's actual current branding for it on 32/34mm Rhythm-tier forks is 'RAIL', confirmed directly from the fetched 2024 32/34mm manual's '2-Position Sweep Adjust (Rhythm Forks Only)' section. Not confirmed yet whether 36/38mm Rhythm forks use the same RAIL branding (that manual only described the 3-position GRIP lever, no 2-position sweep) - open item. Rebound count not stated as a total - needs_physical_count.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2931/fork--2024-32mm-or-32mm-tc-or-34mm-or-34mm-awl",
+      "document": "FORK- 2024 32mm/32mm TC/34mm/34mm AWL | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_grip2_2024",
+    "brand": "FOX",
+    "name": "GRIP2",
+    "tier": "factory",
+    "type": "fork",
+    "adjusters": {
+      "lsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": {
+        "type": "clicks",
+        "count": 16,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      }
+    },
+    "year_range": [
+      2022,
+      2024
+    ],
+    "confidence": "published",
+    "confidence_note": "hsc.count=16 is the one FOX figure in this pass stated as an actual functional total, not a recommendation: 'Any High-Speed Compression settings beyond 16 clicks out from fully closed do not change damping... only the 16 positions closest to fully closed are designed for use.' lsc/lsr/hsr counts are only given as weight-based recommended starting points (lsc rec. 10 clicks; lsr/hsr rec. ranges 0-9 / 0-8) - needs_physical_count for those three.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+      "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_grip_x_2025",
+    "brand": "FOX",
+    "name": "GRIP X",
+    "tier": "performance",
+    "type": "fork",
+    "adjusters": {
+      "lsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": null
+    },
+    "year_range": [
+      2025,
+      2025
+    ],
+    "confidence": "estimated",
+    "confidence_note": "New for 2025, replacing FIT4 on 36/38mm per the fetched 2025 manual. Independently adjustable LSC and HSC confirmed ('Turn your compression adjusters ... 10 clicks each for High-speed and Low-speed'), and only a single rebound value in the rebound table (not split LSR/HSR, unlike GRIP X2) - hsr set null on that basis. None of the click figures are stated as totals (only recommended starting points: LSC/HSC rec. 10 clicks each; rebound rec. range 1-16) - needs_physical_count on all three.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2979/fork--2025-36mm-or-38mm",
+      "document": "FORK- 2025 36mm/38mm | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_grip_x2_2025",
+    "brand": "FOX",
+    "name": "GRIP X2",
+    "tier": "factory",
+    "type": "fork",
+    "adjusters": {
+      "lsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "hsc": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_firmer"
+      },
+      "lsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      },
+      "hsr": {
+        "type": "clicks",
+        "count": null,
+        "positions": null,
+        "detented": true,
+        "direction": "cw_slower"
+      }
+    },
+    "year_range": [
+      2025,
+      2025
+    ],
+    "confidence": "estimated",
+    "confidence_note": "New for 2025, the GRIP2 successor on 36/38mm per the fetched 2025 manual - full 4-way (separate LSR/HSR columns in the rebound table confirm the split, unlike GRIP X). Recommended starting points only (LSC rec. 10, HSC rec. 5 clicks; LSR/HSR rec. ranges 1-9 / 0-8), none stated as totals - needs_physical_count on all four.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2979/fork--2025-36mm-or-38mm",
+      "document": "FORK- 2025 36mm/38mm | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  }
+]
