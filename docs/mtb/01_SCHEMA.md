@@ -2,9 +2,21 @@
 
 MTB Setup Triage Dashboard: data contract
 
-Version 0.2
-Status: signed off against the working prototype
+Version 0.3
+Status: revised against stage 2 batch 1 output
 Owner: Tumi
+
+### Changes in 0.3
+
+Five schema frictions surfaced by the first real harvest, all resolved here. Four of the five are cases where the data was fine and the schema was too narrow.
+
+1. **`count` was doing two jobs.** Manufacturers publish recommended settings far more often than true adjuster totals, and both were round-tripping through one field. Now separated, and the recommendation data gets a table of its own, because it is more useful than the total.
+2. **Air springs vary by tier, not just by travel.** A Rhythm air spring and a Factory air spring on the same chassis at the same travel have different factory spacer counts, different part numbers and different pressure charts. The schema had no slot for that.
+3. **Pressure charts come in two shapes.** Bracket tables and continuous curves interpolate differently and cannot share a read path silently.
+4. **Adjusters can nest.** FIT4's open mode has its own fine adjustment inside the lever position.
+5. **Single-value sag targets are real.** Rule 5 relaxed rather than worked around.
+
+Also added: `fields_pending`, so a record can declare which fields are deliberately null with a known source, making gaps queryable instead of indistinguishable from oversights.
 
 ### Changes in 0.2
 
@@ -99,6 +111,20 @@ Every record carries a provenance block. No exceptions.
 
 Where a record is assembled from more than one source, `source` becomes an array.
 
+### Pending fields
+
+A record often has to be written before every field can be filled, because the remaining fields live in a different document at a different access tier. FOX splits adjuster data into the owner's manual and dimensional data into a session-gated spec sheet, so a chassis record is genuinely half-writable.
+
+```json
+"fields_pending": [
+  { "field": "offset_options_mm", "expected_source": "FOX tech portal spec sheet", "tier": "B" }
+]
+```
+
+Without this, a null field is indistinguishable from a field nobody looked for. With it, the next harvest pass can query for its own worklist instead of re-reading a completion report written by a different agent on a different day.
+
+Never use `fields_pending` to excuse a guess. It records absence, not uncertainty. Uncertainty is what `confidence` is for.
+
 ## Tables
 
 ### 1. `chassis`
@@ -160,6 +186,37 @@ Four keys, always present, each either `null` or an object.
 
 `direction` records which way the adjuster goes firmer or slower, so the UI can express a change as "2 clicks clockwise" rather than an ambiguous "add 2".
 
+#### `count` versus recommendation
+
+`count` means one thing only: **the total number of positions from one mechanical extreme to the other.** It is the adjustment headroom. Nothing else goes in this field.
+
+Manufacturers rarely publish it. What they publish, constantly, is a recommended starting point by rider weight. Those two numbers look alike and mean completely different things, and putting a recommendation into `count` would tell the engine a fork has eight clicks of adjustment when it has twenty four, three of which the manual happens to suggest.
+
+Three fields, all optional, all on the adjuster object:
+
+| Field | Type | Meaning |
+|---|---|---|
+| `count` | int or null | true total, extreme to extreme |
+| `count_basis` | enum | `stated_total`, `functional_total`, `physical_count`, null |
+| `usable_range` | [int, int] or null | where the manufacturer says the adjuster actually does something |
+
+`functional_total` covers the case where a manual states that settings beyond a point stop changing damping. That is a real ceiling for tuning purposes even though the dial keeps turning, and it should be treated as the total.
+
+When a manual publishes only a weight-based recommendation, `count` stays null and the recommendation goes into a `setting_chart` record, not here.
+
+#### Nested adjusters
+
+An adjuster position can itself contain a finer adjustment. FIT4's open mode has its own multi-position fine tune sitting inside the lever's open position. Model it as an optional `sub_adjuster` on the parent:
+
+```json
+"lsc": {
+  "type": "lever", "count": 3, "positions": ["open","medium","firm"],
+  "sub_adjuster": { "within_position": "open", "type": "clicks", "count": 22, "label": "Open Mode Adjust" }
+}
+```
+
+The rules engine offers the sub-adjuster only when the parent is in `within_position`. Leaving it undocumented would tell a FIT4 owner they have three positions when they have three positions and twenty two more inside one of them.
+
 Worked examples for the four units in the prototype:
 
 ```
@@ -197,6 +254,7 @@ The distinction matters because the three states produce three different sentenc
 | `type` | string | `air`, `coil` |
 | `negative` | string | `self_equalising`, `separate_chamber`, `none` |
 | `chassis_id` | string | fk |
+| `tier_applies_to` | string[] | which fork tiers share this spring. `["rhythm"]`, `["performance","factory"]` |
 | `travel_mm` | int | one record per travel |
 | `spacer_pn` | string | `234-44-079` |
 | `spacer_volume_cc` | number | 10 |
@@ -221,10 +279,33 @@ Manufacturer pressure recommendations, stored as compact arrays for payload size
 | `air_spring_id` | string | fk |
 | `points` | [int, int][] | `[[kg, psi], ...]` ordered ascending by kg |
 | `basis` | string | `rider_only` or `rider_plus_kit`. Critical, charts differ |
+| `point_type` | enum | `curve` or `bracket` |
+| `applies_to_travel_mm` | int[] | a single published table often covers several travels |
 | `confidence` | enum | |
 | `source` | object | |
 
 The `basis` field matters. FOX charts are typically rider weight in riding gear. Getting this wrong shifts every recommendation by several psi.
+
+`point_type` matters just as much. A `curve` interpolates linearly between points. A `bracket` table assigns a single value to a weight band, and interpolating across a band boundary invents a precision the manufacturer did not offer. Store bracket tables as their boundary points and read them as steps, not slopes.
+
+### 4b. `setting_chart`
+
+Manufacturer recommended starting points for damper adjusters, by rider weight. Same shape as `pressure_chart`, different subject.
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | string | |
+| `damper_id` | string | fk |
+| `adjuster` | enum | `lsc`, `hsc`, `lsr`, `hsr` |
+| `unit` | enum | `clicks_from_closed`, `clicks_from_open`, `position` |
+| `points` | [number, number][] | `[[kg, setting], ...]` |
+| `basis` | string | as pressure_chart |
+| `point_type` | enum | `curve` or `bracket` |
+| `confidence`, `source` | | |
+
+**This table is more valuable than the adjuster totals it was mistaken for.** The prototype derives a rebound starting point by multiplying the click count by 0.7, which is a guess standing in for data the manufacturer publishes directly. Wherever a `setting_chart` exists for a damper and adjuster, the baseline uses it and the guess never runs.
+
+`unit` must be captured, not assumed. A recommendation of "8" means opposite things depending on whether the manufacturer counts from closed or from open, and normalising to `clicks_from_closed` requires knowing the total, which is exactly the thing that is usually missing. Store what the source said and convert only when the total is known.
 
 ### 5. `fork_unit`
 
@@ -524,7 +605,7 @@ Applied by the harvest agent before writing any record.
 2. Every `*_id` foreign key resolves to an existing record, or the record is held back and listed in the completion report as an orphan.
 3. `adjusters` has all four keys present. Missing keys are a hard fail, not a null.
 4. `pressure_chart.points` is ordered ascending by kg and has at least three points.
-5. `sag_target_pct[0] < sag_target_pct[1]`.
+5. `sag_target_pct[0] <= sag_target_pct[1]`. A source that states a single target rather than a range writes it as `[30, 30]`, which is honest. Do not invent a range around a single number to satisfy a stricter rule.
 6. `spacer_factory <= spacer_max`.
 7. `frame_geo.reach_mm` between 380 and 540. Outside that range, flag rather than write.
 8. `frame.suspension_type == "hardtail"` implies `rear_travel_mm`, `shock_ee_mm`, `shock_stroke_mm`, `platform` are all null.
