@@ -1,0 +1,71 @@
+[
+  {
+    "id": "fox_36_factory_150_2024",
+    "display_name": "FOX 36 Factory 150 (GRIP2)",
+    "chassis_id": "fox_36_2024",
+    "damper_id": "fox_grip2_2024",
+    "air_spring_id": "fox_float_evol_36_2024",
+    "travel_mm": 150,
+    "offset_mm": null,
+    "tier": "factory",
+    "model_year": 2024,
+    "part_number": null,
+    "service_interval_h": null,
+    "oil": null,
+    "known_issues": [],
+    "sa_availability": null,
+    "confidence": "published",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+      "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_36_performance_150_2024",
+    "display_name": "FOX 36 Performance 150 (GRIP)",
+    "chassis_id": "fox_36_2024",
+    "damper_id": "fox_grip_2024",
+    "air_spring_id": "fox_float_evol_36_2024",
+    "travel_mm": 150,
+    "offset_mm": null,
+    "tier": "performance",
+    "model_year": 2024,
+    "part_number": null,
+    "service_interval_h": null,
+    "oil": null,
+    "known_issues": [],
+    "sa_availability": null,
+    "confidence": "published",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+      "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_38_factory_170_2024",
+    "display_name": "FOX 38 Factory 170 (GRIP2)",
+    "chassis_id": "fox_38_2024",
+    "damper_id": "fox_grip2_2024",
+    "air_spring_id": "fox_float_evol_38_2024",
+    "travel_mm": 170,
+    "offset_mm": null,
+    "tier": "factory",
+    "model_year": 2024,
+    "part_number": null,
+    "service_interval_h": null,
+    "oil": null,
+    "known_issues": [],
+    "sa_availability": null,
+    "confidence": "published",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+      "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  }
+]

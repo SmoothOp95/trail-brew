@@ -1,0 +1,156 @@
+[
+  {
+    "id": "rockshox_debonair_plus_pike_140",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": "self_equalising",
+    "chassis_id": "rockshox_pike_2023",
+    "travel_mm": 140,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 6,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": [
+      15,
+      20
+    ],
+    "equalise_note": null,
+    "confidence": "estimated",
+    "confidence_note": "Pressure/spacer figures are published (SRAM spec PDF). sag_target_pct [15,20] is NOT stated anywhere in that document - it was written in round 1 by generic suspension-setup convention, which is exactly the kind of unflagged assumption the harvest ground rules warn against. Flagged here rather than left silently unmarked; needs an actual RockShox setup-guide citation (e.g. the Suspension Welcome Guide, not yet fetched) to move to published.",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_debonair_plus_lyrik_150",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": "self_equalising",
+    "chassis_id": "rockshox_lyrik_2023",
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 5,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": [
+      15,
+      20
+    ],
+    "equalise_note": null,
+    "confidence": "estimated",
+    "confidence_note": "Same correction as rockshox_debonair_plus_pike_140 - sag_target_pct not RockShox-sourced this pass, flagged rather than silently assumed.",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_debonair_plus_zeb_160",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": "self_equalising",
+    "chassis_id": "rockshox_zeb_2023",
+    "travel_mm": 160,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 4,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": [
+      15,
+      20
+    ],
+    "equalise_note": null,
+    "confidence": "estimated",
+    "confidence_note": "Same correction as rockshox_debonair_plus_pike_140 - sag_target_pct not RockShox-sourced this pass, flagged rather than silently assumed.",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_float_evol_36_2024",
+    "brand": "FOX",
+    "name": "FLOAT EVOL",
+    "type": "air",
+    "negative": "self_equalising",
+    "chassis_id": "fox_36_2024",
+    "travel_mm": 150,
+    "spacer_pn": "234-04-736",
+    "spacer_volume_cc": 10,
+    "spacer_factory": 2,
+    "spacer_max": 7,
+    "pressure_max_psi": 120,
+    "pressure_min_psi": null,
+    "sag_target_pct": [
+      15,
+      20
+    ],
+    "equalise_note": "Cycle the fork through ~25% of travel several times per 50psi addition to equalize the EVOL negative chamber before checking pressure.",
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+        "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2979/fork--2025-36mm-or-38mm",
+        "document": "FORK- 2025 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "fox_float_evol_38_2024",
+    "brand": "FOX",
+    "name": "FLOAT EVOL",
+    "type": "air",
+    "negative": "self_equalising",
+    "chassis_id": "fox_38_2024",
+    "travel_mm": 170,
+    "spacer_pn": "234-44-189",
+    "spacer_volume_cc": 10,
+    "spacer_factory": 2,
+    "spacer_max": 5,
+    "pressure_max_psi": 140,
+    "pressure_min_psi": null,
+    "sag_target_pct": [
+      15,
+      20
+    ],
+    "equalise_note": "Cycle the fork through ~25% of travel several times per 50psi addition to equalize the EVOL negative chamber before checking pressure.",
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+        "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2979/fork--2025-36mm-or-38mm",
+        "document": "FORK- 2025 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      }
+    ]
+  }
+]

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Setup bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9ECEE;
+  --panel:#F8F9FA;
+  --ink:#14202B;
+  --slate:#5C6B77;
+  --faint:#8A97A1;
+  --hair:#C9D1D7;
+  --signal:#F2C200;
+  --signal-deep:#7A6200;
+  --ok:#2E6B63;
+  --off:#9A4A3C;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#141A1F;
+    --panel:#1C242B;
+    --ink:#E8EDF0;
+    --slate:#9AA8B2;
+    --faint:#6E7C87;
+    --hair:#2E3941;
+    --signal:#F2C200;
+    --signal-deep:#F2C200;
+    --ok:#5FB3A4;
+    --off:#D3826F;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Archivo',system-ui,sans-serif;
+  font-variant-numeric:tabular-nums;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.55;
+  font-size:15px;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 96px}
+
+header.top{
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px;
+  padding:36px 0 20px;border-bottom:1px solid var(--ink);margin-bottom:0;
+}
+header.top h1{font-size:30px;font-weight:600;letter-spacing:-0.02em;line-height:1.1}
+header.top p{color:var(--slate);font-size:14px;margin-top:4px;max-width:46ch}
+.riderbar{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:3px}
+.field label{font-size:12px;color:var(--faint)}
+.field input,.field select{
+  font-family:inherit;font-size:14px;font-variant-numeric:tabular-nums;
+  background:var(--panel);color:var(--ink);
+  border:1px solid var(--hair);border-radius:3px;padding:6px 8px;min-width:104px;
+}
+.field input:focus,.field select:focus{outline:2px solid var(--signal);outline-offset:1px;border-color:transparent}
+
+.banner{
+  border-left:3px solid var(--signal);background:var(--panel);
+  padding:14px 18px;margin:20px 0 0;display:flex;gap:16px;align-items:flex-start;
+}
+.banner .btxt{font-size:14px;color:var(--slate);flex:1}
+.banner .btxt strong{color:var(--ink);font-weight:600}
+.banner button{
+  font-family:inherit;font-size:13px;background:none;border:1px solid var(--hair);
+  color:var(--slate);padding:5px 12px;border-radius:3px;cursor:pointer;white-space:nowrap;
+}
+.banner button:hover{border-color:var(--ink);color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:44px;margin-top:36px;align-items:start}
+@media (max-width:880px){.grid{grid-template-columns:minmax(0,1fr);gap:32px}}
+
+aside .stick{position:sticky;top:24px}
+@media (max-width:880px){aside .stick{position:static}}
+
+.sect{margin-bottom:44px}
+.sect > h2{
+  font-size:15px;font-weight:600;letter-spacing:-0.01em;
+  padding-bottom:8px;border-bottom:1px solid var(--hair);margin-bottom:18px;
+  display:flex;align-items:baseline;gap:10px;
+}
+.sect > h2 .n{color:var(--faint);font-weight:400;font-size:13px}
+.sect > h2 .hint{margin-left:auto;font-size:12px;color:var(--faint);font-weight:400}
+
+svg.bike{width:100%;height:auto;display:block}
+.bk-line{fill:none;stroke:var(--slate);stroke-width:3.4;stroke-linecap:round}
+.bk-thin{fill:none;stroke:var(--slate);stroke-width:2.2;stroke-linecap:round}
+.bk-rim{fill:none;stroke:var(--hair);stroke-width:2}
+.bk-tyre{fill:none;stroke:var(--slate);stroke-width:6}
+.bk-live{fill:none;stroke:var(--signal);stroke-width:6;stroke-linecap:round}
+.bk-lead{stroke:var(--hair);stroke-width:1}
+.cal-k{font-size:9.5px;fill:var(--faint);font-family:'Archivo',sans-serif}
+.cal-v{font-size:13px;fill:var(--ink);font-family:'Archivo',sans-serif;font-weight:600}
+.cal-s{font-size:9.5px;fill:var(--slate);font-family:'Archivo',sans-serif}
+
+.readout{border-top:1px solid var(--hair);margin-top:8px}
+.rline{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--hair);font-size:14px}
+.rline .k{color:var(--slate)}
+.rline .v{font-weight:600}
+.rline .v .was{color:var(--faint);font-weight:400;text-decoration:line-through;margin-right:7px}
+.rline.changed .v{color:var(--signal-deep)}
+.rline.changed{background:linear-gradient(to right,rgba(242,194,0,.14),transparent 70%)}
+
+.goals{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px}
+.goal{
+  text-align:left;font-family:inherit;cursor:pointer;
+  background:var(--panel);border:1px solid var(--hair);border-radius:4px;
+  padding:13px 15px;color:var(--ink);transition:border-color .12s,background .12s;
+}
+.goal:hover{border-color:var(--slate)}
+.goal:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.goal[aria-pressed="true"]{border-color:var(--ink);background:var(--signal);color:#14202B}
+.goal[aria-pressed="true"] .gsub{color:#4A3B00}
+.gname{font-size:14.5px;font-weight:600;display:block}
+.gsub{font-size:12.5px;color:var(--slate);display:block;margin-top:2px}
+
+.empty{color:var(--faint);font-size:14px;padding:22px 0}
+
+.conflict{border-left:3px solid var(--off);background:var(--panel);padding:12px 16px;font-size:13.5px;color:var(--slate);margin-bottom:14px}
+.conflict strong{color:var(--off);font-weight:600}
+
+.radarwrap{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:24px;align-items:center}
+@media (max-width:560px){.radarwrap{grid-template-columns:1fr}}
+svg.radar{width:100%;height:auto;display:block}
+.rd-web{fill:none;stroke:var(--hair);stroke-width:1}
+.rd-ax{stroke:var(--hair);stroke-width:1}
+.rd-cur{fill:rgba(92,107,119,.13);stroke:var(--slate);stroke-width:1.6;stroke-dasharray:4 3}
+.rd-new{fill:rgba(242,194,0,.26);stroke:var(--signal);stroke-width:2.2}
+.rd-lab{font-size:11px;fill:var(--slate);font-family:'Archivo',sans-serif}
+.legend{font-size:13px}
+.legend div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--hair)}
+.legend .up{color:var(--ok);font-weight:600}
+.legend .dn{color:var(--off);font-weight:600}
+.legend .fl{color:var(--faint)}
+
+.chg{border-top:1px solid var(--hair);padding:15px 0;display:grid;grid-template-columns:26px minmax(0,1fr);gap:14px}
+.chg:last-of-type{border-bottom:1px solid var(--hair)}
+.chg .idx{font-size:13px;color:var(--faint);padding-top:2px}
+.chg .ttl{font-size:15px;font-weight:600}
+.chg .mv{font-size:14px;color:var(--signal-deep);margin-top:2px;font-weight:600}
+.chg .why{font-size:13.5px;color:var(--slate);margin-top:5px}
+.chg .drv{font-size:12px;color:var(--faint);margin-top:5px}
+.chg.blocked .ttl,.chg.blocked .mv{color:var(--faint);font-weight:400}
+.chg.blocked{opacity:.85}
+
+.actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.btn{font-family:inherit;font-size:14px;padding:9px 18px;border-radius:3px;cursor:pointer;border:1px solid var(--ink);background:var(--ink);color:var(--paper)}
+.btn.ghost{background:none;color:var(--ink)}
+.btn:hover{opacity:.86}
+.btn:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+
+table.log{width:100%;border-collapse:collapse;font-size:13.5px}
+table.log th{text-align:left;font-weight:500;color:var(--faint);font-size:12px;padding:0 12px 7px 0;border-bottom:1px solid var(--hair)}
+table.log td{padding:9px 12px 9px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+table.log td input{font-family:inherit;font-size:13.5px;width:100%;background:none;border:none;border-bottom:1px dotted var(--hair);color:var(--ink);padding:2px 0}
+table.log td input:focus{outline:none;border-bottom-color:var(--signal)}
+.verdict{display:inline-flex;gap:4px}
+.verdict button{font-family:inherit;font-size:11.5px;padding:2px 8px;border:1px solid var(--hair);background:none;color:var(--slate);border-radius:2px;cursor:pointer}
+.verdict button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+details.method{border-top:1px solid var(--hair);padding-top:16px;margin-top:8px}
+details.method summary{cursor:pointer;font-size:14px;font-weight:600;list-style:none}
+details.method summary::-webkit-details-marker{display:none}
+details.method summary::before{content:"+ ";color:var(--faint)}
+details.method[open] summary::before{content:"– ";color:var(--faint)}
+details.method .body{font-size:13.5px;color:var(--slate);padding:14px 0 4px;max-width:72ch}
+details.method .body p{margin-bottom:10px}
+details.method .body li{margin-left:18px;margin-bottom:5px}
+details.method .body strong{color:var(--ink);font-weight:600}
+
+footer{border-top:1px solid var(--hair);margin-top:60px;padding-top:20px;font-size:12.5px;color:var(--faint);max-width:78ch}
+footer a{color:var(--slate)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>Setup bench</h1>
+    <p>Tell it what you want from the bike. It works out which settings to change, and rules out the ones your hardware cannot do.</p>
+  </div>
+  <div class="riderbar">
+    <div class="field">
+      <label for="kg">Kitted weight</label>
+      <input type="number" id="kg" value="90" min="35" max="180" step="1">
+    </div>
+    <div class="field">
+      <label for="fk">Fork</label>
+      <select id="fk"></select>
+    </div>
+    <div class="field">
+      <label for="sk">Rear shock</label>
+      <select id="sk"></select>
+    </div>
+  </div>
+</header>
+
+<div class="banner" id="pre">
+  <div class="btxt"><strong>Before any of this.</strong> Fork and shock clean, holding air, adjusters responding. Tyre pressure checked cold. Cockpit set: saddle height and angle, bar height and roll, lever reach. A harsh fork is mechanical more often than it is a click, and no setting change fixes a binding bushing.</div>
+  <button type="button" id="predismiss">Checked</button>
+</div>
+
+<div class="grid">
+
+<aside>
+<div class="stick">
+  <div class="sect">
+    <h2><span class="n">A</span> Current bike <span class="hint" id="bikehint">no changes staged</span></h2>
+    <svg class="bike" viewBox="0 0 500 320" role="img" aria-labelledby="biketitle">
+      <title id="biketitle">Side view of a full suspension mountain bike with live callouts for fork, shock and tyre settings</title>
+
+      <circle cx="126" cy="228" r="66" class="bk-tyre"/>
+      <circle cx="126" cy="228" r="52" class="bk-rim"/>
+      <circle cx="378" cy="228" r="66" class="bk-tyre" id="tyreF"/>
+      <circle cx="378" cy="228" r="52" class="bk-rim"/>
+      <circle cx="126" cy="228" r="4" fill="var(--slate)"/>
+      <circle cx="378" cy="228" r="4" fill="var(--slate)"/>
+
+      <path d="M126 228 L203 228" class="bk-line"/>
+      <path d="M126 228 L176 158" class="bk-line"/>
+      <path d="M203 228 L170 128" class="bk-line"/>
+      <path d="M203 228 L344 143" class="bk-line"/>
+      <path d="M172 132 L342 126" class="bk-line"/>
+      <path d="M344 143 L352 118" class="bk-line" stroke-width="7"/>
+      <path d="M176 158 L206 152" class="bk-thin"/>
+
+      <path d="M203 172 L253 152" class="bk-thin" stroke-width="5"/>
+      <path d="M250 153 L268 146" class="bk-live" id="shockBody"/>
+
+      <path d="M350 128 L378 228" class="bk-thin" stroke-width="5"/>
+      <path d="M352 132 L364 174" class="bk-live" id="forkStanchion"/>
+
+      <path d="M170 128 L156 122 L188 118" class="bk-thin"/>
+      <path d="M348 112 L330 106 M348 112 L372 108" class="bk-thin"/>
+      <circle cx="203" cy="228" r="9" class="bk-thin"/>
+
+      <path d="M300 96 L246 66" class="bk-lead"/>
+      <text x="238" y="52" text-anchor="end" class="cal-k">FORK</text>
+      <text x="238" y="68" text-anchor="end" class="cal-v" id="cFork">84 psi</text>
+      <text x="238" y="82" text-anchor="end" class="cal-s" id="cForkSub">3 spacers, 7 clicks</text>
+
+      <path d="M258 148 L196 96" class="bk-lead"/>
+      <text x="188" y="82" text-anchor="end" class="cal-k">SHOCK</text>
+      <text x="188" y="98" text-anchor="end" class="cal-v" id="cShock">216 psi</text>
+      <text x="188" y="112" text-anchor="end" class="cal-s" id="cShockSub">5 clicks, lever open</text>
+
+      <path d="M378 294 L420 304" class="bk-lead"/>
+      <text x="426" y="298" class="cal-k">FRONT TYRE</text>
+      <text x="426" y="313" class="cal-v" id="cTyreF">22.0 psi</text>
+
+      <path d="M126 294 L84 304" class="bk-lead"/>
+      <text x="78" y="298" text-anchor="end" class="cal-k">REAR TYRE</text>
+      <text x="78" y="313" text-anchor="end" class="cal-v" id="cTyreR">24.0 psi</text>
+    </svg>
+
+    <div class="readout" id="readout"></div>
+
+    <details class="method">
+      <summary>How to measure sag properly</summary>
+      <div class="body">
+        <p>Full kit on, including pack if you ride with one. Level ground. Lean the bars against a wall or have someone hold the front wheel.</p>
+        <ul>
+          <li>Bounce a few times to free the seals, then settle into your normal riding stance, arms and legs slightly bent.</li>
+          <li><strong>Do not hold the brakes.</strong> It loads the fork and gives a false reading.</li>
+          <li>Slide the o-ring down to the seal without shifting your weight, then step off slowly without bouncing.</li>
+          <li>Measure o-ring to seal, divide by total travel, multiply by 100.</li>
+          <li>Standing or seated both work. Pick one and always use the same one, or your readings are not comparable.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</div>
+</aside>
+
+<main>
+
+<div class="sect">
+  <h2><span class="n">B</span> What do you want from the bike <span class="hint">pick up to three</span></h2>
+  <div class="goals" id="goals"></div>
+</div>
+
+<div class="sect">
+  <h2><span class="n">C</span> What that does to the bike <span class="hint">dashed is now, solid is proposed</span></h2>
+  <div id="conflicts"></div>
+  <div class="radarwrap">
+    <svg class="radar" viewBox="0 0 320 300" role="img" aria-labelledby="radartitle">
+      <title id="radartitle">Radar chart comparing six ride attributes before and after the proposed setting changes</title>
+      <g id="web"></g>
+      <polygon id="polyCur" class="rd-cur" points=""/>
+      <polygon id="polyNew" class="rd-new" points=""/>
+      <g id="labels"></g>
+    </svg>
+    <div class="legend" id="legend"></div>
+  </div>
+</div>
+
+<div class="sect">
+  <h2><span class="n">D</span> Changes to make <span class="hint">one at a time, same trail section</span></h2>
+  <div id="changes"></div>
+  <div id="blocked"></div>
+  <div class="actions">
+    <button type="button" class="btn" id="apply" disabled>Apply and log</button>
+    <button type="button" class="btn ghost" id="clear">Clear goals</button>
+    <button type="button" class="btn ghost" id="reset">Reset to baseline</button>
+  </div>
+</div>
+
+<div class="sect">
+  <h2><span class="n">E</span> Session log</h2>
+  <table class="log">
+    <thead><tr><th style="width:34px">Lap</th><th>Change</th><th style="width:34%">How it felt</th><th style="width:132px">Verdict</th></tr></thead>
+    <tbody id="logbody"></tbody>
+  </table>
+  <div class="empty" id="logempty">Nothing logged yet. Apply a change, ride the same section, then record what it did.</div>
+</div>
+
+<details class="method">
+  <summary>Which dial to reach for, and how to tell</summary>
+  <div class="body">
+    <p><strong>Rebound.</strong> As fast as possible, as slow as necessary. Press the bars down hard and release: if the front wheel leaves the ground, rebound is too fast. Too slow and the fork packs down through repeated hits, riding low and harsh. Too fast and the bike feels nervous and loses traction.</p>
+    <p><strong>High speed compression.</strong> Judge it on square edges and landings. Harsh on quick impacts while barely using travel means it is too closed. Soft and using all the travel means it is too open.</p>
+    <p><strong>Low speed compression.</strong> Judge it entering corners and on jump faces. If the bike feels sluggish and stacks up under you, LSC is too open. Wind it in for support, but too much makes the suspension harsh and unresponsive to small inputs.</p>
+    <p><strong>Volume spacers.</strong> These change the shape of the spring curve without changing sag. Add one if you bottom out easily at correct sag. Remove one if you never reach full travel. Note the pressure before you release the air so you can put exactly the same pressure back and compare fairly.</p>
+    <p><strong>Method.</strong> Change one thing, two to four clicks, then ride the same section. If it went the wrong way, come back one click rather than jumping back to where you started. Write down every setting before you begin so you can always return to it.</p>
+  </div>
+</details>
+
+</main>
+</div>
+
+<footer>
+  Prototype. Baseline numbers are derived from a simplified pressure model and generic leverage assumption, not from a measured leverage curve, so treat them as a starting point and not a recommendation. Damper adjuster inventories are the constraint that decides which changes are offered. Method notes drawn from published setup guides by Canyon, Simplon and BikeRadar.
+</footer>
+
+</div>
+
+<script>
+/* ---------- component tables (subset, shaped per 01_SCHEMA) ---------- */
+const FORKS = [
+  { id:"fox36_rhythm", name:"FOX 36 Rhythm 150, GRIP Sweep-Adjust", travel:150, k:0.94, sagPct:[15,20],
+    spFactory:3, spMax:7, adj:{ lsc:{type:"sweep",count:null,pos:["open","firm"]}, hsc:null, lsr:{type:"clicks",count:10}, hsr:null } },
+  { id:"fox36_x2", name:"FOX 36 Factory 150, GRIP X2", travel:150, k:0.94, sagPct:[15,20],
+    spFactory:2, spMax:7, adj:{ lsc:{type:"clicks",count:8}, hsc:{type:"clicks",count:8}, lsr:{type:"clicks",count:8}, hsr:{type:"clicks",count:8} } },
+  { id:"rs_zeb31", name:"RockShox ZEB Ultimate 170, Charger 3.1", travel:170, k:0.86, sagPct:[15,20],
+    spFactory:2, spMax:6, adj:{ lsc:{type:"clicks",count:5}, hsc:{type:"clicks",count:5}, lsr:{type:"clicks",count:18}, hsr:null } },
+  { id:"rs_35gold", name:"RockShox 35 Gold RL 150, Motion Control", travel:150, k:0.90, sagPct:[15,20],
+    spFactory:1, spMax:4, adj:{ lsc:{type:"lockout",count:2,pos:["open","locked"]}, hsc:null, lsr:{type:"clicks",count:10}, hsr:null } }
+];
+const SHOCKS = [
+  { id:"fox_dps", name:"FOX FLOAT DPS 185x55, 3 position", stroke:55, k:2.40, sagPct:[25,30], spMax:3,
+    adj:{ lsc:{type:"lever",count:3,pos:["open","medium","firm"]}, hsc:null, lsr:{type:"clicks",count:10}, hsr:null } },
+  { id:"fox_floatx", name:"FOX FLOAT X 185x55, LSC dial", stroke:55, k:2.40, sagPct:[25,30], spMax:3,
+    adj:{ lsc:{type:"clicks",count:8}, hsc:null, lsr:{type:"clicks",count:10}, hsr:null } },
+  { id:"rs_sdu", name:"RockShox Super Deluxe Ultimate 185x55", stroke:55, k:2.40, sagPct:[25,30], spMax:5,
+    adj:{ lsc:{type:"clicks",count:5}, hsc:null, lsr:{type:"clicks",count:10}, hsr:null } }
+];
+
+/* ---------- goals: what the rider wants, not what is wrong ---------- */
+const GOALS = [
+  { id:"pop", name:"More pop off lips", sub:"Bike gives back what you put in",
+    d:{ forkReb:+2, shockReb:+2, shockPsi:+10, forkSp:+1 } },
+  { id:"rocks", name:"More control in rock gardens", sub:"Tracks the ground, stops deflecting",
+    d:{ forkPsi:-5, forkSp:+1, forkHsc:-2, forkReb:+1, tyreF:-1.5 } },
+  { id:"grip", name:"More grip in flat corners", sub:"Front tyre bites instead of washing",
+    d:{ tyreF:-2, forkPsi:-5, forkReb:+1 } },
+  { id:"berm", name:"More support in berms", sub:"Something to push against",
+    d:{ forkPsi:+5, forkLsc:+2, shockPsi:+10, shockLsc:+2 } },
+  { id:"bottom", name:"Stop harsh bottom outs", sub:"Ramp deeper without losing small bump",
+    d:{ forkSp:+1, shockSp:+1, forkHsc:+2 } },
+  { id:"pedal", name:"Pedal more efficiently", sub:"Less bob on long climbs",
+    d:{ shockLsc:+3, shockPsi:+10, tyreR:+1.5 } },
+  { id:"harsh", name:"Less arm pump and harshness", sub:"Take the sting out of chatter",
+    d:{ tyreF:-2, tyreR:-1.5, forkHsc:-2, forkPsi:-5 } },
+  { id:"stable", name:"More stability at speed", sub:"Calmer when it gets fast and rough",
+    d:{ forkPsi:+5, forkReb:-1, shockReb:-1, tyreF:+1 } }
+];
+
+/* ---------- attribute model ---------- */
+const AXES = [
+  { id:"grip", label:"Grip" },
+  { id:"support", label:"Support" },
+  { id:"comfort", label:"Comfort" },
+  { id:"pop", label:"Pop" },
+  { id:"bottom", label:"Bottom out" },
+  { id:"pedal", label:"Pedalling" }
+];
+
+let base = {}, cur = {}, picked = [], log = [], lap = 0;
+
+function fork(){ return FORKS.find(f=>f.id===document.getElementById("fk").value); }
+function shock(){ return SHOCKS.find(s=>s.id===document.getElementById("sk").value); }
+function kg(){ const v = parseFloat(document.getElementById("kg").value); return (isFinite(v)&&v>=35&&v<=180)?v:90; }
+
+function computeBase(){
+  const f = fork(), s = shock(), w = kg();
+  const lscMid = a => a && a.type==="clicks" ? Math.round(a.count/2) : 0;
+  base = {
+    forkPsi: Math.round(w*f.k),
+    forkSp: f.spFactory,
+    forkReb: Math.round((f.adj.lsr?f.adj.lsr.count:10)*0.7),
+    forkLsc: lscMid(f.adj.lsc),
+    forkHsc: lscMid(f.adj.hsc),
+    shockPsi: Math.round(w*s.k),
+    shockSp: 0,
+    shockReb: Math.round((s.adj.lsr?s.adj.lsr.count:10)*0.5),
+    shockLsc: s.adj.lsc && s.adj.lsc.type==="clicks" ? Math.round(s.adj.lsc.count/2) : 0,
+    tyreF: Math.round((w*0.20+4)*2)/2,
+    tyreR: Math.round((w*0.20+6)*2)/2
+  };
+  cur = Object.assign({}, base);
+}
+
+/* which capability does each delta field need to exist */
+const NEEDS = { forkHsc:"fork.hsc", forkLsc:"fork.lsc", forkReb:"fork.lsr", forkSp:"fork.spacer",
+                shockLsc:"shock.lsc", shockReb:"shock.lsr", shockSp:"shock.spacer" };
+
+function capable(field){
+  const f = fork(), s = shock();
+  switch(field){
+    case "forkHsc": return !!f.adj.hsc;
+    case "forkLsc": return !!f.adj.lsc && f.adj.lsc.type!=="lockout";
+    case "forkReb": return !!f.adj.lsr;
+    case "forkSp":  return f.spMax>0;
+    case "shockLsc":return !!s.adj.lsc;
+    case "shockReb":return !!s.adj.lsr;
+    case "shockSp": return s.spMax>0;
+    default: return true;
+  }
+}
+function blockReason(field){
+  const f = fork(), s = shock();
+  if(field==="forkHsc") return "The "+f.name.split(", ")[1]+" has no high speed compression adjuster.";
+  if(field==="forkLsc") return f.adj.lsc && f.adj.lsc.type==="lockout"
+      ? "This fork has a lockout lever, not a compression dial. There is nothing to fine tune."
+      : "No low speed compression adjuster on this damper.";
+  if(field==="shockLsc") return "No compression adjustment on this shock.";
+  return "Not available on this hardware.";
+}
+/* a sweep adjuster can express the intent, just coarsely */
+function coarseNote(field){
+  const f = fork(), s = shock();
+  if(field==="forkLsc" && f.adj.lsc && f.adj.lsc.type==="sweep")
+    return "Sweep-Adjust only, so this is a coarse move rather than counted clicks.";
+  if(field==="shockLsc" && s.adj.lsc && s.adj.lsc.type==="lever")
+    return "Three position lever only, so you are stepping between open, medium and firm.";
+  return null;
+}
+
+function clampField(field, val){
+  const f = fork(), s = shock();
+  const cl = (v,a,b)=>Math.max(a,Math.min(b,v));
+  switch(field){
+    case "forkPsi": return cl(val, 40, 130);
+    case "shockPsi": return cl(val, 100, 320);
+    case "forkSp": return cl(val, 0, f.spMax);
+    case "shockSp": return cl(val, 0, s.spMax);
+    case "forkReb": return cl(val, 0, f.adj.lsr?f.adj.lsr.count:10);
+    case "shockReb": return cl(val, 0, s.adj.lsr?s.adj.lsr.count:10);
+    case "forkLsc": return cl(val, 0, f.adj.lsc&&f.adj.lsc.count?f.adj.lsc.count:2);
+    case "forkHsc": return cl(val, 0, f.adj.hsc?f.adj.hsc.count:0);
+    case "shockLsc": return cl(val, 0, s.adj.lsc&&s.adj.lsc.count?s.adj.lsc.count:2);
+    case "tyreF": case "tyreR": return cl(val, 12, 40);
+  }
+  return val;
+}
+
+/* ---------- build the proposal from selected goals ---------- */
+function proposal(){
+  const deltas = {}, drivers = {}, blocked = [];
+  picked.forEach(gid=>{
+    const g = GOALS.find(x=>x.id===gid);
+    Object.entries(g.d).forEach(([field,dv])=>{
+      if(NEEDS[field] && !capable(field)){
+        if(!blocked.some(b=>b.field===field)) blocked.push({field, reason:blockReason(field), goal:g.name});
+        return;
+      }
+      deltas[field] = (deltas[field]||0) + dv;
+      (drivers[field] = drivers[field]||[]).push(g.name);
+    });
+  });
+  const next = Object.assign({}, cur);
+  Object.entries(deltas).forEach(([f,dv])=>{ next[f] = clampField(f, cur[f]+dv); });
+  return { next, deltas, drivers, blocked };
+}
+
+function conflicts(){
+  const out = [];
+  const has = id => picked.includes(id);
+  if(has("pedal") && has("grip")) out.push(["Pedal efficiency","Front grip","Firming the shock and running more rear pressure costs you rear traction on loose climbs. Split the difference or accept one."]);
+  if(has("harsh") && has("berm")) out.push(["Less harshness","Berm support","One wants the bike softer and more open, the other wants it firmer. These cancel. Pick the one that is actually costing you time."]);
+  if(has("pop") && has("harsh")) out.push(["More pop","Less harshness","Faster rebound gives pop but adds harshness and arm pump on long rough descents. Go one click at a time here."]);
+  if(has("stable") && has("pop")) out.push(["Stability","Pop","Slower rebound calms the bike down and takes the pop away. You cannot have both from the rebound dial."]);
+  return out;
+}
+
+/* ---------- attributes ---------- */
+function attrs(st){
+  const f = fork(), s = shock();
+  const fp = (st.forkPsi - base.forkPsi)/18;
+  const sp = (st.shockPsi - base.shockPsi)/40;
+  const p  = (fp+sp)/2;
+  const spc = ((st.forkSp - base.forkSp) + (st.shockSp - base.shockSp))/3;
+  const rb = ((st.forkReb - base.forkReb) + (st.shockReb - base.shockReb))/4;
+  const cp = ((st.forkLsc - base.forkLsc) + (st.forkHsc - base.forkHsc) + (st.shockLsc - base.shockLsc))/4;
+  const ty = (((st.tyreF - base.tyreF) + (st.tyreR - base.tyreR))/2)/4;
+  const cl = v => Math.max(0.4, Math.min(10, v));
+  return {
+    grip:    cl(5 - 1.9*p - 2.4*ty - 1.1*cp + 0.4*rb),
+    support: cl(5 + 2.0*p + 1.5*cp + 1.0*spc),
+    comfort: cl(5 - 1.7*p - 1.9*ty - 1.5*cp - 0.7*spc),
+    pop:     cl(5 + 1.8*rb + 0.8*spc + 0.7*p),
+    bottom:  cl(5 + 2.2*spc + 1.2*p + 0.9*cp),
+    pedal:   cl(5 + 1.4*p + 1.8*cp + 0.9*ty - 0.5*rb)
+  };
+}
+
+/* ---------- formatting ---------- */
+function lscLabel(kind, v){
+  const f = fork(), s = shock();
+  if(kind==="fork"){
+    const a = f.adj.lsc;
+    if(!a) return "none";
+    if(a.type==="sweep"){ const n=["open","1/4 firm","half firm","3/4 firm","firm"]; return n[Math.min(4,Math.max(0,Math.round(v)))]; }
+    if(a.type==="lockout") return v>0?"locked":"open";
+    return v+" clicks";
+  }
+  const a = s.adj.lsc;
+  if(!a) return "none";
+  if(a.type==="lever") return (a.pos[Math.min(a.pos.length-1,Math.max(0,Math.round(v)))]);
+  return v+" clicks";
+}
+const FIELDLABEL = {
+  forkPsi:["Fork air pressure","psi"], shockPsi:["Shock air pressure","psi"],
+  forkSp:["Fork volume spacers",""], shockSp:["Shock volume spacers",""],
+  forkReb:["Fork rebound","clicks from closed"], shockReb:["Shock rebound","clicks from closed"],
+  forkLsc:["Fork compression",""], forkHsc:["Fork high speed compression","clicks"],
+  shockLsc:["Shock compression",""],
+  tyreF:["Front tyre","psi"], tyreR:["Rear tyre","psi"]
+};
+const WHY = {
+  forkPsi:"Sets where the bike rides in its travel and how the front holds up under braking and load.",
+  shockPsi:"Sets rear ride height. Too low and it wallows, too high and it skips over holes.",
+  forkSp:"Changes the shape of the spring curve without touching sag. Ramps up deeper in the stroke.",
+  shockSp:"Same idea at the rear. Adds bottom out resistance without stiffening the small bump.",
+  forkReb:"How fast the fork returns. Higher number is more open and faster.",
+  shockReb:"How fast the shock returns. Rebound mismatched front to rear is what bucks you on landings.",
+  forkLsc:"Support against slow, high load inputs: corner entries, jump faces, braking.",
+  forkHsc:"Control on square edges and fast impacts, without changing how it feels in corners.",
+  shockLsc:"Pedal platform and berm support at the rear.",
+  tyreF:"The most under-used adjustment on the bike. Front pressure drives corner grip and how harsh chatter feels.",
+  tyreR:"Rear pressure trades rolling speed and rim protection against grip and comfort."
+};
+function fmt(field, v){
+  if(field==="forkLsc") return lscLabel("fork", v);
+  if(field==="shockLsc") return lscLabel("shock", v);
+  if(field==="tyreF"||field==="tyreR") return v.toFixed(1)+" psi";
+  const u = FIELDLABEL[field][1];
+  return v + (u&&u!=="clicks from closed" ? " "+u : (u?" clicks":""));
+}
+
+/* ---------- render ---------- */
+function renderGoals(){
+  const el = document.getElementById("goals");
+  el.innerHTML = "";
+  GOALS.forEach(g=>{
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "goal";
+    b.setAttribute("aria-pressed", picked.includes(g.id));
+    b.innerHTML = '<span class="gname">'+g.name+'</span><span class="gsub">'+g.sub+'</span>';
+    b.onclick = ()=>{
+      if(picked.includes(g.id)) picked = picked.filter(x=>x!==g.id);
+      else { if(picked.length>=3) picked.shift(); picked.push(g.id); }
+      draw();
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderRadar(a, b){
+  const cx=150, cy=142, R=98, n=AXES.length;
+  const pt=(i,r)=>{ const ang = -Math.PI/2 + i*2*Math.PI/n; return [cx+Math.cos(ang)*r, cy+Math.sin(ang)*r]; };
+  let web="";
+  [2,4,6,8,10].forEach(lv=>{
+    const p = AXES.map((_,i)=>pt(i,R*lv/10).map(v=>v.toFixed(1)).join(",")).join(" ");
+    web += '<polygon class="rd-web" points="'+p+'"/>';
+  });
+  AXES.forEach((_,i)=>{ const e=pt(i,R); web += '<line class="rd-ax" x1="'+cx+'" y1="'+cy+'" x2="'+e[0].toFixed(1)+'" y2="'+e[1].toFixed(1)+'"/>'; });
+  document.getElementById("web").innerHTML = web;
+
+  const poly = v => AXES.map((ax,i)=>pt(i, R*v[ax.id]/10).map(x=>x.toFixed(1)).join(",")).join(" ");
+  document.getElementById("polyCur").setAttribute("points", poly(a));
+  document.getElementById("polyNew").setAttribute("points", poly(b));
+
+  let labs="";
+  AXES.forEach((ax,i)=>{
+    const p = pt(i, R+22);
+    let anch = "middle";
+    if(p[0] > cx+6) anch = "start"; else if(p[0] < cx-6) anch = "end";
+    labs += '<text class="rd-lab" x="'+p[0].toFixed(1)+'" y="'+(p[1]+4).toFixed(1)+'" text-anchor="'+anch+'">'+ax.label+'</text>';
+  });
+  document.getElementById("labels").innerHTML = labs;
+
+  document.getElementById("legend").innerHTML = AXES.map(ax=>{
+    const d = b[ax.id]-a[ax.id];
+    const cls = d>0.15?"up":(d<-0.15?"dn":"fl");
+    const txt = Math.abs(d)<0.15 ? "no change" : (d>0?"+":"")+d.toFixed(1);
+    return '<div><span>'+ax.label+'</span><span class="'+cls+'">'+txt+'</span></div>';
+  }).join("");
+}
+
+function renderReadout(next, deltas){
+  const rows = ["forkPsi","forkSp","forkReb","forkLsc","forkHsc","shockPsi","shockSp","shockReb","shockLsc","tyreF","tyreR"];
+  const f = fork(), s = shock();
+  const skip = { forkHsc: !f.adj.hsc, forkLsc: !f.adj.lsc, shockLsc: !s.adj.lsc, shockSp: s.spMax===0 };
+  document.getElementById("readout").innerHTML = rows.filter(r=>!skip[r]).map(r=>{
+    const chg = deltas[r] && next[r]!==cur[r];
+    return '<div class="rline'+(chg?' changed':'')+'"><span class="k">'+FIELDLABEL[r][0]+'</span><span class="v">'
+      + (chg?'<span class="was">'+fmt(r,cur[r])+'</span>':'') + fmt(r, next[r]) + '</span></div>';
+  }).join("");
+}
+
+function renderBike(next){
+  const f = fork(), s = shock();
+  document.getElementById("cFork").textContent = next.forkPsi+" psi";
+  document.getElementById("cForkSub").textContent = next.forkSp+" spacers, "+next.forkReb+" clicks";
+  document.getElementById("cShock").textContent = next.shockPsi+" psi";
+  document.getElementById("cShockSub").textContent = next.shockReb+" clicks, "+lscLabel("shock", next.shockLsc);
+  document.getElementById("cTyreF").textContent = next.tyreF.toFixed(1)+" psi";
+  document.getElementById("cTyreR").textContent = next.tyreR.toFixed(1)+" psi";
+  const sagF = Math.round(f.travel*(f.sagPct[0]+f.sagPct[1])/200);
+  document.getElementById("forkStanchion").setAttribute("d","M352 132 L"+(352+12)+" "+(132+42+(base.forkPsi-next.forkPsi)*0.6).toFixed(0));
+  document.getElementById("bikehint").textContent = picked.length ? picked.length+" goal"+(picked.length>1?"s":"")+" staged" : "no changes staged";
+}
+
+function renderChanges(deltas, drivers, blocked){
+  const el = document.getElementById("changes");
+  const keys = Object.keys(deltas).filter(k=>deltas[k]!==0);
+  const order = ["tyreF","tyreR","forkPsi","shockPsi","forkSp","shockSp","forkReb","shockReb","forkLsc","forkHsc","shockLsc"];
+  keys.sort((a,b)=>order.indexOf(a)-order.indexOf(b));
+  if(!keys.length){
+    el.innerHTML = '<div class="empty">Pick what you want from the bike above and the changes will appear here, in the order to make them.</div>';
+  } else {
+    const next = proposal().next;
+    el.innerHTML = keys.map((k,i)=>{
+      const coarse = coarseNote(k);
+      return '<div class="chg"><div class="idx">'+(i+1)+'</div><div>'
+        + '<div class="ttl">'+FIELDLABEL[k][0]+'</div>'
+        + '<div class="mv">'+fmt(k,cur[k])+' to '+fmt(k,next[k])+'</div>'
+        + '<div class="why">'+WHY[k]+(coarse?" "+coarse:"")+'</div>'
+        + '<div class="drv">Driven by: '+[...new Set(drivers[k])].join(", ")+'</div>'
+        + '</div></div>';
+    }).join("");
+  }
+  const bl = document.getElementById("blocked");
+  bl.innerHTML = blocked.length ? '<div style="margin-top:22px"><div style="font-size:12px;color:var(--faint);margin-bottom:4px">Ruled out, your hardware cannot do this</div>'
+    + blocked.map(b=>'<div class="chg blocked"><div class="idx">&times;</div><div><div class="ttl">'+FIELDLABEL[b.field][0]+'</div><div class="why">'+b.reason+'</div><div class="drv">Wanted by: '+b.goal+'</div></div></div>').join("")
+    + '</div>' : "";
+}
+
+function renderConflicts(){
+  const c = conflicts();
+  document.getElementById("conflicts").innerHTML = c.map(x=>
+    '<div class="conflict"><strong>'+x[0]+' pulls against '+x[1]+'.</strong> '+x[2]+'</div>').join("");
+}
+
+function renderLog(){
+  const tb = document.getElementById("logbody");
+  document.getElementById("logempty").style.display = log.length?"none":"block";
+  tb.innerHTML = log.map((r,i)=>
+    '<tr><td>'+r.lap+'</td><td>'+r.change+'</td>'
+    + '<td><input type="text" placeholder="what it did" value="'+(r.note||"").replace(/"/g,"&quot;")+'" data-i="'+i+'"></td>'
+    + '<td><span class="verdict">'
+      + ["better","worse","same"].map(v=>'<button type="button" data-v="'+v+'" data-i="'+i+'" aria-pressed="'+(r.verdict===v)+'">'+v+'</button>').join("")
+    + '</span></td></tr>').join("");
+  tb.querySelectorAll("input").forEach(inp=> inp.oninput = e => log[+e.target.dataset.i].note = e.target.value );
+  tb.querySelectorAll("button").forEach(b=> b.onclick = e => { log[+e.target.dataset.i].verdict = e.target.dataset.v; renderLog(); } );
+}
+
+function draw(){
+  const { next, deltas, drivers, blocked } = proposal();
+  renderGoals();
+  renderConflicts();
+  renderReadout(next, deltas);
+  renderBike(next);
+  renderRadar(attrs(cur), attrs(next));
+  renderChanges(deltas, drivers, blocked);
+  document.getElementById("apply").disabled = Object.keys(deltas).filter(k=>deltas[k]!==0).length===0;
+}
+
+document.getElementById("apply").onclick = ()=>{
+  const { next, deltas } = proposal();
+  const keys = Object.keys(deltas).filter(k=>deltas[k]!==0);
+  lap++;
+  log.push({ lap, change: keys.map(k=>FIELDLABEL[k][0]+" to "+fmt(k,next[k])).join(", "), note:"", verdict:null });
+  cur = next;
+  picked = [];
+  draw(); renderLog();
+};
+document.getElementById("clear").onclick = ()=>{ picked=[]; draw(); };
+document.getElementById("reset").onclick = ()=>{ computeBase(); picked=[]; lap=0; log=[]; draw(); renderLog(); };
+document.getElementById("predismiss").onclick = ()=>{ document.getElementById("pre").style.display="none"; };
+
+function initSelects(){
+  const fk=document.getElementById("fk"), sk=document.getElementById("sk");
+  fk.innerHTML = FORKS.map(f=>'<option value="'+f.id+'">'+f.name+'</option>').join("");
+  sk.innerHTML = SHOCKS.map(s=>'<option value="'+s.id+'">'+s.name+'</option>').join("");
+}
+initSelects();
+computeBase();
+["kg","fk","sk"].forEach(id=>{
+  document.getElementById(id).addEventListener("change",()=>{ computeBase(); picked=[]; draw(); });
+});
+document.getElementById("kg").addEventListener("input",()=>{ computeBase(); draw(); });
+draw(); renderLog();
+</script>
+</body>
+</html>

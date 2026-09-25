@@ -1,0 +1,501 @@
+[
+  {
+    "id": "rockshox_35_2020",
+    "brand": "RockShox",
+    "model": "35",
+    "stanchion_mm": 35,
+    "travel_options_mm": [
+      100,
+      120,
+      130,
+      140,
+      150,
+      160
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      37,
+      44,
+      51
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2020,
+      2022
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "RockShox 35 Service Manual 2020-2022 (GEN.0000000006367 Rev A)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_pike_2023",
+    "brand": "RockShox",
+    "model": "Pike",
+    "stanchion_mm": 35,
+    "travel_options_mm": [
+      120,
+      130,
+      140
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      37,
+      44,
+      51
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_lyrik_2023",
+    "brand": "RockShox",
+    "model": "Lyrik",
+    "stanchion_mm": 35,
+    "travel_options_mm": [
+      140,
+      150,
+      160
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      37,
+      44,
+      51
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_zeb_2023",
+    "brand": "RockShox",
+    "model": "ZEB",
+    "stanchion_mm": 38,
+    "travel_options_mm": [
+      150,
+      160,
+      170,
+      180,
+      190
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      38,
+      44,
+      51
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_domain_2023",
+    "brand": "RockShox",
+    "model": "Domain",
+    "stanchion_mm": 38,
+    "travel_options_mm": [
+      150,
+      160,
+      170,
+      180
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      38,
+      44,
+      51
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_yari_2023",
+    "brand": "RockShox",
+    "model": "Yari",
+    "stanchion_mm": 35,
+    "travel_options_mm": [
+      100,
+      150,
+      160,
+      170,
+      180
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      37,
+      44,
+      46,
+      51
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_revelation_2023",
+    "brand": "RockShox",
+    "model": "Revelation",
+    "stanchion_mm": 35,
+    "travel_options_mm": [
+      120,
+      130,
+      140,
+      150,
+      160
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      37,
+      42,
+      46,
+      51
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_sid_2023",
+    "brand": "RockShox",
+    "model": "SID",
+    "stanchion_mm": 35,
+    "travel_options_mm": [
+      110,
+      120
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      44
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "29"
+    ],
+    "max_rotor_mm": 200,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_sid_sl_2023",
+    "brand": "RockShox",
+    "model": "SID SL",
+    "stanchion_mm": 32,
+    "travel_options_mm": [
+      100
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      44
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "29"
+    ],
+    "max_rotor_mm": 200,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2024
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_reba_2022",
+    "brand": "RockShox",
+    "model": "Reba",
+    "stanchion_mm": 32,
+    "travel_options_mm": [
+      80,
+      100,
+      110,
+      120
+    ],
+    "axle_std": "boost_110x15",
+    "offset_options_mm": [
+      42,
+      51
+    ],
+    "steerer": "tapered_1_5",
+    "wheel_sizes": [
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2020,
+      2022
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_36_2024",
+    "brand": "FOX",
+    "model": "36",
+    "stanchion_mm": 36,
+    "travel_options_mm": [
+      130,
+      140,
+      150,
+      160,
+      170
+    ],
+    "axle_std": null,
+    "offset_options_mm": null,
+    "steerer": null,
+    "wheel_sizes": null,
+    "max_rotor_mm": null,
+    "brake_mount": "pm_180",
+    "year_range": [
+      2022,
+      2025
+    ],
+    "confidence": "estimated",
+    "confidence_note": "Travel options and brake mount are directly from the fetched owner's manuals (2024/2025 36mm/38mm). Axle standard, offset, steerer, wheel sizes and max rotor are NOT stated in the owner's manual text (that's FOX's separate Spec Sheet resource, not yet fetched) - left null pending that fetch rather than guessed from general FOX product knowledge.",
+    "source": [
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+        "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2979/fork--2025-36mm-or-38mm",
+        "document": "FORK- 2025 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "fox_38_2024",
+    "brand": "FOX",
+    "model": "38",
+    "stanchion_mm": 38,
+    "travel_options_mm": [
+      150,
+      160,
+      170,
+      180
+    ],
+    "axle_std": null,
+    "offset_options_mm": null,
+    "steerer": null,
+    "wheel_sizes": null,
+    "max_rotor_mm": null,
+    "brake_mount": "pm_180",
+    "year_range": [
+      2022,
+      2025
+    ],
+    "confidence": "estimated",
+    "confidence_note": "Same basis/caveats as fox_36_2024 - see that record's note.",
+    "source": [
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+        "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://tech.ridefox.com/bike/owners-manuals/2979/fork--2025-36mm-or-38mm",
+        "document": "FORK- 2025 36mm/38mm | Bike Tech Help Center | FOX",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "fox_34_2024",
+    "brand": "FOX",
+    "model": "34",
+    "stanchion_mm": 34,
+    "travel_options_mm": [
+      100,
+      110,
+      120,
+      130,
+      140,
+      150
+    ],
+    "axle_std": null,
+    "offset_options_mm": null,
+    "steerer": null,
+    "wheel_sizes": null,
+    "max_rotor_mm": null,
+    "brake_mount": null,
+    "year_range": [
+      2024,
+      2024
+    ],
+    "confidence": "estimated",
+    "confidence_note": "Travel options from the fetched 2024 32/34mm owner's manual's air-pressure and volume-spacer tables (union across FLOAT/SC/Rhythm/AWL variants). Axle/offset/steerer/rotor/brake-mount not stated in this manual - left null pending FOX's Spec Sheet resource, not guessed.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2931/fork--2024-32mm-or-32mm-tc-or-34mm-or-34mm-awl",
+      "document": "FORK- 2024 32mm/32mm TC/34mm/34mm AWL | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_32_2024",
+    "brand": "FOX",
+    "model": "32",
+    "stanchion_mm": 32,
+    "travel_options_mm": [
+      100,
+      110,
+      120
+    ],
+    "axle_std": null,
+    "offset_options_mm": null,
+    "steerer": null,
+    "wheel_sizes": null,
+    "max_rotor_mm": null,
+    "brake_mount": null,
+    "year_range": [
+      2024,
+      2024
+    ],
+    "confidence": "estimated",
+    "confidence_note": "Same basis/caveats as fox_34_2024 - see that record's note. Scoped to 32 FLOAT trail travel only; 32 TC (step-cast, 40/50mm) and 32 TC XC variant not captured this pass.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2931/fork--2024-32mm-or-32mm-tc-or-34mm-or-34mm-awl",
+      "document": "FORK- 2024 32mm/32mm TC/34mm/34mm AWL | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  }
+]
