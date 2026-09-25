@@ -12,6 +12,7 @@ import {
 } from '../schema/tables';
 import type { FieldPending } from '../schema/common';
 import { detectFlags } from './flags';
+import { applyOverlay } from './applyOverlay';
 import type {
   AdjusterCountStats,
   Annotation,
@@ -22,6 +23,7 @@ import type {
   Exclusion,
   FieldStats,
   IngestResult,
+  Overlay,
   RawTables,
   ReadinessGate,
   ShowableUnit,
@@ -35,13 +37,16 @@ type AnyRecord = { id: string; fields_pending?: FieldPending[] } & Record<string
 /**
  * Validate the raw harvest tables against 01_SCHEMA.md v0.3 and build the index the app reads.
  *
+ * The optional overlay fills gaps before validation (see data/overlay/overlay.ts); raw input is not mutated.
  * Pure: no file system, no clock. Never throws on bad data. A malformed record is excluded with a
  * reason, a count without a count_basis is held back at field level, and everything is reported.
  */
-export function ingest(raw: RawTables): IngestResult {
+export function ingest(rawInput: RawTables, overlay?: Overlay): IngestResult {
   const exclusions: Exclusion[] = [];
-  const annotations: Annotation[] = [];
-  const extraFlags: DataFlag[] = [];
+  const applied = applyOverlay(rawInput, overlay);
+  const raw = applied.raw;
+  const annotations: Annotation[] = [...applied.annotations];
+  const extraFlags: DataFlag[] = [...applied.flags];
   const tables = {} as Record<TableName, TableCoverage>;
   const valid = {} as TableRecords;
 
@@ -55,7 +60,7 @@ export function ingest(raw: RawTables): IngestResult {
   for (const table of TABLE_NAMES) {
     const input = raw[table];
     const cov: TableCoverage = {
-      file_present: input !== undefined,
+      file_present: rawInput[table] !== undefined,
       records: 0,
       valid: 0,
       excluded: 0,

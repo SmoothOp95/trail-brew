@@ -23,10 +23,41 @@ export interface Annotation {
   table: TableName;
   id: string;
   path: string;
-  kind: 'held_back' | 'derived';
+  kind: 'held_back' | 'derived' | 'overlay';
   original: unknown;
   value: unknown;
   reason: string;
+  /** For overlay changes: why the value is trusted. */
+  basis?: OverlayBasis;
+}
+
+/**
+ * correction: fixes a raw record using evidence already in the project docs or the record's own note.
+ * research:   taken from secondary research (search summaries of manufacturer documents that the
+ *             session could not open directly). Better than nothing, not a primary source.
+ * estimate:   best estimate, carried as confidence "estimated" and disclosed to the rider.
+ */
+export type OverlayBasis = 'correction' | 'research' | 'estimate';
+
+export interface OverlayPatch {
+  table: TableName;
+  id: string;
+  basis: OverlayBasis;
+  reason: string;
+  /** Dotted path -> value. Applied only where the raw value is null or missing, so harvests supersede it. */
+  fill?: Record<string, unknown>;
+  /** Dotted path -> value. Replaces the raw value, but only while it still equals `expect[path]`. */
+  override?: Record<string, unknown>;
+  expect?: Record<string, unknown>;
+  /** Appended to fields_pending, skipping fields already listed or already populated. */
+  pending?: { field: string; expected_source: string; tier?: string | null }[];
+}
+
+export interface Overlay {
+  version: string;
+  patches: OverlayPatch[];
+  /** Whole records the harvest has not produced yet. Dropped automatically once a raw record with the same id exists. */
+  records: Partial<Record<TableName, { basis: OverlayBasis; reason: string; record: Record<string, unknown> }[]>>;
 }
 
 export type FlagSeverity = 'info' | 'warning';

@@ -42,8 +42,20 @@ export function renderCoverageReport(c: Coverage): string {
 
   L.push('', '## Field-level changes made at ingest', '', 'Raw files are untouched. These are applied to the index only.', '');
   if (!c.annotations.length) L.push('None.');
-  for (const x of c.annotations) {
+  for (const x of c.annotations.filter((a) => a.kind !== 'overlay')) {
     L.push(`- **${x.kind}** \`${x.table}:${x.id}\` ${x.path}: ${JSON.stringify(x.original)} → ${JSON.stringify(x.value)}. ${x.reason}.`);
+  }
+
+  const ov = c.annotations.filter((a) => a.kind === 'overlay');
+  L.push('', '## Overlay: gaps filled on top of raw', '', 'From src/mtb/data/overlay/overlay.ts. Each entry retires itself when a harvest supplies the value.', '');
+  for (const basis of ['correction', 'research', 'estimate'] as const) {
+    const xs = ov.filter((a) => a.basis === basis);
+    L.push(`### ${basis} (${xs.length})`, '');
+    for (const x of xs) {
+      const what = x.path === '(record)' ? 'new record' : `${x.path} → ${JSON.stringify(x.value)}`;
+      L.push(`- \`${x.table}:${x.id}\` ${what}. ${x.reason}`);
+    }
+    L.push('');
   }
 
   L.push('', '## Exclusions', '');

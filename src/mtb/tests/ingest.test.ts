@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ingest } from '../data/ingest/ingest';
+import { OVERLAY } from '../data/overlay/overlay';
 import { TABLES, TABLE_NAMES } from '../data/schema/tables';
 import type { RawTables } from '../data/ingest/types';
 
@@ -119,5 +120,61 @@ describe('07 sparse-data cases: ingest', () => {
     const f = coverage.tables.chassis.fields.offset_options_mm;
     expect(f.null_pending).toBe(1);
     expect(f.null_bare).toBe(3);
+  });
+});
+
+describe('gap-filling overlay', () => {
+  it('un-holds GRIP2 hsc = 16 as a functional_total and makes the reference fork selectable', () => {
+    const { index, coverage } = ingest(loadRaw(), OVERLAY);
+    expect(index.dampers.fox_grip2_2024.adjusters.hsc).toMatchObject({ count: 16, count_basis: 'functional_total' });
+    expect(coverage.showable.fork_units.map((u) => u.id)).toContain('fox_36_rhythm_150_2024');
+    expect(index.fork_units.fox_36_rhythm_150_2024.confidence).toBe('estimated');
+    expect(coverage.exclusions).toEqual([]);
+  });
+
+  it('keeps setting_charts reported as an absent file even though the overlay adds records', () => {
+    const { coverage } = ingest(loadRaw(), OVERLAY);
+    expect(coverage.tables.setting_charts.file_present).toBe(false);
+    expect(coverage.tables.setting_charts.valid).toBe(2);
+  });
+
+  it('turns bare count nulls into pending ones', () => {
+    const { coverage } = ingest(loadRaw(), OVERLAY);
+    expect(coverage.adjuster_counts.count_null_bare).toBe(0);
+    expect(coverage.adjuster_counts.count_null_pending).toBeGreaterThan(25);
+  });
+
+  it('retires itself when the harvest supplies the value', () => {
+    const raw = loadRaw();
+    const charts = clone(raw.pressure_charts) as Record<string, unknown>[];
+    charts.find((c) => c.id === 'fox_float_evol_36_pressure')!.basis = 'rider_only';
+    const dampers = clone(raw.dampers) as Record<string, unknown>[];
+    dampers.find((d) => d.id === 'float_x_2023')!.confidence_note = 'rewritten by 02b';
+    (dampers.find((d) => d.id === 'float_x_2023') as { confidence: string }).confidence = 'measured';
+    raw.pressure_charts = charts;
+    raw.dampers = dampers;
+
+    const { index, coverage } = ingest(raw, OVERLAY);
+    expect(index.pressure_charts.fox_float_evol_36_pressure.basis).toBe('rider_only');
+    expect(index.dampers.float_x_2023.confidence).toBe('measured');
+    const superseded = coverage.flags.filter((f) => f.code === 'overlay_superseded').map((f) => f.id);
+    expect(superseded).toEqual(expect.arrayContaining(['fox_float_evol_36_pressure', 'float_x_2023']));
+  });
+
+  it('drops an overlay record once a harvested record with the same id exists', () => {
+    const raw = loadRaw();
+    const units = clone(raw.fork_units) as Record<string, unknown>[];
+    const harvested = { ...clone(units[1]), id: 'fox_36_rhythm_150_2024', display_name: 'harvested' };
+    raw.fork_units = [...units, harvested];
+
+    const { index } = ingest(raw, OVERLAY);
+    expect(index.fork_units.fox_36_rhythm_150_2024.display_name).toBe('harvested');
+  });
+
+  it('never edits the raw input', () => {
+    const raw = loadRaw();
+    const before = JSON.stringify(raw);
+    ingest(raw, OVERLAY);
+    expect(JSON.stringify(raw)).toBe(before);
   });
 });

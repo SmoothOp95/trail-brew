@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { TABLES, TABLE_NAMES } from '../data/schema/tables';
 import { ingest } from '../data/ingest/ingest';
 import { renderCoverageReport } from '../data/ingest/report';
+import { OVERLAY } from '../data/overlay/overlay';
 import type { RawTables } from '../data/ingest/types';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -27,7 +28,7 @@ for (const table of TABLE_NAMES) {
   }
 }
 
-const { index, coverage } = ingest(raw);
+const { index, coverage } = ingest(raw, OVERLAY);
 mkdirSync(buildDir, { recursive: true });
 writeFileSync(join(buildDir, 'index.json'), JSON.stringify(index));
 writeFileSync(join(buildDir, 'coverage.json'), JSON.stringify(coverage, null, 2));
