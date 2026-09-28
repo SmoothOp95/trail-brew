@@ -154,10 +154,12 @@ function settingFromChart(chart: SettingChart, cap: Capability, key: AdjusterKey
   };
 }
 
+/** One note per overlay reason (several fields often share one), for research and estimate fills only. */
 function overlayNotes(bike: BikeContext, table: string, id: string): string[] {
-  return bike.annotations
-    .filter((a) => a.kind === 'overlay' && a.table === table && a.id === id && a.basis !== 'correction')
-    .map((a) => `${a.path.replace(/_/g, ' ')} filled by ${a.basis}: ${a.reason}`);
+  const fills = bike.annotations.filter((a) => a.kind === 'overlay' && a.table === table && a.id === id && a.basis !== 'correction');
+  const byReason = new Map<string, string[]>();
+  for (const a of fills) byReason.set(a.reason, [...(byReason.get(a.reason) ?? []), a.path.replace(/_/g, ' ')]);
+  return [...byReason].map(([reason, paths]) => `Chart ${paths.join(' and ')} filled by ${fills.find((a) => a.reason === reason)!.basis}, not read from the source document: ${reason}`);
 }
 
 /** Starting values for every field, keyed by field. */
