@@ -27,7 +27,7 @@
     "brake_mount": null,
     "year_range": [
       2020,
-      2022
+      2023
     ],
     "confidence": "published",
     "source": [
@@ -42,6 +42,91 @@
         "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
         "retrieved": "2026-09-02",
         "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "27.5 Boost: offsets 37, 44; tyre max 732 mm (730 with fender), 81 mm wide",
+      "29 Boost: offsets 44, 51; tyre max 770 mm (768 with fender), 81 mm wide",
+      "Rotor 180 min, 220 max. Steerer 1.5 tapered, or 1.8 tapered at 44 offset"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 100,
+        "mm": 492,
+        "fender_mm": 498
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 100,
+        "mm": 511,
+        "fender_mm": 517
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 120,
+        "mm": 512,
+        "fender_mm": 518
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 531,
+        "fender_mm": 537
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 130,
+        "mm": 522,
+        "fender_mm": 528
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 130,
+        "mm": 541,
+        "fender_mm": 547
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 140,
+        "mm": 532,
+        "fender_mm": 538
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 140,
+        "mm": 551,
+        "fender_mm": 557
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 150,
+        "mm": 542,
+        "fender_mm": 548
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 150,
+        "mm": 561,
+        "fender_mm": 567
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 160,
+        "mm": 552,
+        "fender_mm": 558
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 160,
+        "mm": 571,
+        "fender_mm": 577
       }
     ]
   },
@@ -58,8 +143,7 @@
     "axle_std": "boost_110x15",
     "offset_options_mm": [
       37,
-      44,
-      51
+      44
     ],
     "steerer": "tapered_1_5",
     "wheel_sizes": [
@@ -73,12 +157,57 @@
       2024
     ],
     "confidence": "published",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "27.5 Boost: offsets 37, 44; tyre max 732 mm, 81 mm wide",
+      "29 Boost: offset 44; tyre max 770 mm, 81 mm wide",
+      "Rotor 180 min, 220 max"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 120,
+        "mm": 512
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 531
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 130,
+        "mm": 522
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 130,
+        "mm": 541
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 140,
+        "mm": 532
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 140,
+        "mm": 551
+      }
+    ]
   },
   {
     "id": "rockshox_lyrik_2023",
@@ -93,8 +222,7 @@
     "axle_std": "boost_110x15",
     "offset_options_mm": [
       37,
-      44,
-      51
+      44
     ],
     "steerer": "tapered_1_5",
     "wheel_sizes": [
@@ -108,12 +236,57 @@
       2024
     ],
     "confidence": "published",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "27.5 Boost: offsets 37, 44; tyre max 732 mm, 81 mm wide",
+      "29 Boost: offset 44; tyre max 770 mm, 81 mm wide",
+      "Rotor 180 min, 220 max. Steerer 1.5 tapered on Ultimate Flight Attendant, 1.5 or 1.8 tapered on other tiers"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 140,
+        "mm": 532
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 140,
+        "mm": 551
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 150,
+        "mm": 542
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 150,
+        "mm": 561
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 160,
+        "mm": 552
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 160,
+        "mm": 571
+      }
+    ]
   },
   {
     "id": "rockshox_zeb_2023",
@@ -145,12 +318,77 @@
       2024
     ],
     "confidence": "published",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "27.5 Boost: offsets 38, 44; tyre max 732 mm, 81 mm wide",
+      "29 Boost: offsets 44, 51; tyre max 770 mm, 81 mm wide",
+      "Rotor 200 min, 220 max. Steerer 1.5 tapered on Ultimate Flight Attendant, 1.5 or 1.8 tapered on other tiers"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 150,
+        "mm": 547
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 150,
+        "mm": 566
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 160,
+        "mm": 557
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 160,
+        "mm": 576
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 170,
+        "mm": 567
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 170,
+        "mm": 586
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 180,
+        "mm": 577
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 180,
+        "mm": 596
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 190,
+        "mm": 587
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 190,
+        "mm": 606
+      }
+    ]
   },
   {
     "id": "rockshox_domain_2023",
@@ -181,12 +419,67 @@
       2024
     ],
     "confidence": "published",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "27.5 Boost: offsets 38, 44; tyre max 732 mm, 81 mm wide",
+      "29 Boost: offsets 44, 51; tyre max 770 mm, 81 mm wide",
+      "Rotor 200 min, 220 max. Steerer 1.5 tapered, or 1.8 tapered at 44 offset"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 150,
+        "mm": 547
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 150,
+        "mm": 566
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 160,
+        "mm": 557
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 160,
+        "mm": 576
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 170,
+        "mm": 567
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 170,
+        "mm": 586
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 180,
+        "mm": 577
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 180,
+        "mm": 596
+      }
+    ]
   },
   {
     "id": "rockshox_yari_2023",
@@ -195,6 +488,10 @@
     "stanchion_mm": 35,
     "travel_options_mm": [
       100,
+      110,
+      120,
+      130,
+      140,
       150,
       160,
       170,
@@ -203,6 +500,7 @@
     "axle_std": "boost_110x15",
     "offset_options_mm": [
       37,
+      42,
       44,
       46,
       51
@@ -219,12 +517,103 @@
       2024
     ],
     "confidence": "published",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "27.5 Boost 150-180: offsets 37, 44, 46; tyre max 732 mm, 81 mm wide",
+      "29 Boost 150-180: offsets 42, 44, 51; tyre max 770 mm, 81 mm wide",
+      "29+ 100-160: offset 51; tyre max 786 mm, 82 mm wide; rotor 160 min",
+      "Rotor 180 min, 220 max on 27.5 and 29 Boost"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 150,
+        "mm": 542
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 150,
+        "mm": 561
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 160,
+        "mm": 552
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 160,
+        "mm": 571
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 170,
+        "mm": 562
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 170,
+        "mm": 581
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 180,
+        "mm": 572
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 180,
+        "mm": 591
+      },
+      {
+        "wheel": "29_plus",
+        "travel_mm": 100,
+        "mm": 523
+      },
+      {
+        "wheel": "29_plus",
+        "travel_mm": 110,
+        "mm": 533
+      },
+      {
+        "wheel": "29_plus",
+        "travel_mm": 120,
+        "mm": 543
+      },
+      {
+        "wheel": "29_plus",
+        "travel_mm": 130,
+        "mm": 553
+      },
+      {
+        "wheel": "29_plus",
+        "travel_mm": 140,
+        "mm": 563
+      },
+      {
+        "wheel": "29_plus",
+        "travel_mm": 150,
+        "mm": 573
+      },
+      {
+        "wheel": "29_plus",
+        "travel_mm": 160,
+        "mm": 583
+      }
+    ]
   },
   {
     "id": "rockshox_revelation_2023",
@@ -257,12 +646,72 @@
       2024
     ],
     "confidence": "published",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "27.5 Boost 120-160: offsets 37, 46; tyre max 732 mm, 81 mm wide",
+      "29 Boost 120-150: offsets 42, 51; tyre max 770 mm, 81 mm wide",
+      "Rotor 180 min, 220 max"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 120,
+        "mm": 512
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 531
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 130,
+        "mm": 522
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 130,
+        "mm": 541
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 140,
+        "mm": 532
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 140,
+        "mm": 551
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 150,
+        "mm": 542
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 150,
+        "mm": 561
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 160,
+        "mm": 552
+      }
+    ]
   },
   {
     "id": "rockshox_sid_2023",
@@ -281,19 +730,43 @@
     "wheel_sizes": [
       "29"
     ],
-    "max_rotor_mm": 200,
+    "max_rotor_mm": 220,
     "brake_mount": null,
     "year_range": [
       2023,
       2024
     ],
     "confidence": "published",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "29 Boost 110-120: offset 44; tyre max 758 mm, 66 mm wide",
+      "Rotor 180 min, 220 max"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "29_boost",
+        "travel_mm": 110,
+        "mm": 521
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 531
+      }
+    ]
   },
   {
     "id": "rockshox_sid_sl_2023",
@@ -318,12 +791,31 @@
       2024
     ],
     "confidence": "published",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "29 Boost 100: offset 44; tyre max 751 mm, 60 mm wide",
+      "Rotor 160 min, 200 max"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "29_boost",
+        "travel_mm": 100,
+        "mm": 506
+      }
+    ]
   },
   {
     "id": "rockshox_reba_2022",
@@ -331,7 +823,6 @@
     "model": "Reba",
     "stanchion_mm": 32,
     "travel_options_mm": [
-      80,
       100,
       110,
       120
@@ -353,12 +844,58 @@
       2022
     ],
     "confidence": "published",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "notes": [
+      "27.5 Boost: offset 42; tyre max 712-714 mm, 81 mm wide",
+      "29 Boost: offset 51; tyre max 755-760 mm, 81 mm wide",
+      "Rotor 160 min, 220 max",
+      "Dimensions match the 2023 Reba RL (FS-Reba-RL-A9)"
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 100,
+        "mm": 487
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 100,
+        "mm": 506
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 110,
+        "mm": 497
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 110,
+        "mm": 521
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 120,
+        "mm": 507
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 531
+      }
+    ]
   },
   {
     "id": "fox_36_2024",
@@ -497,5 +1034,676 @@
       "retrieved": "2026-09-02",
       "method": "manual_entry"
     }
+  },
+  {
+    "id": "rockshox_boxxer_2023",
+    "brand": "RockShox",
+    "model": "BoXXer",
+    "stanchion_mm": 35,
+    "travel_options_mm": [
+      180,
+      190,
+      200
+    ],
+    "axle_std": "20x110",
+    "offset_options_mm": [
+      36,
+      46,
+      56
+    ],
+    "steerer": "straight_1_125",
+    "wheel_sizes": [
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2023
+    ],
+    "notes": [
+      "27.5 Boost 200: offsets 36, 46; tyre max 732 mm",
+      "27.5 or 29 Boost 180, and 29 Boost 190-200: offsets 46, 56; tyre max 770 mm",
+      "Tyre max 81 mm wide. Rotor 200 min, 220 max"
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+      "retrieved": "2026-09-25",
+      "method": "manual_entry"
+    },
+    "fields_pending": [
+      {
+        "field": "brake_mount",
+        "expected_source": "RockShox user manual or technical manual",
+        "tier": "A"
+      }
+    ],
+    "axle_to_crown": [
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 200,
+        "mm": 581
+      },
+      {
+        "wheel": "27_5_boost",
+        "travel_mm": 180,
+        "mm": 582
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 180,
+        "mm": 582
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 190,
+        "mm": 592
+      },
+      {
+        "wheel": "29_boost",
+        "travel_mm": 200,
+        "mm": 602
+      }
+    ]
+  },
+  {
+    "id": "rockshox_judy_2023",
+    "brand": "RockShox",
+    "model": "Judy",
+    "stanchion_mm": 30,
+    "travel_options_mm": [
+      80,
+      100,
+      120,
+      130
+    ],
+    "axle_std": null,
+    "offset_options_mm": [
+      40,
+      42,
+      46,
+      51
+    ],
+    "steerer": null,
+    "wheel_sizes": [
+      "26",
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2023
+    ],
+    "notes": [
+      "Covers Judy, Judy Silver and Judy Gold, all 30 mm stanchions",
+      "Axle varies by wheel: 9 mm QR on 26, 27.5 and 29 (rotor 160 min, 185 max; tyre max 58-62 mm wide); 15x110 on 27.5 and 29 Boost (rotor 160 min, 220 max; tyre max 81 mm wide)",
+      "Steerer varies by model: 1 1/8 straight (alloy or steel) or 1.5 tapered; Boost versions 1.5 tapered",
+      "Offsets: 40 on 26, 42 on 27.5, 46 or 51 on 29, 42 or 51 on 27.5 and 29 Boost",
+      "Tyre max diameter: 680 (26), 710 (27.5), 755 (29), 732 (27.5 Boost, 726 with fender), 770 (29 Boost, 766 with fender)"
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+      "retrieved": "2026-09-25",
+      "method": "manual_entry"
+    },
+    "fields_pending": [
+      {
+        "field": "brake_mount",
+        "expected_source": "RockShox user manual or technical manual",
+        "tier": "A"
+      }
+    ],
+    "axle_to_crown": [
+      {
+        "variant": "Judy Gold",
+        "wheel": "26",
+        "travel_mm": 80,
+        "mm": 453
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "26",
+        "travel_mm": 100,
+        "mm": 473
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "27_5",
+        "travel_mm": 80,
+        "mm": 468
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "29",
+        "travel_mm": 80,
+        "mm": 487
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "27_5",
+        "travel_mm": 100,
+        "mm": 488
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "29",
+        "travel_mm": 100,
+        "mm": 507
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "27_5",
+        "travel_mm": 120,
+        "mm": 508
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "29",
+        "travel_mm": 120,
+        "mm": 527
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "27_5_boost",
+        "travel_mm": 80,
+        "mm": 472
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "29_boost",
+        "travel_mm": 80,
+        "mm": 490
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "27_5_boost",
+        "travel_mm": 100,
+        "mm": 492
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "29_boost",
+        "travel_mm": 100,
+        "mm": 510
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "27_5_boost",
+        "travel_mm": 120,
+        "mm": 512
+      },
+      {
+        "variant": "Judy Gold",
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 530
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "26",
+        "travel_mm": 80,
+        "mm": 455
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "26",
+        "travel_mm": 100,
+        "mm": 475
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "27_5",
+        "travel_mm": 80,
+        "mm": 470
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "29",
+        "travel_mm": 80,
+        "mm": 489
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "27_5",
+        "travel_mm": 100,
+        "mm": 490
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "29",
+        "travel_mm": 100,
+        "mm": 509
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "27_5",
+        "travel_mm": 120,
+        "mm": 510
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "27_5_boost",
+        "travel_mm": 80,
+        "mm": 470,
+        "fender_mm": 476
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "29_boost",
+        "travel_mm": 80,
+        "mm": 490,
+        "fender_mm": 496
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "27_5_boost",
+        "travel_mm": 100,
+        "mm": 490,
+        "fender_mm": 496
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "29_boost",
+        "travel_mm": 100,
+        "mm": 510,
+        "fender_mm": 516
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "27_5_boost",
+        "travel_mm": 120,
+        "mm": 510,
+        "fender_mm": 516
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 530,
+        "fender_mm": 536
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "27_5_boost",
+        "travel_mm": 130,
+        "mm": 520,
+        "fender_mm": 526
+      },
+      {
+        "variant": "Judy Silver",
+        "wheel": "29_boost",
+        "travel_mm": 130,
+        "mm": 540,
+        "fender_mm": 546
+      },
+      {
+        "variant": "Judy",
+        "wheel": "27_5",
+        "travel_mm": 80,
+        "mm": 470
+      },
+      {
+        "variant": "Judy",
+        "wheel": "29",
+        "travel_mm": 80,
+        "mm": 489
+      },
+      {
+        "variant": "Judy",
+        "wheel": "27_5",
+        "travel_mm": 100,
+        "mm": 490
+      },
+      {
+        "variant": "Judy",
+        "wheel": "29",
+        "travel_mm": 100,
+        "mm": 509
+      },
+      {
+        "variant": "Judy",
+        "wheel": "27_5",
+        "travel_mm": 120,
+        "mm": 510
+      }
+    ]
+  },
+  {
+    "id": "rockshox_recon_2023",
+    "brand": "RockShox",
+    "model": "Recon",
+    "stanchion_mm": 32,
+    "travel_options_mm": [
+      80,
+      100,
+      120,
+      130,
+      140,
+      150
+    ],
+    "axle_std": null,
+    "offset_options_mm": [
+      37,
+      40,
+      42,
+      46,
+      51
+    ],
+    "steerer": null,
+    "wheel_sizes": [
+      "26",
+      "27_5",
+      "29"
+    ],
+    "max_rotor_mm": 220,
+    "brake_mount": null,
+    "year_range": [
+      2023,
+      2023
+    ],
+    "notes": [
+      "Covers Recon Gold and Recon Silver, 32 mm stanchions",
+      "Axle varies: 9 mm QR, 15x100 or 15x110 Boost depending on model and wheel",
+      "Steerer: 1 1/8 straight (some steel) or 1.5 tapered; Boost versions 1.5 tapered",
+      "Offsets: 37 or 46 on 27.5 Boost, 42 or 51 on 29 Boost, 42 on 27.5, 46 or 51 on 29, 40 on 26",
+      "Rotor 160 min, 220 max (200 max on Recon Silver TK 26). Tyre max 710-770 mm diameter, 62-81 mm wide"
+    ],
+    "confidence": "published",
+    "source": {
+      "url": "https://www.sram.com/en/service",
+      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+      "retrieved": "2026-09-25",
+      "method": "manual_entry"
+    },
+    "fields_pending": [
+      {
+        "field": "brake_mount",
+        "expected_source": "RockShox user manual or technical manual",
+        "tier": "A"
+      }
+    ],
+    "axle_to_crown": [
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 80,
+        "mm": 474,
+        "fender_mm": 480
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "29_boost",
+        "travel_mm": 80,
+        "mm": 493,
+        "fender_mm": 499
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 100,
+        "mm": 494,
+        "fender_mm": 500
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "29_boost",
+        "travel_mm": 100,
+        "mm": 513,
+        "fender_mm": 519
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 120,
+        "mm": 514,
+        "fender_mm": 520
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 533,
+        "fender_mm": 539
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 130,
+        "mm": 524,
+        "fender_mm": 530
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "29_boost",
+        "travel_mm": 130,
+        "mm": 543,
+        "fender_mm": 549
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 140,
+        "mm": 534,
+        "fender_mm": 540
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "29_boost",
+        "travel_mm": 140,
+        "mm": 553,
+        "fender_mm": 559
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 150,
+        "mm": 544,
+        "fender_mm": 550
+      },
+      {
+        "variant": "Recon Gold RL",
+        "wheel": "29_boost",
+        "travel_mm": 150,
+        "mm": 563,
+        "fender_mm": 569
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "27_5",
+        "travel_mm": 100,
+        "mm": 486
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "29",
+        "travel_mm": 100,
+        "mm": 505
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "27_5",
+        "travel_mm": 120,
+        "mm": 506
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "29",
+        "travel_mm": 120,
+        "mm": 529
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "27_5",
+        "travel_mm": 130,
+        "mm": 520
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "29",
+        "travel_mm": 130,
+        "mm": 539
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "27_5",
+        "travel_mm": 140,
+        "mm": 530
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "29",
+        "travel_mm": 140,
+        "mm": 549
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 100,
+        "mm": 494,
+        "fender_mm": 500
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "29_boost",
+        "travel_mm": 100,
+        "mm": 513,
+        "fender_mm": 519
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 120,
+        "mm": 514,
+        "fender_mm": 520
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 533,
+        "fender_mm": 539
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 130,
+        "mm": 524,
+        "fender_mm": 530
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "29_boost",
+        "travel_mm": 130,
+        "mm": 543,
+        "fender_mm": 549
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 140,
+        "mm": 534,
+        "fender_mm": 540
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "29_boost",
+        "travel_mm": 140,
+        "mm": 553,
+        "fender_mm": 559
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "27_5_boost",
+        "travel_mm": 150,
+        "mm": 544,
+        "fender_mm": 550
+      },
+      {
+        "variant": "Recon Silver RL",
+        "wheel": "29_boost",
+        "travel_mm": 150,
+        "mm": 563,
+        "fender_mm": 569
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "26",
+        "travel_mm": 100,
+        "mm": 490
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "27_5",
+        "travel_mm": 80,
+        "mm": 466
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "29",
+        "travel_mm": 80,
+        "mm": 485
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "27_5",
+        "travel_mm": 100,
+        "mm": 486
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "29",
+        "travel_mm": 100,
+        "mm": 505
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "27_5_boost",
+        "travel_mm": 80,
+        "mm": 474,
+        "fender_mm": 480
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "29_boost",
+        "travel_mm": 80,
+        "mm": 493,
+        "fender_mm": 499
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "27_5_boost",
+        "travel_mm": 100,
+        "mm": 494,
+        "fender_mm": 500
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "29_boost",
+        "travel_mm": 100,
+        "mm": 513,
+        "fender_mm": 519
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "27_5_boost",
+        "travel_mm": 120,
+        "mm": 514,
+        "fender_mm": 520
+      },
+      {
+        "variant": "Recon Silver TK",
+        "wheel": "29_boost",
+        "travel_mm": 120,
+        "mm": 533,
+        "fender_mm": 539
+      }
+    ]
   }
 ]

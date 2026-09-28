@@ -39,7 +39,11 @@ Never enter credentials. Honour robots.txt. Roughly one page every two to three 
 
 The primary job. Ten dampers, none of which currently exist.
 
-**Forks:** Motion Control, Charger RC, Charger 2 RC2, Charger 2.1, Charger 3, Charger 3.1, Charger Race Day.
+**Forks.** Use exactly these ids, which `02C_ROCKSHOX_FRONT_SPEC_2023.md` has already reserved in fork unit records:
+
+`rockshox_motion_control_rl_2023`, `rockshox_motion_control_rc_2023`, `rockshox_turnkey_2023`, `rockshox_rebound_2023`, `rockshox_charger_rc_2023`, `rockshox_charger_2_1_rc2_2023`, `rockshox_charger_3_rc2_2023`, `rockshox_charger_3_rc2_buttercup_2023`, `rockshox_charger_flight_attendant_2023`, `rockshox_rush_rc_2023`, `rockshox_charger_r_2023`, `rockshox_charger_race_day_2023`, `rockshox_charger_2_rl_2023`, `rockshox_charger_rl_2023`, `rockshox_rush_rl_2023`.
+
+Motion Control RL, Turnkey and Rebound matter most for reach: they are on the Judy, Recon, Reba and 35 forks fitted to most SA bikes under R40k. Also settle whether the ZEB Base ships with Rush RC or Charger R, since the 2023 spec sheet says both. The same spec sheet gives chassis, pressure and token data for all of these forks, so this pass does not need to capture those.
 
 **Shocks:** Deluxe, Super Deluxe, Super Deluxe Ultimate, Vivid (both tunes where they differ).
 

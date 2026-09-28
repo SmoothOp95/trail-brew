@@ -2,7 +2,7 @@
 
 MTB Setup Triage Dashboard: project state
 
-Last updated: 2026-09-28 (Claude Code, end of build steps 5 and 6)
+Last updated: 2026-09-28 (Claude Code, 02C transcription, stopped for coverage review)
 Update protocol: **every session reads this file first and updates it last.** If you finish a session without updating this file, the next session starts from stale numbers and repeats work.
 
 ## What this project is
@@ -18,16 +18,42 @@ Primary entry point is goals, not symptoms. The rider says what they want from t
 | Stage | File | Status |
 |---|---|---|
 | 0 | `mtb-setup-triage-prototype.html` | Complete. Design reference, signed off. |
-| 1 | `01_SCHEMA.md` | v0.3. Revised twice against real harvest data. |
+| 1 | `01_SCHEMA.md` | v0.3.2. Bands, coil charts and the pending damper rule added from 02C section 10. |
 | 2 | `02_HARVEST_SUSPENSION.md` | FOX batch 1 complete. RockShox not started. |
-| 2b | `02B_HARVEST_ROCKSHOX.md` | Written, not yet run. Next Chrome task. |
+| 2b | `02B_HARVEST_ROCKSHOX.md` | Revised 2026-09-28 to produce the 15 damper ids 02C reserves. Not yet run. Next Chrome task. |
+| 2c | `02C_ROCKSHOX_FRONT_SPEC_2023.md` | **Transcribed 2026-09-28** by Claude Code from the RockShox 2023 front suspension spec sheet. Coverage diff in `docs/mtb/review/coverage-02c-diff.md`, awaiting review before the engine changes. |
 | 3 | `03_HARVEST_BIKES_SA.md` | Written, blocked on 2b. |
 | 4 | Kinematics and tyres | Not written. Target list should come from stage 3's report. |
 | 5 | `05_RULES_ENGINE.md` | Written. `src/mtb/rules/rules.json` seeded at 0.1-seed by Claude Code (05 content only). Chat session still authors the full file. |
 | 6 | Validation | Not written. Basis revised, see below. |
 | 7 | `07_BUILD_SPEC.md` | v0.2. Steps 1 to 6 done and verified on branch `claude/magical-rubin-hjaalu` (PR SmoothOp95/trail-brew#31). The dashboard is live at `/mtb-dashboard` with a sidebar link 'MTB Setup Dashboard'. |
 
-## Dataset inventory
+## Dataset inventory, after 02C (2026-09-28)
+
+| File | Records | Notes |
+|---|---|---|
+| `chassis.json` | 17 | 13 RockShox (3 new: BoXXer, Judy, Recon), 4 FOX |
+| `dampers.json` | 13 | All FOX. RockShox dampers still pending 02b |
+| `air_springs.json` | 86 | 84 RockShox (13 coil), 2 FOX. Plus 1 FOX Rhythm estimate in the overlay |
+| `pressure_charts.json` | 73 | 71 RockShox, all bands. 2 FOX |
+| `fork_units.json` | 156 | 153 RockShox on reserved damper ids, 3 FOX. Plus the Rhythm estimate |
+| `shock_units.json` | 4 | FOX only. RockShox rear needs the companion rear suspension spec |
+
+**02C corrections to batch 1 records** (source: RockShox GEN.00000000007168 Rev D):
+
+- `rockshox_debonair_plus_pike_140`: spacer_factory 1 → 0, spacer_max 6 → 5 (p19)
+- `rockshox_debonair_plus_lyrik_150`: spacer_factory 1 → 0 (p18)
+- `rockshox_debonair_plus_zeb_160`: spacer_max 4 → 5 (p25)
+- `rockshox_sid_2023`: max_rotor_mm 200 → 220 (p23)
+- `rockshox_pike_2023` and `rockshox_lyrik_2023`: offsets [37, 44, 51] → [37, 44] (p19, p18)
+- `rockshox_yari_2023`: offsets → [37, 42, 44, 46, 51], travel → 100-180 in 10s (p23-24)
+- `rockshox_reba_2022`: travel [80, 100, 110, 120] → [100, 110, 120] (80 is Reba 26, out of scope) (p19)
+- `rockshox_35_2020`: year_range → [2020, 2023]
+- The three existing RockShox pressure charts were re-expressed as bands. They agree with their old boundary points.
+
+**Pending damper rule** (02C section 10) is in ingest: the 153 RockShox fork units are kept, and `coverage.pending_dampers` lists them. The engine's `pending` state, band display and coil colour display are **not built yet**: they come after the coverage review. Until then these forks are held off the Bench list. Search and model-code match find them and say why. So RockShox forks are **not yet selectable**; that happens in the next step. Rear shocks remain FOX only.
+
+## Dataset inventory, stage 2 batch 1 (historical)
 
 As of the stage 2 batch 1 output. These numbers are the ones a fresh session most needs and cannot infer.
 
@@ -132,11 +158,12 @@ The eight goals were chosen without asking a single rider. If that entry point i
 | Session | Do this |
 |---|---|
 | Claude in Chrome | Run `02B_HARVEST_ROCKSHOX.md` |
-| Claude Code | Finish step 7 once Tumi has reviewed the screens. When 02b lands, drop its files into `src/mtb/data/raw` and rerun `npm run mtb:ingest`; overlay entries retire themselves. |
+| Claude Code | After Tumi reviews `docs/mtb/review/coverage-02c-diff.md`: build the engine side of 02C section 10 (`pending` capability state, pressure band display, coil colour display, one-to-many model-code match in Garage), turn the three `it.todo` golden tests into real ones, and let pending units onto the Bench. |
 | Claude in chat | Review 02b output when it lands, then author the full `rules.json` from `05_RULES_ENGINE.md`, replacing the 0.1-seed. Decide `applies_to` and hardtail tyre weighting. |
 
 ## Changelog
 
+- 2026-09-28 02C transcribed: 11 corrections, 3 chassis, 81 air springs, 68 band charts, 153 RockShox fork units on reserved damper ids. Schema 0.3.2 in Zod. Pending damper rule in ingest. Golden value tests. 02B brief revised to produce the reserved ids.
 - 2026-09-28 Build steps 5 and 6: screens, lazy route at /mtb-dashboard, sidebar link, signed-out Bench. Verified in Playwright.
 - 2026-09-25 Build steps 1 to 4: schemas v0.3, ingest and coverage, gap-filling overlay, engine, search, rules seed. Stopped for review.
 - 2026-09-25 Build spec written, state file created, TrailHead dropped, 02b authored

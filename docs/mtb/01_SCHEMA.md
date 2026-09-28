@@ -2,9 +2,21 @@
 
 MTB Setup Triage Dashboard: data contract
 
-Version 0.3
-Status: revised against stage 2 batch 1 output
+Version 0.3.2
+Status: revised against stage 2 batch 1 output; 0.3.2 additions from 02C_ROCKSHOX_FRONT_SPEC_2023.md section 10
 Owner: Tumi
+
+### Changes in 0.3.2
+
+Recorded in the repository from `02C_ROCKSHOX_FRONT_SPEC_2023.md` section 10; the full 0.3.2 text was not supplied separately.
+
+1. **`pressure_chart.bands`**: array of `{ kg_min, kg_max, psi_min, psi_max }`, nulls for open ends. Required when `point_type` is `bracket`. `points` stays for curves and becomes optional. Bands must ascend and touch; only the first may be open below and only the last open above.
+2. **`pressure_chart.ebike_offset_psi`**: integer, nullable. Captured, not applied in v1.
+3. **`air_spring.coil_chart`**: for `type: "coil"`, an array of `{ kg_min, kg_max, label, colour }`, because RockShox publishes coil springs by colour rather than lb/in.
+4. **`fork_unit.remote`**: optional boolean, the remote lockout variant of the same model code.
+5. **Pending damper rule**: a `damper_id` listed in the record's own `fields_pending` is not an orphan. Ingest keeps the unit; the engine resolves all four adjusters to a new capability state, `pending`, which is neither offered nor ruled out.
+
+Fields the build accepts but this schema does not yet define (flagged in coverage as `field_not_in_schema`): `fork_unit.model_code` and `shock_unit.model_code` (02B identifiers), `chassis.serial_format` (02B), `chassis.notes` (02C tyre limits and per-wheel axle and steerer), `chassis.axle_to_crown` (02C section 4, per wheel and travel). Worth adding in 0.4.
 
 ### Changes in 0.3
 

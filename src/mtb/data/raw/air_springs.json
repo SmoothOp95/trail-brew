@@ -9,8 +9,8 @@
     "travel_mm": 140,
     "spacer_pn": null,
     "spacer_volume_cc": null,
-    "spacer_factory": 1,
-    "spacer_max": 6,
+    "spacer_factory": 0,
+    "spacer_max": 5,
     "pressure_max_psi": 163,
     "pressure_min_psi": null,
     "sag_target_pct": [
@@ -20,12 +20,27 @@
     "equalise_note": null,
     "confidence": "estimated",
     "confidence_note": "Pressure/spacer figures are published (SRAM spec PDF). sag_target_pct [15,20] is NOT stated anywhere in that document - it was written in round 1 by generic suspension-setup convention, which is exactly the kind of unflagged assumption the harvest ground rules warn against. Flagged here rather than left silently unmarked; needs an actual RockShox setup-guide citation (e.g. the Suspension Welcome Guide, not yet fetched) to move to published.",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ]
   },
   {
     "id": "rockshox_debonair_plus_lyrik_150",
@@ -37,7 +52,7 @@
     "travel_mm": 150,
     "spacer_pn": null,
     "spacer_volume_cc": null,
-    "spacer_factory": 1,
+    "spacer_factory": 0,
     "spacer_max": 5,
     "pressure_max_psi": 163,
     "pressure_min_psi": null,
@@ -48,12 +63,27 @@
     "equalise_note": null,
     "confidence": "estimated",
     "confidence_note": "Same correction as rockshox_debonair_plus_pike_140 - sag_target_pct not RockShox-sourced this pass, flagged rather than silently assumed.",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ]
   },
   {
     "id": "rockshox_debonair_plus_zeb_160",
@@ -66,7 +96,7 @@
     "spacer_pn": null,
     "spacer_volume_cc": null,
     "spacer_factory": 1,
-    "spacer_max": 4,
+    "spacer_max": 5,
     "pressure_max_psi": 148,
     "pressure_min_psi": null,
     "sag_target_pct": [
@@ -76,12 +106,27 @@
     "equalise_note": null,
     "confidence": "estimated",
     "confidence_note": "Same correction as rockshox_debonair_plus_pike_140 - sag_target_pct not RockShox-sourced this pass, flagged rather than silently assumed.",
-    "source": {
-      "url": "https://www.sram.com/en/service",
-      "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
-      "retrieved": "2026-09-02",
-      "method": "manual_entry"
-    }
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ]
   },
   {
     "id": "fox_float_evol_36_2024",
@@ -150,6 +195,4641 @@
         "document": "FORK- 2025 36mm/38mm | Bike Tech Help Center | FOX",
         "retrieved": "2026-09-02",
         "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_pike_120",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_pike_2023",
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 6,
+    "pressure_max_psi": 194,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_pike_130",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_pike_2023",
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 6,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_lyrik_140",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_lyrik_2023",
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 140,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 5,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_lyrik_160",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_lyrik_2023",
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 160,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 5,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_zeb_150",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_zeb_2023",
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 2,
+    "spacer_max": 5,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_zeb_170",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_zeb_2023",
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 170,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 4,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_zeb_180",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_zeb_2023",
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 180,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 4,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_zeb_190",
+    "brand": "RockShox",
+    "name": "DebonAir+",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_zeb_2023",
+    "tier_applies_to": [
+      "ultimate_flight_attendant",
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 190,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 4,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_120",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_revelation_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 4,
+    "spacer_max": 6,
+    "pressure_max_psi": 194,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_130",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_revelation_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 3,
+    "spacer_max": 6,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_140",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_revelation_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 140,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 2,
+    "spacer_max": 5,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_150",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_revelation_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 4,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_160",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_revelation_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 160,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 4,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_150",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 2,
+    "spacer_max": 5,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_160",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 160,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 2,
+    "spacer_max": 5,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_170",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 170,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 4,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_180",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 180,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 4,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_100",
+    "brand": "RockShox",
+    "name": "DebonAir (29+)",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 5,
+    "spacer_max": 7,
+    "pressure_max_psi": 194,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_110",
+    "brand": "RockShox",
+    "name": "DebonAir (29+)",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 110,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 5,
+    "spacer_max": 7,
+    "pressure_max_psi": 194,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_120",
+    "brand": "RockShox",
+    "name": "DebonAir (29+)",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 4,
+    "spacer_max": 7,
+    "pressure_max_psi": 194,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_130",
+    "brand": "RockShox",
+    "name": "DebonAir (29+)",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 3,
+    "spacer_max": 6,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_140",
+    "brand": "RockShox",
+    "name": "DebonAir (29+)",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 140,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 3,
+    "spacer_max": 6,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_150",
+    "brand": "RockShox",
+    "name": "DebonAir (29+)",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 2,
+    "spacer_max": 5,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_160",
+    "brand": "RockShox",
+    "name": "DebonAir (29+)",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_yari_2023",
+    "tier_applies_to": [
+      "rc"
+    ],
+    "travel_mm": 160,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 2,
+    "spacer_max": 5,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_domain_150",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_domain_2023",
+    "tier_applies_to": [
+      "rc",
+      "r"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 2,
+    "spacer_max": 3,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_domain_160",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_domain_2023",
+    "tier_applies_to": [
+      "rc",
+      "r"
+    ],
+    "travel_mm": 160,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 2,
+    "spacer_max": 3,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_domain_170",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_domain_2023",
+    "tier_applies_to": [
+      "rc",
+      "r"
+    ],
+    "travel_mm": 170,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 3,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_domain_180",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_domain_2023",
+    "tier_applies_to": [
+      "rc",
+      "r"
+    ],
+    "travel_mm": 180,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 3,
+    "pressure_max_psi": 148,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_boxxer_180",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_boxxer_2023",
+    "tier_applies_to": [
+      "ultimate",
+      "select"
+    ],
+    "travel_mm": 180,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 2,
+    "spacer_max": 6,
+    "pressure_max_psi": 200,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_boxxer_190",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_boxxer_2023",
+    "tier_applies_to": [
+      "ultimate",
+      "select"
+    ],
+    "travel_mm": 190,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 6,
+    "pressure_max_psi": 200,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_boxxer_200",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_boxxer_2023",
+    "tier_applies_to": [
+      "ultimate",
+      "select"
+    ],
+    "travel_mm": 200,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 6,
+    "pressure_max_psi": 200,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_sid_110",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_sid_2023",
+    "tier_applies_to": [
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 110,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 3,
+    "pressure_max_psi": 146,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_sid_120",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_sid_2023",
+    "tier_applies_to": [
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 3,
+    "pressure_max_psi": 146,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_sid_sl_100",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_sid_sl_2023",
+    "tier_applies_to": [
+      "ultimate",
+      "select_plus",
+      "select",
+      "base"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 3,
+    "pressure_max_psi": 195,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_100",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 2,
+    "pressure_max_psi": 194,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_120",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 2,
+    "pressure_max_psi": 194,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_130",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_140",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 140,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_150",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_160",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 160,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 163,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_100",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 2,
+    "pressure_max_psi": 265,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "estimated",
+    "confidence_note": "02C section 8 conflict: page 14 shows 27.5 Boost tokens at 1 installed (100-120) and 0 (130-160), max 2; page 15 shows none on 29 Boost. Page 14 reading written; confidence lowered.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_35_silver_100",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk",
+      "r"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Dual Position Coil option also listed: Red (Medium) at 63-72 kg, Black (X-Firm) at 90-99 kg. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_120",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 2,
+    "pressure_max_psi": 265,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "estimated",
+    "confidence_note": "02C section 8 conflict: page 14 shows 27.5 Boost tokens at 1 installed (100-120) and 0 (130-160), max 2; page 15 shows none on 29 Boost. Page 14 reading written; confidence lowered.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_35_silver_120",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk",
+      "r"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Dual Position Coil option also listed: Red (Medium) at 63-72 kg, Black (X-Firm) at 90-99 kg. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_130",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 195,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "estimated",
+    "confidence_note": "02C section 8 conflict: page 14 shows 27.5 Boost tokens at 1 installed (100-120) and 0 (130-160), max 2; page 15 shows none on 29 Boost. Page 14 reading written; confidence lowered.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_35_silver_130",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk",
+      "r"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Dual Position Coil option also listed: Red (Medium) at 63-72 kg, Black (X-Firm) at 90-99 kg. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_140",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 140,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 195,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "estimated",
+    "confidence_note": "02C section 8 conflict: page 14 shows 27.5 Boost tokens at 1 installed (100-120) and 0 (130-160), max 2; page 15 shows none on 29 Boost. Page 14 reading written; confidence lowered.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_35_silver_140",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk",
+      "r"
+    ],
+    "travel_mm": 140,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Dual Position Coil option also listed: Red (Medium) at 63-72 kg, Black (X-Firm) at 90-99 kg. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_150",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 195,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "estimated",
+    "confidence_note": "02C section 8 conflict: page 14 shows 27.5 Boost tokens at 1 installed (100-120) and 0 (130-160), max 2; page 15 shows none on 29 Boost. Page 14 reading written; confidence lowered.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_35_silver_150",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk",
+      "r"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Dual Position Coil option also listed: Red (Medium) at 63-72 kg, Black (X-Firm) at 90-99 kg. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_160",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 160,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 195,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "estimated",
+    "confidence_note": "02C section 8 conflict: page 14 shows 27.5 Boost tokens at 1 installed (100-120) and 0 (130-160), max 2; page 15 shows none on 29 Boost. Page 14 reading written; confidence lowered.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_35_silver_160",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_35_2020",
+    "tier_applies_to": [
+      "tk",
+      "r"
+    ],
+    "travel_mm": 160,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Dual Position Coil option also listed: Red (Medium) at 63-72 kg, Black (X-Firm) at 90-99 kg. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_reba_100",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_reba_2022",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 3,
+    "pressure_max_psi": 195,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_reba_110",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_reba_2022",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 110,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 1,
+    "spacer_max": 4,
+    "pressure_max_psi": 195,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_reba_120",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_reba_2022",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 4,
+    "pressure_max_psi": 195,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_80",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 80,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 265,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_100",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_120",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_130",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 225,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_140",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 140,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 225,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_150",
+    "brand": "RockShox",
+    "name": "DebonAir",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 2,
+    "pressure_max_psi": 225,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_pn",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      },
+      {
+        "field": "spacer_volume_cc",
+        "expected_source": "RockShox spare parts catalog (Bottomless Token)",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_100",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_120",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_130",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_140",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 140,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_150",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 150,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_recon_silver_80",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 80,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_recon_silver_100",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_recon_silver_120",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_26_100",
+    "brand": "RockShox",
+    "name": "Solo Air (26in)",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_recon_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_gold_80",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 80,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 265,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_gold_100",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_gold_120",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "rl"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_silver_80",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 80,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 265,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_silver_100",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_silver_120",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_silver_130",
+    "brand": "RockShox",
+    "name": "Solo Air",
+    "type": "air",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": 0,
+    "spacer_max": 0,
+    "pressure_max_psi": 205,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      },
+      {
+        "field": "pressure_min_psi",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      },
+      {
+        "field": "negative",
+        "expected_source": "RockShox user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_judy_80",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 80,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Judy Silver TK and Judy TK coil. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_judy_100",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 100,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Judy Silver TK and Judy TK coil. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_judy_120",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 120,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Judy Silver TK and Judy TK coil. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_coil_judy_130",
+    "brand": "RockShox",
+    "name": "Coil",
+    "type": "coil",
+    "negative": null,
+    "chassis_id": "rockshox_judy_2023",
+    "tier_applies_to": [
+      "tk"
+    ],
+    "travel_mm": 130,
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "pressure_max_psi": null,
+    "pressure_min_psi": null,
+    "sag_target_pct": null,
+    "equalise_note": null,
+    "coil_chart": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "label": "X-Soft",
+        "colour": "Silver"
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "label": "Soft",
+        "colour": "Yellow"
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "label": "Medium",
+        "colour": "Red"
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "label": "Firm",
+        "colour": "Blue"
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "label": "X-Firm",
+        "colour": "Black"
+      }
+    ],
+    "confidence": "published",
+    "confidence_note": "Judy Silver TK and Judy TK coil. No spring listed over 99 kg.",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "fields_pending": [
+      {
+        "field": "sag_target_pct",
+        "expected_source": "RockShox Suspension Welcome Guide or user manual",
+        "tier": "A"
       }
     ]
   }
