@@ -2,7 +2,7 @@
 
 MTB Setup Triage Dashboard: project state
 
-Last updated: 2026-09-25 (Claude Code, end of build steps 1 to 4)
+Last updated: 2026-09-28 (Claude Code, end of build steps 5 and 6)
 Update protocol: **every session reads this file first and updates it last.** If you finish a session without updating this file, the next session starts from stale numbers and repeats work.
 
 ## What this project is
@@ -25,7 +25,7 @@ Primary entry point is goals, not symptoms. The rider says what they want from t
 | 4 | Kinematics and tyres | Not written. Target list should come from stage 3's report. |
 | 5 | `05_RULES_ENGINE.md` | Written. `src/mtb/rules/rules.json` seeded at 0.1-seed by Claude Code (05 content only). Chat session still authors the full file. |
 | 6 | Validation | Not written. Basis revised, see below. |
-| 7 | `07_BUILD_SPEC.md` | v0.2. Steps 1 to 4 done on branch `claude/magical-rubin-hjaalu`: docs and raw data, Zod schemas v0.3 and ingest, gap-filling overlay, engine and search, `rules.json` 0.1-seed. **Stopped for review after step 4.** Screens (step 5) not started. |
+| 7 | `07_BUILD_SPEC.md` | v0.2. Steps 1 to 6 done and verified on branch `claude/magical-rubin-hjaalu` (PR SmoothOp95/trail-brew#31). The dashboard is live at `/mtb-dashboard` with a sidebar link 'MTB Setup Dashboard'. |
 
 ## Dataset inventory
 
@@ -61,6 +61,20 @@ As of the stage 2 batch 1 output. These numbers are the ones a fresh session mos
   - **Reference bike represented as an estimate**: `fox_36_rhythm_150_2024` with an estimated damper (sweep LSC, clicks LSR, no HSC or HSR) and air spring (3 of 7 spacers, 234-44-079, 120 psi max) from the figures in this file. No pressure chart, so fork pressure starts unknown. 02B objective C replaces it.
 - The session network policy blocked tech.ridefox.com and transitionbikes.com, so "research" entries rest on search summaries, not the manuals.
 - Showable today: 4 forks (3 FOX harvested, 1 Rhythm estimate), 4 FOX shocks.
+
+**App state, 2026-09-28:**
+
+- `/mtb-dashboard` has five tabs: Bench, Garage, Session log, Method and What is on file. It is lazy-loaded, so the dashboard and its dataset are a 241 kB chunk (51 kB gzip) outside the main bundle.
+- Sign-in: Bench, Method and Coverage run signed out in memory. Saving a bike and keeping the log need sign-in (localStorage and IndexedDB under `mtbTriage:<uid>:*`). Requests persist signed out under `mtbTriage:anon:requests`.
+- Verified in Playwright, 26 of 26 checks, signed out and with a mocked user:
+  - GRIP + less_harsh rules out HSC naming GRIP.
+  - DPS + pedal_efficiency gives a coarse lever step.
+  - The conflict and near-zero flag show.
+  - Bike search gives the stage 3 empty state; a nonsense part number says why.
+  - A request survives a reload.
+  - Saving to Garage works signed in; no horizontal scroll at 390px.
+  - Screenshots are in `docs/mtb/reference/app-*.png`.
+- Vitest: 84 tests (42 MTB, 42 existing). Strict `tsc` clean on `src/mtb`.
 
 ## Known conflicts and open problems
 
@@ -118,11 +132,12 @@ The eight goals were chosen without asking a single rider. If that entry point i
 | Session | Do this |
 |---|---|
 | Claude in Chrome | Run `02B_HARVEST_ROCKSHOX.md` |
-| Claude Code | Continue `07_BUILD_SPEC.md` at step 5 (screens) once Tumi has reviewed steps 1 to 4 |
+| Claude Code | Finish step 7 once Tumi has reviewed the screens. When 02b lands, drop its files into `src/mtb/data/raw` and rerun `npm run mtb:ingest`; overlay entries retire themselves. |
 | Claude in chat | Review 02b output when it lands, then author the full `rules.json` from `05_RULES_ENGINE.md`, replacing the 0.1-seed. Decide `applies_to` and hardtail tyre weighting. |
 
 ## Changelog
 
+- 2026-09-28 Build steps 5 and 6: screens, lazy route at /mtb-dashboard, sidebar link, signed-out Bench. Verified in Playwright.
 - 2026-09-25 Build steps 1 to 4: schemas v0.3, ingest and coverage, gap-filling overlay, engine, search, rules seed. Stopped for review.
 - 2026-09-25 Build spec written, state file created, TrailHead dropped, 02b authored
 - 2026-09-11 Schema 0.3 after stage 2 batch 1 audit
