@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
 import HomePage from './components/home/HomePage';
@@ -16,6 +16,9 @@ import { appPreviews } from './data/appPreviews';
 import { WEB_LIVE_FEATURES } from './config/featureFlags';
 import { useAuth } from './hooks/useAuth';
 import { migrateLocalStorageToFirestore } from './utils/migrate';
+
+// Loaded on demand so the setup dashboard and its dataset stay out of the main bundle.
+const MtbDashboardPage = lazy(() => import('./pages/MtbDashboardPage'));
 
 export default function App() {
   const { user } = useAuth();
@@ -59,6 +62,15 @@ export default function App() {
           element={WEB_LIVE_FEATURES.serviceDashboard ? <ServiceHistoryPage /> : <AppOnlyFeature {...appPreviews.serviceDashboard} />}
         />
         <Route path="/find-my-bike" element={<AppOnlyFeature {...appPreviews.findMyBike} />} />
+        {/* MTB Setup Dashboard: Bench works signed out; saving asks for sign-in inside the module. */}
+        <Route
+          path="/mtb-dashboard/*"
+          element={
+            <Suspense fallback={<div className="min-h-screen bg-brew-bg" />}>
+              <MtbDashboardPage />
+            </Suspense>
+          }
+        />
       </Route>
     </Routes>
   );

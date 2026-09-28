@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Compass, Map, CalendarDays, CheckSquare, LayoutDashboard, Users, ExternalLink, X } from 'lucide-react';
+import { Home, Compass, Map, CalendarDays, CheckSquare, LayoutDashboard, Gauge, Users, ExternalLink, X } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { useJoinStatus } from '../../hooks/useJoinStatus';
 import SignInButton from '../auth/SignInButton';
@@ -13,6 +13,7 @@ const TOOL_LINKS = [
   { to: '/calendar', icon: CalendarDays, label: 'Ride Calendar' },
   { to: '/my-trails', icon: CheckSquare, label: 'My Trails' },
   { to: '/my-bike', icon: LayoutDashboard, label: 'Service Dashboard' },
+  { to: '/mtb-dashboard', icon: Gauge, label: 'MTB Setup Dashboard' },
 ];
 
 function NavLink({ link, active }) {
