@@ -26,6 +26,18 @@ const searchSource = (url: string, document: string) => ({
 const COUNT_TOTALS_SOURCE = 'Service manual or statement of functional limit (02B objective B totals hunt)';
 const FOX_SPEC_SHEET = 'FOX tech portal spec sheet';
 
+/**
+ * FOX rows are 10 lb bands, 120-130 lb up to 240-250 lb, stored as kg lower bounds in the raw points.
+ * The published psi for each row is a single figure, so psi_min = psi_max.
+ */
+const FOX_BANDS_KG = [54, 59, 64, 68, 73, 77, 82, 86, 91, 95, 100, 104, 109, 113];
+const FOX_EVOL_36_PSI = [66, 70, 74, 78, 82, 86, 89, 94, 99, 105, 109, 113, 117];
+const FOX_EVOL_38_PSI = [72, 76, 80, 84, 89, 93, 97, 102, 106, 110, 114, 119, 123];
+function foxBands(psi: readonly number[]) {
+  return psi.map((v, i) => ({ kg_min: FOX_BANDS_KG[i], kg_max: FOX_BANDS_KG[i + 1], psi_min: v, psi_max: v }));
+}
+
+
 /** Pending entries for every click adjuster whose total is unknown. */
 function countPending(adjusters: string[]) {
   return adjusters.map((a) => ({ field: `adjusters.${a}.count`, expected_source: COUNT_TOTALS_SOURCE, tier: 'A' }));
@@ -99,17 +111,14 @@ const patches: OverlayPatch[] = [
   },
 
   // ---- pressure charts ----
-  ...['fox_float_evol_36_pressure', 'fox_float_evol_38_pressure'].map((id): OverlayPatch => ({
+  ...([
+    ['fox_float_evol_36_pressure', FOX_EVOL_36_PSI],
+    ['fox_float_evol_38_pressure', FOX_EVOL_38_PSI],
+  ] as const).map(([id, psi]): OverlayPatch => ({
     table: 'pressure_charts', id, basis: 'research',
     reason:
-      'Search summaries of the FOX 36/38 manual: riders weigh themselves in riding gear, and the table is in 10 lb weight bands (120-130 lb, 130-140 lb and so on). So basis is rider_plus_kit and the points are band lower bounds, read as brackets.',
-    fill: { basis: 'rider_plus_kit', point_type: 'bracket' },
-  })),
-  ...['rockshox_pike_140_pressure', 'rockshox_lyrik_150_pressure', 'rockshox_zeb_160_pressure'].map((id): OverlayPatch => ({
-    table: 'pressure_charts', id, basis: 'correction',
-    reason: '02_REPORT schema friction 3 and 02B: RockShox air pressure tables are weight-bracket tables written by the boundary point method.',
-    fill: { point_type: 'bracket' },
-    pending: [{ field: 'basis', expected_source: 'RockShox Suspension Welcome Guide or user manual', tier: 'A' }],
+      'Search summaries of the FOX 36/38 manual: riders weigh themselves in riding gear, and the table is in 10 lb weight bands from 120-130 lb to 240-250 lb. So basis is rider_plus_kit, and the chart is a bracket table: each row becomes a closed band with one psi value (schema v0.3.2 bands).',
+    fill: { basis: 'rider_plus_kit', point_type: 'bracket', bands: foxBands(psi) },
   })),
 
   // The harvested EVOL 36 spring (2 spacers, 234-04-736) differs from the Rhythm fork's (3, 234-44-079).

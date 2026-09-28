@@ -12,6 +12,7 @@ import {
 } from '../schema/tables';
 import type { FieldPending } from '../schema/common';
 import { detectFlags } from './flags';
+import { DEFERRED, RESERVED_DAMPERS } from '../pending';
 import { applyOverlay } from './applyOverlay';
 import type {
   AdjusterCountStats,
@@ -26,6 +27,7 @@ import type {
   Overlay,
   RawTables,
   ReadinessGate,
+  PendingDamperUnit,
   ShowableUnit,
   TableCoverage,
 } from './types';
@@ -129,6 +131,7 @@ export function ingest(rawInput: RawTables, overlay?: Overlay): IngestResult {
 
   // ---- 3. foreign keys and cross-record consistency, in dependency order ----
   const byId = <T extends { id: string }>(rows: T[]) => new Map(rows.map((r) => [r.id, r]));
+  const pendingDampers: PendingDamperUnit[] = [];
   const keep = <T extends { id: string }>(table: TableName, rows: T[], check: (r: T) => string[]) => {
     const kept: T[] = [];
     for (const r of rows) {
@@ -137,6 +140,20 @@ export function ingest(rawInput: RawTables, overlay?: Overlay): IngestResult {
       else kept.push(r);
     }
     return kept;
+  };
+  /**
+   * 02C pending damper rule: a damper_id the record lists in fields_pending is not an orphan. The unit is
+   * kept; the engine resolves its adjusters as pending until the damper record exists.
+   */
+  const damperPending = (u: { id: string; display_name: string; damper_id: string; fields_pending?: FieldPending[] }, table: 'fork_units' | 'shock_units', brand: string) => {
+    if (damperMap.has(u.damper_id)) return false;
+    const entry = u.fields_pending?.find((p) => p.field === 'damper_id');
+    if (!entry) return false;
+    pendingDampers.push({
+      table, id: u.id, display_name: u.display_name, brand, damper_id: u.damper_id,
+      damper_name: RESERVED_DAMPERS[u.damper_id]?.name ?? u.damper_id, expected_source: entry.expected_source,
+    });
+    return true;
   };
   const fk = (table: TableName, id: string, field: string, target: string, map: Map<string, unknown>, targetTable: TableName) => {
     if (map.has(target)) return [];
@@ -162,16 +179,20 @@ export function ingest(rawInput: RawTables, overlay?: Overlay): IngestResult {
   });
 
   valid.fork_units = keep('fork_units', valid.fork_units, (u) => {
+    const pending = damperPending(u, 'fork_units', chassisMap.get(u.chassis_id)?.brand ?? '');
     const p = [
       ...fk('fork_units', u.id, 'chassis_id', u.chassis_id, chassisMap, 'chassis'),
-      ...fk('fork_units', u.id, 'damper_id', u.damper_id, damperMap, 'dampers'),
+      ...(pending ? [] : fk('fork_units', u.id, 'damper_id', u.damper_id, damperMap, 'dampers')),
       ...fk('fork_units', u.id, 'air_spring_id', u.air_spring_id, springMap, 'air_springs'),
     ];
-    if (p.length) return p;
-    const d = damperMap.get(u.damper_id)!;
+    if (p.length) {
+      if (pending) pendingDampers.pop();
+      return p;
+    }
+    const d = damperMap.get(u.damper_id);
     const s = springMap.get(u.air_spring_id)!;
     const c = chassisMap.get(u.chassis_id)!;
-    if (d.type !== 'fork') p.push(`damper ${d.id} is a ${d.type} damper`);
+    if (d && d.type !== 'fork') p.push(`damper ${d.id} is a ${d.type} damper`);
     if (s.chassis_id !== u.chassis_id) p.push(`air spring ${s.id} belongs to chassis ${s.chassis_id}, not ${u.chassis_id}`);
     if (s.travel_mm !== u.travel_mm) p.push(`air spring ${s.id} is for ${s.travel_mm}mm, unit is ${u.travel_mm}mm`);
     if (s.tier_applies_to && !s.tier_applies_to.includes(u.tier)) {
@@ -190,11 +211,15 @@ export function ingest(rawInput: RawTables, overlay?: Overlay): IngestResult {
   });
 
   valid.shock_units = keep('shock_units', valid.shock_units, (u) => {
+    if (damperPending(u, 'shock_units', u.brand)) return [];
     const p = fk('shock_units', u.id, 'damper_id', u.damper_id, damperMap, 'dampers');
     if (p.length) return p;
     const d = damperMap.get(u.damper_id)!;
     return d.type === 'shock' ? [] : [`damper ${d.id} is a ${d.type} damper`];
   });
+
+  const damperIds = new Set(valid.dampers.map((d) => d.id));
+  const hasDamper = (id: unknown) => typeof id === 'string' && damperIds.has(id);
 
   // ---- 4. coverage ----
   for (const table of TABLE_NAMES) {
@@ -205,6 +230,8 @@ export function ingest(rawInput: RawTables, overlay?: Overlay): IngestResult {
     cov.fields = fieldStats(table, rows, table === 'dampers' ? ['adjusters'] : []);
     for (const r of rows) {
       for (const p of r.fields_pending ?? []) {
+        // A pending foreign key (02C pending damper rule) holds a reserved id: it is only stale once the target exists.
+        if (p.field === 'damper_id' && !hasDamper(r.damper_id)) continue;
         if (valueAt(r, p.field) != null) {
           extraFlags.push({
             code: 'pending_field_populated',
@@ -229,6 +256,8 @@ export function ingest(rawInput: RawTables, overlay?: Overlay): IngestResult {
     exclusions,
     flags,
     showable: showable(valid),
+    pending_dampers: pendingDampers,
+    deferred: DEFERRED,
     brands: brandSummary(valid),
     readiness: readiness(valid),
   };
@@ -371,12 +400,17 @@ function buildIndex(v: TableRecords, annotations: Annotation[]): DataIndex {
   };
 }
 
+/**
+ * Units a rider can put on the Bench today. Units on a pending damper are kept in the index but held out
+ * of this list until the engine resolves pending adjusters.
+ */
 function showable(v: TableRecords): Coverage['showable'] {
   const chassis = new Map(v.chassis.map((c) => [c.id, c]));
-  const fork_units: ShowableUnit[] = v.fork_units.map((u) => ({
+  const dampers = new Set(v.dampers.map((d) => d.id));
+  const fork_units: ShowableUnit[] = v.fork_units.filter((u) => dampers.has(u.damper_id)).map((u) => ({
     id: u.id, display_name: u.display_name, brand: chassis.get(u.chassis_id)?.brand ?? '', tier: u.tier, damper_id: u.damper_id,
   }));
-  const shock_units: ShowableUnit[] = v.shock_units.map((u) => ({
+  const shock_units: ShowableUnit[] = v.shock_units.filter((u) => dampers.has(u.damper_id)).map((u) => ({
     id: u.id, display_name: u.display_name, brand: u.brand, tier: u.tier, damper_id: u.damper_id,
   }));
   return { fork_units, shock_units };
@@ -402,8 +436,10 @@ function brandSummary(v: TableRecords): Record<string, BrandSummary> {
 /** 07_BUILD_SPEC v0.2, Data readiness gates, evaluated against what is actually in the index. */
 function readiness(v: TableRecords): ReadinessGate[] {
   const chassisBrand = new Map(v.chassis.map((c) => [c.id, c.brand]));
-  const forkBrands = v.fork_units.map((u) => ({ brand: chassisBrand.get(u.chassis_id) ?? '', tier: u.tier.toLowerCase() }));
-  const shockBrands = v.shock_units.map((u) => ({ brand: u.brand, tier: u.tier.toLowerCase() }));
+  const dampers = new Set(v.dampers.map((d) => d.id));
+  const pendingRs = v.fork_units.filter((u) => !dampers.has(u.damper_id) && chassisBrand.get(u.chassis_id) === 'RockShox').length;
+  const forkBrands = v.fork_units.filter((u) => dampers.has(u.damper_id)).map((u) => ({ brand: chassisBrand.get(u.chassis_id) ?? '', tier: u.tier.toLowerCase() }));
+  const shockBrands = v.shock_units.filter((u) => dampers.has(u.damper_id)).map((u) => ({ brand: u.brand, tier: u.tier.toLowerCase() }));
   const all = [...forkBrands, ...shockBrands];
   const count = (pred: (x: { brand: string; tier: string }) => boolean) => all.filter(pred).length;
   const foxFP = count((x) => x.brand === 'FOX' && ['factory', 'performance', 'performance_elite'].includes(x.tier));
@@ -411,11 +447,11 @@ function readiness(v: TableRecords): ReadinessGate[] {
   const rs = count((x) => x.brand === 'RockShox');
   const budgetBrands = ['X-Fusion', 'SR Suntour', 'Marzocchi'];
   const budget = count((x) => budgetBrands.includes(x.brand));
-  const ids = [...v.fork_units, ...v.shock_units].filter((u) => u.part_number || u.model_code).length;
+  const ids = [...v.fork_units, ...v.shock_units].filter((u) => dampers.has(u.damper_id) && (u.part_number || u.model_code)).length;
   return [
     { feature: 'Component search, FOX Factory and Performance', meaningful_after: 'now', ready: foxFP > 0, evidence: `${foxFP} units` },
     { feature: 'Component search, FOX Rhythm', meaningful_after: '02b objective C', ready: rhythm > 0, evidence: `${rhythm} units` },
-    { feature: 'Component search, RockShox', meaningful_after: '02b', ready: rs > 0, evidence: `${rs} units` },
+    { feature: 'Component search, RockShox', meaningful_after: '02b', ready: rs > 0, evidence: `${rs} units selectable, ${pendingRs} on file waiting on damper data` },
     {
       feature: 'Component search, X-Fusion, SR Suntour, Marzocchi, RockShox Recon and 35 Silver',
       meaningful_after: '02 batch 2', ready: budget > 0, evidence: `${budget} units`,

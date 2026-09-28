@@ -38,7 +38,7 @@ export function detectFlags(v: TableRecords): DataFlag[] {
   }
 
   for (const c of v.pressure_charts) {
-    const kgs = c.points.map((p) => p[0]);
+    const kgs = (c.points ?? []).map((p) => p[0]);
     const looksLb = kgs.length >= 5 && kgs.every((kg) => Math.abs(kg * LB_PER_KG - Math.round((kg * LB_PER_KG) / 10) * 10) <= 1.2);
     if (looksLb && !/\blb|pound/i.test(c.confidence_note ?? '')) {
       const lo = Math.round((kgs[0] * LB_PER_KG) / 10) * 10;
@@ -92,7 +92,7 @@ export function detectFlags(v: TableRecords): DataFlag[] {
       if (r.confidence !== 'estimated') continue;
       // "left null rather than guessed" reports a gap, not an assumption, so drop negated phrases first.
       const note = resolveNote(r.confidence_note ?? '').replace(/(rather than|not) (guessed|assumed|inventing)[^.,;]*/gi, '');
-      const assumed = /convention|assum|not rockshox-sourced|guess/i.test(note);
+      const assumed = /convention|assum|not rockshox-sourced|guess|conflict/i.test(note);
       const gapOnly = /needs_physical_count|left null|pending|\[30,30\]|single-value|not extractable/i.test(note);
       flags.push(
         assumed || !gapOnly

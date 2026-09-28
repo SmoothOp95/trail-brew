@@ -21,7 +21,12 @@ describe('07 findability', () => {
     const rhythm = searchComponents(index, 'fork', 'rhythm').results;
     expect(rhythm).toHaveLength(1);
     expect(rhythm[0].estimated).toBe(true);
-    expect(searchComponents(index, 'fork', 'Pike Ultimate').empty).toMatchObject({ stage: '02b', next: 'identifier' });
+    const pike = searchComponents(index, 'fork', 'Pike Ultimate').empty;
+    expect(pike).toMatchObject({ stage: '02b', next: 'identifier' });
+    expect(pike?.message).toMatch(/on file with pressure and token data/);
+    const code = matchIdentifier(index, 'FS-PIKE-SEL-C1');
+    expect(code.status).toBe('none');
+    expect(code.empty?.message).toMatch(/Charger RC/);
     expect(searchComponents(index, 'fork', 'Suntour XCR').empty?.message).toMatch(/under R40k/);
     expect(searchComponents(index, 'shock', 'float x').results.map((c) => c.id)).toContain('fox_float_x_2023');
   });
@@ -32,7 +37,7 @@ describe('07 findability', () => {
     expect(matchIdentifier(fx, '910-26')).toMatchObject({ status: 'prefix', results: [{ id: 'fixture_fox_36_part_numbered' }] });
     const miss = matchIdentifier(fx, 'zzz-nonsense');
     expect(miss.status).toBe('none');
-    expect(miss.empty?.message).toMatch(/No fork or shock on file has a part number starting "zzz-nonsense"/);
+    expect(miss.empty?.message).toMatch(/Nothing on file matches "zzz-nonsense"/);
     const real = matchIdentifier(index, '00.4020.123');
     expect(real.empty).toMatchObject({ stage: '02b', next: 'manual' });
     expect(real.empty?.message).toMatch(/looks like a RockShox part number/);

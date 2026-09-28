@@ -35,6 +35,12 @@ export function readChart(points: [number, number][], kg: number, pointType: Poi
   return { value: null, why: 'outside chart' };
 }
 
+type Band = { kg_min: number | null; kg_max: number | null; psi_min?: number | null; psi_max?: number | null };
+export const describePsiBand = (b: Band) =>
+  b.psi_min == null ? `under ${b.psi_max} psi` : b.psi_max == null ? `${b.psi_min} psi or more` : `${b.psi_min} to ${b.psi_max} psi`;
+export const describeKgBand = (b: Band) =>
+  b.kg_min == null ? `under ${b.kg_max} kg` : b.kg_max == null ? `${b.kg_min} kg or more` : `${b.kg_min} to ${b.kg_max} kg`;
+
 const provenanceOf = (confidence: string): Provenance =>
   confidence === 'published' || confidence === 'measured' ? 'published' : confidence === 'derived' ? 'derived' : 'estimated';
 
@@ -90,7 +96,18 @@ export function startingValue(field: SettingField, bike: BikeContext, riderKg: n
   // 2. pressure_chart
   if (field === 'fork_psi') {
     const chart = bike.fork!.pressureChart;
-    if (chart && riderKg != null) {
+    if (chart && riderKg != null && !chart.points?.length && chart.bands?.length) {
+      // Band-only chart (RockShox): the manufacturer publishes a range, not a value, so none is invented.
+      const band = chart.bands.find((b) => (b.kg_min == null || riderKg >= b.kg_min) && (b.kg_max == null || riderKg < b.kg_max));
+      const range = band ? describePsiBand(band) : null;
+      return {
+        ...base, value: null, provenance: 'unknown', source: null,
+        settleWith: range
+          ? `The manufacturer publishes ${range} for ${describeKgBand(band!)}. Set yours inside that window and enter it.`
+          : 'Your weight is outside the published chart. Set pressure by sag and enter it.',
+      };
+    }
+    if (chart && riderKg != null && chart.points?.length) {
       const read = readChart(chart.points, riderKg, chart.point_type);
       if (read.value != null) {
         const notes = [basisNote(chart.basis), ...overlayNotes(bike, 'pressure_charts', chart.id)].filter((n): n is string => !!n);

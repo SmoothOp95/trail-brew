@@ -35,6 +35,12 @@ export const Chassis = z
     year_range: IntPair.nullable(),
     /** Requested by 02B for identifier match. Not in 01_SCHEMA v0.3; accepted and flagged. */
     serial_format: z.string().nullable().optional(),
+    /** 02C section 3: values the schema has no field for (tyre limits, per-wheel axle and steerer). Flagged. */
+    notes: z.array(z.string()).optional(),
+    /** 02C section 4: axle to crown by wheel and travel. Not in 01_SCHEMA v0.3.2. Flagged. */
+    axle_to_crown: z
+      .array(z.object({ variant: z.string().optional(), wheel: z.string(), travel_mm: Int, mm: z.number(), fender_mm: z.number().optional() }))
+      .optional(),
   })
   .superRefine(requireNoteWhenEstimated);
 export type Chassis = z.infer<typeof Chassis>;
@@ -121,6 +127,25 @@ export type Damper = z.infer<typeof Damper>;
 
 // ---------- 3. air_spring ----------
 
+const NullableNum = z.number().nullable();
+
+/** One weight band. Open ends are null. Shared by pressure bands and coil charts (v0.3.2). */
+export const CoilBand = z.object({ kg_min: NullableNum, kg_max: NullableNum, label: z.string().min(1), colour: z.string().min(1) });
+export type CoilBand = z.infer<typeof CoilBand>;
+
+export const PressureBand = z.object({ kg_min: NullableNum, kg_max: NullableNum, psi_min: NullableNum, psi_max: NullableNum });
+export type PressureBand = z.infer<typeof PressureBand>;
+
+/** Bands ascend and touch: each band starts where the last ended. Only the first may open low, only the last open high. */
+function checkBands(bands: { kg_min: number | null; kg_max: number | null }[], ctx: z.RefinementCtx, path: string) {
+  bands.forEach((b, i) => {
+    if (b.kg_min == null && i !== 0) ctx.addIssue({ code: z.ZodIssueCode.custom, path: [path, i, 'kg_min'], message: 'only the first band may be open below' });
+    if (b.kg_max == null && i !== bands.length - 1) ctx.addIssue({ code: z.ZodIssueCode.custom, path: [path, i, 'kg_max'], message: 'only the last band may be open above' });
+    if (b.kg_min != null && b.kg_max != null && b.kg_min >= b.kg_max) ctx.addIssue({ code: z.ZodIssueCode.custom, path: [path, i], message: 'kg_min >= kg_max' });
+    if (i > 0 && bands[i - 1].kg_max !== b.kg_min) ctx.addIssue({ code: z.ZodIssueCode.custom, path: [path, i, 'kg_min'], message: 'bands do not touch' });
+  });
+}
+
 export const AirSpring = z
   .object({
     ...recordBase,
@@ -140,10 +165,16 @@ export const AirSpring = z
     sag_target_pct: IntPair.nullable(),
     equalise_note: z.string().nullable(),
     spring_rates_lbin: z.array(Int).nullable().optional(),
+    /** v0.3.2: coil springs published by colour and weight band rather than lb/in. */
+    coil_chart: z.array(CoilBand).nullable().optional(),
   })
   .superRefine((r, ctx) => {
     requireNoteWhenEstimated(r, ctx);
     checkSag(r.sag_target_pct, ctx);
+    if (r.coil_chart) checkBands(r.coil_chart, ctx, 'coil_chart');
+    if (r.type === 'coil' && !r.coil_chart?.length && !r.spring_rates_lbin?.length) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['coil_chart'], message: 'coil spring with neither coil_chart nor spring_rates_lbin' });
+    }
     checkSpacers(r, ctx);
     if (r.pressure_min_psi != null && r.pressure_max_psi != null && r.pressure_min_psi > r.pressure_max_psi) {
       ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['pressure_min_psi'], message: 'pressure_min_psi > pressure_max_psi' });
@@ -174,14 +205,31 @@ export const PressureChart = z
   .object({
     ...recordBase,
     air_spring_id: z.string().min(1),
-    points: z.array(z.tuple([z.number(), z.number()])),
+    /** Curves: [[kg, psi], ...]. Optional since v0.3.2, when bands carry the data. */
+    points: z.array(z.tuple([z.number(), z.number()])).nullable().optional(),
+    /** v0.3.2: required for bracket charts. Both ends of each band, as published. */
+    bands: z.array(PressureBand).nullable().optional(),
     basis: Basis.nullable(),
     point_type: PointType.nullable().optional(),
     applies_to_travel_mm: z.array(Int).nullable().optional(),
+    /** v0.3.2: e-bike pressure offset printed on the chart. Captured, not applied in v1. */
+    ebike_offset_psi: Int.nullable().optional(),
   })
   .superRefine((r, ctx) => {
     requireNoteWhenEstimated(r, ctx);
-    checkPoints(r.points, ctx);
+    if (r.points?.length) checkPoints(r.points, ctx);
+    if (r.bands?.length) {
+      checkBands(r.bands, ctx, 'bands');
+      r.bands.forEach((b, i) => {
+        if (b.psi_min != null && b.psi_max != null && b.psi_min > b.psi_max) {
+          ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['bands', i], message: 'psi_min > psi_max' });
+        }
+      });
+    }
+    if (r.point_type === 'bracket' && !r.bands?.length) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['bands'], message: 'bracket chart without bands (v0.3.2)' });
+    }
+    if (!r.points?.length && !r.bands?.length) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['points'], message: 'chart has neither points nor bands' });
   });
 export type PressureChart = z.infer<typeof PressureChart>;
 
@@ -221,6 +269,8 @@ export const ForkUnit = z
     part_number: z.string().nullable(),
     /** Requested by 02B for identifier match. Not in 01_SCHEMA v0.3; accepted and flagged. */
     model_code: z.string().nullable().optional(),
+    /** v0.3.2: remote lockout variant of the same model code. */
+    remote: z.boolean().optional(),
     service_interval_h: ServiceInterval.nullable(),
     oil: z.record(z.string(), z.union([z.number(), z.string()])).nullable(),
     known_issues: z.array(z.string()),
@@ -294,7 +344,7 @@ export function knownKeys(table: TableName): string[] {
 
 /** Fields that exist in the schema only because 02B asked for them. */
 export const NON_SCHEMA_FIELDS: Partial<Record<TableName, string[]>> = {
-  chassis: ['serial_format'],
+  chassis: ['serial_format', 'notes', 'axle_to_crown'],
   fork_units: ['model_code'],
   shock_units: ['model_code'],
 };

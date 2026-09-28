@@ -1,5 +1,6 @@
 import type { DataIndex } from '../data/ingest/types';
 import type { AirSpring, Chassis, Damper } from '../data/schema/tables';
+import { RESERVED_DAMPERS } from '../data/pending';
 
 /**
  * Garage findability (07 v0.2): bike search, component search, identifier match, manual pick, Request.
@@ -88,11 +89,29 @@ const NOT_YET: { match: RegExp; message: string; stage: string }[] = [
   },
 ];
 
+/** A unit whose damper record does not exist yet (02C pending damper rule). Held off the Bench for now. */
+export const isPendingUnit = (index: DataIndex, u: { damper_id: string }) => !index.dampers[u.damper_id];
+
+function pendingReason(index: DataIndex, matches: { display_name: string; damper_id: string }[], query: string): EmptyReason {
+  const names = [...new Set(matches.map((u) => RESERVED_DAMPERS[u.damper_id]?.name ?? u.damper_id))];
+  const example = matches[0].display_name;
+  return {
+    message:
+      `${matches.length === 1 ? example : `${matches.length} forks matching "${query}", for example ${example},`} ${matches.length === 1 ? 'is' : 'are'} on file with ` +
+      `pressure and token data. Damper adjuster data (${names.slice(0, 3).join(', ')}${names.length > 3 ? ' and others' : ''}) arrives with harvest 02b, ` +
+      'and they become selectable on the Bench once the pending-damper update lands.',
+    stage: '02b',
+    next: 'identifier',
+  };
+}
+
 export function searchComponents(index: DataIndex, kind: ComponentKind, query: string): SearchResult<ComponentCandidate> {
   const tokens = tokenise(query);
+  const units = kind === 'fork' ? Object.values(index.fork_units) : Object.values(index.shock_units);
+  const pending = units.filter((u) => isPendingUnit(index, u));
   const all: ComponentCandidate[] =
     kind === 'fork'
-      ? Object.values(index.fork_units).map((u) => {
+      ? Object.values(index.fork_units).filter((u) => !isPendingUnit(index, u)).map((u) => {
           const c = index.chassis[u.chassis_id];
           const d = index.dampers[u.damper_id];
           return {
@@ -100,7 +119,7 @@ export function searchComponents(index: DataIndex, kind: ComponentKind, query: s
             damper: d?.name ?? '', estimated: u.confidence === 'estimated',
           };
         })
-      : Object.values(index.shock_units).map((u) => ({
+      : Object.values(index.shock_units).filter((u) => !isPendingUnit(index, u)).map((u) => ({
           kind, id: u.id, display_name: u.display_name, brand: u.brand, tier: u.tier, travel_mm: null,
           damper: index.dampers[u.damper_id]?.name ?? '', estimated: u.confidence === 'estimated',
         }));
@@ -108,6 +127,11 @@ export function searchComponents(index: DataIndex, kind: ComponentKind, query: s
     .filter((c) => matches(`${c.brand} ${c.display_name} ${c.tier.replace(/_/g, ' ')} ${c.travel_mm ?? ''} ${c.damper}`, tokens))
     .sort((a, b) => Number(a.estimated) - Number(b.estimated) || a.display_name.localeCompare(b.display_name));
   if (results.length) return { results, empty: null };
+
+  const pendingMatches = tokens.length
+    ? pending.filter((u) => matches(`${u.display_name} ${u.tier.replace(/_/g, ' ')} ${'travel_mm' in u ? u.travel_mm : ''} ${u.model_code ?? ''}`, tokens))
+    : [];
+  if (pendingMatches.length) return { results: [], empty: pendingReason(index, pendingMatches, query) };
 
   const known = NOT_YET.find((n) => n.match.test(query));
   return {
@@ -141,7 +165,10 @@ export function matchIdentifier(index: DataIndex, code: string): IdentifierResul
     ...Object.values(index.fork_units).map((u) => ({ kind: 'fork' as const, u })),
     ...Object.values(index.shock_units).map((u) => ({ kind: 'shock' as const, u })),
   ];
-  const ids = units.flatMap(({ kind, u }) =>
+  const pendingIds = units
+    .filter(({ u }) => isPendingUnit(index, u))
+    .flatMap(({ u }) => [u.part_number, u.model_code].filter((x): x is string => !!x).map((value) => ({ u, n: norm(value) })));
+  const ids = units.filter(({ u }) => !isPendingUnit(index, u)).flatMap(({ kind, u }) =>
     [u.part_number, u.model_code].filter((x): x is string => !!x).map((value) => ({ kind, u, value, n: norm(value) })),
   );
 
@@ -150,20 +177,32 @@ export function matchIdentifier(index: DataIndex, code: string): IdentifierResul
     if (exact.length) return { status: 'exact', results: exact.map(hit), empty: null };
     const prefix = ids.filter((x) => x.n.startsWith(q));
     if (prefix.length) return { status: 'prefix', results: prefix.map(hit), empty: null };
+    const pend = pendingIds.filter((x) => x.n === q || x.n.startsWith(q)).map((x) => x.u);
+    if (pend.length) return { status: 'none', results: [], empty: pendingReason(index, pend, code.trim()) };
   }
 
   const looksRockShox = /^00\.?\d{4}\.?\d{3}/.test(code.trim());
   const looksFox = /^\d{3}-\d{2}-\d{3}/.test(code.trim());
+  const hasPartNumbers = [...ids, ...pendingIds].some((x) => 'u' in x && !!x.u.part_number);
   let message: string;
   if (q.length < 3) message = 'Type at least three characters of the part number or model code from the sticker.';
-  else if (!ids.length) {
+  else if (looksRockShox && !hasPartNumbers) {
+    message = 'That looks like a RockShox part number. RockShox part numbers are not on file yet, but model codes are: look for the code starting FS- on the fork leg sticker and type that instead.';
+  } else if (!ids.length && !pendingIds.length) {
     message = looksRockShox
       ? 'That looks like a RockShox part number. No part numbers are on file yet; RockShox numbers and model codes arrive with harvest 02b.'
       : looksFox
         ? 'That looks like a FOX part number. No part numbers are on file yet; they are captured in harvest 02b.'
         : 'No part numbers or model codes are on file yet, so there is nothing to match against. They are captured in harvest 02b.';
-  } else message = `No fork or shock on file has a part number starting "${code.trim()}". Pick the parts by hand, or ask for it.`;
-  return { status: 'none', results: [], empty: { message, stage: ids.length ? null : '02b', next: 'manual' } };
+  } else {
+    const hasModelCodes = [...ids, ...pendingIds].some((x) => !!x.u.model_code);
+    message = `Nothing on file matches "${code.trim()}".` +
+      (hasModelCodes ? ' RockShox forks match on the model code printed on the sticker, starting FS- (for example FS-PIKE-SEL-C1).' : '') +
+      (hasPartNumbers ? '' : ' FOX part numbers are not on file yet.') +
+      ' Pick the parts by hand, or ask for it.';
+  }
+  const stage = looksRockShox && !hasPartNumbers ? '02b' : ids.length || pendingIds.length ? null : '02b';
+  return { status: 'none', results: [], empty: { message, stage, next: 'manual' } };
 
   function hit(x: (typeof ids)[number]): IdentifierHit {
     return { kind: x.kind, id: x.u.id, display_name: x.u.display_name, matched: x.value };

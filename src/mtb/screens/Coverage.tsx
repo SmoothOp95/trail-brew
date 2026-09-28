@@ -4,7 +4,7 @@ import { Button, ProvenanceTag, Section, downloadText } from '../ui/primitives';
 
 const BRAND_STATUS: Record<string, string> = {
   FOX: 'Factory, Performance and Performance Elite forks and shocks. The 36 Rhythm is on file as an estimate. 32 and 34 forks come with harvest 02b.',
-  RockShox: 'Fork chassis and some air springs are on file, but no dampers yet, so the Bench cannot tell which dials your RockShox has. Harvest 02b adds them.',
+  RockShox: 'Every 2023 fork family is on file with its model code, pressure bands and token limits (from the RockShox 2023 spec sheet). Damper adjuster data arrives with harvest 02b; until the Bench supports pending dampers these forks show in search but cannot be selected. Rear shocks are not on file yet.',
 };
 
 const STEP_LABEL: Record<string, string> = {
@@ -27,6 +27,8 @@ export function Coverage() {
   const counts = c.adjuster_counts;
   const estimatedUnits = [...Object.values(m.index.fork_units), ...Object.values(m.index.shock_units)].filter((u) => u.confidence === 'estimated');
   const pressureCharts = Object.values(m.index.pressure_charts).length;
+  const pickable = (brand: string, kind: 'fork_units' | 'shock_units') => c.showable[kind].filter((u) => u.brand === brand).length;
+  const pendingFor = (brand: string) => c.pending_dampers.filter((u) => u.brand === brand).length;
   const settingCharts = Object.values(m.index.setting_charts).length;
 
   return (
@@ -41,11 +43,12 @@ export function Coverage() {
 
       <Section title="Brands">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm border-collapse min-w-[560px]">
+          <table className="w-full text-sm border-collapse min-w-[640px]">
             <thead>
               <tr className="text-left text-xs text-brew-text-muted">
                 <th className="font-medium pb-2 pr-3 border-b border-white/10">Brand</th>
                 <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Forks you can pick</th>
+                <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Forks waiting on damper data</th>
                 <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Shocks</th>
                 <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Dampers documented</th>
                 <th className="font-medium pb-2 border-b border-white/10">Status</th>
@@ -55,8 +58,9 @@ export function Coverage() {
               {Object.entries(c.brands).map(([brand, s]) => (
                 <tr key={brand} className="align-top">
                   <td className="py-2.5 pr-3 border-b border-white/10 font-semibold">{brand}</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{s.fork_units}</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{s.shock_units}</td>
+                  <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{pickable(brand, 'fork_units')}</td>
+                  <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{pendingFor(brand)}</td>
+                  <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{pickable(brand, 'shock_units')}</td>
                   <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{s.dampers}</td>
                   <td className="py-2.5 border-b border-white/10 text-brew-text-dim">{BRAND_STATUS[brand] ?? ''}</td>
                 </tr>
@@ -64,6 +68,7 @@ export function Coverage() {
               {COMING.map((x) => (
                 <tr key={x.brand} className="align-top text-brew-text-muted">
                   <td className="py-2.5 pr-3 border-b border-white/10">{x.brand}</td>
+                  <td className="py-2.5 pr-3 border-b border-white/10 text-right">0</td>
                   <td className="py-2.5 pr-3 border-b border-white/10 text-right">0</td>
                   <td className="py-2.5 pr-3 border-b border-white/10 text-right">0</td>
                   <td className="py-2.5 pr-3 border-b border-white/10 text-right">0</td>

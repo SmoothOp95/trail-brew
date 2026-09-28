@@ -110,6 +110,22 @@ export interface ShowableUnit {
   damper_id: string;
 }
 
+/** A unit kept under the 02C pending damper rule: published spring data, adjusters still to be harvested. */
+export interface PendingDamperUnit {
+  table: 'fork_units' | 'shock_units';
+  id: string;
+  display_name: string;
+  brand: string;
+  damper_id: string;
+  damper_name: string;
+  expected_source: string;
+}
+
+export interface DeferredItem {
+  item: string;
+  reason: string;
+}
+
 export interface BrandSummary {
   chassis: number;
   dampers: number;
@@ -135,6 +151,10 @@ export interface Coverage {
   exclusions: Exclusion[];
   flags: DataFlag[];
   showable: { fork_units: ShowableUnit[]; shock_units: ShowableUnit[] };
+  /** Units kept under the pending damper rule: selectable, adjusters resolve pending. Not errors. */
+  pending_dampers: PendingDamperUnit[];
+  /** Source content deliberately left out of v1, listed so it is not omitted silently. */
+  deferred: DeferredItem[];
   brands: Record<string, BrandSummary>;
   readiness: ReadinessGate[];
 }
