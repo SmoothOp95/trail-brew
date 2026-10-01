@@ -9,6 +9,11 @@ import { realIndex } from './helpers';
 
 const index = realIndex();
 const full: BikeSpec = { suspension: 'full_suspension', fork: { generic: true, travel: 150 }, shock: { generic: true, travel: 140 } };
+const allDials: BikeSpec = {
+  suspension: 'full_suspension',
+  fork: { generic: true, travel: 150, dials: { hsc: true, hsr: true } },
+  shock: { generic: true, travel: 140, dials: { hsc: true, hsr: true } },
+};
 const hardtail: BikeSpec = { suspension: 'hardtail', fork: { generic: true, travel: 120 }, shock: null };
 
 describe('setup flow: bike type and travel, no brand or model', () => {
@@ -20,8 +25,8 @@ describe('setup flow: bike type and travel, no brand or model', () => {
     expect(resolveBike(index, hardtail).shock).toBeNull();
   });
 
-  it('advanced offers the full suite as unbounded clicks, with no assumed starting figures', () => {
-    const bike = resolveBike(index, full);
+  it('advanced offers the full suite as unbounded clicks once the rider ticks the high speed dials', () => {
+    const bike = resolveBike(index, allDials);
     const rows = readoutRows(bike, 'advanced');
     expect(rows.map((r) => r.field)).toEqual([
       'fork_psi', 'fork_spacers', 'fork_lsr', 'fork_hsr', 'fork_lsc', 'fork_hsc',
@@ -32,13 +37,28 @@ describe('setup flow: bike type and travel, no brand or model', () => {
     expect(Object.values(starts).every((s) => s.value == null)).toBe(true);
   });
 
-  it('basic shows only tyre pressures and fork air pressure', () => {
-    expect(readoutRows(resolveBike(index, full), 'basic').map((r) => r.field)).toEqual(BASIC_FIELDS);
-    expect(readoutRows(resolveBike(index, hardtail), null).map((r) => r.field)).toEqual(BASIC_FIELDS);
+  it('high speed dials are off until the rider says they have them, and ruling them out quotes the answer', () => {
+    const bike = resolveBike(index, full);
+    expect(readoutRows(bike, 'advanced').map((r) => r.field)).toEqual([
+      'fork_psi', 'fork_spacers', 'fork_lsr', 'fork_lsc', 'shock_psi', 'shock_spacers', 'shock_lsr', 'shock_lsc', 'tyre_front', 'tyre_rear',
+    ]);
+    const hscGoal = RULES.goals.find((g) => 'fork_hsc' in g.recipe)!;
+    const p = compose([hscGoal.id], RULES, bike, {}, { fields: setupFields('advanced') });
+    expect(p.ruledOut.find((r) => r.field === 'fork_hsc')?.reason).toMatch(/You said your fork has no high speed compression dial/);
+    const forkOnly = resolveBike(index, { ...full, fork: { generic: true, travel: 150, dials: { hsc: true } } });
+    const rows = readoutRows(forkOnly, 'advanced').map((r) => r.field);
+    expect(rows).toContain('fork_hsc');
+    expect(rows).not.toContain('fork_hsr');
+    expect(rows).not.toContain('shock_hsc');
+  });
+
+  it('basic shows tyre pressures and air pressures only', () => {
+    expect(readoutRows(resolveBike(index, full), 'basic').map((r) => r.field)).toEqual(['fork_psi', 'shock_psi', 'tyre_front', 'tyre_rear']);
+    expect(readoutRows(resolveBike(index, hardtail), null).map((r) => r.field)).toEqual(['fork_psi', 'tyre_front', 'tyre_rear']);
   });
 
   it('basic proposes pressure changes only and lists the rest as advanced, not ruled out', () => {
-    const bike = resolveBike(index, full);
+    const bike = resolveBike(index, allDials);
     const goals = RULES.goals.filter((g) => g.applies_to.includes('full_suspension')).map((g) => g.id);
     for (const id of goals) {
       const basic = compose([id], RULES, bike, {}, { fields: setupFields('basic') });

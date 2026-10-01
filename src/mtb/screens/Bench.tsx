@@ -12,6 +12,7 @@ import {
   readoutRows,
   resolveBike,
   resolveCapability,
+  dialsOf,
   isGeneric,
   setupFields,
   setupMissing,
@@ -23,6 +24,7 @@ import {
   type BikeSpec,
   type SettingField,
   type Settings,
+  type GenericDials,
   type SetupMode,
 } from '../engine';
 import { BikeDiagram, type Callout } from '../components/BikeDiagram';
@@ -134,9 +136,7 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
               <BikeDiagram
                 hardtail={hardtail}
                 fork={callout('fork_psi', joinKnown([show('fork_spacers', proposal.next), show('fork_lsr', proposal.next)]))}
-                shock={hardtail ? null : fields.includes('shock_psi')
-                  ? callout('shock_psi', joinKnown([show('shock_lsr', proposal.next), show('shock_lsc', proposal.next)]))
-                  : { value: bike.shock?.generic?.travel != null ? `${bike.shock.generic.travel} mm` : 'rear shock', sub: 'Advanced setup', changed: false }}
+                shock={hardtail ? null : callout('shock_psi', joinKnown([show('shock_lsr', proposal.next), show('shock_lsc', proposal.next)]))}
                 tyreFront={callout('tyre_front')}
                 tyreRear={callout('tyre_rear')}
                 forkPsiDelta={proposal.changes.find((c) => c.field === 'fork_psi')?.delta ?? 0}
@@ -342,9 +342,9 @@ function BikeSetup({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
         </div>
       ) : (
         <div className="flex flex-wrap gap-4">
-          <TravelInput label="Fork travel (mm)" value={travelOf(spec.fork)} onChange={(travel) => set({ fork: { generic: true, travel } })} />
+          <TravelInput label="Fork travel (mm)" value={travelOf(spec.fork)} onChange={(travel) => set({ fork: { generic: true, travel, dials: dialsOf(spec.fork) } })} />
           {!hardtail && (
-            <TravelInput label="Rear travel (mm)" value={travelOf(spec.shock)} onChange={(travel) => set({ shock: { generic: true, travel } })} />
+            <TravelInput label="Rear travel (mm)" value={travelOf(spec.shock)} onChange={(travel) => set({ shock: { generic: true, travel, dials: dialsOf(spec.shock) } })} />
           )}
         </div>
       )}
@@ -361,9 +361,46 @@ function BikeSetup({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
           {bench.mode === 'advanced'
             ? `Every setting: air pressure, rebound, compression and volume spacers${hardtail ? '' : ' on the fork and shock'}, plus tyres.`
             : bench.mode === 'basic'
-              ? 'Tyre pressures and fork air pressure only. Switch to Advanced for rebound, compression and spacers.'
-              : 'Basic covers tyre and fork pressures. Advanced adds rebound, compression and spacers.'}
+              ? `Tyre pressures and ${hardtail ? 'fork' : 'fork and shock'} air pressure only. Switch to Advanced for rebound, compression and spacers.`
+              : 'Basic covers tyre and air pressures. Advanced adds rebound, compression and spacers.'}
         </p>
+      </div>
+
+      {bench.mode === 'advanced' && !named && (
+        <fieldset className="flex flex-col gap-2">
+          <legend className="text-xs text-brew-text-muted mb-1.5">Which high speed dials do you have?</legend>
+          <DialChecks part="Fork" dials={dialsOf(spec.fork)} onChange={(dials) => set({ fork: { generic: true, travel: travelOf(spec.fork), dials } })} />
+          {!hardtail && (
+            <DialChecks part="Shock" dials={dialsOf(spec.shock)} onChange={(dials) => set({ shock: { generic: true, travel: travelOf(spec.shock), dials } })} />
+          )}
+          <p className="text-[12px] text-brew-text-muted">
+            Most forks and shocks have rebound and low speed compression. High speed dials are usually a second, smaller dial on top of the low speed one. If you are
+            not sure, leave them unticked and the Bench will not ask you to turn them.
+          </p>
+        </fieldset>
+      )}
+    </div>
+  );
+}
+
+function DialChecks({ part, dials, onChange }: { part: string; dials: GenericDials; onChange: (d: GenericDials) => void }) {
+  const box = (key: keyof GenericDials, label: string) => (
+    <label className="inline-flex items-center gap-2 text-sm text-brew-text-dim cursor-pointer">
+      <input
+        type="checkbox"
+        className="accent-brew-accent h-4 w-4"
+        checked={!!dials[key]}
+        onChange={(e) => onChange({ ...dials, [key]: e.target.checked })}
+      />
+      {label}
+    </label>
+  );
+  return (
+    <div className="grid grid-cols-[3.25rem_1fr] items-start gap-x-2">
+      <span className="text-sm pt-px">{part}</span>
+      <div className="flex flex-col gap-1.5">
+        {box('hsc', 'High speed compression')}
+        {box('hsr', 'High speed rebound')}
       </div>
     </div>
   );

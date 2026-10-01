@@ -31,11 +31,11 @@ export function readoutRows(bike: BikeContext, mode: SetupMode | null = 'advance
 // ---------- Setup mode ----------
 
 /**
- * Basic setup asks for tyre pressures and fork air pressure only, and the Bench proposes changes to those
- * alone. Advanced opens every setting the hardware has: rebound, compression, spacers and the shock.
+ * Basic setup asks for tyre pressures and air pressures only, and the Bench proposes changes to those alone.
+ * Advanced opens every setting the hardware has: rebound, compression and spacers.
  */
 export type SetupMode = 'basic' | 'advanced';
-export const BASIC_FIELDS: SettingField[] = ['fork_psi', 'tyre_front', 'tyre_rear'];
+export const BASIC_FIELDS: SettingField[] = ['fork_psi', 'shock_psi', 'tyre_front', 'tyre_rear'];
 
 /** The fields a setup mode works with. No mode chosen yet reads as basic. */
 export function setupFields(mode: SetupMode | null): SettingField[] {
@@ -45,6 +45,7 @@ export function setupFields(mode: SetupMode | null): SettingField[] {
 type PartSpec = BikeSpec['fork'] | BikeSpec['shock'];
 export const isGeneric = (p: PartSpec) => !!p && 'generic' in p;
 export const travelOf = (p: PartSpec) => (p && 'generic' in p ? p.travel : null);
+export const dialsOf = (p: PartSpec) => (p && 'generic' in p ? p.dials ?? {} : {});
 
 /** What still stands between the rider and Tuning, in the order the form asks for it. Empty means ready. */
 export function setupMissing(spec: BikeSpec, mode: SetupMode | null): string[] {

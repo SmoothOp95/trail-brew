@@ -12,7 +12,9 @@ import type { BikeContext, PendingDamper, ResolvedFork, ResolvedShock, StandInIn
  * standInId: a part not on file, resolved to the closest documented family (data/standins.ts).
  * generic: the rider's own part, known by travel only (engine/generic.ts).
  */
-export type GenericSpec = { generic: true; travel: number | null };
+/** The high speed dials the rider says the part has. Missing means no: never offer a dial they may not have. */
+export interface GenericDials { hsc?: boolean; hsr?: boolean }
+export type GenericSpec = { generic: true; travel: number | null; dials?: GenericDials };
 export type ForkSpec =
   | GenericSpec
   | { unitId: string; travel?: number }
@@ -94,7 +96,7 @@ function stripSpring(s: AirSpring | null, springType?: 'air' | 'coil'): AirSprin
 }
 
 function resolveFork(index: DataIndex, spec: ForkSpec): ResolvedFork {
-  if ('generic' in spec) return genericFork(spec.travel);
+  if ('generic' in spec) return genericFork(spec.travel, spec.dials);
   if ('standInId' in spec) {
     const st = standInFor(spec.standInId);
     if (st.kind !== 'fork') throw new BikeResolutionError(`${st.model} is a shock`);
@@ -153,7 +155,7 @@ function stripShock(u: ShockUnit | null): ShockUnit | null {
 }
 
 function resolveShock(index: DataIndex, spec: ShockSpec): ResolvedShock {
-  if ('generic' in spec) return genericShock(spec.travel);
+  if ('generic' in spec) return genericShock(spec.travel, spec.dials);
   if ('standInId' in spec) {
     const st = standInFor(spec.standInId);
     if (st.kind !== 'shock') throw new BikeResolutionError(`${st.model} is a fork`);
