@@ -2,7 +2,7 @@
 
 MTB Setup Triage Dashboard: project state
 
-Last updated: 2026-09-28 (Claude Code, 02C transcription, stopped for coverage review)
+Last updated: 2026-10-01 (Claude Code, 02C engine step and gap-free component picker)
 Update protocol: **every session reads this file first and updates it last.** If you finish a session without updating this file, the next session starts from stale numbers and repeats work.
 
 ## What this project is
@@ -21,7 +21,7 @@ Primary entry point is goals, not symptoms. The rider says what they want from t
 | 1 | `01_SCHEMA.md` | v0.3.2. Bands, coil charts and the pending damper rule added from 02C section 10. |
 | 2 | `02_HARVEST_SUSPENSION.md` | FOX batch 1 complete. RockShox not started. |
 | 2b | `02B_HARVEST_ROCKSHOX.md` | Revised 2026-09-28 to produce the 15 damper ids 02C reserves. Not yet run. Next Chrome task. |
-| 2c | `02C_ROCKSHOX_FRONT_SPEC_2023.md` | **Transcribed 2026-09-28** by Claude Code from the RockShox 2023 front suspension spec sheet. Coverage diff in `docs/mtb/review/coverage-02c-diff.md`, awaiting review before the engine changes. |
+| 2c | `02C_ROCKSHOX_FRONT_SPEC_2023.md` | Transcribed 2026-09-28; engine side built 2026-10-01. All 153 RockShox fork units are selectable with pending dampers. |
 | 3 | `03_HARVEST_BIKES_SA.md` | Written, blocked on 2b. |
 | 4 | Kinematics and tyres | Not written. Target list should come from stage 3's report. |
 | 5 | `05_RULES_ENGINE.md` | Written. `src/mtb/rules/rules.json` seeded at 0.1-seed by Claude Code (05 content only). Chat session still authors the full file. |
@@ -51,7 +51,32 @@ Primary entry point is goals, not symptoms. The rider says what they want from t
 - `rockshox_35_2020`: year_range → [2020, 2023]
 - The three existing RockShox pressure charts were re-expressed as bands. They agree with their old boundary points.
 
-**Pending damper rule** (02C section 10) is in ingest: the 153 RockShox fork units are kept, and `coverage.pending_dampers` lists them. The engine's `pending` state, band display and coil colour display are **not built yet**: they come after the coverage review. Until then these forks are held off the Bench list. Search and model-code match find them and say why. So RockShox forks are **not yet selectable**; that happens in the next step. Rear shocks remain FOX only.
+**Pending damper rule** (02C section 10) is built end to end, 2026-10-01:
+- Ingest keeps the units.
+- The engine resolves their four adjusters to `pending`: neither offered nor ruled out. One notice per screen.
+- Pressure bands show as a range for the rider's weight. Once the rider enters a pressure, it is marked inside, below or above the band.
+- Coil forks show the published spring colour ("Blue (Firm) for 81 to 90 kg"), and fork pressure is ruled out with "change the spring rather than the pressure".
+- Forks that take no tokens rule out spacer changes.
+- A model code returns the family, and the rider picks travel.
+
+**Component picker has no gaps**, 2026-10-01, at Tumi's instruction ("if there is a gap, pick the closest version"). It works brand → model → travel and covers 71 fork models, 19 shock models and 297 options. A test resolves every option on the Bench.
+- **Composed units (overlay, estimate):**
+  - FOX 36 and 38 with GRIP X / GRIP X2 (2025), and 38 Performance with GRIP.
+  - FOX 32 and 34 in Factory FIT4, Performance GRIP and Rhythm RAIL, on placeholder FLOAT springs with figures pending.
+  - FLOAT X2 Performance Elite, DHX2 Performance Elite and DHX shock units.
+- **Nearest travel for FOX:** every travel the chassis takes is offered. A travel with no record uses the nearest unit's dials, with its pressure, token and setting figures stripped and labelled.
+- **Closest-match stand-ins** (`src/mtb/data/standins.ts`, 25 entries):
+  - Marzocchi Bomber Z1, Z1 Coil, Z2 and 58.
+  - X-Fusion Trace, Sweep/Manic and Velvet/Slide.
+  - SR Suntour XCT/XCM, XCR, Raidon/Aion, Auron/Zeron/Durolux and Axon.
+  - Older RockShox Psylo/Sektor.
+  - Shocks: RockShox Deluxe, Super Deluxe (air and coil), Vivid (air and coil) and Monarch; Marzocchi Bomber Air and CR; X-Fusion O2 and H3C; Suntour Edge.
+- **Stand-in rules:**
+  - Only the adjuster layout is borrowed, never pressure, token, setting or coil figures.
+  - Prefer a target with fewer dials than the real part.
+  - Lockout-only budget forks map to pending RockShox Motion Control or TurnKey families, so no damping advice is invented.
+  - Every stand-in is labelled "closest match" on the picker and on the Bench, with the reason and an "ask for it" link.
+- **These mappings are judgments about adjuster layouts, not harvested data.** Review them; each is one line in `standins.ts`.
 
 ## Dataset inventory, stage 2 batch 1 (historical)
 
@@ -158,11 +183,12 @@ The eight goals were chosen without asking a single rider. If that entry point i
 | Session | Do this |
 |---|---|
 | Claude in Chrome | Run `02B_HARVEST_ROCKSHOX.md` |
-| Claude Code | After Tumi reviews `docs/mtb/review/coverage-02c-diff.md`: build the engine side of 02C section 10 (`pending` capability state, pressure band display, coil colour display, one-to-many model-code match in Garage), turn the three `it.todo` golden tests into real ones, and let pending units onto the Bench. |
+| Claude Code | When 02b lands: drop its files into `src/mtb/data/raw`, rerun `npm run mtb:ingest`, and remove the stand-ins it replaces from `standins.ts` (RockShox shocks). Pending forks resolve automatically. Then transcribe the RockShox rear suspension spec the same way as 02C. |
 | Claude in chat | Review 02b output when it lands, then author the full `rules.json` from `05_RULES_ENGINE.md`, replacing the 0.1-seed. Decide `applies_to` and hardtail tyre weighting. |
 
 ## Changelog
 
+- 2026-10-01 02C engine step (pending adjusters, bands as ranges, coil spring colours, model-code families). Gap-free picker: composed FOX units, nearest-travel fallback, 25 closest-match stand-ins. 117 tests, 35 browser checks.
 - 2026-09-28 02C transcribed: 11 corrections, 3 chassis, 81 air springs, 68 band charts, 153 RockShox fork units on reserved damper ids. Schema 0.3.2 in Zod. Pending damper rule in ingest. Golden value tests. 02B brief revised to produce the reserved ids.
 - 2026-09-28 Build steps 5 and 6: screens, lazy route at /mtb-dashboard, sidebar link, signed-out Bench. Verified in Playwright.
 - 2026-09-25 Build steps 1 to 4: schemas v0.3, ingest and coverage, gap-filling overlay, engine, search, rules seed. Stopped for review.
