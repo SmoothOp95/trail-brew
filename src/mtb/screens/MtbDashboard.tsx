@@ -1,21 +1,19 @@
 import { NavLink, Navigate, Route, Routes } from 'react-router-dom';
 import { MtbProvider, type MtbUser, type MtbContextValue } from '../ui/MtbContext';
 import { Bench } from './Bench';
-import { Coverage } from './Coverage';
-import { Garage } from './Garage';
 import { Method } from './Method';
 import { SessionLog } from './SessionLog';
 
 export const BASE = '/mtb-dashboard';
 
 // Absolute paths: the host enables v7_relativeSplatPath, under which relative links inside this splat
-// route would resolve against the current sub-page (for example /mtb-dashboard/garage/coverage).
+// route would resolve against the current sub-page (for example /mtb-dashboard/log/method).
+// Garage and Coverage (screens/Garage.tsx, screens/Coverage.tsx) are hidden for now; add their tab and
+// route back here to restore them.
 const TABS = [
   { to: BASE, label: 'Bench', end: true },
-  { to: `${BASE}/garage`, label: 'Garage' },
   { to: `${BASE}/log`, label: 'Session log' },
   { to: `${BASE}/method`, label: 'Method' },
-  { to: `${BASE}/coverage`, label: 'What is on file' },
 ];
 
 /**
@@ -47,10 +45,8 @@ export default function MtbDashboard({ user, SignIn }: { user: MtbUser | null | 
         <div className="max-w-[1180px] mx-auto px-5 pt-6 pb-24">
           <Routes>
             <Route index element={<Bench />} />
-            <Route path="garage" element={<Garage />} />
             <Route path="log" element={<SessionLog />} />
             <Route path="method" element={<Method />} />
-            <Route path="coverage" element={<Coverage />} />
             <Route path="*" element={<Navigate to={BASE} replace />} />
           </Routes>
         </div>

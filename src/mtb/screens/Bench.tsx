@@ -1,5 +1,4 @@
 import { useMemo, type ReactNode } from 'react';
-import { Link } from 'react-router-dom';
 import { RULES } from '../rules';
 import {
   attributeScores,
@@ -54,7 +53,8 @@ export function Bench() {
   if ('error' in bike) {
     return (
       <div className="py-10 text-sm text-brew-text-dim">
-        This bike cannot be shown: {bike.error}. <Link to="/mtb-dashboard/garage" className="text-brew-accent underline">Pick it again in Garage</Link>.
+        This bike cannot be shown: {bike.error}.{' '}
+        <button type="button" className="text-brew-accent underline" onClick={() => m.openOnBench(defaultSpec())}>Start again</button>.
       </div>
     );
   }
@@ -232,8 +232,7 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
           leverage curve.
         </p>
         <p>
-          Damper adjuster inventories decide which changes are offered. Method notes drawn from published setup guides by Canyon, Simplon and BikeRadar.{' '}
-          <Link to="/mtb-dashboard/coverage" className="underline hover:text-brew-text">What the dataset contains</Link>.
+          Damper adjuster inventories decide which changes are offered. Method notes drawn from published setup guides by Canyon, Simplon and BikeRadar.
         </p>
       </footer>
     </div>
@@ -263,22 +262,6 @@ function RiderBar() {
         </p>
       </div>
       <div className="flex flex-wrap gap-4 items-end lg:ml-auto">
-        {m.bikes.length > 0 && (
-          <Field label="Garage bike">
-            <select
-              className={inputCls}
-              value={m.activeBike?.key ?? ''}
-              onChange={(e) => {
-                const b = m.bikes.find((x) => x.key === e.target.value);
-                if (b) m.openOnBench(b.spec, { entered: b.entered, garageKey: b.key });
-                else m.openOnBench(defaultSpec());
-              }}
-            >
-              <option value="">Not from Garage</option>
-              {m.bikes.map((b) => <option key={b.key} value={b.key}>{b.name}</option>)}
-            </select>
-          </Field>
-        )}
         <Field label="Kitted weight (kg)">
           <input
             type="number"
@@ -462,8 +445,7 @@ function PartNotices({ bike, notices }: { bike: BikeContext; notices: string[] }
               Not on file yet, so the Bench uses the dials of the {p.standIn!.targetLabel}. {p.standIn!.reason} No pressure, token or setting figures are borrowed. Check
               each dial exists on yours before turning it.
             </>
-          )}{' '}
-          <Link to="/mtb-dashboard/coverage" className="underline hover:text-brew-text">Ask for it to be added</Link>.
+          )}
         </div>
       ))}
       {notices.map((n) => (

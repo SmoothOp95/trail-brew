@@ -190,6 +190,7 @@ The eight goals were chosen without asking a single rider. If that entry point i
 
 ## Changelog
 
+- 2026-10-01 Garage and "What is on file" tabs hidden (routes redirect to the Bench; screens kept for later). Bench drops the Garage bike selector and links to both.
 - 2026-10-01 Bench flow reworked: bike type and travel replace the brand/model picker, Basic and Advanced setup toggle, Tuning revealed once set up. Shock pressure in Basic; Advanced asks for HSC and HSR dials. 124 tests, browser checks at desktop and phone width.
 - 2026-10-01 02C engine step (pending adjusters, bands as ranges, coil spring colours, model-code families). Gap-free picker: composed FOX units, nearest-travel fallback, 25 closest-match stand-ins. 117 tests, 35 browser checks.
 - 2026-09-28 02C transcribed: 11 corrections, 3 chassis, 81 air springs, 68 band charts, 153 RockShox fork units on reserved damper ids. Schema 0.3.2 in Zod. Pending damper rule in ingest. Golden value tests. 02B brief revised to produce the reserved ids.
