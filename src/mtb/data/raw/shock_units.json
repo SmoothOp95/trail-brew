@@ -1,0 +1,132 @@
+[
+  {
+    "id": "fox_float_dps_evol_2023",
+    "display_name": "FOX FLOAT DPS (EVOL, 3-Position Lever)",
+    "brand": "FOX",
+    "model": "FLOAT DPS",
+    "tier": "performance",
+    "model_year": 2023,
+    "damper_id": "float_dps_3pos_2023",
+    "mount": null,
+    "sizes": [],
+    "air_can": "evol_lv",
+    "spacer_pn": "803-01-250",
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "sag_target_pct": [
+      25,
+      30
+    ],
+    "pressure_max_psi": 350,
+    "service_interval_h": null,
+    "oem_tune": null,
+    "part_number": null,
+    "sa_availability": null,
+    "confidence": "published",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2833/shock--2023-float-dps-and-float-x",
+      "document": "SHOCK- 2023 FLOAT DPS and FLOAT X | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_float_x_2023",
+    "display_name": "FOX FLOAT X",
+    "brand": "FOX",
+    "model": "FLOAT X",
+    "tier": "performance_elite",
+    "model_year": 2023,
+    "damper_id": "float_x_2023",
+    "mount": null,
+    "sizes": [],
+    "air_can": "evol_hv",
+    "spacer_pn": "803-01-725",
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "sag_target_pct": [
+      25,
+      30
+    ],
+    "pressure_max_psi": 350,
+    "service_interval_h": null,
+    "oem_tune": null,
+    "part_number": null,
+    "sa_availability": null,
+    "confidence": "published",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2833/shock--2023-float-dps-and-float-x",
+      "document": "SHOCK- 2023 FLOAT DPS and FLOAT X | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_float_x2_factory_2024",
+    "display_name": "FOX FLOAT X2 (Factory Series)",
+    "brand": "FOX",
+    "model": "FLOAT X2",
+    "tier": "factory",
+    "model_year": 2024,
+    "damper_id": "fox_float_x2_factory_2024",
+    "mount": null,
+    "sizes": [],
+    "air_can": "evol_hv",
+    "spacer_pn": "233-00-240",
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "sag_target_pct": [
+      30,
+      30
+    ],
+    "pressure_max_psi": 300,
+    "service_interval_h": null,
+    "oem_tune": null,
+    "part_number": null,
+    "sa_availability": null,
+    "confidence": "estimated",
+    "confidence_note": "sag_target_pct written as [30,30] to satisfy the schema's lo<hi validation rule - the manual states a single target ('~30% of total shock travel'), not a range, unlike the DPS/X manual's 25-30%. Flagging this rather than inventing a plausible-looking range.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2926/shock--2024-float-x2",
+      "document": "SHOCK- 2024 FLOAT X2 | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_dhx2_factory_2024",
+    "display_name": "FOX DHX2 (Factory Series, coil)",
+    "brand": "FOX",
+    "model": "DHX2",
+    "tier": "factory",
+    "model_year": 2024,
+    "damper_id": "fox_dhx2_factory_2024",
+    "mount": null,
+    "sizes": [],
+    "air_can": "coil",
+    "spacer_pn": null,
+    "spacer_volume_cc": null,
+    "spacer_factory": null,
+    "spacer_max": null,
+    "sag_target_pct": [
+      30,
+      30
+    ],
+    "pressure_max_psi": null,
+    "service_interval_h": null,
+    "oem_tune": null,
+    "part_number": null,
+    "sa_availability": null,
+    "confidence": "estimated",
+    "confidence_note": "Coil shock - sag set by spring preload, not air pressure (pressure_max_psi correctly null). sag_target_pct [30,30] for the same single-value-vs-range reason as fox_float_x2_factory_2024.",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2928/shock--2024-all-coil-shocks-(dhx2-and-dhx-models)",
+      "document": "SHOCK- 2024 All Coil Shocks (DHX2 and DHX models) | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  }
+]

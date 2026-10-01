@@ -11,7 +11,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "seed:trails": "node scripts/seedTrails.mjs",
-    "set:community-config": "node scripts/setCommunityConfig.mjs"
+    "set:community-config": "node scripts/setCommunityConfig.mjs",
+    "mtb:ingest": "tsx src/mtb/scripts/ingest.ts",
+    "mtb:typecheck": "tsc -p tsconfig.json",
+    "predev": "npm run mtb:ingest",
+    "prebuild": "npm run mtb:ingest",
+    "pretest": "npm run mtb:ingest"
   },
   "dependencies": {
     "firebase": "^11.0.0",
@@ -20,7 +25,8 @@
     "react-dom": "^18.3.0",
     "react-router-dom": "^6.30.3",
     "recharts": "^3.8.0",
-    "tesseract.js": "^7.0.0"
+    "tesseract.js": "^7.0.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/react": "^18.3.0",
@@ -30,6 +36,8 @@
     "firebase-admin": "^14.2.0",
     "postcss": "^8.4.0",
     "tailwindcss": "^3.4.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
     "vite": "^5.4.0",
     "vite-plugin-pwa": "^0.20.0",
     "vitest": "^4.1.10"

@@ -1,0 +1,430 @@
+{
+  "version": "0.1-seed",
+  "status": "Seed transcribed from 05_RULES_ENGINE.md v0.1 by Claude Code, 2026-09-25. Contains only what 05 states: the 8 validated goals (proposed goals left out), 6 conflicts, attribute coefficients, ordering, diagnostics and the sag method. Rationale text is the prototype's per-field WHY strings (05 section 3 names them as the starting text), plus 01_SCHEMA's example sentence for rock_garden_control fork_hsc. Two values are not in 05 and are marked as decisions for review: applies_to per goal, and hardtail.tyre_weight. Symptoms, causes and preconditions are empty for the chat session to author. To be replaced by the chat session's full rules.json.",
+  "setting_fields": [
+    "fork_psi",
+    "fork_spacers",
+    "fork_lsr",
+    "fork_hsr",
+    "fork_lsc",
+    "fork_hsc",
+    "shock_psi",
+    "shock_spacers",
+    "shock_lsr",
+    "shock_hsr",
+    "shock_lsc",
+    "shock_hsc",
+    "tyre_front",
+    "tyre_rear",
+    "flip_chip"
+  ],
+  "goals": [
+    {
+      "id": "more_pop",
+      "name": "More pop off lips",
+      "sub": "Bike gives back what you put in",
+      "applies_to": [
+        "full_suspension",
+        "hardtail"
+      ],
+      "recipe": {
+        "fork_lsr": 2,
+        "shock_lsr": 2,
+        "shock_psi": 10,
+        "fork_spacers": 1
+      },
+      "rationale": {
+        "fork_lsr": "How fast the fork returns. Higher number is more open and faster.",
+        "shock_lsr": "How fast the shock returns. Rebound mismatched front to rear is what bucks you on landings.",
+        "shock_psi": "Sets rear ride height. Too low and it wallows, too high and it skips over holes.",
+        "fork_spacers": "Changes the shape of the spring curve without touching sag. Ramps up deeper in the stroke."
+      },
+      "hardtail_recipe": {
+        "fork_lsr": 2,
+        "fork_spacers": 1,
+        "tyre_rear": 1
+      }
+    },
+    {
+      "id": "rock_garden_control",
+      "name": "More control in rock gardens",
+      "sub": "Tracks the ground, stops deflecting",
+      "applies_to": [
+        "full_suspension",
+        "hardtail"
+      ],
+      "recipe": {
+        "fork_psi": -5,
+        "fork_spacers": 1,
+        "fork_hsc": -2,
+        "fork_lsr": 1,
+        "tyre_front": -1.5
+      },
+      "rationale": {
+        "fork_psi": "Sets where the bike rides in its travel and how the front holds up under braking and load.",
+        "fork_spacers": "Changes the shape of the spring curve without touching sag. Ramps up deeper in the stroke.",
+        "fork_hsc": "Opening high speed compression lets the fork absorb square edges instead of spiking off them.",
+        "fork_lsr": "How fast the fork returns. Higher number is more open and faster.",
+        "tyre_front": "The most under-used adjustment on the bike. Front pressure drives corner grip and how harsh chatter feels."
+      }
+    },
+    {
+      "id": "flat_corner_grip",
+      "name": "More grip in flat corners",
+      "sub": "Front tyre bites instead of washing",
+      "applies_to": [
+        "full_suspension",
+        "hardtail"
+      ],
+      "recipe": {
+        "tyre_front": -2,
+        "fork_psi": -5,
+        "fork_lsr": 1
+      },
+      "rationale": {
+        "tyre_front": "The most under-used adjustment on the bike. Front pressure drives corner grip and how harsh chatter feels.",
+        "fork_psi": "Sets where the bike rides in its travel and how the front holds up under braking and load.",
+        "fork_lsr": "How fast the fork returns. Higher number is more open and faster."
+      }
+    },
+    {
+      "id": "berm_support",
+      "name": "More support in berms",
+      "sub": "Something to push against",
+      "applies_to": [
+        "full_suspension",
+        "hardtail"
+      ],
+      "recipe": {
+        "fork_psi": 5,
+        "fork_lsc": 2,
+        "shock_psi": 10,
+        "shock_lsc": 2
+      },
+      "rationale": {
+        "fork_psi": "Sets where the bike rides in its travel and how the front holds up under braking and load.",
+        "fork_lsc": "Support against slow, high load inputs: corner entries, jump faces, braking.",
+        "shock_psi": "Sets rear ride height. Too low and it wallows, too high and it skips over holes.",
+        "shock_lsc": "Pedal platform and berm support at the rear."
+      }
+    },
+    {
+      "id": "bottom_out_control",
+      "name": "Stop harsh bottom outs",
+      "sub": "Ramp deeper without losing small bump",
+      "applies_to": [
+        "full_suspension",
+        "hardtail"
+      ],
+      "recipe": {
+        "fork_spacers": 1,
+        "shock_spacers": 1,
+        "fork_hsc": 2
+      },
+      "rationale": {
+        "fork_spacers": "Changes the shape of the spring curve without touching sag. Ramps up deeper in the stroke.",
+        "shock_spacers": "Same idea at the rear. Adds bottom out resistance without stiffening the small bump.",
+        "fork_hsc": "Control on square edges and fast impacts, without changing how it feels in corners."
+      }
+    },
+    {
+      "id": "pedal_efficiency",
+      "name": "Pedal more efficiently",
+      "sub": "Less bob on long climbs",
+      "applies_to": [
+        "full_suspension"
+      ],
+      "recipe": {
+        "shock_lsc": 3,
+        "shock_psi": 10,
+        "tyre_rear": 1.5
+      },
+      "rationale": {
+        "shock_lsc": "Pedal platform and berm support at the rear.",
+        "shock_psi": "Sets rear ride height. Too low and it wallows, too high and it skips over holes.",
+        "tyre_rear": "Rear pressure trades rolling speed and rim protection against grip and comfort."
+      }
+    },
+    {
+      "id": "less_harsh",
+      "name": "Less arm pump and harshness",
+      "sub": "Take the sting out of chatter",
+      "applies_to": [
+        "full_suspension",
+        "hardtail"
+      ],
+      "recipe": {
+        "tyre_front": -2,
+        "tyre_rear": -1.5,
+        "fork_hsc": -2,
+        "fork_psi": -5
+      },
+      "rationale": {
+        "tyre_front": "The most under-used adjustment on the bike. Front pressure drives corner grip and how harsh chatter feels.",
+        "tyre_rear": "Rear pressure trades rolling speed and rim protection against grip and comfort.",
+        "fork_hsc": "Control on square edges and fast impacts, without changing how it feels in corners.",
+        "fork_psi": "Sets where the bike rides in its travel and how the front holds up under braking and load."
+      }
+    },
+    {
+      "id": "high_speed_stability",
+      "name": "More stability at speed",
+      "sub": "Calmer when it gets fast and rough",
+      "applies_to": [
+        "full_suspension",
+        "hardtail"
+      ],
+      "recipe": {
+        "fork_psi": 5,
+        "fork_lsr": -1,
+        "shock_lsr": -1,
+        "tyre_front": 1
+      },
+      "rationale": {
+        "fork_psi": "Sets where the bike rides in its travel and how the front holds up under braking and load.",
+        "fork_lsr": "How fast the fork returns. Higher number is more open and faster.",
+        "shock_lsr": "How fast the shock returns. Rebound mismatched front to rear is what bucks you on landings.",
+        "tyre_front": "The most under-used adjustment on the bike. Front pressure drives corner grip and how harsh chatter feels."
+      }
+    }
+  ],
+  "proposed_goal_ids": [
+    "climbing_traction",
+    "less_pedal_strike",
+    "quicker_steering",
+    "more_comfort_long_days"
+  ],
+  "conflicts": [
+    {
+      "id": "pedal_efficiency__flat_corner_grip",
+      "goal_a": "pedal_efficiency",
+      "goal_b": "flat_corner_grip",
+      "axis": "rear traction",
+      "severity": "trades",
+      "text": "Firming the shock and running more rear pressure costs rear traction on loose climbs. Split the difference or accept one."
+    },
+    {
+      "id": "less_harsh__berm_support",
+      "goal_a": "less_harsh",
+      "goal_b": "berm_support",
+      "axis": "compression",
+      "severity": "cancels",
+      "text": "One wants the bike softer and more open, the other wants it firmer. These cancel. Pick the one that is actually costing you time."
+    },
+    {
+      "id": "more_pop__less_harsh",
+      "goal_a": "more_pop",
+      "goal_b": "less_harsh",
+      "axis": "rebound",
+      "severity": "trades",
+      "text": "Faster rebound gives pop but adds harshness and arm pump on long rough descents. One click at a time here."
+    },
+    {
+      "id": "high_speed_stability__more_pop",
+      "goal_a": "high_speed_stability",
+      "goal_b": "more_pop",
+      "axis": "rebound",
+      "severity": "cancels",
+      "text": "Slower rebound calms the bike and takes the pop away. The rebound dial cannot give you both."
+    },
+    {
+      "id": "pedal_efficiency__less_harsh",
+      "goal_a": "pedal_efficiency",
+      "goal_b": "less_harsh",
+      "axis": "compression",
+      "severity": "trades",
+      "text": "Platform for climbing is the same damping that makes the descent harsh. Consider using the lever rather than the tune."
+    },
+    {
+      "id": "bottom_out_control__climbing_traction",
+      "goal_a": "bottom_out_control",
+      "goal_b": "climbing_traction",
+      "axis": "spring rate",
+      "severity": "mild",
+      "text": "Ramp and pressure changes for bottom out control sit against the softer rear you want for climbing grip."
+    }
+  ],
+  "attributes": [
+    {
+      "id": "grip",
+      "label": "Grip",
+      "weights": {
+        "p": -1.9,
+        "ty": -2.4,
+        "cp": -1.1,
+        "rb": 0.4
+      },
+      "fit_basis": "expert_prior",
+      "fit_note": "Coefficients from 05_RULES_ENGINE.md section 5. Chosen to feel directionally right; not fitted against any logged outcome."
+    },
+    {
+      "id": "support",
+      "label": "Support",
+      "weights": {
+        "p": 2,
+        "cp": 1.5,
+        "spc": 1
+      },
+      "fit_basis": "expert_prior",
+      "fit_note": "Coefficients from 05_RULES_ENGINE.md section 5. Chosen to feel directionally right; not fitted against any logged outcome."
+    },
+    {
+      "id": "comfort",
+      "label": "Comfort",
+      "weights": {
+        "p": -1.7,
+        "ty": -1.9,
+        "cp": -1.5,
+        "spc": -0.7
+      },
+      "fit_basis": "expert_prior",
+      "fit_note": "Coefficients from 05_RULES_ENGINE.md section 5. Chosen to feel directionally right; not fitted against any logged outcome."
+    },
+    {
+      "id": "pop",
+      "label": "Pop",
+      "weights": {
+        "rb": 1.8,
+        "spc": 0.8,
+        "p": 0.7
+      },
+      "fit_basis": "expert_prior",
+      "fit_note": "Coefficients from 05_RULES_ENGINE.md section 5. Chosen to feel directionally right; not fitted against any logged outcome."
+    },
+    {
+      "id": "bottom_out",
+      "label": "Bottom out",
+      "weights": {
+        "spc": 2.2,
+        "p": 1.2,
+        "cp": 0.9
+      },
+      "fit_basis": "expert_prior",
+      "fit_note": "Coefficients from 05_RULES_ENGINE.md section 5. Chosen to feel directionally right; not fitted against any logged outcome."
+    },
+    {
+      "id": "pedalling",
+      "label": "Pedalling",
+      "weights": {
+        "p": 1.4,
+        "cp": 1.8,
+        "ty": 0.9,
+        "rb": -0.5
+      },
+      "fit_basis": "expert_prior",
+      "fit_note": "Coefficients from 05_RULES_ENGINE.md section 5. Chosen to feel directionally right; not fitted against any logged outcome."
+    }
+  ],
+  "attribute_model": {
+    "baseline": 5,
+    "range": [
+      0.4,
+      10
+    ],
+    "normalisation": {
+      "fork_psi": 18,
+      "shock_psi": 40,
+      "spacers": 3,
+      "rebound": 4,
+      "compression": 4,
+      "tyre": 4
+    }
+  },
+  "symptoms": [],
+  "causes": [],
+  "ordering": [
+    {
+      "group": "tyre",
+      "label": "Tyre pressure",
+      "fields": [
+        "tyre_front",
+        "tyre_rear"
+      ]
+    },
+    {
+      "group": "spring",
+      "label": "Spring rate (air pressure)",
+      "fields": [
+        "fork_psi",
+        "shock_psi"
+      ]
+    },
+    {
+      "group": "ramp",
+      "label": "Ramp (volume spacers)",
+      "fields": [
+        "fork_spacers",
+        "shock_spacers"
+      ]
+    },
+    {
+      "group": "rebound",
+      "label": "Rebound",
+      "fields": [
+        "fork_lsr",
+        "shock_lsr",
+        "fork_hsr",
+        "shock_hsr"
+      ]
+    },
+    {
+      "group": "compression",
+      "label": "Compression",
+      "fields": [
+        "fork_lsc",
+        "fork_hsc",
+        "shock_lsc",
+        "shock_hsc"
+      ]
+    },
+    {
+      "group": "geometry",
+      "label": "Geometry (flip chip, travel, cockpit)",
+      "fields": [
+        "flip_chip"
+      ]
+    }
+  ],
+  "diagnostics": [
+    {
+      "test": "Press the bars down hard and release",
+      "reads": "Front wheel leaves the ground means rebound is too fast"
+    },
+    {
+      "test": "Ride the same rough section twice, watch the o-ring",
+      "reads": "Not reaching full travel on the biggest hit means too much ramp or too much pressure"
+    },
+    {
+      "test": "Judge the bike entering a corner or on a jump face",
+      "reads": "Sluggish and stacking up under you means low speed compression is too open"
+    },
+    {
+      "test": "Judge it on square edges",
+      "reads": "Harsh on quick impacts while barely using travel means high speed compression is too closed"
+    },
+    {
+      "test": "Kerb drop, front and rear together",
+      "reads": "Front and rear returning at visibly different speeds is the classic buck"
+    },
+    {
+      "test": "Cycle the fork by hand, cold",
+      "reads": "Notchiness off the top is mechanical, not tuning"
+    }
+  ],
+  "sag_method": {
+    "summary": "Sag measurement gates everything else. Standing or seated both work, but pick one and never mix them, or readings across sessions are not comparable.",
+    "steps": [
+      "Full kit on, including a pack if you ride with one.",
+      "Level ground. Do not hold the brakes; it loads the fork and gives a false reading.",
+      "Bounce a few times to free the seals, then settle into your normal riding stance.",
+      "Slide the o-ring down to the seal without shifting your weight.",
+      "Step off slowly without bouncing.",
+      "Measure o-ring to seal, divide by total travel, multiply by 100."
+    ]
+  },
+  "preconditions": [],
+  "hardtail": {
+    "tyre_weight": 1.25,
+    "tyre_weight_note": "Decision for review, not in 05: 05 says tyre weighting increases on hardtails but gives no number. Tyre deltas are multiplied by this factor on a hardtail."
+  }
+}

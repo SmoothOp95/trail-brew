@@ -1,0 +1,4810 @@
+[
+  {
+    "id": "rockshox_pike_140_pressure",
+    "air_spring_id": "rockshox_debonair_plus_pike_140",
+    "basis": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 95,
+        "psi_max": null
+      }
+    ],
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      140
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_lyrik_150_pressure",
+    "air_spring_id": "rockshox_debonair_plus_lyrik_150",
+    "basis": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 50
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 60
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 60,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 70,
+        "psi_max": 80
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 80,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 90,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 100,
+        "psi_max": null
+      }
+    ],
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_zeb_160_pressure",
+    "air_spring_id": "rockshox_debonair_plus_zeb_160",
+    "basis": null,
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox)",
+        "retrieved": "2026-09-02",
+        "method": "manual_entry"
+      },
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ],
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 54
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 54,
+        "psi_max": 62
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 62,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 70,
+        "psi_max": 78
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 78,
+        "psi_max": 87
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 87,
+        "psi_max": null
+      }
+    ],
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      160
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ]
+  },
+  {
+    "id": "fox_float_evol_36_pressure",
+    "air_spring_id": "fox_float_evol_36_2024",
+    "points": [
+      [
+        54,
+        66
+      ],
+      [
+        59,
+        70
+      ],
+      [
+        64,
+        74
+      ],
+      [
+        68,
+        78
+      ],
+      [
+        73,
+        82
+      ],
+      [
+        77,
+        86
+      ],
+      [
+        82,
+        89
+      ],
+      [
+        86,
+        94
+      ],
+      [
+        91,
+        99
+      ],
+      [
+        95,
+        105
+      ],
+      [
+        100,
+        109
+      ],
+      [
+        104,
+        113
+      ],
+      [
+        109,
+        117
+      ]
+    ],
+    "basis": null,
+    "confidence": "published",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+      "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "fox_float_evol_38_pressure",
+    "air_spring_id": "fox_float_evol_38_2024",
+    "points": [
+      [
+        54,
+        72
+      ],
+      [
+        59,
+        76
+      ],
+      [
+        64,
+        80
+      ],
+      [
+        68,
+        84
+      ],
+      [
+        73,
+        89
+      ],
+      [
+        77,
+        93
+      ],
+      [
+        82,
+        97
+      ],
+      [
+        86,
+        102
+      ],
+      [
+        91,
+        106
+      ],
+      [
+        95,
+        110
+      ],
+      [
+        100,
+        114
+      ],
+      [
+        104,
+        119
+      ],
+      [
+        109,
+        123
+      ]
+    ],
+    "basis": null,
+    "confidence": "published",
+    "source": {
+      "url": "https://tech.ridefox.com/bike/owners-manuals/2930/fork--2024-36mm-or-38mm",
+      "document": "FORK- 2024 36mm/38mm | Bike Tech Help Center | FOX",
+      "retrieved": "2026-09-02",
+      "method": "manual_entry"
+    }
+  },
+  {
+    "id": "rockshox_debonair_plus_pike_120_pressure",
+    "air_spring_id": "rockshox_debonair_plus_pike_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_pike_130_pressure",
+    "air_spring_id": "rockshox_debonair_plus_pike_130",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 95,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      130
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_lyrik_140_pressure",
+    "air_spring_id": "rockshox_debonair_plus_lyrik_140",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 60
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 60,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 80
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 80,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 90,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 100,
+        "psi_max": 110
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 110,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      140
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_lyrik_160_pressure",
+    "air_spring_id": "rockshox_debonair_plus_lyrik_160",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 50
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 60
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 60,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 70,
+        "psi_max": 80
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 80,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 90,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 100,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      160
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_zeb_150_pressure",
+    "air_spring_id": "rockshox_debonair_plus_zeb_150",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 54
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 54,
+        "psi_max": 62
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 62,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 70,
+        "psi_max": 78
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 78,
+        "psi_max": 87
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 87,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_zeb_170_pressure",
+    "air_spring_id": "rockshox_debonair_plus_zeb_170",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 37
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 37,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 45,
+        "psi_max": 54
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 54,
+        "psi_max": 62
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 62,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 70,
+        "psi_max": 78
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 78,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      170
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_zeb_180_pressure",
+    "air_spring_id": "rockshox_debonair_plus_zeb_180",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 37
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 37,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 45,
+        "psi_max": 54
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 54,
+        "psi_max": 62
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 62,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 70,
+        "psi_max": 78
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 78,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      180
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_plus_zeb_190_pressure",
+    "air_spring_id": "rockshox_debonair_plus_zeb_190",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 29
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 29,
+        "psi_max": 37
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 37,
+        "psi_max": 46
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 46,
+        "psi_max": 54
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 54,
+        "psi_max": 62
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 62,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 70,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      190
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_120_pressure",
+    "air_spring_id": "rockshox_debonair_revelation_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 115,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 125,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_130_pressure",
+    "air_spring_id": "rockshox_debonair_revelation_130",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 115,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      130
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_140_pressure",
+    "air_spring_id": "rockshox_debonair_revelation_140",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 115,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      140
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_150_pressure",
+    "air_spring_id": "rockshox_debonair_revelation_150",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_revelation_160_pressure",
+    "air_spring_id": "rockshox_debonair_revelation_160",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      160
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_150_pressure",
+    "air_spring_id": "rockshox_debonair_yari_150",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_160_pressure",
+    "air_spring_id": "rockshox_debonair_yari_160",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      160
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_170_pressure",
+    "air_spring_id": "rockshox_debonair_yari_170",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 95,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      170
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_180_pressure",
+    "air_spring_id": "rockshox_debonair_yari_180",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 95,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      180
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_100_pressure",
+    "air_spring_id": "rockshox_debonair_yari_29plus_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 115,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 125,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 135,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_110_pressure",
+    "air_spring_id": "rockshox_debonair_yari_29plus_110",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 115,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 125,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      110
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_120_pressure",
+    "air_spring_id": "rockshox_debonair_yari_29plus_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 115,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 125,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_130_pressure",
+    "air_spring_id": "rockshox_debonair_yari_29plus_130",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 115,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      130
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_140_pressure",
+    "air_spring_id": "rockshox_debonair_yari_29plus_140",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 115,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      140
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_150_pressure",
+    "air_spring_id": "rockshox_debonair_yari_29plus_150",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_yari_29plus_160_pressure",
+    "air_spring_id": "rockshox_debonair_yari_29plus_160",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      160
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_domain_150_pressure",
+    "air_spring_id": "rockshox_debonair_domain_150",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 54
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 54,
+        "psi_max": 62
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 62,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 70,
+        "psi_max": 78
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 78,
+        "psi_max": 87
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 87,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_domain_160_pressure",
+    "air_spring_id": "rockshox_debonair_domain_160",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 54
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 54,
+        "psi_max": 62
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 62,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 70,
+        "psi_max": 78
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 78,
+        "psi_max": 87
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 87,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      160
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_domain_170_pressure",
+    "air_spring_id": "rockshox_debonair_domain_170",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 37
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 37,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 45,
+        "psi_max": 54
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 54,
+        "psi_max": 62
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 62,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 70,
+        "psi_max": 78
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 78,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      170
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_domain_180_pressure",
+    "air_spring_id": "rockshox_debonair_domain_180",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 37
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 37,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 45,
+        "psi_max": 54
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 54,
+        "psi_max": 62
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 62,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 70,
+        "psi_max": 78
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 78,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      180
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_boxxer_180_pressure",
+    "air_spring_id": "rockshox_debonair_boxxer_180",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 115,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 125,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 135,
+        "psi_max": 145
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 145,
+        "psi_max": 155
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 155,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      180
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_boxxer_190_pressure",
+    "air_spring_id": "rockshox_debonair_boxxer_190",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 115,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 125,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 135,
+        "psi_max": 145
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 145,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      190
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_boxxer_200_pressure",
+    "air_spring_id": "rockshox_debonair_boxxer_200",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 115,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 125,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 135,
+        "psi_max": 145
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 145,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      200
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_sid_110_pressure",
+    "air_spring_id": "rockshox_debonair_sid_110",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 59
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 59,
+        "psi_max": 73
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 73,
+        "psi_max": 87
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 87,
+        "psi_max": 101
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 101,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      110
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_sid_120_pressure",
+    "air_spring_id": "rockshox_debonair_sid_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 45
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 45,
+        "psi_max": 59
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 59,
+        "psi_max": 73
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 73,
+        "psi_max": 87
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 87,
+        "psi_max": 101
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 101,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_sid_sl_100_pressure",
+    "air_spring_id": "rockshox_debonair_sid_sl_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 70,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 105,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 120,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 135,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_100_pressure",
+    "air_spring_id": "rockshox_debonair_35_gold_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 115,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 125,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_120_pressure",
+    "air_spring_id": "rockshox_debonair_35_gold_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 105,
+        "psi_max": 115
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 115,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 125,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_130_pressure",
+    "air_spring_id": "rockshox_debonair_35_gold_130",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      130
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_140_pressure",
+    "air_spring_id": "rockshox_debonair_35_gold_140",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      140
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_150_pressure",
+    "air_spring_id": "rockshox_debonair_35_gold_150",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_35_gold_160_pressure",
+    "air_spring_id": "rockshox_debonair_35_gold_160",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 55
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 55,
+        "psi_max": 65
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 65,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 85,
+        "psi_max": 95
+      },
+      {
+        "kg_min": 90,
+        "kg_max": 99,
+        "psi_min": 95,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 99,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      160
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_100_pressure",
+    "air_spring_id": "rockshox_solo_air_35_silver_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 90,
+        "psi_max": 110
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 110,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 125,
+        "psi_max": 140
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 140,
+        "psi_max": 160
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 160,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_120_pressure",
+    "air_spring_id": "rockshox_solo_air_35_silver_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 90,
+        "psi_max": 110
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 110,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 125,
+        "psi_max": 140
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 140,
+        "psi_max": 160
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 160,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_130_pressure",
+    "air_spring_id": "rockshox_solo_air_35_silver_130",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 70,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 105,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 120,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 135,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      130
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_140_pressure",
+    "air_spring_id": "rockshox_solo_air_35_silver_140",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 70,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 105,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 120,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 135,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      140
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_150_pressure",
+    "air_spring_id": "rockshox_solo_air_35_silver_150",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 70,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 105,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 120,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 135,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_35_silver_160_pressure",
+    "air_spring_id": "rockshox_solo_air_35_silver_160",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 70,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 105,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 120,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 135,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      160
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_reba_100_pressure",
+    "air_spring_id": "rockshox_solo_air_reba_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 70,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 105,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 120,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 135,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_reba_110_pressure",
+    "air_spring_id": "rockshox_solo_air_reba_110",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 70,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 105,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 120,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 135,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      110
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_reba_120_pressure",
+    "air_spring_id": "rockshox_solo_air_reba_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 55,
+        "psi_min": null,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 55,
+        "kg_max": 63,
+        "psi_min": 70,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 105,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 120,
+        "psi_max": 135
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 135,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_80_pressure",
+    "air_spring_id": "rockshox_debonair_recon_gold_80",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 90,
+        "psi_max": 110
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 110,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 125,
+        "psi_max": 140
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 140,
+        "psi_max": 160
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 160,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      80
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_100_pressure",
+    "air_spring_id": "rockshox_debonair_recon_gold_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_120_pressure",
+    "air_spring_id": "rockshox_debonair_recon_gold_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_130_pressure",
+    "air_spring_id": "rockshox_debonair_recon_gold_130",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 40,
+        "psi_max": 60
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 60,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      130
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_140_pressure",
+    "air_spring_id": "rockshox_debonair_recon_gold_140",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 40,
+        "psi_max": 60
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 60,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      140
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_debonair_recon_gold_150_pressure",
+    "air_spring_id": "rockshox_debonair_recon_gold_150",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 40,
+        "psi_max": 60
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 60,
+        "psi_max": 75
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 75,
+        "psi_max": 90
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 90,
+        "psi_max": 105
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 105,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_100_pressure",
+    "air_spring_id": "rockshox_solo_air_recon_silver_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_120_pressure",
+    "air_spring_id": "rockshox_solo_air_recon_silver_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_130_pressure",
+    "air_spring_id": "rockshox_solo_air_recon_silver_130",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      130
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_140_pressure",
+    "air_spring_id": "rockshox_solo_air_recon_silver_140",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      140
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_150_pressure",
+    "air_spring_id": "rockshox_solo_air_recon_silver_150",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      150
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_recon_silver_26_100_pressure",
+    "air_spring_id": "rockshox_solo_air_recon_silver_26_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_gold_80_pressure",
+    "air_spring_id": "rockshox_solo_air_judy_gold_80",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 90,
+        "psi_max": 110
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 110,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 125,
+        "psi_max": 140
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 140,
+        "psi_max": 160
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 160,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      80
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_gold_100_pressure",
+    "air_spring_id": "rockshox_solo_air_judy_gold_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_gold_120_pressure",
+    "air_spring_id": "rockshox_solo_air_judy_gold_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_silver_80_pressure",
+    "air_spring_id": "rockshox_solo_air_judy_silver_80",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 90,
+        "psi_max": 110
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 110,
+        "psi_max": 125
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 125,
+        "psi_max": 140
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 140,
+        "psi_max": 160
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 160,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      80
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_silver_100_pressure",
+    "air_spring_id": "rockshox_solo_air_judy_silver_100",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      100
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_silver_120_pressure",
+    "air_spring_id": "rockshox_solo_air_judy_silver_120",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      120
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  },
+  {
+    "id": "rockshox_solo_air_judy_silver_130_pressure",
+    "air_spring_id": "rockshox_solo_air_judy_silver_130",
+    "bands": [
+      {
+        "kg_min": null,
+        "kg_max": 63,
+        "psi_min": 50,
+        "psi_max": 70
+      },
+      {
+        "kg_min": 63,
+        "kg_max": 72,
+        "psi_min": 70,
+        "psi_max": 85
+      },
+      {
+        "kg_min": 72,
+        "kg_max": 81,
+        "psi_min": 85,
+        "psi_max": 100
+      },
+      {
+        "kg_min": 81,
+        "kg_max": 90,
+        "psi_min": 100,
+        "psi_max": 120
+      },
+      {
+        "kg_min": 90,
+        "kg_max": null,
+        "psi_min": 120,
+        "psi_max": null
+      }
+    ],
+    "basis": null,
+    "point_type": "bracket",
+    "applies_to_travel_mm": [
+      130
+    ],
+    "ebike_offset_psi": 10,
+    "fields_pending": [
+      {
+        "field": "basis",
+        "expected_source": "RockShox user manual: chart headers give rider weight only, no mention of kit",
+        "tier": "A"
+      }
+    ],
+    "confidence": "published",
+    "source": [
+      {
+        "url": "https://www.sram.com/en/service",
+        "document": "2023 Front Suspension Specifications - Oil Volume, Air Pressure, Coil Spring Rates, and Technical Specifications (GEN.00000000007168 Rev D, SRAM/RockShox), as transcribed in 02C_ROCKSHOX_FRONT_SPEC_2023.md",
+        "retrieved": "2026-09-25",
+        "method": "manual_entry"
+      }
+    ]
+  }
+]
