@@ -19,15 +19,14 @@ describe('07 findability', () => {
       expect.arrayContaining(['fox_36_factory_150_2024', 'fox_36_performance_150_2024', 'fox_36_rhythm_150_2024']),
     );
     const rhythm = searchComponents(index, 'fork', 'rhythm').results;
-    expect(rhythm).toHaveLength(1);
-    expect(rhythm[0].estimated).toBe(true);
-    const pike = searchComponents(index, 'fork', 'Pike Ultimate').empty;
-    expect(pike).toMatchObject({ stage: '02b', next: 'identifier' });
-    expect(pike?.message).toMatch(/on file with pressure and token data/);
+    expect(rhythm.map((r) => r.id)).toEqual(expect.arrayContaining(['fox_36_rhythm_150_2024', 'fox_34_rhythm_140_2024', 'fox_32_rhythm_120_2024']));
+    expect(rhythm.every((r) => r.estimated)).toBe(true);
+    const pike = searchComponents(index, 'fork', 'Pike Ultimate').results;
+    expect(pike.length).toBeGreaterThan(0);
+    expect(pike.every((r) => r.pending)).toBe(true);
     const code = matchIdentifier(index, 'FS-PIKE-SEL-C1');
-    expect(code.status).toBe('none');
-    expect(code.empty?.message).toMatch(/Charger RC/);
-    expect(searchComponents(index, 'fork', 'Suntour XCR').empty?.message).toMatch(/under R40k/);
+    expect(code).toMatchObject({ status: 'family', family: 'RockShox Pike Select (Charger RC)', damper: 'Charger RC' });
+    expect(searchComponents(index, 'fork', 'Manitou Mattoc').empty).toMatchObject({ stage: '02 batch 3' });
     expect(searchComponents(index, 'shock', 'float x').results.map((c) => c.id)).toContain('fox_float_x_2023');
   });
 

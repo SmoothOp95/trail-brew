@@ -2,6 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { ingest } from '../data/ingest/ingest';
 import { OVERLAY } from '../data/overlay/overlay';
 import { loadRaw } from './helpers';
+import { RULES } from '../rules';
+import { compose, resolveBike, resolveCapability, springAdvice, startingValue } from '../engine';
+import { matchIdentifier } from '../search/search';
 
 /**
  * 02C section 12 golden values. The transcription is manual, and the harvest it corrected was wrong in
@@ -91,9 +94,38 @@ describe('02C golden values survive ingest', () => {
     expect(zeb.confidence_note).toMatch(/Rush RC.*Charger R/);
   });
 
-  it.todo('FS-PIKE-SEL-C1 identifier match returns the Pike Select family and lets the rider pick travel (engine step)');
-  it.todo('any fork unit on a pending damper: adjusters resolve pending, never absent; pressure band still shown (engine step)');
-  it.todo('coil fork at 85 kg: "Blue, Firm" shown as published; fork_psi absent (engine step)');
+  it('FS-PIKE-SEL-C1 identifier match returns the Pike Select family, damper Charger RC, and its travels', () => {
+    const r = matchIdentifier(index, 'FS-PIKE-SEL-C1');
+    expect(r.status).toBe('family');
+    if (r.status !== 'family') return;
+    expect(r.family).toBe('RockShox Pike Select (Charger RC)');
+    expect(r.results.map((h) => h.travel_mm)).toEqual([120, 130, 140]);
+    expect(new Set(r.results.map((h) => index.fork_units[h.id].damper_id))).toEqual(new Set(['rockshox_charger_rc_2023']));
+  });
+
+  it('any fork unit on a pending damper: adjusters resolve pending, never absent; pressure band still shown', () => {
+    for (const u of Object.values(index.fork_units).filter((x) => !index.dampers[x.damper_id])) {
+      const bike = resolveBike(index, { suspension: 'full_suspension', fork: { unitId: u.id }, shock: null });
+      for (const f of ['fork_lsc', 'fork_hsc', 'fork_lsr', 'fork_hsr'] as const) expect(resolveCapability(f, bike).state).toBe('pending');
+    }
+    const pike = resolveBike(index, { suspension: 'full_suspension', fork: { unitId: 'rockshox_pike_select_140_2023' }, shock: null });
+    const psi = startingValue('fork_psi', pike, 85);
+    expect(psi).toMatchObject({ value: null, provenance: 'published', range: { min: 75, max: 85, text: '75 to 85 psi', forWeight: '81 to 90 kg' } });
+    const p = compose(['less_harsh'], RULES, pike, {});
+    expect(p.pending.map((c) => c.field)).toContain('fork_hsc');
+    expect(p.ruledOut.map((r) => r.field)).not.toContain('fork_hsc');
+    expect(p.changes.map((c) => c.field)).toEqual(expect.arrayContaining(['tyre_front', 'tyre_rear', 'fork_psi']));
+    expect(p.pendingNotice).toMatch(/Damper adjuster data for the Charger RC is not in the dataset yet/);
+  });
+
+  it('coil fork at 85 kg: "Blue, Firm" shown as published; fork_psi absent', () => {
+    const judy = resolveBike(index, { suspension: 'full_suspension', fork: { unitId: 'rockshox_judy_tk_100_2023' }, shock: null });
+    expect(springAdvice(judy, 85)).toMatchObject({ spring: 'Blue (Firm)', provenance: 'published', forWeight: '81 to 90 kg' });
+    const cap = resolveCapability('fork_psi', judy);
+    expect(cap.state).toBe('absent');
+    expect(cap.reason).toBe('Coil spring fork: change the spring rather than the pressure.');
+    expect(springAdvice(judy, 105)?.spring).toBeNull();
+  });
 });
 
 describe('02C pending damper rule at ingest', () => {
@@ -113,8 +145,10 @@ describe('02C pending damper rule at ingest', () => {
     expect(r.coverage.exclusions.find((e) => e.id === 'rockshox_pike_select_140_2023')?.reasons[0]).toMatch(/damper_id .* does not resolve/);
   });
 
-  it('holds pending units off the Bench list until the engine resolves pending adjusters', () => {
-    expect(coverage.showable.fork_units.some((u) => u.id.startsWith('rockshox_'))).toBe(false);
+  it('puts pending units on the Bench list, marked pending', () => {
+    const rs = coverage.showable.fork_units.filter((u) => u.id.startsWith('rockshox_'));
+    expect(rs).toHaveLength(153);
+    expect(rs.every((u) => u.pending)).toBe(true);
   });
 
   it('lists deferred source content rather than omitting it', () => {

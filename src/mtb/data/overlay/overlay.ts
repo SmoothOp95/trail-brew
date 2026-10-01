@@ -140,6 +140,78 @@ const GRIP2_HSR = [8, 7, 6, 6, 5, 5, 4, 3, 3, 2, 1, 1, 0];
 const REFERENCE_NOTE =
   "Tumi's 2024 FOX 36 Rhythm 150, the reference bike (00_STATE conflict 1). FOX calls the damper 'Grip Sweep-Adj'; whether it is the 2-position RAIL sweep or the 3-position GRIP is unresolved, but both resolve identically for gating: coarse LSC, counted LSR, no HSC or HSR. Spring figures are the fork's own documented values recorded in 00_STATE, not harvested. Replace with 02B objective C.";
 
+
+// ---------- composed units: published parts with no harvested unit record ----------
+// The dampers, chassis and springs are on file; FOX sells these combinations, but no harvest has written
+// the unit record yet. Each is marked estimated so the rider sees that the combination is ours.
+
+const COMPOSED_NOTE = (what: string) =>
+  `Composed by Claude Code from records already on file (${what}). FOX sells this combination, but no harvest has written the unit record, so treat it as an estimate until one does.`;
+const composedSource = { url: 'docs/mtb/00_STATE.md', document: 'Composed from on-file chassis, damper and air spring records', retrieved: RETRIEVED, method: 'manual_entry' as const };
+
+const placeholderSpring = (id: string, chassisId: string, travel: number, size: string) => ({
+  basis: 'estimate' as const,
+  reason: `Placeholder FOX ${size} FLOAT air spring so ${size} fork units can be composed. Figures not transcribed yet.`,
+  record: {
+    id, brand: 'FOX', name: 'FLOAT', type: 'air', negative: null, chassis_id: chassisId, travel_mm: travel,
+    spacer_pn: null, spacer_volume_cc: null, spacer_factory: null, spacer_max: null, pressure_max_psi: null, pressure_min_psi: null,
+    sag_target_pct: null, equalise_note: null, confidence: 'estimated',
+    confidence_note: `Records that a FOX ${size} FLOAT air spring exists at ${travel} mm (travel option from the 2024 32/34 manual). Pressure, spacer and sag figures are in that manual but not transcribed yet, so they read unknown.`,
+    source: { url: 'https://tech.ridefox.com/bike/owners-manuals/2931/fork--2024-32mm-or-32mm-tc-or-34mm-or-34mm-awl', document: 'FORK- 2024 32mm/32mm TC/34mm/34mm AWL | Bike Tech Help Center | FOX', retrieved: RETRIEVED, method: 'manual_entry' as const },
+    fields_pending: ['spacer_pn', 'spacer_volume_cc', 'spacer_factory', 'spacer_max', 'pressure_max_psi', 'pressure_min_psi', 'sag_target_pct', 'negative'].map((field) => ({
+      field, expected_source: 'FOX 2024 32/34mm owner\'s manual tables', tier: 'A',
+    })),
+  },
+});
+
+const COMPOSED_SPRINGS = [
+  placeholderSpring('fox_float_34_140_2024', 'fox_34_2024', 140, '34'),
+  placeholderSpring('fox_float_32_120_2024', 'fox_32_2024', 120, '32'),
+];
+
+const composedFork = (id: string, name: string, chassisId: string, damperId: string, springId: string, travel: number, tier: string, year: number, parts: string) => ({
+  basis: 'estimate' as const,
+  reason: `Composed unit: ${name}.`,
+  record: {
+    id, display_name: name, chassis_id: chassisId, damper_id: damperId, air_spring_id: springId, travel_mm: travel, offset_mm: null,
+    tier, model_year: year, part_number: null, service_interval_h: null, oil: null, known_issues: [], sa_availability: null,
+    confidence: 'estimated', confidence_note: COMPOSED_NOTE(parts), source: composedSource,
+    fields_pending: [{ field: 'part_number', expected_source: 'Fork leg sticker or FOX spec sheet', tier: 'B' }],
+  },
+});
+
+const COMPOSED_FORKS = [
+  composedFork('fox_36_factory_150_2025', 'FOX 36 Factory 150 (GRIP X2, 2025)', 'fox_36_2024', 'fox_grip_x2_2025', 'fox_float_evol_36_2024', 150, 'factory', 2025, 'FOX 36 chassis, GRIP X2 damper, FLOAT EVOL 36 spring'),
+  composedFork('fox_36_performance_150_2025', 'FOX 36 Performance 150 (GRIP X, 2025)', 'fox_36_2024', 'fox_grip_x_2025', 'fox_float_evol_36_2024', 150, 'performance', 2025, 'FOX 36 chassis, GRIP X damper, FLOAT EVOL 36 spring'),
+  composedFork('fox_38_performance_170_2024', 'FOX 38 Performance 170 (GRIP)', 'fox_38_2024', 'fox_grip_2024', 'fox_float_evol_38_2024', 170, 'performance', 2024, 'FOX 38 chassis, GRIP damper, FLOAT EVOL 38 spring'),
+  composedFork('fox_38_factory_170_2025', 'FOX 38 Factory 170 (GRIP X2, 2025)', 'fox_38_2024', 'fox_grip_x2_2025', 'fox_float_evol_38_2024', 170, 'factory', 2025, 'FOX 38 chassis, GRIP X2 damper, FLOAT EVOL 38 spring'),
+  composedFork('fox_38_performance_170_2025', 'FOX 38 Performance 170 (GRIP X, 2025)', 'fox_38_2024', 'fox_grip_x_2025', 'fox_float_evol_38_2024', 170, 'performance', 2025, 'FOX 38 chassis, GRIP X damper, FLOAT EVOL 38 spring'),
+  composedFork('fox_34_factory_140_2024', 'FOX 34 Factory 140 (FIT4)', 'fox_34_2024', 'fox_fit4_2024', 'fox_float_34_140_2024', 140, 'factory', 2024, 'FOX 34 chassis, FIT4 damper, placeholder FLOAT spring'),
+  composedFork('fox_34_performance_140_2024', 'FOX 34 Performance 140 (GRIP)', 'fox_34_2024', 'fox_grip_2024', 'fox_float_34_140_2024', 140, 'performance', 2024, 'FOX 34 chassis, GRIP damper, placeholder FLOAT spring'),
+  composedFork('fox_34_rhythm_140_2024', 'FOX 34 Rhythm 140 (RAIL Sweep-Adjust)', 'fox_34_2024', 'fox_rail_2024', 'fox_float_34_140_2024', 140, 'rhythm', 2024, 'FOX 34 chassis, RAIL damper, placeholder FLOAT spring'),
+  composedFork('fox_32_factory_120_2024', 'FOX 32 Factory 120 (FIT4)', 'fox_32_2024', 'fox_fit4_2024', 'fox_float_32_120_2024', 120, 'factory', 2024, 'FOX 32 chassis, FIT4 damper, placeholder FLOAT spring'),
+  composedFork('fox_32_performance_120_2024', 'FOX 32 Performance 120 (GRIP)', 'fox_32_2024', 'fox_grip_2024', 'fox_float_32_120_2024', 120, 'performance', 2024, 'FOX 32 chassis, GRIP damper, placeholder FLOAT spring'),
+  composedFork('fox_32_rhythm_120_2024', 'FOX 32 Rhythm 120 (RAIL Sweep-Adjust)', 'fox_32_2024', 'fox_rail_2024', 'fox_float_32_120_2024', 120, 'rhythm', 2024, 'FOX 32 chassis, RAIL damper, placeholder FLOAT spring'),
+];
+
+const composedShock = (id: string, name: string, model: string, tier: string, damperId: string, airCan: 'evol_hv' | 'coil', pressureMax: number | null, parts: string) => ({
+  basis: 'estimate' as const,
+  reason: `Composed unit: ${name}.`,
+  record: {
+    id, display_name: name, brand: 'FOX', model, tier, model_year: 2024, damper_id: damperId, mount: null, sizes: [], air_can: airCan,
+    spacer_pn: null, spacer_volume_cc: null, spacer_factory: null, spacer_max: null, sag_target_pct: [30, 30], pressure_max_psi: pressureMax,
+    service_interval_h: null, oem_tune: null, part_number: null, sa_availability: null, confidence: 'estimated',
+    confidence_note: `${COMPOSED_NOTE(parts)} Sag and maximum pressure are taken from the Factory version in the same FOX manual.`,
+    source: composedSource,
+  },
+});
+
+const COMPOSED_SHOCKS = [
+  composedShock('fox_float_x2_perf_elite_2024_unit', 'FOX FLOAT X2 (Performance Elite)', 'FLOAT X2', 'performance_elite', 'fox_float_x2_perf_elite_2024', 'evol_hv', 300, 'FLOAT X2 Performance Elite damper'),
+  composedShock('fox_dhx2_perf_elite_2024_unit', 'FOX DHX2 (Performance Elite, coil)', 'DHX2', 'performance_elite', 'fox_dhx2_performance_elite_2024', 'coil', null, 'DHX2 Performance Elite damper'),
+  composedShock('fox_dhx_2024_unit', 'FOX DHX (coil)', 'DHX', 'base', 'fox_dhx_2024', 'coil', null, 'DHX damper (rebound not documented, see its record)'),
+];
+
 export const OVERLAY: Overlay = {
   version: '2026-09-25',
   patches,
@@ -186,6 +258,7 @@ export const OVERLAY: Overlay = {
       },
     ],
     air_springs: [
+      ...COMPOSED_SPRINGS,
       {
         basis: 'estimate',
         reason: 'Reference bike air spring, from the fork\'s documented figures in 00_STATE.',
@@ -213,6 +286,7 @@ export const OVERLAY: Overlay = {
       },
     ],
     fork_units: [
+      ...COMPOSED_FORKS,
       {
         basis: 'estimate',
         reason: 'Reference bike fork unit.',
@@ -238,5 +312,6 @@ export const OVERLAY: Overlay = {
         },
       },
     ],
+    shock_units: COMPOSED_SHOCKS,
   },
 };

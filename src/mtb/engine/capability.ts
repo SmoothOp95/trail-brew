@@ -60,13 +60,22 @@ export function resolveCapability(field: SettingField, bike: BikeContext): Capab
   if (what === 'spacers') return end === 'fork' ? forkSpacers(bike) : shockSpacers(bike);
 
   const key = what as AdjusterKey;
-  const damper = end === 'fork' ? bike.fork!.damper : bike.shock!.damper;
-  return adjusterCapability(field, key, damper.adjusters[key], damper.name);
+  const part = end === 'fork' ? bike.fork! : bike.shock!;
+  if (!part.damper) {
+    // 02C pending damper rule: neither offered nor ruled out.
+    const name = part.pendingDamper?.name ?? 'damper';
+    return {
+      field, state: 'pending', unit: 'clicks', label: FIELD_LABELS[field],
+      reason: `Damper adjuster data for the ${name} is not in the dataset yet.`,
+      min: null, max: null, headroomUnknown: false, owner: name,
+    };
+  }
+  return adjusterCapability(field, key, part.damper.adjusters[key], part.damper.name);
 }
 
 function forkPsi(bike: BikeContext): Capability {
   const s = bike.fork!.airSpring;
-  if (s?.type === 'coil') return absent('fork_psi', `The ${s.name} is a coil spring, so there is no air pressure to set.`, 'psi');
+  if (s?.type === 'coil') return absent('fork_psi', 'Coil spring fork: change the spring rather than the pressure.', 'psi');
   return {
     field: 'fork_psi', state: 'counted', unit: 'psi', label: FIELD_LABELS.fork_psi,
     min: s?.pressure_min_psi != null ? { value: s.pressure_min_psi, source: `${s.name} minimum pressure` } : { value: 0, source: 'zero' },
@@ -88,13 +97,15 @@ function shockPsi(bike: BikeContext): Capability {
 
 function forkSpacers(bike: BikeContext): Capability {
   const s = bike.fork!.airSpring;
-  if (s?.type === 'coil') return absent('fork_spacers', `The ${s.name} is a coil spring, so it takes no volume spacers.`, 'spacers');
+  if (s?.type === 'coil') return absent('fork_spacers', 'Coil spring fork: change the spring rather than adding volume spacers.', 'spacers');
+  if (s?.spacer_max === 0) return absent('fork_spacers', `The ${s.name} on this fork takes no volume spacers.`, 'spacers');
   return spacerCap('fork_spacers', s?.spacer_max ?? null, s?.name ?? bike.fork!.label);
 }
 
 function shockSpacers(bike: BikeContext): Capability {
   const u = bike.shock!.unit;
   if (u?.air_can === 'coil') return absent('shock_spacers', `The ${u.display_name} is a coil shock, so it takes no volume spacers.`, 'spacers');
+  if (u?.spacer_max === 0) return absent('shock_spacers', `The ${u.display_name} takes no volume spacers.`, 'spacers');
   return spacerCap('shock_spacers', u?.spacer_max ?? null, u?.display_name ?? bike.shock!.label);
 }
 

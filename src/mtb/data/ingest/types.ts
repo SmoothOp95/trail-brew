@@ -103,6 +103,8 @@ export interface AdjusterCountStats {
 }
 
 export interface ShowableUnit {
+  /** Damper record not written yet: selectable, adjusters resolve pending. */
+  pending: boolean;
   id: string;
   display_name: string;
   brand: string;

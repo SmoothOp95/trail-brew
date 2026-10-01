@@ -400,18 +400,17 @@ function buildIndex(v: TableRecords, annotations: Annotation[]): DataIndex {
   };
 }
 
-/**
- * Units a rider can put on the Bench today. Units on a pending damper are kept in the index but held out
- * of this list until the engine resolves pending adjusters.
- */
+/** Units a rider can put on the Bench, including units on a pending damper (their adjusters resolve pending). */
 function showable(v: TableRecords): Coverage['showable'] {
   const chassis = new Map(v.chassis.map((c) => [c.id, c]));
   const dampers = new Set(v.dampers.map((d) => d.id));
-  const fork_units: ShowableUnit[] = v.fork_units.filter((u) => dampers.has(u.damper_id)).map((u) => ({
+  const fork_units: ShowableUnit[] = v.fork_units.map((u) => ({
     id: u.id, display_name: u.display_name, brand: chassis.get(u.chassis_id)?.brand ?? '', tier: u.tier, damper_id: u.damper_id,
+    pending: !dampers.has(u.damper_id),
   }));
-  const shock_units: ShowableUnit[] = v.shock_units.filter((u) => dampers.has(u.damper_id)).map((u) => ({
+  const shock_units: ShowableUnit[] = v.shock_units.map((u) => ({
     id: u.id, display_name: u.display_name, brand: u.brand, tier: u.tier, damper_id: u.damper_id,
+    pending: !dampers.has(u.damper_id),
   }));
   return { fork_units, shock_units };
 }
@@ -438,8 +437,8 @@ function readiness(v: TableRecords): ReadinessGate[] {
   const chassisBrand = new Map(v.chassis.map((c) => [c.id, c.brand]));
   const dampers = new Set(v.dampers.map((d) => d.id));
   const pendingRs = v.fork_units.filter((u) => !dampers.has(u.damper_id) && chassisBrand.get(u.chassis_id) === 'RockShox').length;
-  const forkBrands = v.fork_units.filter((u) => dampers.has(u.damper_id)).map((u) => ({ brand: chassisBrand.get(u.chassis_id) ?? '', tier: u.tier.toLowerCase() }));
-  const shockBrands = v.shock_units.filter((u) => dampers.has(u.damper_id)).map((u) => ({ brand: u.brand, tier: u.tier.toLowerCase() }));
+  const forkBrands = v.fork_units.map((u) => ({ brand: chassisBrand.get(u.chassis_id) ?? '', tier: u.tier.toLowerCase() }));
+  const shockBrands = v.shock_units.map((u) => ({ brand: u.brand, tier: u.tier.toLowerCase() }));
   const all = [...forkBrands, ...shockBrands];
   const count = (pred: (x: { brand: string; tier: string }) => boolean) => all.filter(pred).length;
   const foxFP = count((x) => x.brand === 'FOX' && ['factory', 'performance', 'performance_elite'].includes(x.tier));
@@ -447,11 +446,11 @@ function readiness(v: TableRecords): ReadinessGate[] {
   const rs = count((x) => x.brand === 'RockShox');
   const budgetBrands = ['X-Fusion', 'SR Suntour', 'Marzocchi'];
   const budget = count((x) => budgetBrands.includes(x.brand));
-  const ids = [...v.fork_units, ...v.shock_units].filter((u) => dampers.has(u.damper_id) && (u.part_number || u.model_code)).length;
+  const ids = [...v.fork_units, ...v.shock_units].filter((u) => u.part_number || u.model_code).length;
   return [
     { feature: 'Component search, FOX Factory and Performance', meaningful_after: 'now', ready: foxFP > 0, evidence: `${foxFP} units` },
     { feature: 'Component search, FOX Rhythm', meaningful_after: '02b objective C', ready: rhythm > 0, evidence: `${rhythm} units` },
-    { feature: 'Component search, RockShox', meaningful_after: '02b', ready: rs > 0, evidence: `${rs} units selectable, ${pendingRs} on file waiting on damper data` },
+    { feature: 'Component search, RockShox', meaningful_after: '02b', ready: rs > 0, evidence: `${rs} units selectable; ${pendingRs} with damper data pending (spring, token and tyre advice only)` },
     {
       feature: 'Component search, X-Fusion, SR Suntour, Marzocchi, RockShox Recon and 35 Silver',
       meaningful_after: '02 batch 2', ready: budget > 0, evidence: `${budget} units`,

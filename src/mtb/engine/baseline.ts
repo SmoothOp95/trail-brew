@@ -1,5 +1,5 @@
 import type { AdjusterKey, PointType, SettingChart } from '../data/schema/tables';
-import type { BikeContext, Capability, Provenance, SettingField, Settings, StartingValue } from './types';
+import type { BikeContext, Capability, Provenance, PublishedRange, SettingField, Settings, StartingValue } from './types';
 import { resolveCapability } from './capability';
 
 export const ALL_FIELDS: SettingField[] = [
@@ -62,7 +62,7 @@ const basisNote = (basis: string | null | undefined): string | null =>
 export function startingValue(field: SettingField, bike: BikeContext, riderKg: number | null): StartingValue {
   const cap = resolveCapability(field, bike);
   const base = { field, notes: [] as string[] };
-  if (cap.state === 'absent') return { ...base, value: null, provenance: 'unknown', source: null, settleWith: null };
+  if (cap.state === 'absent' || cap.state === 'pending') return { ...base, value: null, provenance: 'unknown', source: null, settleWith: null };
 
   const end = field.startsWith('fork_') ? 'fork' : field.startsWith('shock_') ? 'shock' : null;
   const what = end ? (field.slice(end.length + 1) as AdjusterKey | 'psi' | 'spacers') : null;
@@ -97,14 +97,18 @@ export function startingValue(field: SettingField, bike: BikeContext, riderKg: n
   if (field === 'fork_psi') {
     const chart = bike.fork!.pressureChart;
     if (chart && riderKg != null && !chart.points?.length && chart.bands?.length) {
-      // Band-only chart (RockShox): the manufacturer publishes a range, not a value, so none is invented.
+      // Band chart (RockShox, 02C section 5): show the published range, never collapse it to one number.
       const band = chart.bands.find((b) => (b.kg_min == null || riderKg >= b.kg_min) && (b.kg_max == null || riderKg < b.kg_max));
-      const range = band ? describePsiBand(band) : null;
+      if (!band) {
+        return { ...base, value: null, provenance: 'unknown', source: null, settleWith: 'Your weight is outside the published chart. Set pressure by sag and enter it.' };
+      }
+      const notes = [basisNote(chart.basis)].filter((n): n is string => !!n);
+      if (chart.ebike_offset_psi) notes.push(`On an e-bike the chart adds ${chart.ebike_offset_psi} psi (not applied here).`);
       return {
-        ...base, value: null, provenance: 'unknown', source: null,
-        settleWith: range
-          ? `The manufacturer publishes ${range} for ${describeKgBand(band!)}. Set yours inside that window and enter it.`
-          : 'Your weight is outside the published chart. Set pressure by sag and enter it.',
+        ...base, value: null, provenance: provenanceOf(chart.confidence), notes,
+        range: { min: band.psi_min, max: band.psi_max, text: describePsiBand(band), forWeight: describeKgBand(band) },
+        source: `${bike.fork!.airSpring?.name ?? 'Air spring'} pressure chart, ${describeKgBand(band)}`,
+        settleWith: `Set yours inside ${describePsiBand(band)} and enter it.`,
       };
     }
     if (chart && riderKg != null && chart.points?.length) {
@@ -177,6 +181,46 @@ function overlayNotes(bike: BikeContext, table: string, id: string): string[] {
   const byReason = new Map<string, string[]>();
   for (const a of fills) byReason.set(a.reason, [...(byReason.get(a.reason) ?? []), a.path.replace(/_/g, ' ')]);
   return [...byReason].map(([reason, paths]) => `Chart ${paths.join(' and ')} filled by ${fills.find((a) => a.reason === reason)!.basis}, not read from the source document: ${reason}`);
+}
+
+export interface SpringAdvice {
+  /** "Blue (Firm)", or null when no spring is listed for this weight. */
+  spring: string | null;
+  forWeight: string | null;
+  provenance: Provenance;
+  note: string;
+}
+
+/**
+ * Coil forks set spring rate by swapping the spring (02C section 6). RockShox publishes colours by weight band,
+ * shown as a published figure. Null for air forks.
+ */
+export function springAdvice(bike: BikeContext, riderKg: number | null): SpringAdvice | null {
+  const s = bike.fork?.airSpring;
+  if (!s || s.type !== 'coil') return null;
+  if (!s.coil_chart?.length) {
+    return { spring: null, forWeight: null, provenance: 'unknown', note: 'Spring options for this fork are not on file. Ask your shop which spring rates it takes.' };
+  }
+  if (riderKg == null) return { spring: null, forWeight: null, provenance: 'unknown', note: 'Enter your kitted weight to see which spring the manufacturer lists.' };
+  const band = s.coil_chart.find((b) => (b.kg_min == null || riderKg >= b.kg_min) && (b.kg_max == null || riderKg < b.kg_max));
+  if (!band) {
+    const top = s.coil_chart[s.coil_chart.length - 1];
+    return { spring: null, forWeight: null, provenance: 'unknown', note: `No spring is listed over ${top.kg_max} kg. Ask your shop about the firmest available.` };
+  }
+  return {
+    spring: `${band.colour} (${band.label})`,
+    forWeight: describeKgBand(band),
+    provenance: provenanceOf(s.confidence),
+    note: 'Coil forks change spring rate by swapping the spring, not by air pressure.',
+  };
+}
+
+/** Where a rider's pressure sits against a published range. */
+export function rangeStatus(value: number | null, range: PublishedRange | null | undefined): 'inside' | 'below' | 'above' | null {
+  if (value == null || !range) return null;
+  if (range.min != null && value < range.min) return 'below';
+  if (range.max != null && value > range.max) return 'above';
+  return 'inside';
 }
 
 /** Starting values for every field, keyed by field. */

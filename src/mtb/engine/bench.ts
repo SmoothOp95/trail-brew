@@ -13,8 +13,15 @@ const READOUT_ORDER: SettingField[] = [
  * Rows the readout shows. Absent fields are hidden entirely, which covers the lockout case: a lockout
  * lever is not a compression dial, so the compression row disappears (05 §10), and a hardtail has no shock rows.
  */
+/** One line per screen for a pending damper (02C section 10), or null. */
+export function pendingNotices(bike: BikeContext): string[] {
+  return [bike.fork, bike.shock]
+    .filter((p): p is NonNullable<typeof p> => !!p && !p.damper && !!p.pendingDamper)
+    .map((p) => `Damper adjuster data for the ${p.pendingDamper!.name} is not in the dataset yet, so rebound and compression rows are hidden. Spring, token and tyre settings still work.`);
+}
+
 export function readoutRows(bike: BikeContext): Capability[] {
-  return READOUT_ORDER.map((f) => resolveCapability(f, bike)).filter((c) => c.state !== 'absent');
+  return READOUT_ORDER.map((f) => resolveCapability(f, bike)).filter((c) => c.state !== 'absent' && c.state !== 'pending');
 }
 
 // ---------- Bench state ----------

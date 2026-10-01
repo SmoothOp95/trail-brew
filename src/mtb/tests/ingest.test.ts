@@ -25,7 +25,9 @@ describe('ingest on the real dataset', () => {
 
   it('validates every current record with no dangling keys', () => {
     expect(coverage.exclusions).toEqual([]);
-    expect(coverage.showable.fork_units).toHaveLength(3);
+    // 3 FOX forks plus 153 RockShox forks from 02C, whose dampers are pending but which are selectable.
+    expect(coverage.showable.fork_units).toHaveLength(156);
+    expect(coverage.showable.fork_units.filter((u) => u.pending)).toHaveLength(153);
     expect(coverage.showable.shock_units).toHaveLength(4);
   });
 

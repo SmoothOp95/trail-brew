@@ -14,7 +14,7 @@ export interface Clamp {
 export interface Change {
   field: SettingField;
   label: string;
-  state: Exclude<CapabilityState, 'absent'>;
+  state: Exclude<CapabilityState, 'absent' | 'pending'>;
   unit: FieldUnit;
   group: OrderGroupId;
   /** Summed delta the goals asked for. */
@@ -43,6 +43,13 @@ export interface RuledOut {
   goals: string[];
 }
 
+/** A delta whose adjuster is pending (02C): not offered, not ruled out, reported once per screen. */
+export interface PendingChange {
+  field: SettingField;
+  label: string;
+  goals: string[];
+}
+
 export interface NetZero {
   field: SettingField;
   label: string;
@@ -57,6 +64,9 @@ export interface Proposal {
   hiddenGoals: string[];
   changes: Change[];
   ruledOut: RuledOut[];
+  /** Deltas held back because the damper is pending, and the one-line notice to show for them. */
+  pending: PendingChange[];
+  pendingNotice: string | null;
   netZero: NetZero[];
   /** Components whose adjustment headroom is not published, disclosed once per screen. */
   headroomUnknown: string[];
@@ -102,12 +112,21 @@ export function compose(goalIds: string[], rules: Rules, bike: BikeContext, now:
 
   const contributions = new Map<SettingField, { goal: string; delta: number }[]>();
   const ruled = new Map<SettingField, RuledOut>();
+  const pending = new Map<SettingField, PendingChange>();
+  const pendingReasons = new Set<string>();
   const caps = new Map<SettingField, Capability>();
 
   for (const g of goals) {
     for (const [field, raw] of Object.entries(effectiveRecipe(g, bike, rules)) as [SettingField, number | string][]) {
       const cap = caps.get(field) ?? resolveCapability(field, bike);
       caps.set(field, cap);
+      if (cap.state === 'pending') {
+        const pc = pending.get(field) ?? { field, label: cap.label, goals: [] };
+        if (!pc.goals.includes(g.id)) pc.goals.push(g.id);
+        pending.set(field, pc);
+        pendingReasons.add(cap.reason ?? '');
+        continue;
+      }
       if (cap.state === 'absent' || typeof raw !== 'number') {
         const r = ruled.get(field) ?? { field, label: cap.label, reason: cap.reason ?? 'Not available on this hardware.', goals: [] };
         if (!r.goals.includes(g.id)) r.goals.push(g.id);
@@ -176,6 +195,8 @@ export function compose(goalIds: string[], rules: Rules, bike: BikeContext, now:
     hiddenGoals,
     changes: sortByOrdering(rules, changes).filter((c) => c.delta !== 0 || c.clamp),
     ruledOut: sortByOrdering(rules, [...ruled.values()]),
+    pending: sortByOrdering(rules, [...pending.values()]),
+    pendingNotice: pendingReasons.size ? [...pendingReasons].join(' ') + ' Damping changes for it are held back until it is; spring, token and tyre changes are still offered.' : null,
     netZero,
     headroomUnknown: [...headroom],
     next,

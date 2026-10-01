@@ -6,22 +6,42 @@ export type { SettingField };
 
 export type SuspensionType = 'full_suspension' | 'hardtail';
 
+/** 02C pending damper rule: the unit is known, its damper record is not written yet. */
+export interface PendingDamper {
+  id: string;
+  name: string;
+}
+
+/** The part is not on file; the engine is using the closest documented unit's adjuster layout. */
+export interface StandInInfo {
+  id: string;
+  label: string;
+  targetLabel: string;
+  reason: string;
+  stage: string;
+}
+
 export interface ResolvedFork {
   /** Null when the rider picked chassis, damper and air spring by hand. */
   unit: ForkUnit | null;
   label: string;
   chassis: Chassis;
-  damper: Damper;
+  /** Null while the damper is pending; see pendingDamper. */
+  damper: Damper | null;
+  pendingDamper: PendingDamper | null;
   airSpring: AirSpring | null;
   pressureChart: PressureChart | null;
   settingCharts: SettingChart[];
+  standIn: StandInInfo | null;
 }
 
 export interface ResolvedShock {
   unit: ShockUnit | null;
   label: string;
-  damper: Damper;
+  damper: Damper | null;
+  pendingDamper: PendingDamper | null;
   settingCharts: SettingChart[];
+  standIn: StandInInfo | null;
 }
 
 /** Everything the engine needs to know about the rider's bike. */
@@ -43,7 +63,11 @@ export interface BikeContext {
  */
 export type Settings = Partial<Record<SettingField, number | null>>;
 
-export type CapabilityState = 'counted' | 'coarse' | 'absent';
+/**
+ * counted / coarse / absent per 01_SCHEMA, plus pending (02C section 10): the adjuster may exist but its
+ * damper record is not written yet. Pending is neither offered nor ruled out.
+ */
+export type CapabilityState = 'counted' | 'coarse' | 'absent' | 'pending';
 export type FieldUnit = 'psi' | 'spacers' | 'clicks' | 'position' | 'state';
 
 export interface Bound {
@@ -78,8 +102,20 @@ export interface Capability {
 
 export type Provenance = 'published' | 'derived' | 'estimated' | 'unknown';
 
+/** A published band for the rider's weight (02C section 5): shown as a range, never collapsed to one number. */
+export interface PublishedRange {
+  min: number | null;
+  max: number | null;
+  /** "75 to 85 psi", "under 75 psi", "125 psi or more". */
+  text: string;
+  /** "81 to 90 kg". */
+  forWeight: string;
+}
+
 export interface StartingValue {
   field: SettingField;
+  /** Set when the manufacturer publishes a range rather than a value. value stays null. */
+  range?: PublishedRange | null;
   value: number | null;
   provenance: Provenance;
   /** Short rider-facing description of where the number came from. */
