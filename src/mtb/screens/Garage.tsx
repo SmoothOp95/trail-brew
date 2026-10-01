@@ -10,19 +10,20 @@ import {
   matchIdentifier,
   searchBikes,
   searchComponents,
-  type ComponentCandidate,
   type GarageStep,
 } from '../search/search';
 import type { GarageBike } from '../storage/garage';
 import { RequestForm, type RequestPrefill } from '../components/RequestForm';
+import { StatusTag } from '../components/ComponentPicker';
+import { forkCatalogue, searchCatalogue, shockCatalogue, type CatalogueModel, type EntryStatus } from '../search/catalogue';
 import { useMtb } from '../ui/MtbContext';
-import { Button, EmptyNotice, ProvenanceTag, Section, inputCls } from '../ui/primitives';
+import { Button, EmptyNotice, Section, inputCls } from '../ui/primitives';
 
 interface Picked<T> {
   spec: T;
   label: string;
   via: GarageBike['found_via'];
-  estimated?: boolean;
+  status: EntryStatus;
 }
 
 /**
@@ -47,9 +48,9 @@ export function Garage() {
   const spec: BikeSpec | null = fork ? { suspension, fork: fork.spec, shock: suspension === 'hardtail' ? null : shock?.spec ?? null } : null;
   const found_via = fork?.via ?? 'manual';
 
-  const pickComponent = (c: ComponentCandidate, via: Picked<unknown>['via']) => {
-    if (c.kind === 'fork') setFork({ spec: { unitId: c.id }, label: c.display_name, via, estimated: c.estimated });
-    else setShock({ spec: { unitId: c.id }, label: c.display_name, via, estimated: c.estimated });
+  const pick: OnPick = (kind, spec, label, via, status) => {
+    if (kind === 'fork') setFork({ spec: spec as ForkSpec, label, via, status });
+    else setShock({ spec: spec as ShockSpec, label, via, status });
   };
 
   return (
@@ -68,11 +69,11 @@ export function Garage() {
       </Section>
 
       <Section letter="2" title="Search for your fork and shock" hint="brand, model, travel, tier">
-        <ComponentSearch onPick={(c) => pickComponent(c, 'component_search')} onRequest={askFor} hardtail={suspension === 'hardtail'} />
+        <ComponentSearch onPick={pick} onRequest={askFor} hardtail={suspension === 'hardtail'} />
       </Section>
 
       <Section letter="3" title="Match the part number on the sticker" hint="fork leg or shock body">
-        <IdentifierSearch onPick={(c) => pickComponent(c, 'identifier')} onRequest={askFor} />
+        <IdentifierSearch onPick={pick} onRequest={askFor} />
       </Section>
 
       <Section letter="4" title="Pick the parts by hand" hint="always available">
@@ -94,11 +95,11 @@ export function Garage() {
                 <option value="hardtail">Hardtail</option>
               </select>
               <span className="text-brew-text-dim">Fork:</span> <span>{fork?.label ?? 'none picked'}</span>
-              {fork?.estimated && <ProvenanceTag provenance="estimated" />}
+              {fork && <StatusTag status={fork.status} />}
               {suspension === 'full_suspension' && (
                 <>
                   <span className="text-brew-text-dim ml-2">Shock:</span> <span>{shock?.label ?? 'none picked'}</span>
-                  {shock?.estimated && <ProvenanceTag provenance="estimated" />}
+                  {shock && <StatusTag status={shock.status} />}
                 </>
               )}
             </div>
@@ -202,7 +203,9 @@ function BikeSearch() {
   );
 }
 
-function ComponentSearch({ onPick, onRequest, hardtail }: { onPick: (c: ComponentCandidate) => void; onRequest: (p: RequestPrefill) => void; hardtail: boolean }) {
+type OnPick = (kind: 'fork' | 'shock', spec: ForkSpec | ShockSpec, label: string, via: GarageBike['found_via'], status: EntryStatus) => void;
+
+function ComponentSearch({ onPick, onRequest, hardtail }: { onPick: OnPick; onRequest: (p: RequestPrefill) => void; hardtail: boolean }) {
   return (
     <div className={`grid gap-6 ${hardtail ? '' : 'md:grid-cols-2'}`}>
       <ComponentColumn kind="fork" onPick={onPick} onRequest={onRequest} />
@@ -211,22 +214,42 @@ function ComponentSearch({ onPick, onRequest, hardtail }: { onPick: (c: Componen
   );
 }
 
-function ComponentColumn({ kind, onPick, onRequest }: { kind: 'fork' | 'shock'; onPick: (c: ComponentCandidate) => void; onRequest: (p: RequestPrefill) => void }) {
+/** One catalogue model per row, with its travels as chips. Covers on-file parts, pending dampers and closest matches. */
+function ComponentColumn({ kind, onPick, onRequest }: { kind: 'fork' | 'shock'; onPick: OnPick; onRequest: (p: RequestPrefill) => void }) {
   const m = useMtb();
   const [q, setQ] = useState('');
-  const r = useMemo(() => searchComponents(m.index, kind, q), [m.index, kind, q]);
+  const models = useMemo(() => (kind === 'fork' ? forkCatalogue(m.index) : shockCatalogue(m.index)) as CatalogueModel[], [m.index, kind]);
+  const results = useMemo(() => (q.trim() ? searchCatalogue(models, q) : []), [models, q]);
+  const empty = q.trim() && !results.length ? searchComponents(m.index, kind, q).empty : null;
   return (
     <div className="space-y-2">
-      <input className={`${inputCls} w-full`} placeholder={kind === 'fork' ? 'Fork, e.g. FOX 36 150' : 'Shock, e.g. FLOAT X'} value={q} onChange={(e) => setQ(e.target.value)} aria-label={`${kind} search`} />
-      {r.results.slice(0, 8).map((c) => (
-        <button key={c.id} type="button" onClick={() => onPick(c)} className="w-full text-left flex items-center gap-2 bg-brew-card border border-white/10 hover:border-brew-accent/60 rounded-md px-3 py-2 text-sm">
-          <span className="flex-1">{c.display_name}</span>
-          {c.estimated && <ProvenanceTag provenance="estimated" />}
-        </button>
+      <input className={`${inputCls} w-full`} placeholder={kind === 'fork' ? 'Fork, e.g. Pike Select, FOX 34, Suntour XCR' : 'Shock, e.g. FLOAT X, Deluxe'} value={q} onChange={(e) => setQ(e.target.value)} aria-label={`${kind} search`} />
+      {results.slice(0, 8).map((model) => (
+        <div key={model.key} className="bg-brew-card border border-white/10 rounded-md px-3 py-2 text-sm">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="flex-1 min-w-0">{model.brand} {model.model}</span>
+            <StatusTag status={model.status} />
+          </div>
+          {model.statusNote && <p className="text-[11.5px] text-brew-text-muted mt-1">{model.statusNote}</p>}
+          <div className="flex flex-wrap gap-1.5 mt-2">
+            {model.options.map((o) => (
+              <button
+                key={String(o.travel)}
+                type="button"
+                title={o.note}
+                onClick={() => onPick(kind, o.spec, `${model.brand} ${model.model}${o.travel ? ` ${o.travel}` : ''}`, 'component_search', o.exact ? model.status : 'closest')}
+                className={`text-xs rounded px-2 py-1 border hover:border-brew-accent hover:text-brew-accent ${o.exact ? 'border-white/20' : 'border-dashed border-white/20 text-brew-text-dim'}`}
+              >
+                {o.travel ? `${o.travel} mm` : 'Use this'}
+              </button>
+            ))}
+          </div>
+        </div>
       ))}
-      {r.empty && (
+      {results.length > 8 && <p className="text-xs text-brew-text-muted">{results.length - 8} more: type more of the name to narrow it.</p>}
+      {empty && (
         <EmptyNotice
-          reason={r.empty}
+          reason={empty}
           action={
             <Button variant="quiet" className="text-xs underline" onClick={() => onRequest({ kind, model: q, query: q, step: 'component_search' })}>
               Ask for it
@@ -238,29 +261,48 @@ function ComponentColumn({ kind, onPick, onRequest }: { kind: 'fork' | 'shock'; 
   );
 }
 
-function IdentifierSearch({ onPick, onRequest }: { onPick: (c: ComponentCandidate) => void; onRequest: (p: RequestPrefill) => void }) {
+function IdentifierSearch({ onPick, onRequest }: { onPick: OnPick; onRequest: (p: RequestPrefill) => void }) {
   const m = useMtb();
   const [q, setQ] = useState('');
   const [ran, setRan] = useState(false);
   const r = matchIdentifier(m.index, q);
+  const status = (pending: boolean): EntryStatus => (pending ? 'pending' : 'on_file');
   return (
     <div className="space-y-3">
       <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); setRan(true); }}>
-        <input className={`${inputCls} flex-1 font-mono`} placeholder="e.g. 910-26-821 or 00.4020.xxx" value={q} onChange={(e) => { setQ(e.target.value); setRan(false); }} aria-label="Part number" />
+        <input className={`${inputCls} flex-1 font-mono`} placeholder="e.g. FS-PIKE-SEL-C1 or 910-26-821" value={q} onChange={(e) => { setQ(e.target.value); setRan(false); }} aria-label="Part number" />
         <Button type="submit" variant="ghost">Match</Button>
       </form>
-      {ran && r.status !== 'none' && (
+      {ran && r.status === 'family' && (
+        <div className="bg-brew-card border border-white/10 rounded-md px-3 py-2 text-sm">
+          <p className="text-xs text-brew-text-muted">Model code match: one code covers every travel of this fork. Pick yours.</p>
+          <div className="flex flex-wrap items-center gap-2 mt-1">
+            <span className="font-semibold">{r.family}</span>
+            {r.results[0]?.pending && <StatusTag status="pending" />}
+          </div>
+          <div className="flex flex-wrap gap-1.5 mt-2">
+            {r.results.map((h) => (
+              <button
+                key={h.id}
+                type="button"
+                onClick={() => onPick(h.kind, { unitId: h.id }, h.display_name, 'identifier', status(h.pending))}
+                className="text-xs rounded px-2 py-1 border border-white/20 hover:border-brew-accent hover:text-brew-accent"
+              >
+                {h.travel_mm} mm
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      {ran && (r.status === 'exact' || r.status === 'prefix') && (
         <div className="space-y-2">
           <p className="text-xs text-brew-text-muted">{r.status === 'exact' ? 'Exact match' : 'Starts with what you typed'}</p>
-          {r.results.map((h) => (
+          {r.results.slice(0, 12).map((h) => (
             <button
               key={h.id}
               type="button"
               className="w-full text-left bg-brew-card border border-white/10 hover:border-brew-accent/60 rounded-md px-3 py-2 text-sm"
-              onClick={() => {
-                const c = searchComponents(m.index, h.kind, '').results.find((x) => x.id === h.id);
-                if (c) onPick(c);
-              }}
+              onClick={() => onPick(h.kind, { unitId: h.id }, h.display_name, 'identifier', status(h.pending))}
             >
               {h.display_name} <span className="font-mono text-xs text-brew-text-muted ml-2">{h.matched}</span>
             </button>
@@ -274,7 +316,8 @@ function IdentifierSearch({ onPick, onRequest }: { onPick: (c: ComponentCandidat
         />
       )}
       <p className="text-xs text-brew-text-muted">
-        FOX prints part numbers like 910-26-821 on the fork leg sticker. RockShox prints a model code and a part number like 00.4020.xxx on the lower leg or shock body.
+        RockShox prints a model code starting FS- on the fork leg sticker (for example FS-PIKE-SEL-C1); it identifies the fork family and tier exactly. FOX prints part
+        numbers like 910-26-821, which are not on file yet.
       </p>
     </div>
   );
@@ -328,7 +371,7 @@ function ManualPick({ onFork, onShock, onRequest, hardtail }: {
                   spec: { chassisId, damperId, airSpringId: springId || null },
                   label: `${chassis.brand} ${chassis.model} (${d.name})`,
                   via: 'manual',
-                  estimated: d.confidence === 'estimated',
+                  status: d.confidence === 'estimated' ? 'estimate' : 'on_file',
                 });
               }}
             >
@@ -349,7 +392,7 @@ function ManualPick({ onFork, onShock, onRequest, hardtail }: {
             disabled={!shockDamperId}
             onClick={() => {
               const d = m.index.dampers[shockDamperId];
-              onShock({ spec: { damperId: shockDamperId }, label: `${d.brand} ${d.name}`, via: 'manual', estimated: d.confidence === 'estimated' });
+              onShock({ spec: { damperId: shockDamperId }, label: `${d.brand} ${d.name}`, via: 'manual', status: d.confidence === 'estimated' ? 'estimate' : 'on_file' });
             }}
           >
             Use this shock

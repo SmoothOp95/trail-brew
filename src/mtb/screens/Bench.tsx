@@ -8,9 +8,11 @@ import {
   formatValue,
   lapFromProposal,
   nowValues,
+  pendingNotices,
   readoutRows,
   resolveBike,
   resolveCapability,
+  springAdvice,
   startingValues,
   visibleGoals,
   type BikeContext,
@@ -26,9 +28,10 @@ import { LapLog } from '../components/LapLog';
 import { Radar } from '../components/Radar';
 import { Readout } from '../components/Readout';
 import { useMtb, newId } from '../ui/MtbContext';
-import { Button, Section, inputCls } from '../ui/primitives';
+import { Button, ProvenanceTag, Section, inputCls } from '../ui/primitives';
+import { ComponentPicker } from '../components/ComponentPicker';
+import { forkCatalogue, shockCatalogue } from '../search/catalogue';
 
-const OTHER = '__other__';
 
 /** The prototype, faithfully: preconditions, bike with live callouts, goals, conflicts, radar, ordered changes, ruled out, log. */
 export function Bench() {
@@ -73,8 +76,16 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
     const v = s[f];
     return v == null ? null : formatValue(f, v, cap(f));
   };
+  const spring = useMemo(() => springAdvice(bike, bench.riderKg), [bike, bench.riderKg]);
+  const notices = useMemo(() => pendingNotices(bike), [bike]);
   const callout = (f: SettingField, sub?: string): Callout => ({
-    value: show(f, proposal.next) ?? (proposal.changes.some((c) => c.field === f) ? 'change staged' : 'not known'),
+    value:
+      show(f, proposal.next) ??
+      (proposal.changes.some((c) => c.field === f)
+        ? 'change staged'
+        : f === 'fork_psi' && spring
+          ? spring.spring ?? 'coil spring'
+          : starts[f].range?.text ?? 'not known'),
     sub,
     changed: changed.has(f) || proposal.changes.some((c) => c.field === f),
   });
@@ -105,6 +116,8 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
         </div>
       )}
 
+      <PartNotices bike={bike} notices={notices} />
+
       <div className="grid gap-11 mt-9 items-start grid-cols-1 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
         <aside>
           <div className="lg:sticky lg:top-6">
@@ -130,6 +143,7 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
                 changed={changed}
                 onEnter={(field, value) => dispatch({ type: 'enter', field, value })}
               />
+              {spring && <SpringRow advice={spring} />}
               <details className="border-t border-white/10 pt-4 mt-4 group">
                 <summary className="cursor-pointer text-sm font-semibold list-none before:content-['+_'] group-open:before:content-['–_'] before:text-brew-text-muted">
                   How to measure sag properly
@@ -157,6 +171,11 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
 
           <Section letter="D" title="Changes to make" hint="one at a time, same trail section">
             <ChangeList changes={proposal.changes} ruledOut={proposal.ruledOut} headroomUnknown={proposal.headroomUnknown} goals={RULES.goals} />
+            {proposal.pending.length > 0 && (
+              <p className="mt-4 text-[12.5px] text-trail-xc">
+                Held back until the damper is documented: {proposal.pending.map((p) => p.label.toLowerCase()).join(', ')}. Neither offered nor ruled out.
+              </p>
+            )}
             <div className="flex flex-wrap gap-2.5 mt-6">
               <Button onClick={apply} disabled={!proposal.changes.some((c) => c.delta !== 0)}>
                 Apply and log
@@ -216,12 +235,10 @@ export function DialGuide() {
   );
 }
 
-function RiderBar({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
+function RiderBar({ spec }: { bike: BikeContext; spec: BikeSpec }) {
   const m = useMtb();
-  const forks = m.coverage.showable.fork_units;
-  const shocks = m.coverage.showable.shock_units;
-  const forkValue = spec.fork && 'unitId' in spec.fork ? spec.fork.unitId : spec.fork ? OTHER : '';
-  const shockValue = spec.shock && 'unitId' in spec.shock ? spec.shock.unitId : spec.shock ? OTHER : '';
+  const forks = useMemo(() => forkCatalogue(m.index), [m.index]);
+  const shocks = useMemo(() => shockCatalogue(m.index), [m.index]);
   const set = (next: Partial<BikeSpec>) => m.openOnBench({ ...spec, ...next });
 
   return (
@@ -232,7 +249,7 @@ function RiderBar({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
           Tell it what you want from the bike. It works out which settings to change, and rules out the ones your hardware cannot do.
         </p>
       </div>
-      <div className="flex flex-wrap gap-4 lg:ml-auto">
+      <div className="flex flex-wrap gap-4 items-end lg:ml-auto">
         {m.bikes.length > 0 && (
           <Field label="Garage bike">
             <select
@@ -272,36 +289,52 @@ function RiderBar({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
             <option value="hardtail">Hardtail</option>
           </select>
         </Field>
-        <Field label="Fork">
-          <select
-            aria-label="Fork"
-            className={`${inputCls} max-w-[260px]`}
-            value={forkValue}
-            onChange={(e) => (e.target.value === OTHER ? null : set({ fork: { unitId: e.target.value } }))}
-          >
-            {forks.map((f) => <option key={f.id} value={f.id}>{f.display_name}</option>)}
-            {forkValue === OTHER && <option value={OTHER}>{bike.fork?.label} (from Garage)</option>}
-          </select>
-        </Field>
+        <ComponentPicker label="Fork" models={forks} value={spec.fork} onChange={(fork) => set({ fork })} />
         {spec.suspension === 'full_suspension' && (
-          <Field label="Rear shock">
-            <select
-              aria-label="Rear shock"
-              className={`${inputCls} max-w-[260px]`}
-              value={shockValue}
-              onChange={(e) => (e.target.value === OTHER ? null : set({ shock: { unitId: e.target.value } }))}
-            >
-              {!spec.shock && <option value="">Choose a shock</option>}
-              {shocks.map((s) => <option key={s.id} value={s.id}>{s.display_name}</option>)}
-              {shockValue === OTHER && <option value={OTHER}>{bike.shock?.label} (from Garage)</option>}
-            </select>
-          </Field>
+          <ComponentPicker label="Rear shock" models={shocks} value={spec.shock} onChange={(shock) => set({ shock })} />
         )}
         <Link to="/mtb-dashboard/garage" className="self-end text-xs text-brew-text-dim hover:text-brew-accent underline decoration-dotted pb-2">
-          Not listed? Find your parts
+          Search by name or sticker code
         </Link>
       </div>
     </header>
+  );
+}
+
+/** Closest-match and pending-damper notices: one line each, above the bench, so the rider knows what is borrowed. */
+function PartNotices({ bike, notices }: { bike: BikeContext; notices: string[] }) {
+  const parts = [bike.fork, bike.shock].filter((p): p is NonNullable<typeof p> => !!p && !!p.standIn);
+  if (!parts.length && !notices.length) return null;
+  return (
+    <div className="mt-4 space-y-2">
+      {parts.map((p) => (
+        <div key={p.standIn!.id} className="border-l-[3px] border-trail-enduro bg-brew-card px-4 py-3 text-[13.5px] text-brew-text-dim rounded-r-md">
+          <strong className="text-trail-enduro font-semibold">Closest match: {p.standIn!.label}.</strong>{' '}
+          {p.standIn!.id.startsWith('travel:') ? p.standIn!.reason : (
+            <>
+              Not on file yet, so the Bench uses the dials of the {p.standIn!.targetLabel}. {p.standIn!.reason} No pressure, token or setting figures are borrowed. Check
+              each dial exists on yours before turning it.
+            </>
+          )}{' '}
+          <Link to="/mtb-dashboard/coverage" className="underline hover:text-brew-text">Ask for it to be added</Link>.
+        </div>
+      ))}
+      {notices.map((n) => (
+        <div key={n} className="border-l-[3px] border-trail-xc bg-brew-card px-4 py-3 text-[13.5px] text-brew-text-dim rounded-r-md">{n}</div>
+      ))}
+    </div>
+  );
+}
+
+function SpringRow({ advice }: { advice: NonNullable<ReturnType<typeof springAdvice>> }) {
+  return (
+    <div className="flex items-center justify-between gap-3 py-2 border-b border-white/10 text-sm">
+      <span className="text-brew-text-dim">Fork spring</span>
+      <span className="flex items-center gap-2 font-semibold text-right">
+        {advice.spring ? `${advice.spring} for ${advice.forWeight}` : 'not listed'}
+        <ProvenanceTag provenance={advice.spring ? advice.provenance : 'unknown'} title={advice.note} />
+      </span>
+    </div>
   );
 }
 

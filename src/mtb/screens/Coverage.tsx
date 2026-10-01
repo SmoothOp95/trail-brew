@@ -1,10 +1,14 @@
 import { RequestForm } from '../components/RequestForm';
+import { brandRank, forkCatalogue, shockCatalogue } from '../search/catalogue';
 import { useMtb } from '../ui/MtbContext';
 import { Button, ProvenanceTag, Section, downloadText } from '../ui/primitives';
 
 const BRAND_STATUS: Record<string, string> = {
-  FOX: 'Factory, Performance and Performance Elite forks and shocks. The 36 Rhythm is on file as an estimate. 32 and 34 forks come with harvest 02b.',
-  RockShox: 'Every 2023 fork family is on file with its model code, pressure bands and token limits (from the RockShox 2023 spec sheet). Damper adjuster data arrives with harvest 02b; until the Bench supports pending dampers these forks show in search but cannot be selected. Rear shocks are not on file yet.',
+  FOX: 'Factory, Performance, Performance Elite and Rhythm forks and shocks. Some units are composed from documented parts and marked as estimates.',
+  RockShox: 'Every 2023 fork family with its model code, pressure bands and token limits. Damper adjuster data arrives with harvest 02b, so damping advice is held back until then. Rear shocks use closest matches.',
+  Marzocchi: 'Not on file yet. Closest matches use the FOX dampers Marzocchi shares.',
+  'X-Fusion': 'Not on file yet (harvest 02 batch 2). Closest matches by adjuster layout.',
+  'SR Suntour': 'Not on file yet (harvest 02 batch 2). Closest matches by adjuster layout; lockout forks get spring and tyre advice only.',
 };
 
 const STEP_LABEL: Record<string, string> = {
@@ -15,10 +19,6 @@ const STEP_LABEL: Record<string, string> = {
   request: 'asked directly',
 };
 
-const COMING = [
-  { brand: 'X-Fusion, SR Suntour, Marzocchi', note: 'Harvest 02 batch 2. This covers most South African bikes under R40k.' },
-  { brand: 'Öhlins, DVO, Manitou, Cane Creek, EXT', note: 'Harvest 02 batch 3, the long tail.' },
-];
 
 /** Rider-facing: what the dataset contains, what is pending, and a way to ask. Developer detail behind DEV. */
 export function Coverage() {
@@ -27,8 +27,9 @@ export function Coverage() {
   const counts = c.adjuster_counts;
   const estimatedUnits = [...Object.values(m.index.fork_units), ...Object.values(m.index.shock_units)].filter((u) => u.confidence === 'estimated');
   const pressureCharts = Object.values(m.index.pressure_charts).length;
-  const pickable = (brand: string, kind: 'fork_units' | 'shock_units') => c.showable[kind].filter((u) => u.brand === brand).length;
-  const pendingFor = (brand: string) => c.pending_dampers.filter((u) => u.brand === brand).length;
+  const forkModels = forkCatalogue(m.index);
+  const shockModels = shockCatalogue(m.index);
+  const brands = [...new Set([...forkModels, ...shockModels].map((x) => x.brand))].sort((a, b) => brandRank(a) - brandRank(b) || a.localeCompare(b));
   const settingCharts = Object.values(m.index.setting_charts).length;
 
   return (
@@ -41,43 +42,42 @@ export function Coverage() {
         </p>
       </header>
 
-      <Section title="Brands">
+      <Section title="Brands" hint="what the picker offers">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm border-collapse min-w-[640px]">
+          <table className="w-full text-sm border-collapse min-w-[680px]">
             <thead>
               <tr className="text-left text-xs text-brew-text-muted">
                 <th className="font-medium pb-2 pr-3 border-b border-white/10">Brand</th>
-                <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Forks you can pick</th>
-                <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Forks waiting on damper data</th>
-                <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Shocks</th>
-                <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Dampers documented</th>
+                <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Forks documented</th>
+                <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Forks, damper pending</th>
+                <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Shocks documented</th>
+                <th className="font-medium pb-2 pr-3 border-b border-white/10 text-right">Closest matches</th>
                 <th className="font-medium pb-2 border-b border-white/10">Status</th>
               </tr>
             </thead>
             <tbody>
-              {Object.entries(c.brands).map(([brand, s]) => (
-                <tr key={brand} className="align-top">
-                  <td className="py-2.5 pr-3 border-b border-white/10 font-semibold">{brand}</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{pickable(brand, 'fork_units')}</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{pendingFor(brand)}</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{pickable(brand, 'shock_units')}</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{s.dampers}</td>
-                  <td className="py-2.5 border-b border-white/10 text-brew-text-dim">{BRAND_STATUS[brand] ?? ''}</td>
-                </tr>
-              ))}
-              {COMING.map((x) => (
-                <tr key={x.brand} className="align-top text-brew-text-muted">
-                  <td className="py-2.5 pr-3 border-b border-white/10">{x.brand}</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right">0</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right">0</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right">0</td>
-                  <td className="py-2.5 pr-3 border-b border-white/10 text-right">0</td>
-                  <td className="py-2.5 border-b border-white/10">{x.note}</td>
-                </tr>
-              ))}
+              {brands.map((brand) => {
+                const f = forkModels.filter((x) => x.brand === brand);
+                const sh = shockModels.filter((x) => x.brand === brand);
+                const documented = (xs: { status: string }[]) => xs.filter((x) => x.status === 'on_file' || x.status === 'estimate').length;
+                return (
+                  <tr key={brand} className="align-top">
+                    <td className="py-2.5 pr-3 border-b border-white/10 font-semibold">{brand}</td>
+                    <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{documented(f)}</td>
+                    <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{f.filter((x) => x.status === 'pending').length}</td>
+                    <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{documented(sh)}</td>
+                    <td className="py-2.5 pr-3 border-b border-white/10 text-right tabular-nums">{[...f, ...sh].filter((x) => x.status === 'closest').length}</td>
+                    <td className="py-2.5 border-b border-white/10 text-brew-text-dim">{BRAND_STATUS[brand] ?? ''}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
+        <p className="mt-3 text-[12.5px] text-brew-text-muted max-w-[70ch]">
+          Counts are models (family and tier), not travels. A closest match borrows only the dials of the nearest documented part, never its pressure or token
+          figures, and the Bench says so whenever one is selected.
+        </p>
       </Section>
 
       <Section title="What works today">

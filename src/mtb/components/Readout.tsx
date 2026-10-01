@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { formatValue } from '../engine/describe';
+import { rangeStatus } from '../engine/baseline';
 import type { Capability, SettingField, Settings, StartingValue } from '../engine/types';
 import { ProvenanceTag, inputCls } from '../ui/primitives';
 
@@ -107,26 +108,39 @@ function Row({ cap, start, entered, now, next, changed, onEnter }: {
       />
     );
 
+  const range = start.range ?? null;
+  const status = rangeStatus(now, range);
   return (
-    <div className={`flex items-center justify-between gap-3 py-2 border-b border-white/10 text-sm ${showChange ? 'bg-gradient-to-r from-brew-accent/[0.12] to-transparent' : ''}`}>
-      <span className="text-brew-text-dim">{cap.label}</span>
-      <span className="flex items-center gap-2 font-semibold tabular-nums text-right">
-        {editing || now == null ? (
-          editor
-        ) : (
-          <button type="button" onClick={() => setEditing(true)} title="Edit your current setting" className="hover:underline decoration-dotted underline-offset-4">
-            {showChange ? (
-              <>
-                <span className="text-brew-text-muted font-normal line-through mr-1.5">{formatValue(cap.field, now, cap)}</span>
-                <span className="text-brew-accent">{formatValue(cap.field, next, cap)}</span>
-              </>
-            ) : (
-              formatValue(cap.field, now, cap)
-            )}
-          </button>
-        )}
-        <ProvenanceTag provenance={provenance} title={entered == null && start.source ? start.source : undefined} />
-      </span>
+    <div className={`py-2 border-b border-white/10 text-sm ${showChange ? 'bg-gradient-to-r from-brew-accent/[0.12] to-transparent' : ''}`}>
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-brew-text-dim">{cap.label}</span>
+        <span className="flex items-center gap-2 font-semibold tabular-nums text-right">
+          {now == null && range && !editing && <span title={`Published for ${range.forWeight}`}>{range.text}</span>}
+          {editing || now == null ? (
+            editor
+          ) : (
+            <button type="button" onClick={() => setEditing(true)} title="Edit your current setting" className="hover:underline decoration-dotted underline-offset-4">
+              {showChange ? (
+                <>
+                  <span className="text-brew-text-muted font-normal line-through mr-1.5">{formatValue(cap.field, now, cap)}</span>
+                  <span className="text-brew-accent">{formatValue(cap.field, next, cap)}</span>
+                </>
+              ) : (
+                formatValue(cap.field, now, cap)
+              )}
+            </button>
+          )}
+          <ProvenanceTag
+            provenance={range && entered == null ? start.provenance : provenance}
+            title={entered == null && start.source ? start.source : undefined}
+          />
+        </span>
+      </div>
+      {range && status && (
+        <p className={`mt-1 text-[11.5px] text-right ${status === 'inside' ? 'text-brew-text-muted' : 'text-trail-technical'}`}>
+          {status === 'inside' ? 'Inside' : status === 'below' ? 'Below' : 'Above'} the published {range.text} for {range.forWeight}
+        </p>
+      )}
     </div>
   );
 }
