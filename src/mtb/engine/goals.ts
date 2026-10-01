@@ -67,6 +67,8 @@ export interface Proposal {
   /** Deltas held back because the damper is pending, and the one-line notice to show for them. */
   pending: PendingChange[];
   pendingNotice: string | null;
+  /** Deltas on fields outside the current setup mode (Basic): available once Advanced is on. */
+  advanced: PendingChange[];
   netZero: NetZero[];
   /** Components whose adjustment headroom is not published, disclosed once per screen. */
   headroomUnknown: string[];
@@ -105,7 +107,7 @@ const round = (field: SettingField, v: number) => (field.startsWith('tyre_') ? M
  * resolve each delta against capability first, drop absent ones into ruled out, sum, clamp against real
  * component bounds only, flag net-zero fields, and record which goals drove each change.
  */
-export function compose(goalIds: string[], rules: Rules, bike: BikeContext, now: Settings): Proposal {
+export function compose(goalIds: string[], rules: Rules, bike: BikeContext, now: Settings, opts: { fields?: SettingField[] } = {}): Proposal {
   const visible = new Map(visibleGoals(rules, bike).map((g) => [g.id, g]));
   const hiddenGoals = goalIds.filter((id) => !visible.has(id));
   const goals = goalIds.filter((id) => visible.has(id)).slice(0, MAX_GOALS).map((id) => visible.get(id)!);
@@ -115,10 +117,20 @@ export function compose(goalIds: string[], rules: Rules, bike: BikeContext, now:
   const pending = new Map<SettingField, PendingChange>();
   const pendingReasons = new Set<string>();
   const caps = new Map<SettingField, Capability>();
+  const advanced = new Map<SettingField, PendingChange>();
 
   for (const g of goals) {
     for (const [field, raw] of Object.entries(effectiveRecipe(g, bike, rules)) as [SettingField, number | string][]) {
       const cap = caps.get(field) ?? resolveCapability(field, bike);
+      if (opts.fields && !opts.fields.includes(field)) {
+        // Outside the setup mode: not offered here, and not ruled out either, unless the hardware cannot do it.
+        if (cap.state !== 'absent' && cap.state !== 'pending' && typeof raw === 'number') {
+          const a = advanced.get(field) ?? { field, label: cap.label, goals: [] };
+          if (!a.goals.includes(g.id)) a.goals.push(g.id);
+          advanced.set(field, a);
+        }
+        continue;
+      }
       caps.set(field, cap);
       if (cap.state === 'pending') {
         const pc = pending.get(field) ?? { field, label: cap.label, goals: [] };
@@ -196,6 +208,7 @@ export function compose(goalIds: string[], rules: Rules, bike: BikeContext, now:
     changes: sortByOrdering(rules, changes).filter((c) => c.delta !== 0 || c.clamp),
     ruledOut: sortByOrdering(rules, [...ruled.values()]),
     pending: sortByOrdering(rules, [...pending.values()]),
+    advanced: sortByOrdering(rules, [...advanced.values()]),
     pendingNotice: pendingReasons.size ? [...pendingReasons].join(' ') + ' Damping changes for it are held back until it is; spring, token and tyre changes are still offered.' : null,
     netZero,
     headroomUnknown: [...headroom],

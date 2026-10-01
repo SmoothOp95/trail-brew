@@ -157,6 +157,8 @@ As of the stage 2 batch 1 output. These numbers are the ones a fresh session mos
 | Sign-in: Bench signed-out, sign-in to save | Preferred option from 07 v0.2 fits the existing auth pattern. Requests persist under `mtbTriage:anon:requests` when signed out so the Request path never dead-ends. |
 | For review: `applies_to` per goal | Not in 05. Seed sets every goal to both, except `pedal_efficiency` (full suspension only, since two of its three fields are shock fields). |
 | For review: `hardtail.tyre_weight = 1.25` | 05 says tyre weighting rises on hardtails but gives no number. |
+| Bench asks for bike type and travel, not brand and model | Rider feedback, 2026-10-01: the brand/model picker was the wrong first step. The Bench uses a travel-only generic fork and shock (`engine/generic.ts`): every adjuster as unbounded clicks, no assumed figures. Named parts still come from Garage. |
+| Basic and Advanced setup | Basic covers tyre pressures and air pressures (fork, and shock on full suspension) only, and proposes changes to those alone. Changes to other settings are listed as available in Advanced, not ruled out. Advanced shows every setting. Tuning (goals) stays hidden until travel is entered and a mode is chosen. Advanced asks which high speed dials (HSC, HSR) the fork and shock have; unticked means not offered, and a goal that needs one rules it out quoting the rider's answer. |
 
 ## Findability, the requirement added 2026-09-25
 
@@ -188,6 +190,7 @@ The eight goals were chosen without asking a single rider. If that entry point i
 
 ## Changelog
 
+- 2026-10-01 Bench flow reworked: bike type and travel replace the brand/model picker, Basic and Advanced setup toggle, Tuning revealed once set up. Shock pressure in Basic; Advanced asks for HSC and HSR dials. 124 tests, browser checks at desktop and phone width.
 - 2026-10-01 02C engine step (pending adjusters, bands as ranges, coil spring colours, model-code families). Gap-free picker: composed FOX units, nearest-travel fallback, 25 closest-match stand-ins. 117 tests, 35 browser checks.
 - 2026-09-28 02C transcribed: 11 corrections, 3 chassis, 81 air springs, 68 band charts, 153 RockShox fork units on reserved damper ids. Schema 0.3.2 in Zod. Pending damper rule in ingest. Golden value tests. 02B brief revised to produce the reserved ids.
 - 2026-09-28 Build steps 5 and 6: screens, lazy route at /mtb-dashboard, sidebar link, signed-out Bench. Verified in Playwright.

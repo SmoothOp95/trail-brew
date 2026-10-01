@@ -53,6 +53,7 @@ export class GarageStore {
 
 /** Stable key for a bike that is on the Bench but not saved to the Garage. */
 export function adhocBikeKey(spec: BikeSpec): string {
-  const part = (x: unknown) => (x ? Object.values(x as Record<string, unknown>).join('+') : 'none');
+  // A travel-only part keys as "generic", so editing travel keeps the same log.
+  const part = (x: unknown) => (!x ? 'none' : 'generic' in (x as object) ? 'generic' : Object.values(x as Record<string, unknown>).join('+'));
   return `adhoc:${spec.suspension}:${part(spec.fork)}:${part(spec.shock)}`;
 }

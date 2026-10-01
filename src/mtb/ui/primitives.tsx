@@ -88,3 +88,30 @@ export function downloadText(filename: string, text: string, type = 'application
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
+
+/** Two or three mutually exclusive choices as one control. `value` may be null until the rider picks. */
+export function Segmented<T extends string>({ label, options, value, onChange }: {
+  label: string; options: { value: T; label: string }[]; value: T | null; onChange: (v: T) => void;
+}) {
+  return (
+    <div role="radiogroup" aria-label={label} className="inline-flex self-start rounded-md border border-white/15 bg-brew-card p-0.5">
+      {options.map((o) => {
+        const on = o.value === value;
+        return (
+          <button
+            key={o.value}
+            type="button"
+            role="radio"
+            aria-checked={on}
+            onClick={() => onChange(o.value)}
+            className={`px-3.5 py-1.5 text-sm rounded-[5px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brew-accent ${
+              on ? 'bg-brew-accent text-brew-bg font-semibold' : 'text-brew-text-dim hover:text-brew-text'
+            }`}
+          >
+            {o.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}

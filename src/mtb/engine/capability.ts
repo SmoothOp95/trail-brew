@@ -70,6 +70,10 @@ export function resolveCapability(field: SettingField, bike: BikeContext): Capab
       min: null, max: null, headroomUnknown: false, owner: name,
     };
   }
+  if (part.generic && !part.damper.adjusters[key]) {
+    // The rider told us which high speed dials they have.
+    return absent(field, `You said your ${end === 'fork' ? 'fork' : 'shock'} has no ${ADJ_NAMES[key]} dial. Tick it under Current bike if it does.`);
+  }
   return adjusterCapability(field, key, part.damper.adjusters[key], part.damper.name);
 }
 
