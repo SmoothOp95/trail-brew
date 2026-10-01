@@ -2,6 +2,7 @@ import type { DataIndex } from '../data/ingest/types';
 import type { AirSpring, ForkUnit, ShockUnit } from '../data/schema/tables';
 import { RESERVED_DAMPERS } from '../data/pending';
 import { STAND_INS, type StandIn } from '../data/standins';
+import { genericFork, genericShock } from './generic';
 import type { BikeContext, PendingDamper, ResolvedFork, ResolvedShock, StandInInfo, SuspensionType } from './types';
 
 /**
@@ -9,12 +10,15 @@ import type { BikeContext, PendingDamper, ResolvedFork, ResolvedShock, StandInIn
  * used with its travel-specific figures stripped.
  * chassisId/damperId/airSpringId: manual pick.
  * standInId: a part not on file, resolved to the closest documented family (data/standins.ts).
+ * generic: the rider's own part, known by travel only (engine/generic.ts).
  */
+export type GenericSpec = { generic: true; travel: number | null };
 export type ForkSpec =
+  | GenericSpec
   | { unitId: string; travel?: number }
   | { chassisId: string; damperId: string; airSpringId: string | null }
   | { standInId: string; travel?: number };
-export type ShockSpec = { unitId: string } | { damperId: string } | { standInId: string };
+export type ShockSpec = GenericSpec | { unitId: string } | { damperId: string } | { standInId: string };
 
 export interface BikeSpec {
   suspension: SuspensionType;
@@ -36,7 +40,7 @@ export function resolveBike(index: DataIndex, spec: BikeSpec): BikeContext {
   const shock = spec.shock && spec.suspension === 'full_suspension' ? resolveShock(index, spec.shock) : null;
 
   const keys = new Set<string>();
-  if (fork && !fork.standIn) {
+  if (fork && !fork.standIn && !fork.generic) {
     if (fork.unit) keys.add(`fork_units:${fork.unit.id}`);
     keys.add(`chassis:${fork.chassis.id}`);
     if (fork.damper) keys.add(`dampers:${fork.damper.id}`);
@@ -44,7 +48,7 @@ export function resolveBike(index: DataIndex, spec: BikeSpec): BikeContext {
     if (fork.pressureChart) keys.add(`pressure_charts:${fork.pressureChart.id}`);
     fork.settingCharts.forEach((c) => keys.add(`setting_charts:${c.id}`));
   }
-  if (shock && !shock.standIn) {
+  if (shock && !shock.standIn && !shock.generic) {
     if (shock.unit) keys.add(`shock_units:${shock.unit.id}`);
     if (shock.damper) keys.add(`dampers:${shock.damper.id}`);
     shock.settingCharts.forEach((c) => keys.add(`setting_charts:${c.id}`));
@@ -90,6 +94,7 @@ function stripSpring(s: AirSpring | null, springType?: 'air' | 'coil'): AirSprin
 }
 
 function resolveFork(index: DataIndex, spec: ForkSpec): ResolvedFork {
+  if ('generic' in spec) return genericFork(spec.travel);
   if ('standInId' in spec) {
     const st = standInFor(spec.standInId);
     if (st.kind !== 'fork') throw new BikeResolutionError(`${st.model} is a shock`);
@@ -148,6 +153,7 @@ function stripShock(u: ShockUnit | null): ShockUnit | null {
 }
 
 function resolveShock(index: DataIndex, spec: ShockSpec): ResolvedShock {
+  if ('generic' in spec) return genericShock(spec.travel);
   if ('standInId' in spec) {
     const st = standInFor(spec.standInId);
     if (st.kind !== 'shock') throw new BikeResolutionError(`${st.model} is a fork`);

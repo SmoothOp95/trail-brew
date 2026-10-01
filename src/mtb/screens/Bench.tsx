@@ -12,13 +12,18 @@ import {
   readoutRows,
   resolveBike,
   resolveCapability,
+  isGeneric,
+  setupFields,
+  setupMissing,
   springAdvice,
+  travelOf,
   startingValues,
   visibleGoals,
   type BikeContext,
   type BikeSpec,
   type SettingField,
   type Settings,
+  type SetupMode,
 } from '../engine';
 import { BikeDiagram, type Callout } from '../components/BikeDiagram';
 import { ChangeList } from '../components/ChangeList';
@@ -27,10 +32,8 @@ import { GoalToggles } from '../components/GoalToggles';
 import { LapLog } from '../components/LapLog';
 import { Radar } from '../components/Radar';
 import { Readout } from '../components/Readout';
-import { useMtb, newId } from '../ui/MtbContext';
-import { Button, ProvenanceTag, Section, inputCls } from '../ui/primitives';
-import { ComponentPicker } from '../components/ComponentPicker';
-import { forkCatalogue, shockCatalogue } from '../search/catalogue';
+import { defaultSpec, useMtb, newId } from '../ui/MtbContext';
+import { Button, ProvenanceTag, Section, Segmented, inputCls } from '../ui/primitives';
 
 
 /** The prototype, faithfully: preconditions, bike with live callouts, goals, conflicts, radar, ordered changes, ruled out, log. */
@@ -63,21 +66,26 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
 
   const starts = useMemo(() => startingValues(bike, bench.riderKg), [bike, bench.riderKg]);
   const now = useMemo(() => nowValues(starts, bench.entered), [starts, bench.entered]);
-  const proposal = useMemo(() => compose(bench.goals, RULES, bike, now), [bench.goals, bike, now]);
+  const fields = useMemo(() => setupFields(bench.mode), [bench.mode]);
+  const proposal = useMemo(() => compose(bench.goals, RULES, bike, now, { fields }), [bench.goals, bike, now, fields]);
   const conflicts = useMemo(() => authoredConflicts(proposal.goals.map((g) => g.id), RULES), [proposal.goals]);
   const attrs = useMemo(() => attributeScores(RULES, proposal.changes, bike.suspension), [proposal.changes, bike.suspension]);
-  const rows = useMemo(() => readoutRows(bike), [bike]);
+  const rows = useMemo(() => readoutRows(bike, bench.mode), [bike, bench.mode]);
+  const missing = setupMissing(spec, bench.mode);
+  const ready = missing.length === 0;
   const goals = useMemo(() => visibleGoals(RULES, bike), [bike]);
   const changed = new Set<SettingField>(proposal.changes.filter((c) => c.to != null && c.to !== c.from).map((c) => c.field));
   const lapsHere = m.laps.filter((l) => l.bike_key === m.bikeKey);
 
   const cap = (f: SettingField) => resolveCapability(f, bike);
   const show = (f: SettingField, s: Settings) => {
+    if (!fields.includes(f)) return null;
     const v = s[f];
     return v == null ? null : formatValue(f, v, cap(f));
   };
   const spring = useMemo(() => springAdvice(bike, bench.riderKg), [bike, bench.riderKg]);
-  const notices = useMemo(() => pendingNotices(bike), [bike]);
+  // Pending damper data only matters once rebound and compression are on screen.
+  const notices = useMemo(() => (bench.mode === 'advanced' ? pendingNotices(bike) : []), [bike, bench.mode]);
   const callout = (f: SettingField, sub?: string): Callout => ({
     value:
       show(f, proposal.next) ??
@@ -101,7 +109,7 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
 
   return (
     <div>
-      <RiderBar bike={bike} spec={spec} />
+      <RiderBar />
 
       {!bench.preconditionsDismissed && (
         <div className="border-l-[3px] border-brew-accent bg-brew-card mt-5 px-4 py-3.5 flex gap-4 items-start rounded-r-md">
@@ -121,20 +129,19 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
       <div className="grid gap-11 mt-9 items-start grid-cols-1 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
         <aside>
           <div className="lg:sticky lg:top-6">
-            <Section letter="A" title="Current bike" hint={bench.goals.length ? `${bench.goals.length} goal${bench.goals.length > 1 ? 's' : ''} staged` : 'no changes staged'}>
-              <p className="text-xs text-brew-text-muted -mt-2 mb-2">
-                {bike.fork?.label ?? 'No fork'}
-                {bike.shock ? ` · ${bike.shock.label}` : hardtail ? ' · hardtail' : ''}
-              </p>
+            <Section letter="A" title="Current bike" hint={ready ? (bench.goals.length ? `${bench.goals.length} goal${bench.goals.length > 1 ? 's' : ''} staged` : 'no changes staged') : 'set up to start tuning'}>
+              <BikeSetup bike={bike} spec={spec} />
               <BikeDiagram
                 hardtail={hardtail}
                 fork={callout('fork_psi', joinKnown([show('fork_spacers', proposal.next), show('fork_lsr', proposal.next)]))}
-                shock={hardtail ? null : callout('shock_psi', joinKnown([show('shock_lsr', proposal.next), show('shock_lsc', proposal.next)]))}
+                shock={hardtail ? null : fields.includes('shock_psi')
+                  ? callout('shock_psi', joinKnown([show('shock_lsr', proposal.next), show('shock_lsc', proposal.next)]))
+                  : { value: bike.shock?.generic?.travel != null ? `${bike.shock.generic.travel} mm` : 'rear shock', sub: 'Advanced setup', changed: false }}
                 tyreFront={callout('tyre_front')}
                 tyreRear={callout('tyre_rear')}
                 forkPsiDelta={proposal.changes.find((c) => c.field === 'fork_psi')?.delta ?? 0}
               />
-              <Readout
+              {bench.mode && <Readout
                 rows={rows}
                 starts={starts}
                 entered={bench.entered}
@@ -142,8 +149,8 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
                 next={proposal.next}
                 changed={changed}
                 onEnter={(field, value) => dispatch({ type: 'enter', field, value })}
-              />
-              {spring && <SpringRow advice={spring} />}
+              />}
+              {bench.mode && spring && <SpringRow advice={spring} />}
               <details className="border-t border-white/10 pt-4 mt-4 group">
                 <summary className="cursor-pointer text-sm font-semibold list-none before:content-['+_'] group-open:before:content-['–_'] before:text-brew-text-muted">
                   How to measure sag properly
@@ -160,7 +167,8 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
         </aside>
 
         <main className="min-w-0">
-          <Section letter="B" title="What do you want from the bike" hint="pick up to three">
+          {!ready ? <TuningLocked missing={missing} /> : <>
+          <Section letter="B" title="Tuning: what do you want from the bike" hint="pick up to three">
             <GoalToggles goals={goals} selected={bench.goals} onToggle={(id) => dispatch({ type: 'toggleGoal', id })} />
           </Section>
 
@@ -171,6 +179,14 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
 
           <Section letter="D" title="Changes to make" hint="one at a time, same trail section">
             <ChangeList changes={proposal.changes} ruledOut={proposal.ruledOut} headroomUnknown={proposal.headroomUnknown} goals={RULES.goals} />
+            {proposal.advanced.length > 0 && (
+              <p className="mt-4 text-[12.5px] text-brew-text-dim">
+                Basic setup changes pressures only. Advanced setup would also change: {proposal.advanced.map((p) => p.label.toLowerCase()).join(', ')}.{' '}
+                <button type="button" className="underline decoration-dotted hover:text-brew-accent" onClick={() => dispatch({ type: 'setMode', mode: 'advanced' })}>
+                  Switch to Advanced
+                </button>
+              </p>
+            )}
             {proposal.pending.length > 0 && (
               <p className="mt-4 text-[12.5px] text-trail-xc">
                 Held back until the damper is documented: {proposal.pending.map((p) => p.label.toLowerCase()).join(', ')}. Neither offered nor ruled out.
@@ -205,6 +221,7 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
             </summary>
             <DialGuide />
           </details>
+          </>}
         </main>
       </div>
 
@@ -235,18 +252,14 @@ export function DialGuide() {
   );
 }
 
-function RiderBar({ spec }: { bike: BikeContext; spec: BikeSpec }) {
+function RiderBar() {
   const m = useMtb();
-  const forks = useMemo(() => forkCatalogue(m.index), [m.index]);
-  const shocks = useMemo(() => shockCatalogue(m.index), [m.index]);
-  const set = (next: Partial<BikeSpec>) => m.openOnBench({ ...spec, ...next });
-
   return (
     <header className="flex flex-wrap items-end gap-6 pt-2 pb-5 border-b border-white/20">
       <div className="min-w-0">
         <h1 className="text-[28px] font-semibold tracking-tight leading-tight">Setup bench</h1>
         <p className="text-sm text-brew-text-dim mt-1 max-w-[46ch]">
-          Tell it what you want from the bike. It works out which settings to change, and rules out the ones your hardware cannot do.
+          Set up your bike, then tell it what you want from it. It works out which settings to change and by how much.
         </p>
       </div>
       <div className="flex flex-wrap gap-4 items-end lg:ml-auto">
@@ -258,6 +271,7 @@ function RiderBar({ spec }: { bike: BikeContext; spec: BikeSpec }) {
               onChange={(e) => {
                 const b = m.bikes.find((x) => x.key === e.target.value);
                 if (b) m.openOnBench(b.spec, { entered: b.entered, garageKey: b.key });
+                else m.openOnBench(defaultSpec());
               }}
             >
               <option value="">Not from Garage</option>
@@ -283,21 +297,117 @@ function RiderBar({ spec }: { bike: BikeContext; spec: BikeSpec }) {
             onKeyDown={(e) => e.key === 'Enter' && (e.target as HTMLInputElement).blur()}
           />
         </Field>
-        <Field label="Bike">
-          <select aria-label="Bike type" className={inputCls} value={spec.suspension} onChange={(e) => set({ suspension: e.target.value as BikeSpec['suspension'] })}>
-            <option value="full_suspension">Full suspension</option>
-            <option value="hardtail">Hardtail</option>
-          </select>
-        </Field>
-        <ComponentPicker label="Fork" models={forks} value={spec.fork} onChange={(fork) => set({ fork })} />
-        {spec.suspension === 'full_suspension' && (
-          <ComponentPicker label="Rear shock" models={shocks} value={spec.shock} onChange={(shock) => set({ shock })} />
-        )}
-        <Link to="/mtb-dashboard/garage" className="self-end text-xs text-brew-text-dim hover:text-brew-accent underline decoration-dotted pb-2">
-          Search by name or sticker code
-        </Link>
       </div>
     </header>
+  );
+}
+
+const TRAVEL_MIN = 60;
+const TRAVEL_MAX = 250;
+
+/** Bike type, travel, then Basic or Advanced. No brand or model to pick. */
+function BikeSetup({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
+  const m = useMtb();
+  const { bench, dispatch } = m;
+  const set = (next: Partial<BikeSpec>) => m.editSpec({ ...spec, ...next });
+  const hardtail = spec.suspension === 'hardtail';
+  // A Garage bike carries named parts; show them, with a way back to travel only.
+  const named = !isGeneric(spec.fork) || (!hardtail && !isGeneric(spec.shock));
+
+  return (
+    <div className="space-y-4 mb-5">
+      <div className="flex flex-col gap-1.5">
+        <span className="text-xs text-brew-text-muted">Bike type</span>
+        <Segmented
+          label="Bike type"
+          value={spec.suspension}
+          options={[{ value: 'hardtail', label: 'Hardtail' }, { value: 'full_suspension', label: 'Full suspension' }]}
+          onChange={(suspension) => set({ suspension, shock: spec.shock ?? { generic: true, travel: null } })}
+        />
+      </div>
+
+      {named ? (
+        <div className="text-[13px] text-brew-text-dim">
+          <p>
+            {bike.fork?.label ?? 'No fork'}
+            {!hardtail && bike.shock ? ` · ${bike.shock.label}` : ''}
+          </p>
+          <button
+            type="button"
+            className="mt-1 text-xs underline decoration-dotted hover:text-brew-accent"
+            onClick={() => m.editSpec({ suspension: spec.suspension, fork: { generic: true, travel: null }, shock: { generic: true, travel: null } })}
+          >
+            Enter travel instead
+          </button>
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-4">
+          <TravelInput label="Fork travel (mm)" value={travelOf(spec.fork)} onChange={(travel) => set({ fork: { generic: true, travel } })} />
+          {!hardtail && (
+            <TravelInput label="Rear travel (mm)" value={travelOf(spec.shock)} onChange={(travel) => set({ shock: { generic: true, travel } })} />
+          )}
+        </div>
+      )}
+
+      <div className="flex flex-col gap-1.5">
+        <span className="text-xs text-brew-text-muted">Setup</span>
+        <Segmented<SetupMode>
+          label="Setup"
+          value={bench.mode}
+          options={[{ value: 'basic', label: 'Basic' }, { value: 'advanced', label: 'Advanced' }]}
+          onChange={(mode) => dispatch({ type: 'setMode', mode })}
+        />
+        <p className="text-[12px] text-brew-text-muted">
+          {bench.mode === 'advanced'
+            ? `Every setting: air pressure, rebound, compression and volume spacers${hardtail ? '' : ' on the fork and shock'}, plus tyres.`
+            : bench.mode === 'basic'
+              ? 'Tyre pressures and fork air pressure only. Switch to Advanced for rebound, compression and spacers.'
+              : 'Basic covers tyre and fork pressures. Advanced adds rebound, compression and spacers.'}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function TravelInput({ label, value, onChange }: { label: string; value: number | null; onChange: (v: number | null) => void }) {
+  return (
+    <Field label={label}>
+      <input
+        type="number"
+        inputMode="numeric"
+        min={TRAVEL_MIN}
+        max={TRAVEL_MAX}
+        step={5}
+        placeholder="mm"
+        className={`${inputCls} w-28`}
+        defaultValue={value ?? ''}
+        key={value ?? 'none'}
+        onBlur={(e) => {
+          const v = Math.round(Number(e.target.value));
+          onChange(e.target.value.trim() && v >= TRAVEL_MIN && v <= TRAVEL_MAX ? v : null);
+        }}
+        onKeyDown={(e) => e.key === 'Enter' && (e.target as HTMLInputElement).blur()}
+      />
+    </Field>
+  );
+}
+
+/** Tuning stays hidden until the bike is set up, with the remaining steps listed. */
+function TuningLocked({ missing }: { missing: string[] }) {
+  return (
+    <Section letter="B" title="Tuning" hint="opens once your bike is set up">
+      <div className="border border-dashed border-white/15 rounded-md px-5 py-5 text-sm text-brew-text-dim">
+        <p className="text-brew-text font-medium">Set up your bike under Current bike to start tuning.</p>
+        <ul className="mt-3 space-y-1.5">
+          {missing.map((s) => (
+            <li key={s} className="flex items-baseline gap-2">
+              <span aria-hidden className="text-brew-text-muted">○</span>
+              {s}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Section>
   );
 }
 

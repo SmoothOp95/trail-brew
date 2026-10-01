@@ -27,6 +27,8 @@ export interface MtbContextValue {
   activeBike: GarageBike | null;
   /** Put a bike on the Bench. Works signed out. */
   openOnBench: (spec: BikeSpec, opts?: { entered?: Settings; garageKey?: string | null }) => void;
+  /** Edit the bike on the Bench (type, travel) without clearing the rider's entered settings. */
+  editSpec: (spec: BikeSpec) => void;
   bikes: GarageBike[];
   /** Signed in only. Returns null when signed out. */
   saveBike: (bike: Omit<GarageBike, 'key' | 'saved_at'> & { key?: string }) => GarageBike | null;
@@ -52,12 +54,9 @@ export function useMtb(): MtbContextValue {
 
 const newId = () => (globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`);
 
-function defaultSpec(): BikeSpec {
-  const forks = COVERAGE.showable.fork_units;
-  const shocks = COVERAGE.showable.shock_units;
-  const fork = forks.find((f) => f.id === 'fox_36_factory_150_2024') ?? forks[0];
-  const shock = shocks.find((s) => s.id === 'fox_float_dps_evol_2023') ?? shocks[0];
-  return { suspension: 'full_suspension', fork: fork ? { unitId: fork.id } : null, shock: shock ? { unitId: shock.id } : null };
+/** The Bench starts with no brand or model: the rider gives bike type and travel. */
+export function defaultSpec(): BikeSpec {
+  return { suspension: 'full_suspension', fork: { generic: true, travel: null }, shock: { generic: true, travel: null } };
 }
 
 export function MtbProvider({ user, SignIn, children }: { user: MtbUser | null | undefined; SignIn: MtbContextValue['SignIn']; children: ReactNode }) {
@@ -98,6 +97,11 @@ export function MtbProvider({ user, SignIn, children }: { user: MtbUser | null |
     dispatch({ type: 'setBike', key: opts?.garageKey ?? adhocBikeKey(next), entered: opts?.entered ?? {} });
   }, []);
 
+  const editSpec = useCallback<MtbContextValue['editSpec']>((next) => {
+    setSpec(next);
+    setGarageKey(null);
+  }, []);
+
   const saveBike = useCallback<MtbContextValue['saveBike']>(
     (b) => {
       if (!uid) return null;
@@ -119,6 +123,7 @@ export function MtbProvider({ user, SignIn, children }: { user: MtbUser | null |
     bikeKey,
     activeBike,
     openOnBench,
+    editSpec,
     bikes,
     saveBike,
     removeBike: (key) => {

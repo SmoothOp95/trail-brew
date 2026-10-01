@@ -33,6 +33,8 @@ export interface ResolvedFork {
   pressureChart: PressureChart | null;
   settingCharts: SettingChart[];
   standIn: StandInInfo | null;
+  /** Set when the rider gave travel only (no brand or model): see engine/generic.ts. */
+  generic?: { travel: number | null };
 }
 
 export interface ResolvedShock {
@@ -42,6 +44,7 @@ export interface ResolvedShock {
   pendingDamper: PendingDamper | null;
   settingCharts: SettingChart[];
   standIn: StandInInfo | null;
+  generic?: { travel: number | null };
 }
 
 /** Everything the engine needs to know about the rider's bike. */

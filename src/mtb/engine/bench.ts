@@ -1,3 +1,4 @@
+import type { BikeSpec } from './bike';
 import { resolveCapability } from './capability';
 import { MAX_GOALS, type Proposal } from './goals';
 import type { BikeContext, Capability, SettingField, Settings } from './types';
@@ -20,8 +21,38 @@ export function pendingNotices(bike: BikeContext): string[] {
     .map((p) => `Damper adjuster data for the ${p.pendingDamper!.name} is not in the dataset yet, so rebound and compression rows are hidden. Spring, token and tyre settings still work.`);
 }
 
-export function readoutRows(bike: BikeContext): Capability[] {
-  return READOUT_ORDER.map((f) => resolveCapability(f, bike)).filter((c) => c.state !== 'absent' && c.state !== 'pending');
+export function readoutRows(bike: BikeContext, mode: SetupMode | null = 'advanced'): Capability[] {
+  const fields = setupFields(mode);
+  return READOUT_ORDER.filter((f) => fields.includes(f))
+    .map((f) => resolveCapability(f, bike))
+    .filter((c) => c.state !== 'absent' && c.state !== 'pending');
+}
+
+// ---------- Setup mode ----------
+
+/**
+ * Basic setup asks for tyre pressures and fork air pressure only, and the Bench proposes changes to those
+ * alone. Advanced opens every setting the hardware has: rebound, compression, spacers and the shock.
+ */
+export type SetupMode = 'basic' | 'advanced';
+export const BASIC_FIELDS: SettingField[] = ['fork_psi', 'tyre_front', 'tyre_rear'];
+
+/** The fields a setup mode works with. No mode chosen yet reads as basic. */
+export function setupFields(mode: SetupMode | null): SettingField[] {
+  return mode === 'advanced' ? READOUT_ORDER : BASIC_FIELDS;
+}
+
+type PartSpec = BikeSpec['fork'] | BikeSpec['shock'];
+export const isGeneric = (p: PartSpec) => !!p && 'generic' in p;
+export const travelOf = (p: PartSpec) => (p && 'generic' in p ? p.travel : null);
+
+/** What still stands between the rider and Tuning, in the order the form asks for it. Empty means ready. */
+export function setupMissing(spec: BikeSpec, mode: SetupMode | null): string[] {
+  const out: string[] = [];
+  if (isGeneric(spec.fork) && travelOf(spec.fork) == null) out.push('Enter your fork travel');
+  if (spec.suspension === 'full_suspension' && isGeneric(spec.shock) && travelOf(spec.shock) == null) out.push('Enter your rear travel');
+  if (!mode) out.push('Choose Basic or Advanced setup');
+  return out;
 }
 
 // ---------- Bench state ----------
@@ -33,6 +64,8 @@ export interface BenchState {
   entered: Settings;
   goals: string[];
   preconditionsDismissed: boolean;
+  /** Null until the rider picks Basic or Advanced; Tuning stays hidden until then. */
+  mode: SetupMode | null;
 }
 
 export type BenchAction =
@@ -43,9 +76,10 @@ export type BenchAction =
   | { type: 'enter'; field: SettingField; value: number | null }
   | { type: 'apply'; next: Settings }
   | { type: 'reset'; entered?: Settings }
-  | { type: 'dismissPreconditions' };
+  | { type: 'dismissPreconditions' }
+  | { type: 'setMode'; mode: SetupMode };
 
-export const initialBench: BenchState = { riderKg: null, bikeKey: null, entered: {}, goals: [], preconditionsDismissed: false };
+export const initialBench: BenchState = { riderKg: null, bikeKey: null, entered: {}, goals: [], preconditionsDismissed: false, mode: null };
 
 /**
  * Pure reducer. Fixes two prototype bugs: a weight edit recomputes starting values *and* clears staged
@@ -77,6 +111,9 @@ export function benchReducer(s: BenchState, a: BenchAction): BenchState {
       return { ...s, entered: a.entered ?? {}, goals: [] };
     case 'dismissPreconditions':
       return { ...s, preconditionsDismissed: true };
+    case 'setMode':
+      // Goals stay staged: the proposal is recomputed against the new set of fields.
+      return { ...s, mode: a.mode };
   }
 }
 
