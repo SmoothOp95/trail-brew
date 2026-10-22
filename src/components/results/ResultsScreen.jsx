@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import TrailCard from './TrailCard';
 import FilterChips from './FilterChips';
+import AppIcon from '../brand/AppIcon';
 
 export default function ResultsScreen({ scored, matched, answers, threshold, onRetake }) {
   const [typeFilter, setTypeFilter] = useState('all');
@@ -41,7 +42,7 @@ export default function ResultsScreen({ scored, matched, answers, threshold, onR
       {/* Header */}
       <div className="max-w-[1100px] mx-auto flex items-center justify-between flex-wrap gap-4 mb-8">
         <button onClick={onRetake} className="flex items-center gap-3 cursor-pointer">
-          <span className="text-3xl">⛰️</span>
+          <AppIcon size={36} />
           <span className="text-xl font-extrabold tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>

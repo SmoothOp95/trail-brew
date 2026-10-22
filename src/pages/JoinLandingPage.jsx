@@ -8,6 +8,7 @@ import { getUserProfile, hasCompletedSurvey } from '../services/onboardingServic
 import SuccessScreen from '../components/onboarding/SuccessScreen';
 import CenteredSpinner from '../components/onboarding/CenteredSpinner';
 import InlineEmailAuth from '../components/auth/InlineEmailAuth';
+import rideCalendar from '../assets/illustrations/ride-calendar.webp';
 
 /**
  * Public landing for /join. Signed-out riders sign in with Google; signed-in
@@ -80,7 +81,7 @@ export default function JoinLandingPage() {
       <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,122,26,0.15),transparent_70%)] pointer-events-none opacity-50" />
 
       <div className="max-w-[440px] w-full relative animate-fade-slide">
-        <span className="text-5xl block mb-4">⛰️</span>
+        <img src={rideCalendar} alt="" aria-hidden="true" width={140} height={140} className="mx-auto mb-4 drop-shadow-[0_18px_30px_rgba(255,90,77,0.25)]" />
         <h1 className="font-serif text-5xl sm:text-6xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent mb-4">
           Join Trail Brew
         </h1>

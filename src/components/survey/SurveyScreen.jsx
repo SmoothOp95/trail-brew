@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { questions } from '../../data/questions';
 import OptionButton from './OptionButton';
+import trailLocation from '../../assets/illustrations/trail-location.webp';
 
 export default function SurveyScreen({ onComplete }) {
   const [step, setStep] = useState(0);
@@ -35,7 +36,7 @@ export default function SurveyScreen({ onComplete }) {
 
       {/* Brand */}
       <div className="text-center mb-12 relative">
-        <span className="text-5xl block mb-3">⛰️</span>
+        <img src={trailLocation} alt="" aria-hidden="true" width={132} height={132} className="mx-auto mb-2 drop-shadow-[0_18px_30px_rgba(255,90,77,0.25)]" />
         <h1 className="font-serif text-6xl sm:text-7xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
           Trail Brew
         </h1>

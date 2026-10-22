@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, ArrowRight, ArrowDown, Mountain, Compass, Wrench, Bike, Heart, ShieldCheck, Coffee, Check, Plus, Smartphone, Menu, X } from 'lucide-react';
 import { validateEmail } from '../utils/authValidation';
 import '../styles/marketing.css';
+import appIcon from '../assets/brand/app-icon.webp';
 
 const appStoreUrl = import.meta.env.VITE_APP_STORE_URL;
 const screenshots = {
@@ -26,7 +27,7 @@ function Phone({ screen, className = '', eager = false }) {
 }
 
 function Brand() {
-  return <Link to="/" className="m-brand" aria-label="Trail Brew web app home"><span className="m-brand-mark" aria-hidden="true">⛰️</span><span className="m-brand-name">Trail Brew</span></Link>;
+  return <Link to="/" className="m-brand" aria-label="Trail Brew web app home"><img className="m-brand-mark" src={appIcon} alt="" aria-hidden="true" width="34" height="34" /><span className="m-brand-name">Trail Brew</span></Link>;
 }
 
 function Waitlist() {

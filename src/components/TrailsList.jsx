@@ -3,6 +3,7 @@ import { MapPin, Navigation, BookOpen, X, Search, SlidersHorizontal } from 'luci
 import { trails } from '../data/trails';
 import TrailCard from './TrailCard';
 import LogRideModal from './trails/LogRideModal';
+import trailLocation from '../assets/illustrations/trail-location.webp';
 
 const TIERS = ['all', 'fitness', 'warrior', 'gold'];
 const DIFFICULTIES = ['all', 'beginner', 'intermediate', 'advanced'];
@@ -49,11 +50,14 @@ export default function TrailsList() {
     <div className="min-h-screen bg-brew-bg text-brew-text">
       {/* ── PAGE HEADER ── */}
       <div className="border-b border-brew-border bg-brew-card/60 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-[1100px] mx-auto px-5 py-4">
-          <h1 className="font-serif text-[28px] font-normal leading-tight">Gauteng MTB Trails</h1>
-          <p className="text-xs text-brew-text-dim mt-0.5">
-            Explore {trails.length} trails across Gauteng with live weather
-          </p>
+        <div className="max-w-[1100px] mx-auto px-5 py-4 flex items-center gap-3.5">
+          <img src={trailLocation} alt="" aria-hidden="true" width={52} height={52} className="shrink-0 -my-1" />
+          <div>
+            <h1 className="font-serif text-[28px] font-normal leading-tight">Gauteng MTB Trails</h1>
+            <p className="text-xs text-brew-text-dim mt-0.5">
+              Explore {trails.length} trails across Gauteng with live weather
+            </p>
+          </div>
         </div>
       </div>
 

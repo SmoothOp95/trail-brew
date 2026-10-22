@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useJoinStatus } from '../../hooks/useJoinStatus';
 import { PRIMARY_BTN_CLASS, SECONDARY_BTN_CLASS } from '../../styles/buttonStyles';
+import AppIcon from '../brand/AppIcon';
 
 const pillars = [
   {
@@ -105,7 +106,7 @@ export default function HomePage() {
       {/* Nav */}
       <nav className="relative z-10 hidden lg:flex items-center justify-between px-6 sm:px-10 py-5 border-b border-brew-border">
         <div className="flex items-center gap-2.5">
-          <span className="text-xl">⛰️</span>
+          <AppIcon size={30} />
           <span className="font-black text-lg tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>
@@ -184,7 +185,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-brew-border px-6 sm:px-10 py-6 flex items-center justify-between mt-auto">
         <div className="flex items-center gap-2">
-          <span className="text-base">⛰️</span>
+          <AppIcon size={22} />
           <span className="font-black text-sm tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>

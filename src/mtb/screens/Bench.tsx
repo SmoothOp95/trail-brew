@@ -27,6 +27,7 @@ import {
   type SetupMode,
 } from '../engine';
 import { BikeDiagram, type Callout } from '../components/BikeDiagram';
+import garageTools from '../../assets/illustrations/garage-tools.webp';
 import { ChangeList } from '../components/ChangeList';
 import { ConflictList } from '../components/ConflictList';
 import { GoalToggles } from '../components/GoalToggles';
@@ -139,7 +140,6 @@ function BenchFor({ bike, spec }: { bike: BikeContext; spec: BikeSpec }) {
                 shock={hardtail ? null : callout('shock_psi', joinKnown([show('shock_lsr', proposal.next), show('shock_lsc', proposal.next)]))}
                 tyreFront={callout('tyre_front')}
                 tyreRear={callout('tyre_rear')}
-                forkPsiDelta={proposal.changes.find((c) => c.field === 'fork_psi')?.delta ?? 0}
               />
               {bench.mode && <Readout
                 rows={rows}
@@ -416,16 +416,19 @@ function TravelInput({ label, value, onChange }: { label: string; value: number 
 function TuningLocked({ missing }: { missing: string[] }) {
   return (
     <Section letter="B" title="Tuning" hint="opens once your bike is set up">
-      <div className="border border-dashed border-white/15 rounded-md px-5 py-5 text-sm text-brew-text-dim">
-        <p className="text-brew-text font-medium">Set up your bike under Current bike to start tuning.</p>
-        <ul className="mt-3 space-y-1.5">
-          {missing.map((s) => (
-            <li key={s} className="flex items-baseline gap-2">
-              <span aria-hidden className="text-brew-text-muted">○</span>
-              {s}
-            </li>
-          ))}
-        </ul>
+      <div className="flex items-center gap-5 border border-dashed border-white/15 rounded-2xl px-5 py-5 text-sm text-brew-text-dim">
+        <div className="min-w-0 flex-1">
+          <p className="text-brew-text font-medium">Set up your bike under Current bike to start tuning.</p>
+          <ul className="mt-3 space-y-1.5">
+            {missing.map((s) => (
+              <li key={s} className="flex items-baseline gap-2">
+                <span aria-hidden className="text-brew-text-muted">○</span>
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <img src={garageTools} alt="" aria-hidden width={112} height={112} className="hidden sm:block shrink-0" />
       </div>
     </Section>
   );
