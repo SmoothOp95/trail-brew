@@ -4,6 +4,7 @@ import { Home, Compass, Map, CalendarDays, CheckSquare, LayoutDashboard, Gauge, 
 import { useAuth } from '../../hooks/useAuth';
 import { useJoinStatus } from '../../hooks/useJoinStatus';
 import SignInButton from '../auth/SignInButton';
+import AppIcon from '../brand/AppIcon';
 
 const NAV_LINKS_BEFORE_TOOLS = [{ to: '/', icon: Home, label: 'Home', exact: true }];
 
@@ -82,7 +83,7 @@ export default function Sidebar({ isOpen, onClose }) {
       {/* Sidebar panel */}
       <aside
         className={`
-          fixed left-0 top-0 h-full w-60 bg-[#0F1210] border-r border-brew-border
+          fixed left-0 top-0 h-full w-60 bg-brew-surface border-r border-brew-border
           flex flex-col z-40 transition-transform duration-300 ease-in-out
           lg:translate-x-0
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
@@ -91,8 +92,8 @@ export default function Sidebar({ isOpen, onClose }) {
         {/* Logo */}
         <div className="flex items-center justify-between px-5 py-5 border-b border-brew-border">
           <Link to="/" className="flex items-center gap-2.5">
-            <span className="text-xl">⛰️</span>
-            <span className="font-black text-lg tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+            <AppIcon size={30} />
+            <span className="font-black text-lg tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
               Trail Brew
             </span>
           </Link>

@@ -35,7 +35,7 @@ export default function InputStep({ step, value, onChange, autoFocus = true }) {
       )}
 
       {showPhoneError ? (
-        <p className="text-xs text-red-400 mt-2">
+        <p className="text-xs text-brew-bad mt-2">
           Enter a valid SA number, e.g. 082 123 4567 or +27 82 123 4567.
         </p>
       ) : step.helperText ? (

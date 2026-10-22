@@ -26,15 +26,15 @@ const TIER_STYLES = {
 };
 
 const DIFFICULTY_STYLES = {
-  beginner: { label: 'Beginner', bg: 'bg-green-500/15', text: 'text-green-400' },
+  beginner: { label: 'Beginner', bg: 'bg-brew-good/15', text: 'text-brew-good' },
   intermediate: { label: 'Intermediate', bg: 'bg-blue-500/15', text: 'text-blue-400' },
-  advanced: { label: 'Advanced', bg: 'bg-red-500/15', text: 'text-red-400' },
+  advanced: { label: 'Advanced', bg: 'bg-brew-bad/15', text: 'text-brew-bad' },
 };
 
 const CONDITION_COLORS = {
-  good: { label: 'Good conditions', text: 'text-green-400', dot: 'bg-green-400', border: 'border-green-700/40', bg: 'bg-green-950/60' },
-  caution: { label: 'Ride with caution', text: 'text-orange-400', dot: 'bg-orange-400', border: 'border-orange-700/40', bg: 'bg-orange-950/60' },
-  poor: { label: 'Not recommended', text: 'text-red-400', dot: 'bg-red-500', border: 'border-red-700/40', bg: 'bg-red-950/60' },
+  good: { label: 'Good conditions', text: 'text-brew-good', dot: 'bg-brew-good', border: 'border-brew-good/40', bg: 'bg-brew-good/[0.14]' },
+  caution: { label: 'Ride with caution', text: 'text-brew-warn', dot: 'bg-brew-warn', border: 'border-brew-warn/40', bg: 'bg-brew-warn/[0.14]' },
+  poor: { label: 'Not recommended', text: 'text-brew-bad', dot: 'bg-brew-bad', border: 'border-brew-bad/40', bg: 'bg-brew-bad/[0.14]' },
 };
 
 const DESCRIPTION_TRUNCATE = 120;
@@ -80,9 +80,9 @@ export default function TrailCard({ trail, onSelect, isSelected }) {
 
   return (
     <div
-      className={`bg-brew-card border rounded-xl p-5 transition-all duration-300 relative overflow-hidden group flex flex-col
+      className={`bg-brew-card border rounded-2xl p-5 transition-all duration-300 relative overflow-hidden group flex flex-col
         ${isSelected
-          ? 'border-brew-accent/50 shadow-[0_0_0_1px_rgba(184,230,72,0.25)]'
+          ? 'border-brew-accent/50 shadow-[0_0_0_1px_rgba(255,122,26,0.25)]'
           : 'border-brew-border hover:border-brew-accent/20 hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)]'
         }`}
     >
@@ -190,7 +190,7 @@ export default function TrailCard({ trail, onSelect, isSelected }) {
               )}
 
               {weatherError && (
-                <p className="text-[11px] text-red-400 leading-relaxed">{weatherError}</p>
+                <p className="text-[11px] text-brew-bad leading-relaxed">{weatherError}</p>
               )}
 
               {weather && ridingConditions && !weatherLoading && (

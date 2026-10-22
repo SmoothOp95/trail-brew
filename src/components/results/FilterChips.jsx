@@ -5,7 +5,7 @@ export default function FilterChips({ types, active, onChange }) {
         onClick={() => onChange('all')}
         className={`font-mono text-[11px] px-3.5 py-[7px] rounded-lg border transition-all uppercase tracking-wide ${
           active === 'all'
-            ? 'bg-brew-accent text-brew-bg border-brew-accent font-bold'
+            ? 'bg-brew-accent text-brew-on-accent border-brew-accent font-bold'
             : 'border-brew-border text-brew-text-dim hover:border-brew-text-dim hover:text-brew-text'
         }`}
       >
@@ -22,7 +22,7 @@ export default function FilterChips({ types, active, onChange }) {
             onClick={() => onChange(key)}
             className={`font-mono text-[11px] px-3.5 py-[7px] rounded-lg border transition-all uppercase tracking-wide ${
               active === key
-                ? 'bg-brew-accent text-brew-bg border-brew-accent font-bold'
+                ? 'bg-brew-accent text-brew-on-accent border-brew-accent font-bold'
                 : 'border-brew-border text-brew-text-dim hover:border-brew-text-dim hover:text-brew-text'
             }`}
           >

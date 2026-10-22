@@ -13,7 +13,7 @@ export function GoalToggles({ goals, selected, onToggle }: { goals: Goal[]; sele
             aria-pressed={on}
             onClick={() => onToggle(g.id)}
             className={`text-left rounded-md px-4 py-3 border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brew-accent ${
-              on ? 'bg-brew-accent border-brew-accent text-brew-bg' : 'bg-brew-card border-white/10 hover:border-white/30'
+              on ? 'bg-brew-accent border-brew-accent text-brew-on-accent' : 'bg-brew-card border-white/10 hover:border-white/30'
             }`}
           >
             <span className="block text-[14.5px] font-semibold">{g.name}</span>

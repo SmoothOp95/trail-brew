@@ -130,7 +130,7 @@ export default function InlineEmailAuth() {
             autoComplete="email"
             className={inputClasses}
           />
-          {fieldErrors.email && <p className="text-xs text-red-400 mt-1.5">{fieldErrors.email}</p>}
+          {fieldErrors.email && <p className="text-xs text-brew-bad mt-1.5">{fieldErrors.email}</p>}
         </div>
 
         {resetSent ? (
@@ -177,7 +177,7 @@ export default function InlineEmailAuth() {
           autoComplete="email"
           className={inputClasses}
         />
-        {fieldErrors.email && <p className="text-xs text-red-400 mt-1.5">{fieldErrors.email}</p>}
+        {fieldErrors.email && <p className="text-xs text-brew-bad mt-1.5">{fieldErrors.email}</p>}
       </div>
 
       <div>
@@ -206,7 +206,7 @@ export default function InlineEmailAuth() {
           </button>
         </div>
         {fieldErrors.password && (
-          <p className="text-xs text-red-400 mt-1.5">{fieldErrors.password}</p>
+          <p className="text-xs text-brew-bad mt-1.5">{fieldErrors.password}</p>
         )}
         {mode === MODE_SIGNUP && !fieldErrors.password && (
           <p className="text-xs text-brew-text-dim mt-1.5">
@@ -232,12 +232,12 @@ export default function InlineEmailAuth() {
             className={inputClasses}
           />
           {fieldErrors.confirmPassword && (
-            <p className="text-xs text-red-400 mt-1.5">{fieldErrors.confirmPassword}</p>
+            <p className="text-xs text-brew-bad mt-1.5">{fieldErrors.confirmPassword}</p>
           )}
         </div>
       )}
 
-      {error && <p className="text-xs text-red-400">{error}</p>}
+      {error && <p className="text-xs text-brew-bad">{error}</p>}
 
       <button
         type="submit"

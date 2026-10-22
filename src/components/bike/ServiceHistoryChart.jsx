@@ -9,12 +9,14 @@ import {
 } from 'recharts';
 
 // Brew token hex values for recharts (can't read CSS vars directly)
-const COLOR_SERVICE = '#B8E648'; // brew-accent
-const COLOR_REPAIR  = '#48B9E6'; // trail-xc
-const COLOR_MUTED   = '#6B7B6E'; // brew-text-muted
-const COLOR_BORDER  = '#2A332C'; // brew-border
-const COLOR_CARD    = '#161A18'; // brew-card
-const COLOR_TEXT    = '#E8EDE9'; // brew-text
+const COLOR_SERVICE = '#FF7A1A'; // brew-accent
+const COLOR_REPAIR  = '#57B0E0'; // trail-xc
+const COLOR_MUTED   = '#77706A'; // brew-text-muted
+const COLOR_BORDER  = '#2A251E'; // brew-track
+const COLOR_CARD    = '#1A1714'; // brew-card
+const COLOR_TEXT    = '#F4EFE6'; // brew-text
+// SVG attributes can't read CSS vars, so the --font-mono stack is repeated here.
+const FONT_MONO = "ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace";
 
 /**
  * Bar chart of cost per maintenance event over time.
@@ -37,7 +39,7 @@ export default function ServiceHistoryChart({ records }) {
     }));
 
   return (
-    <div className="bg-brew-card border border-brew-border rounded-xl p-4 mt-1">
+    <div className="bg-brew-card border border-brew-border rounded-2xl p-4 mt-1">
       <p className="font-mono text-[10px] text-brew-text-muted uppercase tracking-widest mb-4">
         Cost Over Time
       </p>
@@ -45,12 +47,12 @@ export default function ServiceHistoryChart({ records }) {
         <BarChart data={data} barSize={16} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
           <XAxis
             dataKey="date"
-            tick={{ fill: COLOR_MUTED, fontSize: 9, fontFamily: 'Space Mono, monospace' }}
+            tick={{ fill: COLOR_MUTED, fontSize: 9, fontFamily: FONT_MONO }}
             axisLine={{ stroke: COLOR_BORDER }}
             tickLine={false}
           />
           <YAxis
-            tick={{ fill: COLOR_MUTED, fontSize: 9, fontFamily: 'Space Mono, monospace' }}
+            tick={{ fill: COLOR_MUTED, fontSize: 9, fontFamily: FONT_MONO }}
             axisLine={false}
             tickLine={false}
             tickFormatter={(v) => `R${v}`}
@@ -89,10 +91,10 @@ function CustomTooltip({ active, payload }) {
         padding: '8px 12px',
       }}
     >
-      <p style={{ color: COLOR_MUTED, fontSize: 9, fontFamily: 'Space Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 2 }}>
+      <p style={{ color: COLOR_MUTED, fontSize: 9, fontFamily: FONT_MONO, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 2 }}>
         {d.date} · {d.label}
       </p>
-      <p style={{ color: COLOR_TEXT, fontSize: 13, fontFamily: 'Space Mono, monospace', fontWeight: 700 }}>
+      <p style={{ color: COLOR_TEXT, fontSize: 13, fontFamily: FONT_MONO, fontWeight: 700 }}>
         R{d.cost}
       </p>
     </div>

@@ -29,7 +29,7 @@ export default function MyTrailsPage() {
       {/* Page header */}
       <div className="border-b border-brew-border bg-brew-card/60 backdrop-blur-sm sticky top-[49px] lg:top-0 z-10">
         <div className="max-w-[800px] mx-auto px-5 py-5">
-          <h1 className="text-xl font-bold leading-tight">My Trails</h1>
+          <h1 className="font-serif text-[26px] font-normal leading-tight">My Trails</h1>
           <p className="text-xs text-brew-text-dim mt-0.5">
             {loading ? 'Loading…' : `${riddenCount} of ${totalCount} trails ridden`}
           </p>

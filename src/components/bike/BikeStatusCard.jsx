@@ -56,7 +56,7 @@ export default function BikeStatusCard({ bikeData, onUpdate, onAddService, onToa
 
   return (
     <>
-      <div className="bg-brew-card border border-brew-border rounded-xl p-6">
+      <div className="bg-brew-card border border-brew-border rounded-2xl p-6">
 
         {/* Header row */}
         <div className="flex items-start justify-between mb-5">
@@ -104,7 +104,7 @@ export default function BikeStatusCard({ bikeData, onUpdate, onAddService, onToa
         <div className="flex gap-2">
           <button
             onClick={() => setServiceOpen(true)}
-            className="flex-1 bg-brew-accent text-brew-bg font-bold text-sm rounded-lg py-2.5 hover:bg-[#D4F27A] transition-colors flex items-center justify-center gap-2"
+            className="flex-1 bg-brew-accent text-brew-on-accent font-bold text-sm rounded-xl py-2.5 hover:bg-brew-accent-hover transition-colors flex items-center justify-center gap-2"
           >
             <Wrench size={14} />
             Mark as Serviced

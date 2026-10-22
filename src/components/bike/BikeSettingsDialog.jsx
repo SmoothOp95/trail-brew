@@ -40,7 +40,7 @@ export default function BikeSettingsDialog({ bikeData, onSave, onClose }) {
       className="fixed inset-0 bg-brew-bg/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4"
       onClick={handleBackdrop}
     >
-      <div className="bg-brew-card border border-brew-border rounded-xl w-full max-w-sm">
+      <div className="bg-brew-card border border-brew-border rounded-2xl w-full max-w-sm">
         {/* Header */}
         <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-brew-border">
           <h2 className="font-bold text-brew-text text-base">Bike Settings</h2>
@@ -117,7 +117,7 @@ export default function BikeSettingsDialog({ bikeData, onSave, onClose }) {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex-1 bg-brew-accent text-brew-bg font-bold text-sm rounded-lg py-2.5 hover:bg-[#D4F27A] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="flex-1 bg-brew-accent text-brew-on-accent font-bold text-sm rounded-xl py-2.5 hover:bg-brew-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {saving && <Loader2 size={14} className="animate-spin" />}
             {saving ? 'Saving…' : 'Save'}

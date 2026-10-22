@@ -55,7 +55,7 @@ export function Button({ variant = 'solid', className = '', ...rest }: BtnProps)
   const base =
     'inline-flex items-center justify-center gap-2 text-sm rounded-md px-4 py-2 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brew-accent disabled:opacity-40 disabled:cursor-not-allowed';
   const styles = {
-    solid: 'bg-brew-accent text-brew-bg font-semibold hover:bg-brew-accent-dim',
+    solid: 'bg-brew-accent text-brew-on-accent font-semibold hover:bg-brew-accent-dim',
     ghost: 'border border-white/15 text-brew-text hover:border-brew-accent hover:text-brew-accent',
     quiet: 'text-brew-text-dim hover:text-brew-text px-2',
   };
@@ -105,7 +105,7 @@ export function Segmented<T extends string>({ label, options, value, onChange }:
             aria-checked={on}
             onClick={() => onChange(o.value)}
             className={`px-3.5 py-1.5 text-sm rounded-[5px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brew-accent ${
-              on ? 'bg-brew-accent text-brew-bg font-semibold' : 'text-brew-text-dim hover:text-brew-text'
+              on ? 'bg-brew-accent text-brew-on-accent font-semibold' : 'text-brew-text-dim hover:text-brew-text'
             }`}
           >
             {o.label}

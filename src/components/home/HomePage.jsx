@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useJoinStatus } from '../../hooks/useJoinStatus';
 import { PRIMARY_BTN_CLASS, SECONDARY_BTN_CLASS } from '../../styles/buttonStyles';
+import AppIcon from '../brand/AppIcon';
+import appIcon from '../../assets/brand/app-icon.webp';
+import trailLocation from '../../assets/illustrations/trail-location.webp';
+import garageTools from '../../assets/illustrations/garage-tools.webp';
+import hardtailPhoto from '../../assets/bikes/hardtail.webp';
+import shockPhoto from '../../assets/parts/shock.webp';
+import workshopPhoto from '../../assets/parts/workshop.webp';
 
 const pillars = [
   {
@@ -28,7 +35,7 @@ const tools = [
     id: 'trail-finder',
     href: '/trail-finder',
     external: false,
-    emoji: '🧭',
+    art: { src: trailLocation, kind: 'art' },
     label: 'Trail Finder',
     tag: 'Live',
     tagStyle: 'bg-brew-accent/10 text-brew-accent border border-brew-accent/20',
@@ -42,7 +49,7 @@ const tools = [
     id: 'trail-brew-app',
     href: '/iOS',
     external: false,
-    emoji: '📱',
+    art: { src: appIcon, kind: 'icon' },
     label: 'Trail Brew App',
     tag: 'iPhone',
     tagStyle: IN_APP_TAG_STYLE,
@@ -56,35 +63,35 @@ const tools = [
     id: 'mtb-tracker',
     href: '/my-bike',
     external: false,
-    emoji: '🔧',
+    art: { src: garageTools, kind: 'art' },
     label: 'Service Dashboard',
     tag: 'In the app',
     tagStyle: IN_APP_TAG_STYLE,
     description: 'Track services, repairs, and expenses across all your bikes. Never miss a service interval again.',
     types: ['Services', 'Repairs', 'History'],
     typeColors: ['text-trail-xc', 'text-trail-enduro', 'text-trail-jump'],
-    cta: 'Open dashboard →',
+    cta: 'See it in the app →',
     active: true,
   },
   {
     id: 'find-my-bike',
     href: '/find-my-bike',
     external: false,
-    emoji: '🚲',
+    art: { src: hardtailPhoto, kind: 'photo' },
     label: 'Find My Bike',
-    tag: 'In the app',
+    tag: 'Coming soon',
     tagStyle: IN_APP_TAG_STYLE,
     description: 'Discover the right bike for your budget and riding style. South Africa\'s MTB buyer guide.',
     types: ['Budget', 'Hardtail', 'Full Sus'],
     typeColors: ['text-trail-flow', 'text-trail-trail', 'text-trail-downhill'],
-    cta: 'Find my bike →',
+    cta: 'Get notified →',
     active: true,
   },
   {
     id: 'dashboard',
     href: '/mtb-dashboard',
     external: false,
-    emoji: '📊',
+    art: { src: shockPhoto, kind: 'photo' },
     label: 'MTB Setup Dashboard',
     tag: 'Live',
     tagStyle: 'bg-brew-accent/10 text-brew-accent border border-brew-accent/20',
@@ -98,7 +105,7 @@ const tools = [
     id: 'mechanic-dashboard',
     href: null,
     external: false,
-    emoji: '🛠️',
+    art: { src: workshopPhoto, kind: 'photo' },
     label: 'Mechanic Dashboard',
     tag: 'Coming soon',
     tagStyle: 'bg-brew-card text-brew-text-muted border border-brew-border',
@@ -114,13 +121,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col relative">
       {/* Global glow */}
-      <div className="fixed top-[-300px] left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(184,230,72,0.07),transparent_65%)] pointer-events-none" />
+      <div className="fixed top-[-300px] left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(255,122,26,0.07),transparent_65%)] pointer-events-none" />
 
       {/* Nav */}
       <nav className="relative z-10 hidden lg:flex items-center justify-between px-6 sm:px-10 py-5 border-b border-brew-border">
         <div className="flex items-center gap-2.5">
-          <span className="text-xl">⛰️</span>
-          <span className="font-black text-lg tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+          <AppIcon size={30} />
+          <span className="font-black text-lg tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>
         </div>
@@ -134,9 +141,9 @@ export default function HomePage() {
         <p className="font-mono text-[11px] text-brew-accent uppercase tracking-[0.3em] mb-5">
           Gauteng Mountain Biking
         </p>
-        <h1 className="text-5xl sm:text-7xl font-black tracking-tighter leading-[0.95] mb-6 max-w-3xl">
+        <h1 className="font-serif text-5xl sm:text-7xl font-normal tracking-tight leading-[1.02] mb-6 max-w-3xl">
           Riders who earn their{' '}
-          <span className="bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+          <span className="italic text-brew-accent-soft">
             coffees &amp; beers.
           </span>
         </h1>
@@ -181,7 +188,7 @@ export default function HomePage() {
           <p className="font-mono text-[11px] text-brew-accent uppercase tracking-[0.3em] mb-3">
             The toolkit
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tighter leading-[0.95]">
+          <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight leading-[1.05]">
             Tools for every rider.
           </h2>
           <p className="text-brew-text-dim text-sm mt-3 max-w-sm mx-auto">
@@ -198,8 +205,8 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-brew-border px-6 sm:px-10 py-6 flex items-center justify-between mt-auto">
         <div className="flex items-center gap-2">
-          <span className="text-base">⛰️</span>
-          <span className="font-black text-sm tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+          <AppIcon size={22} />
+          <span className="font-black text-sm tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>
         </div>
@@ -236,11 +243,25 @@ function HeroJoinCTA() {
   );
 }
 
+/** Artwork band at the top of a tool card: a studio photo fills it, an illustration or icon sits centred. */
+function ToolArt({ art }) {
+  if (!art) return null;
+  return (
+    <div className="-mx-6 -mt-6 mb-5 h-36 overflow-hidden border-b border-brew-border bg-[radial-gradient(ellipse_at_50%_35%,#2a2620,#13110e_70%)] flex items-center justify-center">
+      {art.kind === 'photo' ? (
+        <img src={art.src} alt="" aria-hidden="true" className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+      ) : (
+        <img src={art.src} alt="" aria-hidden="true" className={art.kind === 'icon' ? 'w-20 h-20 rounded-[22.5%]' : 'w-28 h-28 drop-shadow-[0_14px_24px_rgba(0,0,0,0.5)]'} />
+      )}
+    </div>
+  );
+}
+
 function ToolCard({ tool }) {
   const inner = (
     <div
       className={`
-        bg-brew-card border border-brew-border rounded-xl p-6 h-full flex flex-col transition-all duration-300 relative overflow-hidden group
+        bg-brew-card border border-brew-border rounded-2xl p-6 h-full flex flex-col transition-all duration-300 relative overflow-hidden group
         ${tool.active
           ? 'hover:border-brew-accent/20 hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)] cursor-pointer'
           : 'opacity-55 cursor-default'}
@@ -251,12 +272,11 @@ function ToolCard({ tool }) {
         <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-brew-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       )}
 
+      <ToolArt art={tool.art} />
+
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-2.5">
-          <span className="text-2xl">{tool.emoji}</span>
-          <h3 className="font-bold text-[16px]">{tool.label}</h3>
-        </div>
+        <h3 className="font-bold text-[16px]">{tool.label}</h3>
         <span className={`font-mono text-[10px] px-2 py-0.5 rounded-md whitespace-nowrap font-bold ${tool.tagStyle}`}>
           {tool.tag}
         </span>

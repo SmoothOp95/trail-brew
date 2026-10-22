@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Check, Loader2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, Check, Loader2 } from 'lucide-react';
 import { fetchCommunityConfig } from '../../services/onboardingService';
 import { joinTestflightWaitlist } from '../../services/waitlistService';
 import { getPreviewScreenshots } from '../../utils/appPreviewAssets';
@@ -9,12 +10,13 @@ import { PRIMARY_BTN_CLASS } from '../../styles/buttonStyles';
 
 /**
  * Reusable "this feature lives in the app" page — one component, driven by
- * per-feature config from src/data/appPreviews.js. Renders real screenshots
- * from src/assets/app-previews/{slug}/ when present, otherwise a
- * same-size placeholder frame so dropping real images in later needs zero
- * layout changes.
+ * per-feature config from src/data/appPreviews.js. Renders screenshots from
+ * src/assets/app-previews/{slug}/ when present, else the feature's iOS
+ * `screenshot`, else a same-size placeholder frame. A feature with `photos`
+ * shows those instead of a phone. A feature that isn't in the app yet
+ * (`inApp: false`) always offers the notify-me form, never the app link.
  */
-export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug }) {
+export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug, screenshot, marketingHref, photos, inApp = true, availability, availabilityNote }) {
   const [iosUrl, setIosUrl] = useState(undefined); // undefined = loading
 
   useEffect(() => {
@@ -31,7 +33,8 @@ export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug 
     };
   }, []);
 
-  const screenshots = getPreviewScreenshots(slug);
+  const dropped = getPreviewScreenshots(slug);
+  const screenshots = dropped.length > 0 ? dropped : screenshot ? [screenshot] : [];
 
   return (
     <div className="min-h-screen bg-brew-bg text-brew-text">
@@ -41,12 +44,19 @@ export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug 
           <div className="w-14 h-14 rounded-2xl bg-brew-accent/10 border border-brew-accent/20 flex items-center justify-center mx-auto mb-4">
             <Icon size={26} className="text-brew-accent" />
           </div>
-          <h1 className="text-3xl font-black tracking-tight mb-2">{name}</h1>
+          <h1 className="font-serif text-[34px] font-normal tracking-tight mb-2">{name}</h1>
           <p className="text-brew-text-dim text-base">{pitch}</p>
         </div>
 
         {/* Screenshot showcase */}
-        <ScreenshotShowcase screenshots={screenshots} icon={Icon} />
+        {photos ? <PhotoStrip photos={photos} /> : <ScreenshotShowcase screenshots={screenshots} icon={Icon} name={name} />}
+        {marketingHref && (
+          <p className="text-center -mt-4 mb-2">
+            <Link to={marketingHref} className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-brew-accent hover:text-brew-accent-soft transition-colors">
+              See it on the iPhone page <ArrowUpRight size={14} />
+            </Link>
+          </p>
+        )}
 
         {/* Benefit bullets */}
         <ul className="space-y-2.5 my-10 max-w-[420px] mx-auto">
@@ -61,14 +71,14 @@ export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug 
         {/* CTA block */}
         <div className="text-center border-t border-brew-border pt-8">
           <p className="font-mono text-[11px] text-brew-text-dim uppercase tracking-wider mb-4">
-            This one lives in the app.
+            {availability ?? 'This one lives in the app.'}
           </p>
 
           {iosUrl === undefined ? (
             <div className="h-[46px] flex items-center justify-center">
               <Loader2 size={18} className="animate-spin text-brew-text-muted" />
             </div>
-          ) : iosUrl ? (
+          ) : iosUrl && inApp ? (
             <>
               <a href={iosUrl} target="_blank" rel="noopener noreferrer" className={PRIMARY_BTN_CLASS}>
                 Get the iOS app →
@@ -80,8 +90,7 @@ export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug 
           ) : (
             <>
               <p className="text-sm text-brew-text-dim mb-4 max-w-sm mx-auto leading-relaxed">
-                TestFlight is invite-only right now — pop your email in and we'll send you an
-                invite as spots open up.
+                {availabilityNote ?? "TestFlight is invite-only right now — pop your email in and we'll send you an invite as spots open up."}
               </p>
               <WaitlistForm feature={slug} />
               <p className="text-xs text-brew-text-muted mt-5 max-w-sm mx-auto leading-relaxed">
@@ -157,26 +166,30 @@ function WaitlistForm({ feature }) {
         <button
           type="submit"
           disabled={submitting}
-          className="shrink-0 bg-brew-accent hover:bg-[#D4F27A] text-brew-bg font-bold text-sm px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[64px]"
+          className="shrink-0 bg-brew-accent hover:bg-brew-accent-hover text-brew-on-accent font-bold text-sm px-4 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[64px]"
         >
           {submitting ? <Loader2 size={16} className="animate-spin" /> : 'Join →'}
         </button>
       </div>
-      {error && <p className="text-xs text-red-400 mt-2">{error}</p>}
+      {error && <p className="text-xs text-brew-bad mt-2">{error}</p>}
     </form>
   );
 }
 
-function PhoneFrame({ src, icon: Icon }) {
+// The iOS captures include the simulator's device bezel; the offsets crop it
+// so the CSS frame shows only the screen (same crop as .m-phone on /ios).
+function PhoneFrame({ src, icon: Icon, alt = '' }) {
   return (
     <div
-      className="relative w-[220px] shrink-0 rounded-[28px] border-[3px] border-brew-border bg-brew-card overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
-      style={{ aspectRatio: '9 / 19.5' }}
+      className="relative w-[230px] shrink-0 rounded-[36px] border-2 border-[#6d706c] bg-[#0c0b09] overflow-hidden shadow-[0_30px_65px_rgba(0,0,0,0.4),0_0_0_5px_#1c1a17]"
+      style={{ aspectRatio: '800 / 1748' }}
     >
-      {/* Notch */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-4 bg-[#0F1210] rounded-full z-10" />
       {src ? (
-        <img src={src} alt="" className="w-full h-full object-cover" />
+        <img
+          src={src}
+          alt={alt}
+          className="absolute max-w-none w-[108.5%] h-[104.3%] left-[-4.25%] top-[-2.15%]"
+        />
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center gap-2 px-4 text-center">
           <Icon size={28} className="text-brew-text-muted" />
@@ -189,13 +202,14 @@ function PhoneFrame({ src, icon: Icon }) {
   );
 }
 
-function ScreenshotShowcase({ screenshots, icon }) {
+function ScreenshotShowcase({ screenshots, icon, name }) {
   const frames = screenshots.length > 0 ? screenshots : [null];
+  const alt = `${name} in the Trail Brew iPhone app`;
 
   if (frames.length === 1) {
     return (
       <div className="flex justify-center my-10">
-        <PhoneFrame src={frames[0]} icon={icon} />
+        <PhoneFrame src={frames[0]} icon={icon} alt={frames[0] ? alt : ''} />
       </div>
     );
   }
@@ -204,8 +218,21 @@ function ScreenshotShowcase({ screenshots, icon }) {
     <div className="flex gap-4 overflow-x-auto my-10 px-1 py-2 snap-x snap-mandatory">
       {frames.map((src, i) => (
         <div key={src || i} className="snap-center">
-          <PhoneFrame src={src} icon={icon} />
+          <PhoneFrame src={src} icon={icon} alt={src ? alt : ''} />
         </div>
+      ))}
+    </div>
+  );
+}
+
+/** Studio photos for a feature the app has no screen for yet. */
+function PhotoStrip({ photos }) {
+  const [lead, ...rest] = photos;
+  return (
+    <div className="my-10 grid grid-cols-2 gap-3">
+      <img src={lead.src} alt={lead.alt} className="col-span-2 w-full rounded-2xl border border-brew-border" />
+      {rest.map((p) => (
+        <img key={p.src} src={p.src} alt={p.alt} className="w-full rounded-2xl border border-brew-border" />
       ))}
     </div>
   );

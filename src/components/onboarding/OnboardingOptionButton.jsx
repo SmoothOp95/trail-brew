@@ -9,7 +9,7 @@ export default function OnboardingOptionButton({ label, isSelected, onClick }) {
         ${
           isSelected
             ? 'border-brew-accent bg-brew-accent/[0.06]'
-            : 'border-brew-border bg-brew-card hover:border-brew-accent hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(184,230,72,0.08)]'
+            : 'border-brew-border bg-brew-card hover:border-brew-accent hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(255,122,26,0.08)]'
         }
       `}
     >

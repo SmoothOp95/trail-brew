@@ -1,3 +1,5 @@
+import AppIcon from '../brand/AppIcon';
+
 export default function OnboardingLayout({
   section,
   title,
@@ -8,12 +10,12 @@ export default function OnboardingLayout({
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10 relative">
       {/* Glow */}
-      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(184,230,72,0.15),transparent_70%)] pointer-events-none opacity-50" />
+      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,122,26,0.15),transparent_70%)] pointer-events-none opacity-50" />
 
       {/* Brand */}
       <div className="text-center mb-10 relative">
-        <span className="text-4xl block mb-2">⛰️</span>
-        <h1 className="text-3xl sm:text-4xl font-black tracking-tighter leading-none bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+        <AppIcon size={56} className="mx-auto mb-4" />
+        <h1 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
           Trail Brew
         </h1>
       </div>

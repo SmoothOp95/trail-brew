@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import Sidebar from './Sidebar';
+import AppIcon from '../brand/AppIcon';
 
 export default function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,7 +22,8 @@ export default function AppLayout() {
           >
             <Menu size={22} />
           </button>
-          <span className="font-black text-base tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+          <AppIcon size={24} />
+          <span className="font-black text-base tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>
         </div>

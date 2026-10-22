@@ -122,11 +122,11 @@ export default function AuthModal({ onClose }) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="relative w-full max-w-sm bg-[#0F1210] border border-brew-border rounded-2xl shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-sm bg-brew-surface border border-brew-border rounded-2xl shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-brew-border">
           <div>
-            <p className="font-black text-base tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+            <p className="font-black text-base tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
               Trail Brew
             </p>
             <p className="text-xs text-brew-text-dim mt-0.5">
@@ -243,12 +243,12 @@ export default function AuthModal({ onClose }) {
 
             {/* Error message */}
             {error && (
-              <p className="text-xs text-red-400 font-mono">{error}</p>
+              <p className="text-xs text-brew-bad font-mono">{error}</p>
             )}
 
             {/* Reset sent confirmation */}
             {resetSent && (
-              <p className="text-xs text-green-400 font-mono">
+              <p className="text-xs text-brew-good font-mono">
                 Reset email sent — check your inbox.
               </p>
             )}

@@ -51,7 +51,7 @@ export default function ServiceDetailsDialog({ bikeData, onConfirm, onClose }) {
       className="fixed inset-0 bg-brew-bg/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4"
       onClick={handleBackdrop}
     >
-      <div className="bg-brew-card border border-brew-border rounded-xl w-full max-w-sm">
+      <div className="bg-brew-card border border-brew-border rounded-2xl w-full max-w-sm">
         {/* Header */}
         <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-brew-border">
           <div>
@@ -126,7 +126,7 @@ export default function ServiceDetailsDialog({ bikeData, onConfirm, onClose }) {
                   className={`
                     flex-1 font-mono text-[11px] py-2 rounded-lg border uppercase tracking-wide font-bold transition-all
                     ${serviceType === type
-                      ? 'bg-brew-accent text-brew-bg border-brew-accent'
+                      ? 'bg-brew-accent text-brew-on-accent border-brew-accent'
                       : 'border-brew-border text-brew-text-dim hover:border-brew-text-dim hover:text-brew-text'
                     }
                   `}
@@ -157,7 +157,7 @@ export default function ServiceDetailsDialog({ bikeData, onConfirm, onClose }) {
           <button
             onClick={handleConfirm}
             disabled={!shopName.trim() || submitting}
-            className="flex-1 bg-brew-accent text-brew-bg font-bold text-sm rounded-lg py-2.5 hover:bg-[#D4F27A] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="flex-1 bg-brew-accent text-brew-on-accent font-bold text-sm rounded-xl py-2.5 hover:bg-brew-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {submitting && <Loader2 size={14} className="animate-spin" />}
             {submitting ? 'Saving…' : 'Confirm'}
