@@ -182,7 +182,7 @@ export default function HomePage() {
           <p className="font-mono text-[11px] text-brew-accent uppercase tracking-[0.3em] mb-3">
             The toolkit
           </p>
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tighter leading-[0.95]">
+          <h2 className="font-serif text-4xl sm:text-6xl font-normal tracking-tight leading-[0.95]">
             Tools for every rider.
           </h2>
           <p className="text-brew-text-dim text-sm mt-3 max-w-sm mx-auto">
