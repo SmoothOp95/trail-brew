@@ -135,7 +135,7 @@ export default function HomePage() {
         <p className="font-mono text-[11px] text-brew-accent uppercase tracking-[0.3em] mb-5">
           Gauteng Mountain Biking
         </p>
-        <h1 className="font-serif text-6xl sm:text-8xl font-normal tracking-tight leading-[0.95] mb-6 max-w-3xl">
+        <h1 className="font-serif text-5xl sm:text-7xl font-normal tracking-tight leading-[1.02] mb-6 max-w-3xl">
           Riders who earn their{' '}
           <span className="italic text-brew-accent-soft">
             coffees &amp; beers.
@@ -182,7 +182,7 @@ export default function HomePage() {
           <p className="font-mono text-[11px] text-brew-accent uppercase tracking-[0.3em] mb-3">
             The toolkit
           </p>
-          <h2 className="font-serif text-4xl sm:text-6xl font-normal tracking-tight leading-[0.95]">
+          <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight leading-[1.05]">
             Tools for every rider.
           </h2>
           <p className="text-brew-text-dim text-sm mt-3 max-w-sm mx-auto">

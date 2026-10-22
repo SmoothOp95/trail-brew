@@ -256,7 +256,7 @@ function RiderBar() {
   return (
     <header className="flex flex-wrap items-end gap-6 pt-2 pb-5 border-b border-white/20">
       <div className="min-w-0">
-        <h1 className="font-serif text-[31px] font-normal tracking-tight leading-tight">Setup bench</h1>
+        <h1 className="font-serif text-[28px] font-normal tracking-tight leading-tight">Setup bench</h1>
         <p className="text-sm text-brew-text-dim mt-1 max-w-[46ch]">
           Set up your bike, then tell it what you want from it. It works out which settings to change and by how much.
         </p>

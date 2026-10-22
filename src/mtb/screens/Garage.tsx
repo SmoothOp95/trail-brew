@@ -56,7 +56,7 @@ export function Garage() {
   return (
     <div className="max-w-4xl">
       <header className="pt-2 pb-5 border-b border-white/20 mb-8">
-        <h1 className="font-serif text-[31px] font-normal tracking-tight leading-tight">Garage</h1>
+        <h1 className="font-serif text-[28px] font-normal tracking-tight leading-tight">Garage</h1>
         <p className="text-sm text-brew-text-dim mt-1 max-w-[60ch]">
           Find your fork and shock so the Bench only suggests changes your hardware can make. Start at the top; each step falls back to the next.
         </p>

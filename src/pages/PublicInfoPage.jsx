@@ -21,7 +21,7 @@ function PublicShell({ children, title, eyebrow }) {
           </nav>
         </header>
         <p className="relative mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-brew-accent">{eyebrow}</p>
-        <h1 className="relative mb-8 font-serif text-5xl font-normal leading-[0.95] tracking-tight sm:text-7xl">{title}</h1>
+        <h1 className="relative mb-8 font-serif text-4xl font-normal leading-[1.02] tracking-tight sm:text-6xl">{title}</h1>
         <div className="relative space-y-7 text-base leading-7 text-brew-text-dim">{children}</div>
       </div>
     </main>

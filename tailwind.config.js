@@ -42,11 +42,10 @@ export default {
         },
       },
       fontFamily: {
-        // Instrument Serif: display headlines. Hanken Grotesk: interface.
-        // Space Mono: units, eyebrow labels, tabular figures.
-        serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
-        sans: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
-        mono: ['"Space Mono"', 'ui-monospace', 'monospace'],
+        // Stacks are defined once in src/styles/index.css (--font-*).
+        serif: 'var(--font-serif)',
+        sans: 'var(--font-sans)',
+        mono: 'var(--font-mono)',
       },
       boxShadow: {
         // PrimaryButtonStyle: accent glow under the filled button.

@@ -15,7 +15,7 @@ export default function OnboardingLayout({
       {/* Brand */}
       <div className="text-center mb-10 relative">
         <AppIcon size={56} className="mx-auto mb-4" />
-        <h1 className="font-serif text-4xl sm:text-5xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
+        <h1 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
           Trail Brew
         </h1>
       </div>

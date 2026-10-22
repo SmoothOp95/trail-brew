@@ -82,7 +82,7 @@ export default function JoinLandingPage() {
 
       <div className="max-w-[440px] w-full relative animate-fade-slide">
         <img src={rideCalendar} alt="" aria-hidden="true" width={140} height={140} className="mx-auto mb-4 drop-shadow-[0_18px_30px_rgba(255,90,77,0.25)]" />
-        <h1 className="font-serif text-5xl sm:text-6xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent mb-4">
+        <h1 className="font-serif text-4xl sm:text-5xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent mb-4">
           Join Trail Brew
         </h1>
         <p className="text-brew-text-dim text-base leading-relaxed mb-10">

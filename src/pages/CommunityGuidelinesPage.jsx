@@ -42,7 +42,7 @@ export default function CommunityGuidelinesPage() {
         <p className="font-mono text-[11px] text-brew-accent uppercase tracking-[3px] mb-3">
           Community
         </p>
-        <h1 className="font-serif text-4xl sm:text-5xl font-normal tracking-tight leading-tight mb-4">
+        <h1 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight leading-tight mb-4">
           Community Guidelines
         </h1>
         <p className="text-brew-text-dim text-sm leading-relaxed mb-10">

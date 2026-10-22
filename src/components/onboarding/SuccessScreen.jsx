@@ -24,7 +24,7 @@ export default function SuccessScreen() {
       <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,122,26,0.15),transparent_70%)] pointer-events-none opacity-50" />
 
       <div className="max-w-[480px] w-full relative animate-fade-slide">
-        <h1 className="font-serif text-4xl sm:text-5xl font-normal tracking-tight leading-tight mb-8">
+        <h1 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight leading-tight mb-8">
           Lekker — welcome to Trail Brew! 🚵
         </h1>
 

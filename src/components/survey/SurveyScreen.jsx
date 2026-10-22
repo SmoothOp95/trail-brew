@@ -37,7 +37,7 @@ export default function SurveyScreen({ onComplete }) {
       {/* Brand */}
       <div className="text-center mb-12 relative">
         <img src={trailLocation} alt="" aria-hidden="true" width={132} height={132} className="mx-auto mb-2 drop-shadow-[0_18px_30px_rgba(255,90,77,0.25)]" />
-        <h1 className="font-serif text-6xl sm:text-7xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
+        <h1 className="font-serif text-5xl sm:text-6xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
           Trail Brew
         </h1>
         <p className="font-mono text-xs text-brew-text-dim mt-2 tracking-[0.2em] uppercase">

@@ -61,7 +61,7 @@ export default function RideCalendarPage() {
       <div className="border-b border-brew-border bg-brew-card/95 backdrop-blur-sm sticky top-[49px] lg:top-0 z-30">
         <div className="max-w-[760px] mx-auto px-5 py-5 flex items-start justify-between gap-4">
           <div>
-            <h1 className="font-serif text-[28px] font-normal leading-tight">Ride Calendar</h1>
+            <h1 className="font-serif text-[26px] font-normal leading-tight">Ride Calendar</h1>
             <p className="text-xs text-brew-text-dim mt-0.5">
               One big Trail Brew ride a month · progressively spicier through 2026
             </p>

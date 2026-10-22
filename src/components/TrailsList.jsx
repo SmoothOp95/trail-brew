@@ -53,7 +53,7 @@ export default function TrailsList() {
         <div className="max-w-[1100px] mx-auto px-5 py-4 flex items-center gap-3.5">
           <img src={trailLocation} alt="" aria-hidden="true" width={52} height={52} className="shrink-0 -my-1" />
           <div>
-            <h1 className="font-serif text-[28px] font-normal leading-tight">Gauteng MTB Trails</h1>
+            <h1 className="font-serif text-[26px] font-normal leading-tight">Gauteng MTB Trails</h1>
             <p className="text-xs text-brew-text-dim mt-0.5">
               Explore {trails.length} trails across Gauteng with live weather
             </p>

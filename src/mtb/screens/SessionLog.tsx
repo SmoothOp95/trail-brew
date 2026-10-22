@@ -14,7 +14,7 @@ export function SessionLog() {
     <div className="max-w-4xl">
       <header className="pt-2 pb-5 border-b border-white/20 mb-8 flex flex-wrap items-end gap-4">
         <div className="flex-1 min-w-0">
-          <h1 className="font-serif text-[31px] font-normal tracking-tight leading-tight">Session log</h1>
+          <h1 className="font-serif text-[28px] font-normal tracking-tight leading-tight">Session log</h1>
           <p className="text-sm text-brew-text-dim mt-1 max-w-[60ch]">
             Lap, change, how it felt, verdict. One change at a time on the same section is what makes the verdict mean something.
           </p>

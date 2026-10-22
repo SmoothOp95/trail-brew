@@ -149,7 +149,7 @@ function PageHeader({ bikeData }) {
   return (
     <div className="border-b border-brew-border bg-brew-card/60 backdrop-blur-sm sticky top-[49px] lg:top-0 z-10">
       <div className="max-w-lg mx-auto px-5 py-5">
-        <h1 className="font-serif text-[28px] font-normal leading-tight">Service Dashboard</h1>
+        <h1 className="font-serif text-[26px] font-normal leading-tight">Service Dashboard</h1>
         <p className="text-xs text-brew-text-dim mt-0.5">
           {bikeData ? `${bikeData.nickname} · tracker & history` : 'Tracker & history'}
         </p>

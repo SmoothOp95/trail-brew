@@ -43,7 +43,7 @@ export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug,
           <div className="w-14 h-14 rounded-2xl bg-brew-accent/10 border border-brew-accent/20 flex items-center justify-center mx-auto mb-4">
             <Icon size={26} className="text-brew-accent" />
           </div>
-          <h1 className="font-serif text-4xl font-normal tracking-tight mb-2">{name}</h1>
+          <h1 className="font-serif text-[34px] font-normal tracking-tight mb-2">{name}</h1>
           <p className="text-brew-text-dim text-base">{pitch}</p>
         </div>
 
