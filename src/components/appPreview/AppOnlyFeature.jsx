@@ -13,9 +13,10 @@ import { PRIMARY_BTN_CLASS } from '../../styles/buttonStyles';
  * per-feature config from src/data/appPreviews.js. Renders screenshots from
  * src/assets/app-previews/{slug}/ when present, else the feature's iOS
  * `screenshot`, else a same-size placeholder frame. A feature with `photos`
- * shows those instead of a phone.
+ * shows those instead of a phone. A feature that isn't in the app yet
+ * (`inApp: false`) always offers the notify-me form, never the app link.
  */
-export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug, screenshot, marketingHref, photos }) {
+export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug, screenshot, marketingHref, photos, inApp = true, availability, availabilityNote }) {
   const [iosUrl, setIosUrl] = useState(undefined); // undefined = loading
 
   useEffect(() => {
@@ -70,14 +71,14 @@ export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug,
         {/* CTA block */}
         <div className="text-center border-t border-brew-border pt-8">
           <p className="font-mono text-[11px] text-brew-text-dim uppercase tracking-wider mb-4">
-            This one lives in the app.
+            {availability ?? 'This one lives in the app.'}
           </p>
 
           {iosUrl === undefined ? (
             <div className="h-[46px] flex items-center justify-center">
               <Loader2 size={18} className="animate-spin text-brew-text-muted" />
             </div>
-          ) : iosUrl ? (
+          ) : iosUrl && inApp ? (
             <>
               <a href={iosUrl} target="_blank" rel="noopener noreferrer" className={PRIMARY_BTN_CLASS}>
                 Get the iOS app →
@@ -89,8 +90,7 @@ export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug,
           ) : (
             <>
               <p className="text-sm text-brew-text-dim mb-4 max-w-sm mx-auto leading-relaxed">
-                TestFlight is invite-only right now — pop your email in and we'll send you an
-                invite as spots open up.
+                {availabilityNote ?? "TestFlight is invite-only right now — pop your email in and we'll send you an invite as spots open up."}
               </p>
               <WaitlistForm feature={slug} />
               <p className="text-xs text-brew-text-muted mt-5 max-w-sm mx-auto leading-relaxed">

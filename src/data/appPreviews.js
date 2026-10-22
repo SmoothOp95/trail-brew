@@ -63,6 +63,9 @@ export const appPreviews = {
       'Filtered by riding style and budget',
       'No more guessing at the bike shop',
     ],
+    inApp: false,
+    availability: 'Coming soon to Trail Brew.',
+    availabilityNote: "Find My Bike isn't in the app yet. Pop your email in and we'll let you know when it lands.",
     photos: [
       { src: fullSuspensionPhoto, alt: 'Copper full suspension trail bike' },
       { src: hardtailPhoto, alt: 'Green hardtail mountain bike' },
