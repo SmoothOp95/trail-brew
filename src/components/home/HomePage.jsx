@@ -82,17 +82,17 @@ const tools = [
   },
   {
     id: 'dashboard',
-    href: null,
+    href: '/mtb-dashboard',
     external: false,
     emoji: '📊',
-    label: 'Dashboard',
-    tag: 'Coming soon',
-    tagStyle: 'bg-brew-card text-brew-text-muted border border-brew-border',
+    label: 'MTB Setup Dashboard',
+    tag: 'Live',
+    tagStyle: 'bg-brew-accent/10 text-brew-accent border border-brew-accent/20',
     description: 'Track and improve your riding quality with suspension tuning and tyre pressure insights.',
     types: ['Suspension', 'Tyre pressure', 'Insights'],
     typeColors: ['text-trail-trail', 'text-trail-flow', 'text-trail-jump'],
-    cta: null,
-    active: false,
+    cta: 'Open setup dashboard →',
+    active: true,
   },
 ];
 
