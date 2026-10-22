@@ -7,13 +7,13 @@ function PublicShell({ children, title, eyebrow }) {
     <main className="relative min-h-screen overflow-hidden bg-brew-bg px-5 py-10 text-brew-text sm:px-8">
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed left-1/2 top-[-300px] h-[900px] w-[900px] -translate-x-1/2 bg-[radial-gradient(circle,rgba(184,230,72,0.07),transparent_65%)]"
+        className="pointer-events-none fixed left-1/2 top-[-300px] h-[900px] w-[900px] -translate-x-1/2 bg-[radial-gradient(circle,rgba(255,122,26,0.07),transparent_65%)]"
       />
       <div className="mx-auto max-w-3xl">
         <header className="relative mb-14 flex items-center justify-between gap-4 border-b border-brew-border pb-5">
           <Link className="flex items-center gap-2 text-xl font-black tracking-tight" to="/ios">
             <span aria-hidden="true">🏔️</span>
-            <span className="bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">Trail Brew</span>
+            <span className="bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">Trail Brew</span>
           </Link>
           <nav aria-label="Public information" className="flex gap-4 font-mono text-[11px] uppercase tracking-wider text-brew-text-dim">
             <Link className="transition hover:text-brew-accent" to="/ios/support">Support</Link>
@@ -21,7 +21,7 @@ function PublicShell({ children, title, eyebrow }) {
           </nav>
         </header>
         <p className="relative mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-brew-accent">{eyebrow}</p>
-        <h1 className="relative mb-8 text-4xl font-black leading-[0.95] tracking-tighter sm:text-6xl">{title}</h1>
+        <h1 className="relative mb-8 font-serif text-5xl font-normal leading-[0.95] tracking-tight sm:text-7xl">{title}</h1>
         <div className="relative space-y-7 text-base leading-7 text-brew-text-dim">{children}</div>
       </div>
     </main>
@@ -33,7 +33,7 @@ export function SupportPage() {
     <PublicShell eyebrow="We’re here to help" title="Trail Brew support">
       <p>Need help with Trail Brew, have feedback, or want to report a problem? Email us and include the device and iOS version you’re using, plus a short description of what happened.</p>
       <p>
-        <a className="font-medium text-brew-accent underline underline-offset-4 transition hover:text-[#D4F27A]" href={`mailto:${supportEmail}`}>{supportEmail}</a>
+        <a className="font-medium text-brew-accent underline underline-offset-4 transition hover:text-brew-accent-soft" href={`mailto:${supportEmail}`}>{supportEmail}</a>
       </p>
       <section className="space-y-3">
         <h2 className="mb-2 text-xl font-bold tracking-tight text-brew-text">Apple Health</h2>
@@ -66,7 +66,7 @@ export function PrivacyPage() {
       </section>
       <section className="space-y-3">
         <h2 className="mb-2 text-xl font-bold tracking-tight text-brew-text">Contact</h2>
-        <p>For privacy questions or requests, email <a className="font-medium text-brew-accent underline underline-offset-4 transition hover:text-[#D4F27A]" href={`mailto:${supportEmail}`}>{supportEmail}</a>.</p>
+        <p>For privacy questions or requests, email <a className="font-medium text-brew-accent underline underline-offset-4 transition hover:text-brew-accent-soft" href={`mailto:${supportEmail}`}>{supportEmail}</a>.</p>
       </section>
       <section className="space-y-3">
         <h2 className="mb-2 text-xl font-bold tracking-tight text-brew-text">Changes to this policy</h2>

@@ -18,7 +18,7 @@ export default function Toast({ message, type = 'success', onDismiss }) {
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-fade-slide">
-      <div className="flex items-center gap-3 bg-brew-card border border-brew-border rounded-xl px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)] min-w-[220px] max-w-xs">
+      <div className="flex items-center gap-3 bg-brew-card border border-brew-border rounded-2xl px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)] min-w-[220px] max-w-xs">
         <Icon size={16} className={`shrink-0 ${iconColor}`} />
         <p className="text-sm text-brew-text flex-1">{message}</p>
         <button

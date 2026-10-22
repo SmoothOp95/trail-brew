@@ -339,7 +339,7 @@ export default function LogRideModal({ trail, initialMode = 'log', onClose, onRi
       className="fixed inset-0 bg-brew-bg/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4"
       onClick={handleBackdrop}
     >
-      <div className="bg-brew-card border border-brew-border rounded-xl w-full max-w-sm max-h-[90vh] flex flex-col">
+      <div className="bg-brew-card border border-brew-border rounded-2xl w-full max-w-sm max-h-[90vh] flex flex-col">
         {/* ── Header ────────────────────────────────────────────────────── */}
         <div className="flex items-start justify-between px-5 pt-5 pb-4 border-b border-brew-border shrink-0">
           <div>
@@ -468,7 +468,7 @@ export default function LogRideModal({ trail, initialMode = 'log', onClose, onRi
                   <button
                     onClick={handleExtract}
                     disabled={!file || extracting}
-                    className="w-full bg-brew-accent text-brew-bg font-bold text-sm rounded-lg py-3 hover:bg-[#D4F27A] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-brew-accent text-brew-on-accent font-bold text-sm rounded-xl py-3 hover:bg-brew-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     style={{ minHeight: '44px' }}
                   >
                     {extracting && <Loader2 size={14} className="animate-spin" />}
@@ -576,7 +576,7 @@ export default function LogRideModal({ trail, initialMode = 'log', onClose, onRi
 
                   <button
                     onClick={handleReviewConfirm}
-                    className="w-full mt-4 bg-brew-accent text-brew-bg font-bold text-sm rounded-lg py-3 hover:bg-[#D4F27A] transition-colors flex items-center justify-center gap-2"
+                    className="w-full mt-4 bg-brew-accent text-brew-on-accent font-bold text-sm rounded-xl py-3 hover:bg-brew-accent-hover transition-colors flex items-center justify-center gap-2"
                     style={{ minHeight: '44px' }}
                   >
                     Confirm ride
@@ -704,7 +704,7 @@ export default function LogRideModal({ trail, initialMode = 'log', onClose, onRi
                   <button
                     onClick={handleSubmit}
                     disabled={submitting || !date}
-                    className="w-full bg-brew-accent text-brew-bg font-bold text-sm rounded-lg py-3 hover:bg-[#D4F27A] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-brew-accent text-brew-on-accent font-bold text-sm rounded-xl py-3 hover:bg-brew-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     style={{ minHeight: '44px' }}
                   >
                     {submitting && <Loader2 size={14} className="animate-spin" />}

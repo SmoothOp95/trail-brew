@@ -57,7 +57,7 @@ export default function MyBikePage() {
 
         {/* Guest mode banner */}
         {!user && !guestBannerDismissed && (
-          <div className="flex items-start gap-3 bg-brew-card border border-brew-accent/20 rounded-xl px-4 py-3.5">
+          <div className="flex items-start gap-3 bg-brew-card border border-brew-accent/20 rounded-2xl px-4 py-3.5">
             <Wrench size={15} className="text-brew-accent shrink-0 mt-0.5" />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-brew-text leading-snug">Guest mode</p>
@@ -103,7 +103,7 @@ export default function MyBikePage() {
           </p>
 
           {allRecords.length === 0 ? (
-            <div className="bg-brew-card border border-brew-border rounded-xl px-5 py-8 flex flex-col items-center text-center">
+            <div className="bg-brew-card border border-brew-border rounded-2xl px-5 py-8 flex flex-col items-center text-center">
               <Clock size={28} className="text-brew-text-muted mb-3" />
               <p className="text-sm font-semibold text-brew-text mb-0.5">No records yet</p>
               <p className="text-xs text-brew-text-dim">
@@ -149,7 +149,7 @@ function PageHeader({ bikeData }) {
   return (
     <div className="border-b border-brew-border bg-brew-card/60 backdrop-blur-sm sticky top-[49px] lg:top-0 z-10">
       <div className="max-w-lg mx-auto px-5 py-5">
-        <h1 className="text-xl font-bold leading-tight">Service Dashboard</h1>
+        <h1 className="font-serif text-[28px] font-normal leading-tight">Service Dashboard</h1>
         <p className="text-xs text-brew-text-dim mt-0.5">
           {bikeData ? `${bikeData.nickname} · tracker & history` : 'Tracker & history'}
         </p>
@@ -162,7 +162,7 @@ function PageHeader({ bikeData }) {
 function RecordRow({ record }) {
   const isService = record.type === 'service';
   return (
-    <div className="bg-brew-card border border-brew-border rounded-xl px-4 py-3.5 flex items-center justify-between gap-4">
+    <div className="bg-brew-card border border-brew-border rounded-2xl px-4 py-3.5 flex items-center justify-between gap-4">
       <div className="flex items-center gap-3 min-w-0">
         <span className={`
           shrink-0 font-mono text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wide
@@ -189,7 +189,7 @@ function RecordRow({ record }) {
 /** Compact summary stat pill */
 function StatPill({ label, value, accent }) {
   return (
-    <div className="bg-brew-card border border-brew-border rounded-xl px-3 py-2.5 text-center">
+    <div className="bg-brew-card border border-brew-border rounded-2xl px-3 py-2.5 text-center">
       <p className={`font-mono font-bold text-base leading-none mb-1 ${accent ? 'text-brew-accent' : 'text-brew-text'}`}>
         {value}
       </p>
@@ -201,7 +201,7 @@ function StatPill({ label, value, accent }) {
 /** Loading skeleton */
 function SkeletonCard({ tall }) {
   return (
-    <div className={`bg-brew-card border border-brew-border rounded-xl p-6 animate-pulse ${tall ? 'h-56' : 'h-24'}`}>
+    <div className={`bg-brew-card border border-brew-border rounded-2xl p-6 animate-pulse ${tall ? 'h-56' : 'h-24'}`}>
       <div className="h-3 bg-brew-border rounded w-1/3 mb-3" />
       <div className="h-2 bg-brew-border rounded w-1/2" />
     </div>

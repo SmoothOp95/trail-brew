@@ -21,7 +21,7 @@ export default function AppLayout() {
           >
             <Menu size={22} />
           </button>
-          <span className="font-black text-base tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+          <span className="font-black text-base tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>
         </div>

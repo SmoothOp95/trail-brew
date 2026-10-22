@@ -7,7 +7,7 @@ export function Method() {
   return (
     <div className="max-w-3xl">
       <header className="pt-2 pb-5 border-b border-white/20 mb-8">
-        <h1 className="text-[28px] font-semibold tracking-tight leading-tight">Method</h1>
+        <h1 className="font-serif text-[31px] font-normal tracking-tight leading-tight">Method</h1>
         <p className="text-sm text-brew-text-dim mt-1 max-w-[60ch]">How to measure, how to test, and in what order to change things.</p>
       </header>
 

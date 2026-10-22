@@ -50,7 +50,7 @@ export default function TrailsList() {
       {/* ── PAGE HEADER ── */}
       <div className="border-b border-brew-border bg-brew-card/60 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-[1100px] mx-auto px-5 py-4">
-          <h1 className="text-xl font-bold leading-tight">Gauteng MTB Trails</h1>
+          <h1 className="font-serif text-[28px] font-normal leading-tight">Gauteng MTB Trails</h1>
           <p className="text-xs text-brew-text-dim mt-0.5">
             Explore {trails.length} trails across Gauteng with live weather
           </p>
@@ -68,7 +68,7 @@ export default function TrailsList() {
               placeholder="Search trails by name, location, or description…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-brew-card border border-brew-border rounded-xl pl-9 pr-4 py-2.5 text-sm text-brew-text placeholder:text-brew-text-dim/50 focus:outline-none focus:border-brew-accent/40 transition-colors"
+              className="w-full bg-brew-card border border-brew-border rounded-2xl pl-9 pr-4 py-2.5 text-sm text-brew-text placeholder:text-brew-text-dim/50 focus:outline-none focus:border-brew-accent/40 transition-colors"
             />
           </div>
 
@@ -179,7 +179,7 @@ export default function TrailsList() {
               href={selectedTrail.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-brew-accent text-brew-bg font-bold text-xs rounded-lg py-2 hover:opacity-90 transition-opacity"
+              className="flex items-center justify-center gap-2 bg-brew-accent text-brew-on-accent font-bold text-xs rounded-xl py-2 hover:opacity-90 transition-opacity"
             >
               <MapPin size={12} />
               View on Map

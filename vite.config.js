@@ -12,8 +12,8 @@ export default defineConfig({
         name: 'Trail Brew — Gauteng MTB Trail Finder',
         short_name: 'Trail Brew',
         description: 'Find your perfect MTB trail in Gauteng',
-        theme_color: '#0C0E0D',
-        background_color: '#0C0E0D',
+        theme_color: '#0D0C0A',
+        background_color: '#0D0C0A',
         display: 'standalone',
         start_url: '/',
         icons: [

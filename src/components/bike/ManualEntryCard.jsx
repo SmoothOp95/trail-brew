@@ -33,7 +33,7 @@ export default function ManualEntryCard({ bikeData, onAdd, onToast }) {
   };
 
   return (
-    <div className="bg-brew-card border border-brew-border rounded-xl p-5">
+    <div className="bg-brew-card border border-brew-border rounded-2xl p-5">
       <p className="font-mono text-[10px] text-brew-text-muted uppercase tracking-widest mb-3">
         Add Ride Manually
       </p>
@@ -59,7 +59,7 @@ export default function ManualEntryCard({ bikeData, onAdd, onToast }) {
         <button
           onClick={handleAdd}
           disabled={!hasInput || saving}
-          className="shrink-0 bg-brew-accent text-brew-bg font-bold rounded-lg px-4 py-2.5 hover:bg-[#D4F27A] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5"
+          className="shrink-0 bg-brew-accent text-brew-on-accent font-bold rounded-xl px-4 py-2.5 hover:bg-brew-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5"
         >
           {saving
             ? <Loader2 size={14} className="animate-spin" />

@@ -21,10 +21,10 @@ export default function SuccessScreen() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10 relative text-center">
-      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(184,230,72,0.15),transparent_70%)] pointer-events-none opacity-50" />
+      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,122,26,0.15),transparent_70%)] pointer-events-none opacity-50" />
 
       <div className="max-w-[480px] w-full relative animate-fade-slide">
-        <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-8">
+        <h1 className="font-serif text-4xl sm:text-5xl font-normal tracking-tight leading-tight mb-8">
           Lekker — welcome to Trail Brew! 🚵
         </h1>
 
@@ -35,7 +35,7 @@ export default function SuccessScreen() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-brew-accent hover:bg-[#D4F27A] text-brew-bg font-bold text-sm px-7 py-3 rounded-lg transition-colors tracking-wide mb-10"
+            className="inline-block bg-brew-accent hover:bg-brew-accent-hover text-brew-on-accent font-bold text-sm px-7 py-3 rounded-xl transition-colors tracking-wide mb-10"
           >
             Join the WhatsApp group →
           </a>
@@ -45,7 +45,7 @@ export default function SuccessScreen() {
           </p>
         )}
 
-        <div className="text-left bg-brew-card border border-brew-border rounded-xl p-6 mb-8">
+        <div className="text-left bg-brew-card border border-brew-border rounded-2xl p-6 mb-8">
           <p className="text-sm text-brew-text-dim mb-3">Two things before you tap:</p>
           <ol className="space-y-3 text-[15px] text-brew-text list-decimal list-inside">
             <li>

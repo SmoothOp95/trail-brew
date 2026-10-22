@@ -61,7 +61,7 @@ export default function RideCalendarPage() {
       <div className="border-b border-brew-border bg-brew-card/95 backdrop-blur-sm sticky top-[49px] lg:top-0 z-30">
         <div className="max-w-[760px] mx-auto px-5 py-5 flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-xl font-bold leading-tight">Ride Calendar</h1>
+            <h1 className="font-serif text-[28px] font-normal leading-tight">Ride Calendar</h1>
             <p className="text-xs text-brew-text-dim mt-0.5">
               One big Trail Brew ride a month · progressively spicier through 2026
             </p>
@@ -130,7 +130,7 @@ function RideTimelineItem({ ride, status, isNext }) {
             w-16 h-16 rounded-full flex flex-col items-center justify-center
             border text-center leading-none transition-all
             ${isNext
-              ? 'bg-brew-accent text-brew-bg border-brew-accent shadow-[0_0_0_4px_rgba(184,230,72,0.12)]'
+              ? 'bg-brew-accent text-brew-on-accent border-brew-accent shadow-[0_0_0_4px_rgba(255,122,26,0.12)]'
               : isPast
                 ? 'bg-brew-card border-brew-border opacity-50'
                 : 'bg-brew-card border-brew-border'

@@ -6,7 +6,7 @@ export default function TrailCard({ trail }) {
   const { weather, condition, loading: weatherLoading } = useTrailWeather(trail.coordinates);
 
   return (
-    <div className="bg-brew-card border border-brew-border rounded-xl p-6 transition-all duration-300 relative overflow-hidden hover:border-brew-accent/20 hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)] group">
+    <div className="bg-brew-card border border-brew-border rounded-2xl p-6 transition-all duration-300 relative overflow-hidden hover:border-brew-accent/20 hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)] group">
       {/* Top accent line */}
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-brew-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 

@@ -41,7 +41,7 @@ export default function AppOnlyFeature({ icon: Icon, name, pitch, bullets, slug 
           <div className="w-14 h-14 rounded-2xl bg-brew-accent/10 border border-brew-accent/20 flex items-center justify-center mx-auto mb-4">
             <Icon size={26} className="text-brew-accent" />
           </div>
-          <h1 className="text-3xl font-black tracking-tight mb-2">{name}</h1>
+          <h1 className="font-serif text-4xl font-normal tracking-tight mb-2">{name}</h1>
           <p className="text-brew-text-dim text-base">{pitch}</p>
         </div>
 
@@ -157,12 +157,12 @@ function WaitlistForm({ feature }) {
         <button
           type="submit"
           disabled={submitting}
-          className="shrink-0 bg-brew-accent hover:bg-[#D4F27A] text-brew-bg font-bold text-sm px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[64px]"
+          className="shrink-0 bg-brew-accent hover:bg-brew-accent-hover text-brew-on-accent font-bold text-sm px-4 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[64px]"
         >
           {submitting ? <Loader2 size={16} className="animate-spin" /> : 'Join →'}
         </button>
       </div>
-      {error && <p className="text-xs text-red-400 mt-2">{error}</p>}
+      {error && <p className="text-xs text-brew-bad mt-2">{error}</p>}
     </form>
   );
 }
@@ -174,7 +174,7 @@ function PhoneFrame({ src, icon: Icon }) {
       style={{ aspectRatio: '9 / 19.5' }}
     >
       {/* Notch */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-4 bg-[#0F1210] rounded-full z-10" />
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-4 bg-brew-surface rounded-full z-10" />
       {src ? (
         <img src={src} alt="" className="w-full h-full object-cover" />
       ) : (

@@ -100,13 +100,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col relative">
       {/* Global glow */}
-      <div className="fixed top-[-300px] left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(184,230,72,0.07),transparent_65%)] pointer-events-none" />
+      <div className="fixed top-[-300px] left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-[radial-gradient(circle,rgba(255,122,26,0.07),transparent_65%)] pointer-events-none" />
 
       {/* Nav */}
       <nav className="relative z-10 hidden lg:flex items-center justify-between px-6 sm:px-10 py-5 border-b border-brew-border">
         <div className="flex items-center gap-2.5">
           <span className="text-xl">⛰️</span>
-          <span className="font-black text-lg tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+          <span className="font-black text-lg tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>
         </div>
@@ -120,9 +120,9 @@ export default function HomePage() {
         <p className="font-mono text-[11px] text-brew-accent uppercase tracking-[0.3em] mb-5">
           Gauteng Mountain Biking
         </p>
-        <h1 className="text-5xl sm:text-7xl font-black tracking-tighter leading-[0.95] mb-6 max-w-3xl">
+        <h1 className="font-serif text-6xl sm:text-8xl font-normal tracking-tight leading-[0.95] mb-6 max-w-3xl">
           Riders who earn their{' '}
-          <span className="bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+          <span className="italic text-brew-accent-soft">
             coffees &amp; beers.
           </span>
         </h1>
@@ -185,7 +185,7 @@ export default function HomePage() {
       <footer className="border-t border-brew-border px-6 sm:px-10 py-6 flex items-center justify-between mt-auto">
         <div className="flex items-center gap-2">
           <span className="text-base">⛰️</span>
-          <span className="font-black text-sm tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+          <span className="font-black text-sm tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>
         </div>
@@ -226,7 +226,7 @@ function ToolCard({ tool }) {
   const inner = (
     <div
       className={`
-        bg-brew-card border border-brew-border rounded-xl p-6 h-full flex flex-col transition-all duration-300 relative overflow-hidden group
+        bg-brew-card border border-brew-border rounded-2xl p-6 h-full flex flex-col transition-all duration-300 relative overflow-hidden group
         ${tool.active
           ? 'hover:border-brew-accent/20 hover:-translate-y-[3px] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)] cursor-pointer'
           : 'opacity-55 cursor-default'}

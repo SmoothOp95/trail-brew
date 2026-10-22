@@ -6,7 +6,7 @@ import { Activity } from 'lucide-react';
  */
 export default function StravaIntegrationCard() {
   return (
-    <div className="bg-brew-card border border-brew-border rounded-xl p-5">
+    <div className="bg-brew-card border border-brew-border rounded-2xl p-5">
       {/* Header */}
       <div className="flex items-center gap-2.5 mb-3">
         <Activity size={16} className="text-trail-enduro shrink-0" />

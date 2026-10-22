@@ -77,11 +77,11 @@ export default function JoinLandingPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10 relative text-center">
-      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(184,230,72,0.15),transparent_70%)] pointer-events-none opacity-50" />
+      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,122,26,0.15),transparent_70%)] pointer-events-none opacity-50" />
 
       <div className="max-w-[440px] w-full relative animate-fade-slide">
         <span className="text-5xl block mb-4">⛰️</span>
-        <h1 className="text-4xl sm:text-5xl font-black tracking-tighter leading-none bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent mb-4">
+        <h1 className="font-serif text-5xl sm:text-6xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent mb-4">
           Join Trail Brew
         </h1>
         <p className="text-brew-text-dim text-base leading-relaxed mb-10">
@@ -92,7 +92,7 @@ export default function JoinLandingPage() {
         <button
           onClick={handleGoogleSignIn}
           disabled={signingIn}
-          className="w-full flex items-center justify-center gap-2.5 bg-brew-accent hover:bg-[#D4F27A] text-brew-bg font-bold text-sm py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex items-center justify-center gap-2.5 bg-brew-accent hover:bg-brew-accent-hover text-brew-on-accent font-bold text-sm py-3 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {signingIn ? (
             <Loader2 size={16} className="animate-spin" />
@@ -107,7 +107,7 @@ export default function JoinLandingPage() {
           Continue with Google
         </button>
 
-        {signInError && <p className="text-xs text-red-400 mt-3">{signInError}</p>}
+        {signInError && <p className="text-xs text-brew-bad mt-3">{signInError}</p>}
 
         <div className="flex items-center gap-3 my-6">
           <div className="flex-1 h-px bg-brew-border" />

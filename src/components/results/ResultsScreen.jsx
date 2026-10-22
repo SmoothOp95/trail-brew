@@ -42,7 +42,7 @@ export default function ResultsScreen({ scored, matched, answers, threshold, onR
       <div className="max-w-[1100px] mx-auto flex items-center justify-between flex-wrap gap-4 mb-8">
         <button onClick={onRetake} className="flex items-center gap-3 cursor-pointer">
           <span className="text-3xl">⛰️</span>
-          <span className="text-xl font-extrabold tracking-tight bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+          <span className="text-xl font-extrabold tracking-tight bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
             Trail Brew
           </span>
         </button>
@@ -109,7 +109,7 @@ export default function ResultsScreen({ scored, matched, answers, threshold, onR
         <div className="text-center mt-6">
           <button
             onClick={() => setShowAll((s) => !s)}
-            className="font-mono text-sm text-brew-accent bg-brew-accent/[0.06] border-[1.5px] border-brew-accent/20 px-7 py-3 rounded-xl hover:bg-brew-accent/[0.12] hover:border-brew-accent hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(184,230,72,0.1)] transition-all"
+            className="font-mono text-sm text-brew-accent bg-brew-accent/[0.06] border-[1.5px] border-brew-accent/20 px-7 py-3 rounded-xl hover:bg-brew-accent/[0.12] hover:border-brew-accent hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(255,122,26,0.1)] transition-all"
           >
             {showAll ? 'Show matches only' : `Show all ${scored.length} trails`}
           </button>

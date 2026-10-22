@@ -141,12 +141,12 @@ export default function OnboardingSurvey({ initialDisplayName, onSubmit }) {
             <button
               type="submit"
               disabled={!isStepValid(step, answers) || submitting}
-              className="w-full sm:w-auto bg-brew-accent hover:bg-[#D4F27A] text-brew-bg font-bold text-sm px-7 py-3 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-brew-accent hover:bg-brew-accent-hover text-brew-on-accent font-bold text-sm px-7 py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {submitting && <Loader2 size={16} className="animate-spin" />}
               {isLastStep ? "Let's go 🚵" : 'Continue →'}
             </button>
-            {submitError && <p className="text-xs text-red-400 mt-3">{submitError}</p>}
+            {submitError && <p className="text-xs text-brew-bad mt-3">{submitError}</p>}
           </div>
         )}
       </form>

@@ -31,12 +31,12 @@ export default function SurveyScreen({ onComplete }) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-5 py-10 relative">
       {/* Glow */}
-      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(184,230,72,0.15),transparent_70%)] pointer-events-none opacity-50" />
+      <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255,122,26,0.15),transparent_70%)] pointer-events-none opacity-50" />
 
       {/* Brand */}
       <div className="text-center mb-12 relative">
         <span className="text-5xl block mb-3">⛰️</span>
-        <h1 className="text-5xl sm:text-6xl font-black tracking-tighter leading-none bg-gradient-to-br from-brew-accent to-[#D4F27A] bg-clip-text text-transparent">
+        <h1 className="font-serif text-6xl sm:text-7xl font-normal tracking-tight leading-none bg-gradient-to-br from-brew-accent to-brew-accent-soft bg-clip-text text-transparent">
           Trail Brew
         </h1>
         <p className="font-mono text-xs text-brew-text-dim mt-2 tracking-[0.2em] uppercase">
