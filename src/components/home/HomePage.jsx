@@ -94,6 +94,20 @@ const tools = [
     cta: 'Open setup dashboard →',
     active: true,
   },
+  {
+    id: 'mechanic-dashboard',
+    href: null,
+    external: false,
+    emoji: '🛠️',
+    label: 'Mechanic Dashboard',
+    tag: 'Coming soon',
+    tagStyle: 'bg-brew-card text-brew-text-muted border border-brew-border',
+    description: 'Built for bike shop mechanics. Pull up a rider\'s setup and service history in seconds, log work with service records made for the workshop, and ditch the spreadsheets. Every job syncs straight to the rider\'s service log.',
+    types: ['Rider setups', 'Service logs', 'Synced'],
+    typeColors: ['text-trail-enduro', 'text-trail-xc', 'text-trail-flow'],
+    cta: null,
+    active: false,
+  },
 ];
 
 export default function HomePage() {
