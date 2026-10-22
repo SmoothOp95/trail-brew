@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../../lib/firebase';
 import { useAuth } from '../../hooks/useAuth';
@@ -113,7 +114,9 @@ export default function AuthModal({ onClose }) {
     setResetSent(false);
   };
 
-  return (
+  // Portal to <body> so the modal isn't trapped by a transformed ancestor
+  // (e.g. the sidebar's translate-x), which would scope `position: fixed`.
+  return createPortal(
     /* Backdrop */
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
@@ -274,6 +277,7 @@ export default function AuthModal({ onClose }) {
           </form>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
